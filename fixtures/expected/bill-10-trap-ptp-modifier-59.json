@@ -1,0 +1,6 @@
+{
+  "bill": "bill-10-trap-ptp-modifier-59.json",
+  "description": "TRAP: ncci_ptp (96365,96372) indicator 1, modifier 59 present on 96372 -> must NOT flag",
+  "expectedFindings": [],
+  "notes": "Modifier 59 is on 96372 (column 2) in the line's modifiers array."
+}

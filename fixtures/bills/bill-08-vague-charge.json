@@ -1,0 +1,94 @@
+{
+  "providerName": "Pico-Union Family Health",
+  "serviceStart": "2026-10-06",
+  "serviceEnd": "2026-10-06",
+  "totalBilledCents": 39800,
+  "insuranceStatus": "self_pay",
+  "lineItems": [
+    {
+      "id": "li-1",
+      "dateOfService": "2026-10-06",
+      "code": "99213",
+      "codeType": "CPT",
+      "descriptionRaw": "OFFICE O/P VISIT EST LEVL 3",
+      "units": 1,
+      "unitPriceCents": 15000,
+      "chargeCents": 15000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.245,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-2",
+      "dateOfService": "2026-10-06",
+      "code": "87880",
+      "codeType": "CPT",
+      "descriptionRaw": "STREP A ASSAY W/OPTIC",
+      "units": 1,
+      "unitPriceCents": 4500,
+      "chargeCents": 4500,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.29,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-3",
+      "dateOfService": "2026-10-06",
+      "code": "81002",
+      "codeType": "CPT",
+      "descriptionRaw": "URINALYSIS NONAUTO W/O SCOPE",
+      "units": 1,
+      "unitPriceCents": 1800,
+      "chargeCents": 1800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.335,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-4",
+      "dateOfService": "2026-10-06",
+      "code": null,
+      "codeType": null,
+      "descriptionRaw": "MISC SERVICES",
+      "units": 1,
+      "unitPriceCents": 18500,
+      "chargeCents": 18500,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.38,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    }
+  ],
+  "eobLines": []
+}

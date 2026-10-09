@@ -1,0 +1,94 @@
+{
+  "providerName": "Echo Park Orthopedic Associates",
+  "serviceStart": "2026-10-05",
+  "serviceEnd": "2026-10-06",
+  "totalBilledCents": 53500,
+  "insuranceStatus": "insured",
+  "lineItems": [
+    {
+      "id": "li-1",
+      "dateOfService": "2026-10-05",
+      "code": "99203",
+      "codeType": "CPT",
+      "descriptionRaw": "OFFICE O/P VISIT NEW LEVL 3",
+      "units": 1,
+      "unitPriceCents": 21000,
+      "chargeCents": 21000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.245,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-2",
+      "dateOfService": "2026-10-05",
+      "code": "73560",
+      "codeType": "CPT",
+      "descriptionRaw": "XRAY EXAM KNEE 1 OR 2 VIEWS",
+      "units": 1,
+      "unitPriceCents": 10000,
+      "chargeCents": 10000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.29,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-3",
+      "dateOfService": "2026-10-08",
+      "code": "73030",
+      "codeType": "CPT",
+      "descriptionRaw": "XRAY EXAM SHOULDER MIN 2 VIEWS",
+      "units": 1,
+      "unitPriceCents": 10500,
+      "chargeCents": 10500,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.335,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-4",
+      "dateOfService": "2026-10-06",
+      "code": "29125",
+      "codeType": "CPT",
+      "descriptionRaw": "APPLY FOREARM SPLINT STATIC",
+      "units": 1,
+      "unitPriceCents": 12000,
+      "chargeCents": 12000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.38,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    }
+  ],
+  "eobLines": []
+}

@@ -1,0 +1,14 @@
+{
+  "bill": "bill-02-math-error.json",
+  "description": "97110: 3 units x $80.00 = $240.00 but charge is $320.00",
+  "expectedFindings": [
+    {
+      "ruleId": "math_error",
+      "lineItemIds": [
+        "li-1"
+      ],
+      "amountAtStakeCents": 8000
+    }
+  ],
+  "notes": "amountAtStakeCents = chargeCents - units*unitPriceCents."
+}

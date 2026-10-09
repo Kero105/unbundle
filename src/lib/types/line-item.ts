@@ -12,12 +12,16 @@ export const SourceBoxSchema = z.object({
   height: unit,
 });
 
+// HCPCS/CPT modifier: two uppercase alphanumeric characters, e.g. "59", "25", "XS", "LT".
+export const ModifierSchema = z.string().regex(/^[A-Z0-9]{2}$/);
+
 export const LineItemSchema = z.object({
   id: z.string(),
   dateOfService: z.iso.date().nullable(),
   code: z.string().nullable(),
   codeType: CodeTypeSchema.nullable(),
   descriptionRaw: z.string(),
+  modifiers: z.array(ModifierSchema).default([]),
   units: z.number().int().positive().default(1),
   unitPriceCents: z.number().int().nullable(),
   chargeCents: z.number().int(),

@@ -1,0 +1,14 @@
+{
+  "bill": "bill-09-denied-billed-in-full.json",
+  "description": "EOB denies 73030 (CO-50, patient responsibility $0) but bill charges patient the full $105.00",
+  "expectedFindings": [
+    {
+      "ruleId": "denied_billed_in_full",
+      "lineItemIds": [
+        "li-2"
+      ],
+      "amountAtStakeCents": 10500
+    }
+  ],
+  "notes": "amountAtStakeCents = patientOwesCents on the denied line."
+}

@@ -1,0 +1,14 @@
+{
+  "bill": "bill-03-date-outside-range.json",
+  "description": "Statement covers 2026-10-05..2026-10-06; 73030 is dated 2026-10-08",
+  "expectedFindings": [
+    {
+      "ruleId": "date_mismatch",
+      "lineItemIds": [
+        "li-3"
+      ],
+      "amountAtStakeCents": 10500
+    }
+  ],
+  "notes": "amountAtStakeCents = full charge of the out-of-range line."
+}

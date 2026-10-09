@@ -1,0 +1,6 @@
+{
+  "bill": "bill-11-trap-mue-at-limit.json",
+  "description": "TRAP: 97110 x6 == MUE 6 -> must NOT flag",
+  "expectedFindings": [],
+  "notes": ""
+}

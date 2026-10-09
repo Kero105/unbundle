@@ -1,0 +1,14 @@
+{
+  "bill": "bill-06-mue-exceeded.json",
+  "description": "97140 x7 vs MUE 6 (practitioner, per date of service)",
+  "expectedFindings": [
+    {
+      "ruleId": "mue_exceeded",
+      "lineItemIds": [
+        "li-2"
+      ],
+      "amountAtStakeCents": 7500
+    }
+  ],
+  "notes": "amountAtStakeCents = (units - MUE) x unit price = 1 x $75."
+}

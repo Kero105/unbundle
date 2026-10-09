@@ -1,0 +1,94 @@
+{
+  "providerName": "Mid-City Sports Medicine",
+  "serviceStart": "2026-10-07",
+  "serviceEnd": "2026-10-07",
+  "totalBilledCents": 46800,
+  "insuranceStatus": "insured",
+  "lineItems": [
+    {
+      "id": "li-1",
+      "dateOfService": "2026-10-07",
+      "code": "99214",
+      "codeType": "CPT",
+      "descriptionRaw": "OFFICE O/P VISIT EST LEVL 4",
+      "units": 1,
+      "unitPriceCents": 22000,
+      "chargeCents": 22000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.245,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-2",
+      "dateOfService": "2026-10-07",
+      "code": "20610",
+      "codeType": "CPT",
+      "descriptionRaw": "DRAIN/INJ JOINT/BURSA W/O US",
+      "units": 1,
+      "unitPriceCents": 11000,
+      "chargeCents": 11000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.29,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-3",
+      "dateOfService": "2026-10-07",
+      "code": "73560",
+      "codeType": "CPT",
+      "descriptionRaw": "XRAY EXAM KNEE 1 OR 2 VIEWS",
+      "units": 1,
+      "unitPriceCents": 10000,
+      "chargeCents": 10000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.335,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-4",
+      "dateOfService": "2026-10-07",
+      "code": "85025",
+      "codeType": "CPT",
+      "descriptionRaw": "CBC W/ AUTO DIFF WBC",
+      "units": 1,
+      "unitPriceCents": 3800,
+      "chargeCents": 3800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.38,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    }
+  ],
+  "eobLines": []
+}

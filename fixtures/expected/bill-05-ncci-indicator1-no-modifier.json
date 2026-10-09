@@ -1,0 +1,15 @@
+{
+  "bill": "bill-05-ncci-indicator1-no-modifier.json",
+  "description": "20610 + 99214 same day, ncci_ptp (20610,99214) indicator 1, modifiers is empty on 99214 (no 25)",
+  "expectedFindings": [
+    {
+      "ruleId": "ncci_unbundling",
+      "lineItemIds": [
+        "li-2",
+        "li-1"
+      ],
+      "amountAtStakeCents": 22000
+    }
+  ],
+  "notes": "lineItemIds = [column1 (20610), column2 (99214)]; amountAtStakeCents = charge of column 2."
+}

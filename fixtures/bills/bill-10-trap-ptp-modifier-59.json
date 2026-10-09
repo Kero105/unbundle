@@ -1,0 +1,116 @@
+{
+  "providerName": "Wilshire Infusion Center",
+  "serviceStart": "2026-10-05",
+  "serviceEnd": "2026-10-05",
+  "totalBilledCents": 33600,
+  "insuranceStatus": "insured",
+  "lineItems": [
+    {
+      "id": "li-1",
+      "dateOfService": "2026-10-05",
+      "code": "96365",
+      "codeType": "CPT",
+      "descriptionRaw": "IV INFUSION THERAPY/PROPH/DX INIT UP TO 1 HR",
+      "units": 1,
+      "unitPriceCents": 19000,
+      "chargeCents": 19000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.245,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-2",
+      "dateOfService": "2026-10-05",
+      "code": "96372",
+      "codeType": "CPT",
+      "descriptionRaw": "THER/PROPH/DIAG INJ SC/IM SEPARATE SITE",
+      "modifiers": ["59"],
+      "units": 1,
+      "unitPriceCents": 4500,
+      "chargeCents": 4500,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.29,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-3",
+      "dateOfService": "2026-10-05",
+      "code": "96375",
+      "codeType": "CPT",
+      "descriptionRaw": "TX/PRO/DX INJ NEW DRUG ADDON IV PUSH",
+      "units": 1,
+      "unitPriceCents": 4500,
+      "chargeCents": 4500,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.335,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-4",
+      "dateOfService": "2026-10-05",
+      "code": "36415",
+      "codeType": "CPT",
+      "descriptionRaw": "VENIPUNCTURE ROUTINE",
+      "units": 1,
+      "unitPriceCents": 1800,
+      "chargeCents": 1800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.38,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-5",
+      "dateOfService": "2026-10-05",
+      "code": "85025",
+      "codeType": "CPT",
+      "descriptionRaw": "CBC W/ AUTO DIFF WBC",
+      "units": 1,
+      "unitPriceCents": 3800,
+      "chargeCents": 3800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.425,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    }
+  ],
+  "eobLines": []
+}

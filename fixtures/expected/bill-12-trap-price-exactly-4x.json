@@ -1,0 +1,6 @@
+{
+  "bill": "bill-12-trap-price-exactly-4x.json",
+  "description": "TRAP: 93000 charged exactly 4.00x Medicare LA -> must NOT flag (threshold is >5x)",
+  "expectedFindings": [],
+  "notes": "93000 Medicare allowed = 1702 cents, charge = 6808 cents. Facility PE == nonfacility PE for 93000."
+}

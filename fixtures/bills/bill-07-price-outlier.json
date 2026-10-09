@@ -1,0 +1,115 @@
+{
+  "providerName": "Sunset Ridge Urgent Care",
+  "serviceStart": "2026-10-04",
+  "serviceEnd": "2026-10-04",
+  "totalBilledCents": 79100,
+  "insuranceStatus": "self_pay",
+  "lineItems": [
+    {
+      "id": "li-1",
+      "dateOfService": "2026-10-04",
+      "code": "99284",
+      "codeType": "CPT",
+      "descriptionRaw": "EMERGENCY DEPT VISIT MOD-HIGH",
+      "units": 1,
+      "unitPriceCents": 36000,
+      "chargeCents": 36000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.245,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-2",
+      "dateOfService": "2026-10-04",
+      "code": "71046",
+      "codeType": "CPT",
+      "descriptionRaw": "XRAY EXAM CHEST 2 VIEWS",
+      "units": 1,
+      "unitPriceCents": 32500,
+      "chargeCents": 32500,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.29,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-3",
+      "dateOfService": "2026-10-04",
+      "code": "93000",
+      "codeType": "CPT",
+      "descriptionRaw": "ECG ROUTINE W/ INTERP & REPORT",
+      "units": 1,
+      "unitPriceCents": 5000,
+      "chargeCents": 5000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.335,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-4",
+      "dateOfService": "2026-10-04",
+      "code": "36415",
+      "codeType": "CPT",
+      "descriptionRaw": "VENIPUNCTURE ROUTINE",
+      "units": 1,
+      "unitPriceCents": 1800,
+      "chargeCents": 1800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.38,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-5",
+      "dateOfService": "2026-10-04",
+      "code": "85025",
+      "codeType": "CPT",
+      "descriptionRaw": "CBC W/ AUTO DIFF WBC",
+      "units": 1,
+      "unitPriceCents": 3800,
+      "chargeCents": 3800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.425,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    }
+  ],
+  "eobLines": []
+}

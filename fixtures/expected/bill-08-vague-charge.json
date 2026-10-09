@@ -1,0 +1,14 @@
+{
+  "bill": "bill-08-vague-charge.json",
+  "description": "Uncoded line 'MISC SERVICES' $185.00",
+  "expectedFindings": [
+    {
+      "ruleId": "vague_charge",
+      "lineItemIds": [
+        "li-4"
+      ],
+      "amountAtStakeCents": 18500
+    }
+  ],
+  "notes": "amountAtStakeCents = full charge of the vague line."
+}

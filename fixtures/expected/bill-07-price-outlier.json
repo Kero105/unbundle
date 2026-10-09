@@ -1,0 +1,14 @@
+{
+  "bill": "bill-07-price-outlier.json",
+  "description": "71046 charged $325.00 vs Medicare LA ~8.6x",
+  "expectedFindings": [
+    {
+      "ruleId": "price_outlier",
+      "lineItemIds": [
+        "li-2"
+      ],
+      "amountAtStakeCents": 28722
+    }
+  ],
+  "notes": "amountAtStakeCents = charge - Medicare allowed (3778 cents; MAC 01182 loc 18, no-floor work GPCI, non-QPP CF 33.4009; facility PE == nonfacility PE for 71046)."
+}

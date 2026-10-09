@@ -1,0 +1,15 @@
+{
+  "bill": "bill-04-ncci-unbundling.json",
+  "description": "80053 + 80048: ncci_ptp (80053,80048) modifier_indicator 0, no modifier can bypass",
+  "expectedFindings": [
+    {
+      "ruleId": "ncci_unbundling",
+      "lineItemIds": [
+        "li-3",
+        "li-4"
+      ],
+      "amountAtStakeCents": 3800
+    }
+  ],
+  "notes": "lineItemIds = [column1, column2]; amountAtStakeCents = charge of the column 2 code."
+}

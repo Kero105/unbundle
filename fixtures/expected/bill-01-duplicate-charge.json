@@ -1,0 +1,15 @@
+{
+  "bill": "bill-01-duplicate-charge.json",
+  "description": "93000 billed twice on the same date with identical units and price",
+  "expectedFindings": [
+    {
+      "ruleId": "duplicate_charge",
+      "lineItemIds": [
+        "li-2",
+        "li-3"
+      ],
+      "amountAtStakeCents": 5000
+    }
+  ],
+  "notes": "amountAtStakeCents = charge of the repeated line (one copy)."
+}
