@@ -3,7 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { ExtractedBillSchema, FindingSchema } from "@/lib/types";
 import { createInMemoryLookups } from "./in-memory-lookups";
-import type { PtpEdit } from "./lookups";
+import type { Mue, PtpEdit } from "./lookups";
 import { runRules, type Rule } from "./index";
 import { bill, line } from "./test-helpers";
 
@@ -32,6 +32,19 @@ const ptpFixtures: [string, PtpEdit][] = [
   ["bill-04-ncci-unbundling", ptp("80053", "80048", 0)],
   ["bill-05-ncci-indicator1-no-modifier", ptp("20610", "99214", 1)],
   ["bill-10-trap-ptp-modifier-59", ptp("96365", "96372", 1)],
+];
+
+const mue = (code: string, mueValue: number): Mue => ({
+  code,
+  mueValue,
+  adjudicationIndicator: 3,
+  adjudicationText: "Date of Service Edit: Clinical",
+  rationale: "synthetic",
+});
+
+const mueFixtures: [string, Mue][] = [
+  ["bill-06-mue-exceeded", mue("97140", 6)],
+  ["bill-11-trap-mue-at-limit", mue("97110", 6)],
 ];
 
 const summarize = (fs: { ruleId: string; lineItemIds: string[]; amountAtStakeCents: number }[]) =>
@@ -92,6 +105,16 @@ describe("runRules", () => {
       expect(found.map((f) => f.lineItemIds)).toEqual(
         expected.expectedFindings.map((f: { lineItemIds: string[] }) => f.lineItemIds),
       );
+      for (const f of found) expect(FindingSchema.safeParse(f).success).toBe(true);
+    });
+  });
+
+  describe.each(mueFixtures)("fixture %s", (name, m) => {
+    it("matches the expected findings", async () => {
+      const b = ExtractedBillSchema.parse(readJson("bills", `${name}.json`));
+      const expected = readJson("expected", `${name}.json`);
+      const found = await runRules(b, createInMemoryLookups({ mues: [m] }));
+      expect(summarize(found)).toEqual(summarize(expected.expectedFindings));
       for (const f of found) expect(FindingSchema.safeParse(f).success).toBe(true);
     });
   });

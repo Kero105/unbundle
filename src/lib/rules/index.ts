@@ -3,15 +3,16 @@ import { dateMismatch } from "./date-mismatch";
 import { duplicateCharge } from "./duplicate-charge";
 import type { RulesLookups } from "./lookups";
 import { mathError } from "./math-error";
+import { mueExceeded } from "./mue-exceeded";
 import { ncciUnbundling } from "./ncci-unbundling";
 import type { Rule } from "./types";
 
 export type { Rule } from "./types";
 export type { Mue, PtpEdit, RateLookup, RulesLookups } from "./lookups";
-export { dateMismatch, duplicateCharge, mathError, ncciUnbundling };
+export { dateMismatch, duplicateCharge, mathError, mueExceeded, ncciUnbundling };
 
 /** Registered rules, run in this order. */
-export const rules: readonly Rule[] = [duplicateCharge, mathError, dateMismatch, ncciUnbundling];
+export const rules: readonly Rule[] = [duplicateCharge, mathError, dateMismatch, ncciUnbundling, mueExceeded];
 
 /**
  * Runs the rules in order and concatenates their findings. `lookups` is required
