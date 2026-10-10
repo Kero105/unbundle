@@ -12,6 +12,74 @@
     "promise": "Sus facturas nunca se usan para entrenar modelos de IA y puede eliminarlas en cualquier momento.",
     "notAdvice": "No es asesoría legal ni médica."
   },
+  "Home": {
+    "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
+    "subtitle": "Unbundle encuentra cobros duplicados, procedimientos facturados por separado y precios muy por encima de Medicare, y le explica cada hallazgo en palabras sencillas.",
+    "signIn": "Iniciar sesión con Google",
+    "trySample": "Probar con una factura de ejemplo",
+    "how": {
+      "title": "Cómo funciona",
+      "upload": {
+        "title": "Suba su factura",
+        "body": "Agregue una foto o un archivo de su factura. Nosotros leemos los cargos por usted."
+      },
+      "review": {
+        "title": "Revise",
+        "body": "Compruebe lo que leímos y corrija lo que no se vea bien."
+      },
+      "letter": {
+        "title": "Reciba su carta",
+        "body": "Vea qué vale la pena preguntar, con una carta que puede llevar a la oficina de facturación."
+      }
+    },
+    "checks": {
+      "title": "Qué revisamos",
+      "intro": "Cada revisión sigue una regla fija y pública. Esto es lo que buscamos.",
+      "duplicates": {
+        "title": "Cobros duplicados",
+        "body": "El mismo servicio cobrado más de una vez el mismo día."
+      },
+      "math": {
+        "title": "Errores de cálculo",
+        "body": "Unidades por precio que no coinciden con el monto cobrado."
+      },
+      "dates": {
+        "title": "Fechas incorrectas",
+        "body": "Cargos con fechas fuera del período en que estuvo atendido."
+      },
+      "unbundling": {
+        "title": "Servicios separados de más",
+        "body": "Partes de un mismo procedimiento cobradas por separado cuando deberían cobrarse juntas."
+      },
+      "quantity": {
+        "title": "Límites de cantidad",
+        "body": "Más unidades de las que Medicare permite en una sola visita."
+      },
+      "outliers": {
+        "title": "Precios fuera de lo normal",
+        "body": "Precios muy por encima de lo que Medicare paga por el mismo servicio."
+      },
+      "vague": {
+        "title": "Cargos poco claros",
+        "body": "Cargos globales o sin descripción que no dicen para qué fueron."
+      },
+      "denied": {
+        "title": "Negado y luego cobrado",
+        "body": "El seguro negó un servicio, pero a usted se lo cobraron completo."
+      }
+    },
+    "trust": {
+      "title": "Los hallazgos vienen de reglas públicas de Medicare, no de suposiciones de la IA.",
+      "subtitle": "La IA solo lee su factura.",
+      "body": "Un conjunto fijo de revisiones, basado en reglas públicas de Medicare, decide qué se señala. La IA nunca decide qué está mal. Convierte su factura en texto y, después, explica los hallazgos con palabras sencillas.",
+      "privacyTitle": "Nuestra promesa de privacidad",
+      "privacy": {
+        "training": "Sus facturas nunca se usan para entrenar modelos de IA.",
+        "delete": "Puede eliminar sus facturas en cualquier momento.",
+        "sell": "Nunca vendemos su información."
+      }
+    }
+  },
   "Dashboard": {
     "title": "Panel",
     "signedInAs": "Sesión iniciada como {email}",

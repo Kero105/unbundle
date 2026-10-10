@@ -12,6 +12,74 @@
     "promise": "Your bills are never used to train AI models and can be deleted at any time.",
     "notAdvice": "Not legal or medical advice."
   },
+  "Home": {
+    "title": "Think your hospital bill is wrong? Check it in minutes.",
+    "subtitle": "Unbundle finds duplicate charges, unbundled procedures, and prices far above Medicare, then explains each one in plain language.",
+    "signIn": "Sign in with Google",
+    "trySample": "Try a sample bill",
+    "how": {
+      "title": "How it works",
+      "upload": {
+        "title": "Upload",
+        "body": "Add a photo or file of your bill. We read the line items for you."
+      },
+      "review": {
+        "title": "Review",
+        "body": "Check what we read and fix anything that looks off."
+      },
+      "letter": {
+        "title": "Get your letter",
+        "body": "See what is worth asking about, with a letter you can take to the billing office."
+      }
+    },
+    "checks": {
+      "title": "What we check",
+      "intro": "Every check follows a fixed, public rule. Here is what we look for.",
+      "duplicates": {
+        "title": "Duplicate charges",
+        "body": "The same service billed more than once on the same day."
+      },
+      "math": {
+        "title": "Math errors",
+        "body": "Units times price that does not match the amount charged."
+      },
+      "dates": {
+        "title": "Wrong dates",
+        "body": "Charges dated outside the time you were actually there."
+      },
+      "unbundling": {
+        "title": "Unbundling",
+        "body": "Parts of one procedure billed separately when they should be billed together."
+      },
+      "quantity": {
+        "title": "Quantity limits",
+        "body": "More units billed than Medicare allows for a single visit."
+      },
+      "outliers": {
+        "title": "Price outliers",
+        "body": "Prices far above what Medicare pays for the same service."
+      },
+      "vague": {
+        "title": "Vague charges",
+        "body": "Lump-sum or unlabeled charges that do not say what they were for."
+      },
+      "denied": {
+        "title": "Denied, then billed",
+        "body": "Insurance denied a service, but you were billed the full amount."
+      }
+    },
+    "trust": {
+      "title": "Findings come from public Medicare rules, not from AI guessing.",
+      "subtitle": "AI only reads your bill.",
+      "body": "A fixed set of checks built on public Medicare rules decides what gets flagged. The AI never decides what is wrong. It turns your bill into text and, afterward, explains the findings in plain words.",
+      "privacyTitle": "Our privacy promise",
+      "privacy": {
+        "training": "Your bills are never used to train AI models.",
+        "delete": "You can delete your bills at any time.",
+        "sell": "We never sell your information."
+      }
+    }
+  },
   "Dashboard": {
     "title": "Dashboard",
     "signedInAs": "Signed in as {email}",
