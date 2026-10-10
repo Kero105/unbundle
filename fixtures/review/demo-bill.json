@@ -2,7 +2,7 @@
   "providerName": "Sample Family Clinic (synthetic)",
   "serviceStart": "2026-09-12",
   "serviceEnd": "2026-09-12",
-  "totalBilledCents": 38000,
+  "totalBilledCents": 61800,
   "insuranceStatus": "self_pay",
   "lineItems": [
     {
@@ -147,8 +147,8 @@
       "descriptionRaw": "XRAY EXAM CHEST 2 VIEWS",
       "modifiers": [],
       "units": 1,
-      "unitPriceCents": 8700,
-      "chargeCents": 8700,
+      "unitPriceCents": 32500,
+      "chargeCents": 32500,
       "insurancePaidCents": null,
       "patientOwesCents": null,
       "sourcePage": 2,
