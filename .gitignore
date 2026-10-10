@@ -42,3 +42,7 @@ next-env.d.ts
 
 # reference data downloads
 data/
+
+# playwright
+/test-results/
+/playwright-report/
