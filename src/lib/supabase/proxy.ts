@@ -1,7 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-
-const PROTECTED = /^\/(dashboard|bills)(\/|$)/;
+import { isProtectedPath } from "./routes";
 
 // Refreshes the Supabase session cookies and redirects signed-out users away
 // from protected routes.
@@ -34,7 +33,7 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user && PROTECTED.test(request.nextUrl.pathname)) {
+  if (!user && isProtectedPath(request.nextUrl.pathname)) {
     const redirect = NextResponse.redirect(new URL("/", request.url));
     response.cookies
       .getAll()
