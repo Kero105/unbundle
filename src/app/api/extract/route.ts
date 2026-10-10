@@ -9,6 +9,7 @@ import {
 } from "@/lib/extraction";
 import { runExtraction } from "@/lib/extraction/run";
 import { createSupabaseExtractionStore } from "@/lib/extraction/supabase-store";
+import { checkServerEnv } from "@/lib/env";
 import { createClient } from "@/lib/supabase/server";
 
 const BodySchema = z.object({ billId: z.uuid() }).strict();
@@ -57,6 +58,7 @@ export async function POST(request: NextRequest) {
 
   try {
     // Config first: a disabled or misconfigured server must not use up a slot.
+    if (!checkServerEnv().ok) throw new ExtractionError("invalid_mode");
     const config = readExtractionConfig();
     const extractor = createExtractor(config);
     await runExtraction({
