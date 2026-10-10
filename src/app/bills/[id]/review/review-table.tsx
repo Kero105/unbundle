@@ -2,7 +2,7 @@
 
 import { Fragment, useId, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Check, FileText, TriangleAlert, CircleCheck } from "lucide-react";
+import { Check, FileText, RotateCcw, TriangleAlert, CircleCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { PendingLink } from "@/components/pending-link";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -143,11 +143,27 @@ function Missing({ children }: { children: React.ReactNode }) {
   return <span className="text-muted-foreground italic">{children}</span>;
 }
 
-export function ReviewTable({ bill, billId }: { bill: ExtractedBill; billId: string }) {
+export function ReviewTable({
+  bill,
+  reportHref,
+  demo = false,
+}: {
+  bill: ExtractedBill;
+  reportHref: string;
+  /** Sample bill: nothing is saved, and the edits can be reset. */
+  demo?: boolean;
+}) {
   const t = useTranslations("Review");
   const locale = useLocale();
   const [items, setItems] = useState<LineItem[]>(bill.lineItems);
   const helperId = useId();
+  // Remounts the field inputs so half-typed drafts disappear on reset.
+  const [resetCount, setResetCount] = useState(0);
+
+  function reset() {
+    setItems(bill.lineItems);
+    setResetCount((n) => n + 1);
+  }
 
   function update(id: string, patch: Partial<LineItem>) {
     setItems((prev) => prev.map((item) => (item.id === id ? { ...item, ...patch } : item)));
@@ -240,7 +256,7 @@ export function ReviewTable({ bill, billId }: { bill: ExtractedBill; billId: str
             {t("empty")}
           </p>
         ) : (
-          <Table className="max-lg:block lg:min-w-[60rem]">
+          <Table key={resetCount} className="max-lg:block lg:min-w-[60rem]">
             <TableCaption className="sr-only">{t("tableLabel")}</TableCaption>
             <TableHeader className="max-lg:hidden">
               <TableRow className="bg-muted/60">
@@ -486,16 +502,23 @@ export function ReviewTable({ bill, billId }: { bill: ExtractedBill; billId: str
               : t("actions.ready")}
           </p>
           <div className="flex flex-col-reverse gap-3 sm:flex-row">
-            <Button type="button" variant="outline">
-              {t("actions.save")}
-            </Button>
+            {demo ? (
+              <Button type="button" variant="outline" onClick={reset}>
+                <RotateCcw aria-hidden="true" />
+                {t("actions.reset")}
+              </Button>
+            ) : (
+              <Button type="button" variant="outline">
+                {t("actions.save")}
+              </Button>
+            )}
             {attentionCount > 0 ? (
               <Button type="button" disabled focusableWhenDisabled aria-describedby={helperId}>
                 {t("actions.continue")}
               </Button>
             ) : (
               <PendingLink
-                href={`/bills/${encodeURIComponent(billId)}/report`}
+                href={reportHref}
                 aria-describedby={helperId}
                 className={buttonVariants()}
                 pendingLabel={t("actions.continuePending")}
