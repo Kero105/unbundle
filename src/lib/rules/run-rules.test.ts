@@ -24,7 +24,7 @@ const summarize = (fs: { ruleId: string; lineItemIds: string[]; amountAtStakeCen
 
 describe("runRules", () => {
   it("returns no findings for an empty bill", async () => {
-    expect(await runRules(bill([]))).toEqual([]);
+    expect(await runRules(bill([]), createInMemoryLookups())).toEqual([]);
   });
 
   it("runs every registered rule and returns schema-valid findings", async () => {
@@ -37,7 +37,7 @@ describe("runRules", () => {
       ],
       { serviceStart: "2026-10-02", serviceEnd: "2026-10-02" },
     );
-    const findings = await runRules(b);
+    const findings = await runRules(b, createInMemoryLookups());
     expect(findings.map((f) => f.ruleId).sort()).toEqual(["date_mismatch", "duplicate_charge", "math_error"]);
     for (const f of findings) expect(FindingSchema.safeParse(f).success).toBe(true);
   });
@@ -49,19 +49,19 @@ describe("runRules", () => {
       seen.push(l);
       return [];
     };
-    await runRules(bill([line()]), [spy, spy], lookups);
+    await runRules(bill([line()]), lookups, [spy, spy]);
     expect(seen).toEqual([lookups, lookups]);
   });
 
   it("accepts a custom rule list", async () => {
-    expect(await runRules(bill([line()]), [])).toEqual([]);
+    expect(await runRules(bill([line()]), createInMemoryLookups(), [])).toEqual([]);
   });
 
   describe.each(names)("fixture %s", (name) => {
     it("matches the expected findings", async () => {
       const b = ExtractedBillSchema.parse(readJson("bills", `${name}.json`));
       const expected = readJson("expected", `${name}.json`);
-      expect(summarize(await runRules(b))).toEqual(summarize(expected.expectedFindings));
+      expect(summarize(await runRules(b, createInMemoryLookups()))).toEqual(summarize(expected.expectedFindings));
     });
   });
 });

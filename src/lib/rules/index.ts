@@ -1,7 +1,6 @@
 import type { ExtractedBill, Finding } from "@/lib/types";
 import { dateMismatch } from "./date-mismatch";
 import { duplicateCharge } from "./duplicate-charge";
-import { createInMemoryLookups } from "./in-memory-lookups";
 import type { RulesLookups } from "./lookups";
 import { mathError } from "./math-error";
 import type { Rule } from "./types";
@@ -14,14 +13,14 @@ export { dateMismatch, duplicateCharge, mathError };
 export const rules: readonly Rule[] = [duplicateCharge, mathError, dateMismatch];
 
 /**
- * Runs the rules in order and concatenates their findings. `lookups` defaults to
- * an empty in-memory set, which is only right for rules that need no reference
- * data; production callers pass `createSupabaseLookups(client)`.
+ * Runs the rules in order and concatenates their findings. `lookups` is required
+ * so a missing adapter is a compile error; production callers pass
+ * `createSupabaseLookups(client)`, tests pass `createInMemoryLookups(...)`.
  */
 export async function runRules(
   bill: ExtractedBill,
+  lookups: RulesLookups,
   registered: readonly Rule[] = rules,
-  lookups: RulesLookups = createInMemoryLookups(),
 ): Promise<Finding[]> {
   const results: Finding[][] = [];
   for (const rule of registered) results.push(await rule(bill, lookups));
