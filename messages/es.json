@@ -545,5 +545,88 @@
     "cancel": "Cancelar",
     "close": "Cerrar",
     "error": "No pudimos eliminar esta factura. Inténtalo de nuevo."
+  },
+  "Privacy": {
+    "metaTitle": "Política de privacidad | Unbundle",
+    "home": "← Inicio",
+    "title": "Política de privacidad",
+    "updatedLabel": "Última actualización",
+    "updated": "10 de octubre de 2026",
+    "summary": {
+      "title": "En resumen",
+      "files": "Sus archivos se guardan en una carpeta privada que solo su cuenta puede leer, modificar o eliminar.",
+      "browser": "Las fotos se reducen de tamaño en su navegador antes de subirlas.",
+      "anthropic": "Sus archivos se envían a la API de Anthropic solo para que se pueda leer su factura. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos y los datos de la API se eliminan en un plazo de 30 días. Esos son los términos de Anthropic, no los nuestros.",
+      "delete": "Al eliminar una factura, se borran de nuestro almacenamiento la factura, sus partidas y los archivos subidos.",
+      "sell": "Nunca vendemos su información."
+    },
+    "intro": "Unbundle es un proyecto estudiantil creado para el Congressional App Challenge. Ayuda a las personas a revisar sus facturas médicas. Esta página explica qué información recopilamos y qué hacemos con ella.",
+    "collect": {
+      "title": "Qué recopilamos",
+      "email": "El correo electrónico y el nombre de su cuenta de Google, para que pueda iniciar sesión.",
+      "files": "Los archivos que sube: una foto o un PDF de su factura y, si lo desea, la Explicación de Beneficios de su aseguradora.",
+      "items": "Las partidas, fechas, códigos y montos que leemos de esos archivos, y los cambios que usted les haga."
+    },
+    "files": {
+      "title": "Qué pasa con los archivos que sube",
+      "private": "Los archivos se guardan en un depósito de almacenamiento privado de Supabase, en una carpeta que solo su cuenta puede leer, modificar o eliminar.",
+      "resized": "Las fotos se reducen de tamaño y se vuelven a guardar como JPEG en su navegador antes de subirlas, así que la copia que guardamos es más pequeña que el original y ya no conserva los metadatos de la cámara. Los PDF se suben tal cual; los PDF de más de 4 MB se rechazan.",
+      "checked": "Antes de guardar cada archivo, verificamos su tipo real, su tamaño (10 MB) y, en los PDF, el número de páginas (6). Solo se aceptan archivos JPEG, PNG, WebP y PDF.",
+      "use": "Usamos sus archivos únicamente para leer su factura. No los usamos para entrenar modelos ni para publicidad."
+    },
+    "anthropic": {
+      "title": "Cómo participa Anthropic",
+      "body": "Para leer el texto de su factura, nuestro servidor envía los archivos que usted sube a Claude, un modelo de IA creado por Anthropic, a través de la API de Anthropic. Anthropic procesa las imágenes para leerlas y devuelve las partidas. El modelo solo lee lo que está impreso; no decide si un cobro es incorrecto. Esas revisiones las hacen reglas fijas de nuestro propio código. Los términos comerciales publicados por Anthropic indican que la empresa no puede entrenar sus modelos con el contenido de clientes enviado a través de sus servicios, y su política de datos de la API indica que, de forma predeterminada, elimina automáticamente de sus sistemas las entradas y salidas de la API en un plazo de 30 días, salvo cuando el contenido se marca por infringir su política de uso o cuando la ley le exige conservarlo por más tiempo. Esos son los términos de Anthropic, no los nuestros, y pueden cambiar; consulte la <link>política de retención de Anthropic</link>. Nuestra clave de API se mantiene en el servidor y nunca se envía a su navegador."
+    },
+    "kept": {
+      "title": "Dónde se guarda",
+      "body": "Sus facturas, partidas y archivos se guardan en Supabase, y el acceso se limita a su cuenta mediante seguridad a nivel de fila. No incluimos el contenido de las facturas en nuestros registros."
+    },
+    "dont": {
+      "title": "Lo que no hacemos",
+      "body": "Nunca vendemos su información. No la compartimos con nadie, salvo para enviar los archivos que usted sube a Anthropic, para que puedan ser leídos como se describe arriba."
+    },
+    "delete": {
+      "title": "Cómo eliminar sus datos",
+      "body": "Usted puede eliminar cualquier factura en cualquier momento, desde su panel o desde la página de revisión de la factura, con la opción “Eliminar factura”. Esto borra de forma permanente la factura, las partidas que leímos de ella y los archivos subidos del almacenamiento. Eliminar una factura no recupera las copias que Anthropic pueda conservar según su propia política de retención. Para eliminar toda su cuenta y todo lo que contiene, escríbanos al correo que aparece abajo."
+    },
+    "contact": {
+      "title": "Contacto",
+      "body": "¿Tiene preguntas? Escriba a {email}."
+    }
+  },
+  "Terms": {
+    "metaTitle": "Términos de uso | Unbundle",
+    "home": "← Inicio",
+    "title": "Términos de uso",
+    "updatedLabel": "Última actualización",
+    "updated": "10 de octubre de 2026",
+    "summary": {
+      "title": "En resumen",
+      "educational": "Unbundle es una herramienta educativa. No es asesoría legal, médica ni financiera.",
+      "mistakes": "Puede cometer errores, así que verifique lo que le muestra antes de actuar.",
+      "uploads": "Suba solo facturas que tenga derecho a usar."
+    },
+    "intro": "Unbundle es un proyecto estudiantil creado para el Congressional App Challenge. Al usarlo, usted acepta estos términos.",
+    "educational": {
+      "title": "Solo para uso educativo",
+      "body": "Unbundle es una herramienta educativa. No es asesoría legal, médica ni financiera. Antes de actuar con base en lo que le muestra, consulte con su proveedor de salud, con su aseguradora o con un profesional calificado."
+    },
+    "guarantees": {
+      "title": "Sin garantías",
+      "body": "Unbundle se ofrece “tal cual”. Puede cometer errores, como leer mal una factura o pasar por alto un problema. No garantizamos que sea preciso, completo ni que esté siempre disponible, y no somos responsables de las decisiones que usted tome con base en él."
+    },
+    "uploads": {
+      "title": "Los archivos que sube",
+      "body": "Suba solo facturas que tenga derecho a usar. Sus archivos se envían a la API de Anthropic para que sean leídos, como se explica en la Política de privacidad. La lectura tiene un límite por cuenta para mantener el servicio disponible, y puede desactivarse en cualquier momento. Puede eliminar una factura y sus archivos cuando quiera."
+    },
+    "privacy": {
+      "title": "Privacidad",
+      "body": "Consulte nuestra <link>Política de privacidad</link> para saber cómo manejamos su información."
+    },
+    "contact": {
+      "title": "Contacto",
+      "body": "¿Tiene preguntas? Escriba a {email}."
+    }
   }
 }

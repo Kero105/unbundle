@@ -1,85 +1,76 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getLocale, getTranslations } from "next-intl/server";
+import { LegalPage, LegalSection, legalLinkClass } from "@/components/legal-page";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export const metadata: Metadata = {
-  title: "Terms of Use | Unbundle",
-};
+const CONTACT_EMAIL = "rohankelkar2020@gmail.com";
 
-export default function Terms() {
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Terms");
+  return { title: t("metaTitle") };
+}
+
+async function Terms() {
+  const [locale, t] = await Promise.all([getLocale(), getTranslations("Terms")]);
+
   return (
-    <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-12 text-lg leading-8 sm:px-6 sm:py-16">
-      <Link href="/" className="text-base font-medium text-primary underline underline-offset-4 hover:no-underline">
-        &larr; Home
-      </Link>
-      <h1 className="mt-6 text-3xl font-semibold sm:text-4xl">
-        Terms of Use
-      </h1>
-      <p className="mt-2 text-base text-muted-foreground">Last updated October 10, 2026</p>
+    <LegalPage
+      locale={locale}
+      home={t("home")}
+      title={t("title")}
+      updatedLabel={t("updatedLabel")}
+      updated={t("updated")}
+      summaryTitle={t("summary.title")}
+      summary={(["educational", "mistakes", "uploads"] as const).map((k) => t(`summary.${k}`))}
+    >
+      <p>{t("intro")}</p>
 
-      <div className="mt-8 space-y-8">
+      <LegalSection title={t("educational.title")}>
+        <p>{t("educational.body")}</p>
+      </LegalSection>
+
+      <LegalSection title={t("guarantees.title")}>
+        <p>{t("guarantees.body")}</p>
+      </LegalSection>
+
+      <LegalSection title={t("uploads.title")}>
+        <p>{t("uploads.body")}</p>
+      </LegalSection>
+
+      <LegalSection title={t("privacy.title")}>
         <p>
-          Unbundle is a student project built for the Congressional App
-          Challenge. By using it, you agree to these terms.
+          {t.rich("privacy.body", {
+            link: (chunks) => (
+              <Link href="/privacy" className={legalLinkClass}>
+                {chunks}
+              </Link>
+            ),
+          })}
         </p>
+      </LegalSection>
 
-        <section>
-          <h2 className="text-2xl font-semibold">
-            Educational use only
-          </h2>
-          <p className="mt-2">
-            Unbundle is an educational tool. It is not legal, medical, or
-            financial advice. Before acting on anything it shows you, check
-            with your provider, your insurer, or a qualified professional.
-          </p>
-        </section>
+      <LegalSection title={t("contact.title")}>
+        <p>{t("contact.body", { email: CONTACT_EMAIL })}</p>
+      </LegalSection>
+    </LegalPage>
+  );
+}
 
-        <section>
-          <h2 className="text-2xl font-semibold">
-            No guarantees
-          </h2>
-          <p className="mt-2">
-            Unbundle is provided &ldquo;as is.&rdquo; It can make mistakes,
-            including misreading a bill or missing a problem. We don&apos;t
-            guarantee that it is accurate, complete, or always available, and
-            we aren&apos;t responsible for decisions you make based on it.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-semibold">
-            Your uploads
-          </h2>
-          <p className="mt-2">
-            Only upload bills you have the right to use. Your files are sent
-            to Anthropic&apos;s API to be read, as explained in the Privacy
-            Policy. Reading is limited per account to keep the service
-            available, and may be turned off at any time. You can delete a
-            bill and its files whenever you like.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-semibold">
-            Privacy
-          </h2>
-          <p className="mt-2">
-            See our{" "}
-            <Link href="/privacy" className="underline">
-              Privacy Policy
-            </Link>{" "}
-            for how we handle your information.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-semibold">
-            Contact
-          </h2>
-          <p className="mt-2">
-            Questions? Email rohankelkar2020@gmail.com.
-          </p>
-        </section>
-      </div>
+function TermsSkeleton() {
+  return (
+    <main aria-busy="true" className="mx-auto w-full max-w-2xl flex-1 px-4 py-12 sm:px-6 sm:py-16">
+      <Skeleton className="h-10 w-2/3" />
+      <Skeleton className="mt-6 h-40 w-full" />
     </main>
+  );
+}
+
+export default function TermsPage() {
+  return (
+    <Suspense fallback={<TermsSkeleton />}>
+      <Terms />
+    </Suspense>
   );
 }

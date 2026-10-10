@@ -545,5 +545,88 @@
     "cancel": "Cancel",
     "close": "Close",
     "error": "We couldn't delete this bill. Please try again."
+  },
+  "Privacy": {
+    "metaTitle": "Privacy Policy | Unbundle",
+    "home": "← Home",
+    "title": "Privacy Policy",
+    "updatedLabel": "Last updated",
+    "updated": "October 10, 2026",
+    "summary": {
+      "title": "In short",
+      "files": "Your files are stored in a private folder that only your account can read, write or delete.",
+      "browser": "Photos are resized in your browser before they are uploaded.",
+      "anthropic": "Your files are sent to Anthropic's API only so your bill can be read. Anthropic's published terms say that, by default, your bills aren't used to train its models and API data is deleted within 30 days. Those are Anthropic's terms, not ours.",
+      "delete": "Deleting a bill removes the bill, its line items and the uploaded files from our storage.",
+      "sell": "We never sell your information."
+    },
+    "intro": "Unbundle is a student project built for the Congressional App Challenge. It helps people check their medical bills. This page explains what information we collect and what we do with it.",
+    "collect": {
+      "title": "What we collect",
+      "email": "Your Google account email and name, so you can sign in.",
+      "files": "The files you upload: a photo or PDF of your bill and, optionally, your insurer's Explanation of Benefits.",
+      "items": "The line items, dates, codes and amounts we read from those files, and any changes you make to them."
+    },
+    "files": {
+      "title": "What happens to your uploaded files",
+      "private": "Files are stored in a private Supabase storage bucket, in a folder that only your account can read, write or delete.",
+      "resized": "Photos are resized and re-saved as JPEG in your browser before they are uploaded, so the copy we store is smaller than the original and no longer carries its camera metadata. PDFs are uploaded as they are; PDFs over 4 MB are turned away.",
+      "checked": "We check each file's actual type, size (10 MB) and, for PDFs, page count (6) before storing it. Only JPEG, PNG, WebP and PDF files are accepted.",
+      "use": "We use your files only to read your bill. We do not use them to train models or for advertising."
+    },
+    "anthropic": {
+      "title": "How Anthropic is involved",
+      "body": "To read the text on your bill, our server sends your uploaded files to Claude, an AI model made by Anthropic, through Anthropic's API. Anthropic processes the images to read them and returns the line items. The model only reads what is printed; it does not decide whether a charge is wrong. Those checks are run by fixed rules in our own code. Anthropic's published commercial terms say it may not train its models on customer content sent through its services, and its API data policy says that, by default, it automatically deletes API inputs and outputs from its systems within 30 days, except where content is flagged for violating its usage policy or the law requires it to keep it longer. Those are Anthropic's terms, not ours, and they can change; see <link>Anthropic's retention policy</link>. Our API key is kept on the server and never sent to your browser."
+    },
+    "kept": {
+      "title": "Where it is kept",
+      "body": "Your bills, line items and files are stored in Supabase, and access is limited to your account by row-level security. We don't put bill contents in our logs."
+    },
+    "dont": {
+      "title": "What we don't do",
+      "body": "We never sell your information. We don't share it with anyone, except sending your uploaded files to Anthropic so they can be read as described above."
+    },
+    "delete": {
+      "title": "Deleting your data",
+      "body": "You can delete any bill yourself at any time, from your dashboard or from the bill's review page using “Delete bill.” That permanently removes the bill, the line items we read from it, and the uploaded files from storage. Deleting a bill does not recall copies Anthropic may keep under its own retention policy. To delete your whole account and everything in it, email us at the address below."
+    },
+    "contact": {
+      "title": "Contact",
+      "body": "Questions? Email {email}."
+    }
+  },
+  "Terms": {
+    "metaTitle": "Terms of Use | Unbundle",
+    "home": "← Home",
+    "title": "Terms of Use",
+    "updatedLabel": "Last updated",
+    "updated": "October 10, 2026",
+    "summary": {
+      "title": "In short",
+      "educational": "Unbundle is an educational tool. It is not legal, medical or financial advice.",
+      "mistakes": "It can make mistakes, so check anything it shows you before acting on it.",
+      "uploads": "Only upload bills you have the right to use."
+    },
+    "intro": "Unbundle is a student project built for the Congressional App Challenge. By using it, you agree to these terms.",
+    "educational": {
+      "title": "Educational use only",
+      "body": "Unbundle is an educational tool. It is not legal, medical, or financial advice. Before acting on anything it shows you, check with your provider, your insurer, or a qualified professional."
+    },
+    "guarantees": {
+      "title": "No guarantees",
+      "body": "Unbundle is provided “as is.” It can make mistakes, including misreading a bill or missing a problem. We don't guarantee that it is accurate, complete, or always available, and we aren't responsible for decisions you make based on it."
+    },
+    "uploads": {
+      "title": "Your uploads",
+      "body": "Only upload bills you have the right to use. Your files are sent to Anthropic's API to be read, as explained in the Privacy Policy. Reading is limited per account to keep the service available, and may be turned off at any time. You can delete a bill and its files whenever you like."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "body": "See our <link>Privacy Policy</link> for how we handle your information."
+    },
+    "contact": {
+      "title": "Contact",
+      "body": "Questions? Email {email}."
+    }
   }
 }
