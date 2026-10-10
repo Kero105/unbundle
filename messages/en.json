@@ -742,5 +742,11 @@
       "title": "Who built it",
       "body": "Unbundle was built by a student for the Congressional App Challenge, CA-43."
     }
+  },
+  "AuthError": {
+    "title": "We couldn't sign you in",
+    "body": "Sign-in did not finish. This can happen if the window was closed or the link expired. Please try again.",
+    "retry": "Sign in with Google",
+    "home": "Back to home"
   }
 }

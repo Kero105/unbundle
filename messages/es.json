@@ -742,5 +742,11 @@
       "title": "Quién lo creó",
       "body": "Unbundle fue creado por un estudiante para el Congressional App Challenge, CA-43."
     }
+  },
+  "AuthError": {
+    "title": "No pudimos iniciar su sesión",
+    "body": "El inicio de sesión no se completó. Esto puede pasar si cerró la ventana o el enlace venció. Inténtelo de nuevo.",
+    "retry": "Iniciar sesión con Google",
+    "home": "Volver al inicio"
   }
 }
