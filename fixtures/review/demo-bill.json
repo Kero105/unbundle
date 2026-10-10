@@ -1,0 +1,166 @@
+{
+  "providerName": "Sample Family Clinic (synthetic)",
+  "serviceStart": "2026-09-12",
+  "serviceEnd": "2026-09-12",
+  "totalBilledCents": 38000,
+  "insuranceStatus": "self_pay",
+  "lineItems": [
+    {
+      "id": "li-1",
+      "dateOfService": "2026-09-12",
+      "code": "99213",
+      "codeType": "CPT",
+      "descriptionRaw": "OFFICE OUTPT VISIT EST LOW-MOD",
+      "modifiers": [
+        "25"
+      ],
+      "units": 1,
+      "unitPriceCents": 15500,
+      "chargeCents": 15500,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.25,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-2",
+      "dateOfService": "2026-09-12",
+      "code": "85025",
+      "codeType": "CPT",
+      "descriptionRaw": "CBC W/AUTO DIFF WBC",
+      "modifiers": [],
+      "units": 1,
+      "unitPriceCents": 2800,
+      "chargeCents": 2800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.295,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "low",
+      "userVerified": false
+    },
+    {
+      "id": "li-3",
+      "dateOfService": "2026-09-12",
+      "code": "36415",
+      "codeType": "CPT",
+      "descriptionRaw": "ROUTINE VENIPUNCTURE",
+      "modifiers": [],
+      "units": 1,
+      "unitPriceCents": 1200,
+      "chargeCents": 1200,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.34,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-4",
+      "dateOfService": "2026-09-12",
+      "code": "J1100",
+      "codeType": "HCPCS",
+      "descriptionRaw": "INJ DEXAMETHASONE SOD PHOS 1MG",
+      "modifiers": [],
+      "units": 4,
+      "unitPriceCents": 450,
+      "chargeCents": 1800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.385,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "medium",
+      "userVerified": false
+    },
+    {
+      "id": "li-5",
+      "dateOfService": "2026-09-12",
+      "code": "96372",
+      "codeType": "CPT",
+      "descriptionRaw": "THER/PROPH/DIAG INJ SC/IM",
+      "modifiers": [],
+      "units": 1,
+      "unitPriceCents": 4500,
+      "chargeCents": 4500,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.43,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-6",
+      "dateOfService": null,
+      "code": null,
+      "codeType": null,
+      "descriptionRaw": "SUPPLIES / MISC",
+      "modifiers": [],
+      "units": 1,
+      "unitPriceCents": null,
+      "chargeCents": 3500,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.475,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "low",
+      "userVerified": false
+    },
+    {
+      "id": "li-7",
+      "dateOfService": "2026-09-12",
+      "code": "71046",
+      "codeType": "CPT",
+      "descriptionRaw": "XRAY EXAM CHEST 2 VIEWS",
+      "modifiers": [],
+      "units": 1,
+      "unitPriceCents": 8700,
+      "chargeCents": 8700,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 2,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.2,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "low",
+      "userVerified": false
+    }
+  ],
+  "eobLines": []
+}
