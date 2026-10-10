@@ -46,3 +46,13 @@ Run lint, type check, and tests before committing.
 ## Existing pages
 
 `src/app/privacy` and `src/app/terms` exist. Keep them accurate if data handling changes (e.g., what is stored, retention, third-party processors).
+
+## Decisions
+
+- Images are compressed in the browser before upload: longest side at most 2400px, JPEG quality 0.85 stepping down to 0.6, size floor 1600px, result under 3.5 MB; PDFs over 4 MB are rejected. Never log file names, sizes or contents.
+- Canvas re-encoding strips image metadata including GPS; do not add code that preserves it.
+- Reference-data rules: LA locality is MAC 01182 locality 18; always use the standard (non-QPP) conversion factor; NCCI edit_set 1 (practitioner) only; price outlier threshold is 5x Medicare; modifier 25 bypasses indicator-1 edits on E/M lines.
+- Money is integer cents everywhere; user-facing strings go through next-intl in en and es with identical key sets.
+- Demo mode uses precomputed JSON snapshots; never loosen RLS or use the service role key on user-facing paths.
+- Privacy copy on the upload card, the footer and /privacy must always say the same true things; make no claims about Anthropic training or retention that are not confirmed from Anthropic's published terms.
+- EXTRACTION_MODE defaults to mock and must be set to anthropic in production; EXTRACTION_ENABLED is the kill switch.
