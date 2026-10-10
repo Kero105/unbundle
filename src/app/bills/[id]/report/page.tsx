@@ -10,11 +10,8 @@ import { Badge, badgeVariants } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getBillForReview } from "@/lib/bills/review-data";
+import { getBillFindings } from "@/lib/bills/findings";
 import { formatCents } from "@/lib/money";
-import { runRules } from "@/lib/rules";
-import { createSupabaseLookups } from "@/lib/rules/supabase-lookups";
-import { createClient } from "@/lib/supabase/server";
 import type { Confidence, Severity } from "@/lib/types";
 import { buildReport, whyKey, type ReportFinding } from "./report-model";
 
@@ -113,11 +110,9 @@ async function Report({ params }: Pick<PageProps<"/bills/[id]/report">, "params"
   // Findings depend on live reference data, so never prerender them.
   await connection();
   const { id } = await params;
-  const bill = await getBillForReview(id);
-  if (!bill) notFound();
-
-  const supabase = await createClient();
-  const findings = await runRules(bill, createSupabaseLookups(supabase));
+  const result = await getBillFindings(id);
+  if (!result) notFound();
+  const { bill, findings } = result;
   const report = buildReport(bill, findings);
 
   const [locale, t] = await Promise.all([getLocale(), getTranslations("Report")]);
@@ -166,13 +161,21 @@ async function Report({ params }: Pick<PageProps<"/bills/[id]/report">, "params"
         </>
       )}
 
-      <div>
+      <div className="flex flex-wrap gap-3">
         <Link
           href={`/bills/${encodeURIComponent(id)}/review`}
           className={buttonVariants({ variant: "outline" })}
         >
           {t("backToReview")}
         </Link>
+        {report.findings.length > 0 ? (
+          <Link
+            href={`/bills/${encodeURIComponent(id)}/letter`}
+            className={buttonVariants()}
+          >
+            {t("makeLetter")}
+          </Link>
+        ) : null}
       </div>
     </main>
   );

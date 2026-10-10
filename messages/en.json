@@ -219,6 +219,114 @@
       "vagueCharge": "This line does not say what service it was for, such as a lump sum or a charge with no code. You can ask for an itemized explanation.",
       "deniedBilled": "Your insurance denied this service, but the bill asks you to pay the full amount. It is worth asking whether the denial was appealed or the amount is correct.",
       "fallback": "A fixed check on your bill's line items flagged this. Ask the billing office to explain the charge."
+    },
+    "makeLetter": "Create a dispute letter"
+  },
+  "Letter": {
+    "page": {
+      "title": "Your dispute letter",
+      "subtitle": "A polite letter you can send to the billing office. It only asks about the items our fixed checks flagged.",
+      "backToReport": "Back to report",
+      "languageGroup": "Letter language",
+      "languageEnglish": "English",
+      "languageSpanish": "Español",
+      "detailsTitle": "Your details",
+      "detailsNote": "Fill these in to complete the letter. Nothing you type here is saved or sent anywhere. It stays in this browser tab.",
+      "fields": {
+        "senderName": "Your name",
+        "senderAddress": "Your address",
+        "accountNumber": "Account number",
+        "providerName": "Provider or billing office name",
+        "providerAddress": "Provider address",
+        "date": "Letter date"
+      },
+      "previewTitle": "Preview",
+      "previewLabel": "Letter preview",
+      "download": "Download PDF",
+      "preparing": "Preparing PDF…",
+      "downloadError": "We could not create the PDF. Please try again.",
+      "reviewReminder": "Read the letter and check each item against your bill before you send it.",
+      "empty": {
+        "title": "There is nothing to put in a letter",
+        "body": "Our checks did not flag anything on this bill, so there are no items to ask about. If something still looks wrong to you, you can always contact the billing office directly."
+      }
+    },
+    "doc": {
+      "placeholders": {
+        "senderName": "[Your name]",
+        "senderAddress": "[Your address]",
+        "accountNumber": "[Account number]",
+        "providerName": "[Provider name]",
+        "providerAddress": "[Provider address]",
+        "date": "[Date]"
+      },
+      "account": "Account number: {account}",
+      "subject": "Request for an itemized bill and review of specific charges",
+      "salutation": "Dear Billing Department,",
+      "intro": "I am writing to better understand the charges on my recent bill. Please send me a complete itemized bill that lists each service with its billing code, date, and charge. I would also appreciate a review of the {count, plural, one {item} other {items}} listed below, which I have questions about.",
+      "itemsHeading": "Items I would like reviewed",
+      "line": {
+        "heading": "{code}: {description}",
+        "noCode": "No code listed",
+        "date": "Date of service: {date}",
+        "noDate": "no date listed",
+        "charge": "Amount charged: {amount}"
+      },
+      "amountInQuestion": "Amount in question: {amount}",
+      "reasons": {
+        "duplicateCharge": {
+          "firm": "Could you confirm whether this service was performed more than once on this date? The same code, date, units, and price appear more than once on my bill.",
+          "soft": "This may be correct, but this line looks the same as another one. Could you please check whether this service was billed twice?"
+        },
+        "mathError": {
+          "firm": "Could you explain how this charge was calculated? It is higher than the units multiplied by the unit price shown on the same line.",
+          "soft": "Could you please check how this charge was calculated? It may be higher than the units multiplied by the unit price shown on this line."
+        },
+        "dateMismatch": {
+          "firm": "Could you confirm the date of this service? It is dated outside the dates of service shown on my bill.",
+          "soft": "Could you please check the date of this service? It may fall outside the dates of service shown on my bill."
+        },
+        "ncciNever": {
+          "firm": "Could you explain why this service was billed separately from a related service? Medicare coding rules appear to bundle the two together.",
+          "soft": "Could you please check whether this service should have been billed together with a related service under Medicare coding rules?"
+        },
+        "ncciModifier": {
+          "firm": "Could you explain why this service was billed separately from a related service? Medicare coding rules normally bundle them unless a modifier shows they were distinct.",
+          "soft": "Could you please confirm whether this service was truly distinct from a related service, or whether it should have been billed together with it?"
+        },
+        "mueLine": {
+          "firm": "Could you confirm the number of units billed? It appears to be above the Medicare limit for a single line.",
+          "soft": "Could you please check the number of units billed? It may be above the Medicare limit for a single line."
+        },
+        "mueDayPolicy": {
+          "firm": "Could you confirm the number of units billed for this day? It appears to be above the Medicare daily limit for this service.",
+          "soft": "Could you please check the number of units billed for this day? It may be above the Medicare daily limit for this service."
+        },
+        "mueDayClinical": {
+          "firm": "Could you share the documentation that supports the number of units billed for this day? It appears to be above the usual Medicare daily limit for this service.",
+          "soft": "Could you please confirm the number of units billed for this day? It may be above the usual Medicare daily limit for this service."
+        },
+        "priceOutlier": {
+          "firm": "Could you explain how this price was set? It is more than five times what Medicare pays for the same service.",
+          "soft": "Could you please tell me how this price was set? It may be well above what Medicare pays for the same service."
+        },
+        "vagueCharge": {
+          "firm": "Could you provide an itemized description of what this charge covers? My bill does not say which service it was for.",
+          "soft": "Could you please describe which service this charge covers? I could not tell from my bill."
+        },
+        "deniedBilled": {
+          "firm": "My insurance appears to have denied this service. Could you explain why it is being billed to me in full, and whether an appeal was filed?",
+          "soft": "My insurance may have denied this service. Could you please confirm whether it should be billed to me in full?"
+        },
+        "fallback": {
+          "firm": "Could you please explain this charge and confirm that it is correct?",
+          "soft": "Could you please double-check this charge?"
+        }
+      },
+      "response": "I would be grateful for a written response within 30 days of receiving this letter. If any of these charges are correct, an explanation of the service and its billing code would be very helpful.",
+      "closing": "Thank you for your time and help.",
+      "sincerely": "Sincerely,",
+      "footer": "This letter was prepared with Unbundle and is not legal advice."
     }
   }
 }

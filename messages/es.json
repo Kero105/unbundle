@@ -219,6 +219,114 @@
       "vagueCharge": "Esta línea no indica para qué servicio fue, por ejemplo un monto global o un cargo sin código. Puede pedir una explicación detallada.",
       "deniedBilled": "Su seguro negó este servicio, pero la factura le pide pagar el monto completo. Vale la pena preguntar si se apeló la negación o si el monto es correcto.",
       "fallback": "Una revisión fija de las líneas de su factura señaló esto. Pida a la oficina de facturación que le explique el cargo."
+    },
+    "makeLetter": "Crear una carta de reclamo"
+  },
+  "Letter": {
+    "page": {
+      "title": "Su carta de reclamo",
+      "subtitle": "Una carta cortés que puede enviar a la oficina de facturación. Solo pregunta por los puntos que señalaron nuestras revisiones fijas.",
+      "backToReport": "Volver al informe",
+      "languageGroup": "Idioma de la carta",
+      "languageEnglish": "English",
+      "languageSpanish": "Español",
+      "detailsTitle": "Sus datos",
+      "detailsNote": "Complételos para terminar la carta. Nada de lo que escriba aquí se guarda ni se envía a ningún lado. Se queda en esta pestaña del navegador.",
+      "fields": {
+        "senderName": "Su nombre",
+        "senderAddress": "Su dirección",
+        "accountNumber": "Número de cuenta",
+        "providerName": "Nombre del proveedor o de la oficina de facturación",
+        "providerAddress": "Dirección del proveedor",
+        "date": "Fecha de la carta"
+      },
+      "previewTitle": "Vista previa",
+      "previewLabel": "Vista previa de la carta",
+      "download": "Descargar PDF",
+      "preparing": "Preparando el PDF…",
+      "downloadError": "No pudimos crear el PDF. Inténtelo de nuevo.",
+      "reviewReminder": "Lea la carta y compare cada punto con su factura antes de enviarla.",
+      "empty": {
+        "title": "No hay nada que incluir en una carta",
+        "body": "Nuestras revisiones no señalaron nada en esta factura, así que no hay puntos sobre los cuales preguntar. Si algo todavía le parece incorrecto, siempre puede comunicarse directamente con la oficina de facturación."
+      }
+    },
+    "doc": {
+      "placeholders": {
+        "senderName": "[Su nombre]",
+        "senderAddress": "[Su dirección]",
+        "accountNumber": "[Número de cuenta]",
+        "providerName": "[Nombre del proveedor]",
+        "providerAddress": "[Dirección del proveedor]",
+        "date": "[Fecha]"
+      },
+      "account": "Número de cuenta: {account}",
+      "subject": "Solicitud de factura detallada y revisión de cargos específicos",
+      "salutation": "Estimado departamento de facturación:",
+      "intro": "Les escribo para entender mejor los cargos de mi factura reciente. Les pido que me envíen una factura detallada y completa, con cada servicio, su código de facturación, la fecha y el cargo. También les agradecería que revisaran {count, plural, one {el punto indicado} other {los puntos indicados}} a continuación, sobre {count, plural, one {el cual} other {los cuales}} tengo preguntas.",
+      "itemsHeading": "Puntos que me gustaría que revisaran",
+      "line": {
+        "heading": "{code}: {description}",
+        "noCode": "Sin código",
+        "date": "Fecha del servicio: {date}",
+        "noDate": "sin fecha",
+        "charge": "Monto cobrado: {amount}"
+      },
+      "amountInQuestion": "Monto en duda: {amount}",
+      "reasons": {
+        "duplicateCharge": {
+          "firm": "¿Podrían confirmar si este servicio se realizó más de una vez en esta fecha? El mismo código, fecha, unidades y precio aparecen más de una vez en mi factura.",
+          "soft": "Es posible que esté bien, pero esta línea se ve igual a otra. ¿Podrían revisar si este servicio se cobró dos veces?"
+        },
+        "mathError": {
+          "firm": "¿Podrían explicarme cómo se calculó este cargo? Es mayor que las unidades multiplicadas por el precio unitario que aparece en la misma línea.",
+          "soft": "¿Podrían revisar cómo se calculó este cargo? Es posible que sea mayor que las unidades multiplicadas por el precio unitario de esta línea."
+        },
+        "dateMismatch": {
+          "firm": "¿Podrían confirmar la fecha de este servicio? Tiene una fecha fuera de las fechas de servicio que aparecen en mi factura.",
+          "soft": "¿Podrían revisar la fecha de este servicio? Es posible que esté fuera de las fechas de servicio que aparecen en mi factura."
+        },
+        "ncciNever": {
+          "firm": "¿Podrían explicarme por qué este servicio se cobró por separado de un servicio relacionado? Las reglas de codificación de Medicare parecen agruparlos.",
+          "soft": "¿Podrían revisar si este servicio debía cobrarse junto con un servicio relacionado según las reglas de codificación de Medicare?"
+        },
+        "ncciModifier": {
+          "firm": "¿Podrían explicarme por qué este servicio se cobró por separado de un servicio relacionado? Las reglas de codificación de Medicare normalmente los agrupan, salvo que un modificador demuestre que fueron distintos.",
+          "soft": "¿Podrían confirmar si este servicio fue realmente distinto de un servicio relacionado, o si debía cobrarse junto con él?"
+        },
+        "mueLine": {
+          "firm": "¿Podrían confirmar la cantidad de unidades cobradas? Parece superar el límite de Medicare para una sola línea.",
+          "soft": "¿Podrían revisar la cantidad de unidades cobradas? Es posible que supere el límite de Medicare para una sola línea."
+        },
+        "mueDayPolicy": {
+          "firm": "¿Podrían confirmar la cantidad de unidades cobradas en este día? Parece superar el límite diario de Medicare para este servicio.",
+          "soft": "¿Podrían revisar la cantidad de unidades cobradas en este día? Es posible que supere el límite diario de Medicare para este servicio."
+        },
+        "mueDayClinical": {
+          "firm": "¿Podrían compartir la documentación que respalda la cantidad de unidades cobradas en este día? Parece superar el límite diario habitual de Medicare para este servicio.",
+          "soft": "¿Podrían confirmar la cantidad de unidades cobradas en este día? Es posible que supere el límite diario habitual de Medicare para este servicio."
+        },
+        "priceOutlier": {
+          "firm": "¿Podrían explicarme cómo se fijó este precio? Es más de cinco veces lo que Medicare paga por el mismo servicio.",
+          "soft": "¿Podrían decirme cómo se fijó este precio? Es posible que sea mucho mayor que lo que Medicare paga por el mismo servicio."
+        },
+        "vagueCharge": {
+          "firm": "¿Podrían darme una descripción detallada de lo que cubre este cargo? Mi factura no indica a qué servicio corresponde.",
+          "soft": "¿Podrían indicarme a qué servicio corresponde este cargo? No pude saberlo por mi factura."
+        },
+        "deniedBilled": {
+          "firm": "Mi seguro parece haber negado este servicio. ¿Podrían explicarme por qué se me cobra el monto completo y si se presentó una apelación?",
+          "soft": "Es posible que mi seguro haya negado este servicio. ¿Podrían confirmar si debe cobrárseme el monto completo?"
+        },
+        "fallback": {
+          "firm": "¿Podrían explicarme este cargo y confirmar que es correcto?",
+          "soft": "¿Podrían volver a revisar este cargo?"
+        }
+      },
+      "response": "Les agradecería una respuesta por escrito dentro de los 30 días siguientes a la recepción de esta carta. Si alguno de estos cargos es correcto, me ayudaría mucho que me explicaran el servicio y su código de facturación.",
+      "closing": "Gracias por su tiempo y su ayuda.",
+      "sincerely": "Atentamente,",
+      "footer": "Esta carta se preparó con Unbundle y no constituye asesoría legal."
     }
   }
 }
