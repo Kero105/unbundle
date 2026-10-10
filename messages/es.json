@@ -98,12 +98,20 @@
   },
   "Review": {
     "title": "Revise su factura",
-    "subtitle": "Compruebe lo que leímos de su factura y corrija cualquier cosa que no se vea bien. Las filas de las que estábamos menos seguros están resaltadas.",
+    "subtitle": "Compruebe lo que leímos de su factura y corrija cualquier cosa que no se vea bien. Las filas de las que estábamos menos seguros están marcadas.",
+    "steps": {
+      "label": "Su avance",
+      "review": "Revisar",
+      "findings": "Hallazgos",
+      "letter": "Carta",
+      "current": "paso actual"
+    },
     "provider": "Proveedor",
     "serviceDates": "Fechas de servicio",
     "serviceDatesRange": "{start} – {end}",
     "serviceDatesUnknown": "No encontradas",
     "totalBilled": "Total facturado",
+    "progressLabel": "Filas verificadas",
     "progress": "{verified} de {total} filas verificadas",
     "needsAttention": "{count, plural, one {# fila necesita una revisión más atenta} other {# filas necesitan una revisión más atenta}}",
     "allClear": "Ninguna fila necesita una revisión más atenta",
@@ -116,30 +124,47 @@
       "unitPrice": "Precio unitario",
       "charge": "Cargo",
       "modifiers": "Modificadores",
-      "status": "Estado",
       "verified": "Verificada"
     },
     "rowField": "{field}, fila {row}",
+    "rowHeading": "Fila {row}",
     "markVerified": "Marcar la fila {row} como verificada",
+    "verifyThisRow": "Marcar como verificada",
+    "equation": "{units} × {price} = {charge}",
     "status": {
-      "lowConfidence": "Baja confianza",
+      "lowConfidence": "Revisar esto",
       "verified": "Verificada"
+    },
+    "lowConfidenceReason": "No estábamos seguros de haber leído bien esta fila. Compárela con su factura.",
+    "missing": {
+      "date": "Sin fecha",
+      "code": "Sin código en la factura",
+      "price": "Sin precio unitario",
+      "modifiers": "Sin modificadores"
     },
     "errors": {
       "date": "Use una fecha válida.",
       "units": "Ingrese un número entero de 1 o más.",
-      "money": "Ingrese un monto en dólares como 125.00.",
+      "money": "Ingrese un monto en dólares, como 125.00.",
       "modifiers": "Use modificadores de dos caracteres separados por comas, como 59, 25.",
       "description": "La descripción es obligatoria."
     },
     "placeholders": {
-      "code": "Ninguno",
-      "modifiers": "Ninguno"
+      "date": "Sin fecha",
+      "code": "Sin código en la factura",
+      "modifiers": "Sin modificadores"
+    },
+    "actions": {
+      "label": "Siguientes pasos",
+      "continue": "Todo bien, continuar",
+      "save": "Guardar para después",
+      "ready": "Todas las filas marcadas están verificadas.",
+      "blocked": "{count, plural, one {Verifique la # fila marcada para continuar.} other {Verifique las # filas marcadas para continuar.}}"
     },
     "source": {
       "title": "Factura original",
-      "description": "Aquí aparecerá la parte de su factura de la que salió cada fila.",
-      "placeholder": "Imagen de origen próximamente"
+      "description": "Aquí aparecerá la parte de su factura de donde salió cada fila.",
+      "placeholder": "Aquí aparecerá su factura original"
     },
     "empty": "No se encontraron partidas en esta factura."
   }

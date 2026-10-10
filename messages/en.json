@@ -98,12 +98,20 @@
   },
   "Review": {
     "title": "Review your bill",
-    "subtitle": "Check what we read from your bill and fix anything that looks wrong. Rows we were less sure about are highlighted.",
+    "subtitle": "Check what we read from your bill and fix anything that looks wrong. Rows we were less sure about are marked.",
+    "steps": {
+      "label": "Your progress",
+      "review": "Review",
+      "findings": "Findings",
+      "letter": "Letter",
+      "current": "current step"
+    },
     "provider": "Provider",
     "serviceDates": "Dates of service",
     "serviceDatesRange": "{start} – {end}",
     "serviceDatesUnknown": "Not found",
     "totalBilled": "Total billed",
+    "progressLabel": "Rows verified",
     "progress": "{verified} of {total} rows verified",
     "needsAttention": "{count, plural, one {# row needs a closer look} other {# rows need a closer look}}",
     "allClear": "No rows need a closer look",
@@ -116,14 +124,23 @@
       "unitPrice": "Unit price",
       "charge": "Charge",
       "modifiers": "Modifiers",
-      "status": "Status",
       "verified": "Verified"
     },
     "rowField": "{field}, row {row}",
+    "rowHeading": "Row {row}",
     "markVerified": "Mark row {row} as verified",
+    "verifyThisRow": "Mark as verified",
+    "equation": "{units} × {price} = {charge}",
     "status": {
-      "lowConfidence": "Low confidence",
+      "lowConfidence": "Check this",
       "verified": "Verified"
+    },
+    "lowConfidenceReason": "We were not sure we read this row correctly. Please compare it with your bill.",
+    "missing": {
+      "date": "No date",
+      "code": "No code on bill",
+      "price": "No unit price",
+      "modifiers": "No modifiers"
     },
     "errors": {
       "date": "Use a valid date.",
@@ -133,13 +150,21 @@
       "description": "A description is required."
     },
     "placeholders": {
-      "code": "None",
-      "modifiers": "None"
+      "date": "No date",
+      "code": "No code on bill",
+      "modifiers": "No modifiers"
+    },
+    "actions": {
+      "label": "Next steps",
+      "continue": "Looks right, continue",
+      "save": "Save for later",
+      "ready": "All flagged rows are verified.",
+      "blocked": "{count, plural, one {Verify the # flagged row to continue.} other {Verify the # flagged rows to continue.}}"
     },
     "source": {
       "title": "Original bill",
       "description": "The part of your bill each row came from will appear here.",
-      "placeholder": "Source image coming soon"
+      "placeholder": "Your original bill will appear here"
     },
     "empty": "No line items were found on this bill."
   }
