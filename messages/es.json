@@ -203,7 +203,9 @@
       "saved": "Guardado",
       "failed": "No pudimos guardar ese cambio, así que se deshizo. Inténtelo de nuevo.",
       "autosave": "Los cambios se guardan automáticamente."
-    }
+    },
+    "rowsRead": "{count, plural, one {Leímos # fila de su factura.} other {Leímos # filas de su factura.}}",
+    "lowConfidenceNote": "Algunas partes de esta factura fueron difíciles de leer, por lo que muchas filas están marcadas. Es normal con fotos y escaneos. Compare cada fila marcada con su factura y corrija lo que no se vea bien antes de continuar."
   },
   "Report": {
     "title": "Su informe",

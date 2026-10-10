@@ -203,7 +203,9 @@
       "saved": "Saved",
       "failed": "Couldn't save that change, so it was undone. Please try again.",
       "autosave": "Changes are saved automatically."
-    }
+    },
+    "rowsRead": "{count, plural, one {We read # row from your bill.} other {We read # rows from your bill.}}",
+    "lowConfidenceNote": "Parts of this bill were hard to read, so many rows are marked. That is normal for photos and scans. Please compare each marked row with your bill and correct anything that looks off before you continue."
   },
   "Report": {
     "title": "Your report",

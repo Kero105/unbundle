@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Info } from "lucide-react";
 import { z } from "zod";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -6,6 +7,7 @@ import { loadBill, stepHref, type BillSource } from "@/lib/bills/source";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BillSteps } from "@/components/bill-steps";
 import { DeleteBillButton } from "@/components/delete-bill-button";
+import { summarizeConfidence } from "@/lib/bills/extraction-confidence";
 import { ReviewTable } from "./review-table";
 
 // The request locale is request-time data, so callers render this inside
@@ -19,6 +21,8 @@ export async function ReviewView({ source }: { source: BillSource }) {
 
   const [locale, t] = await Promise.all([getLocale(), getTranslations("Review")]);
 
+  const confidence = summarizeConfidence(bill.lineItems);
+
   return (
     <NextIntlClientProvider>
       <main
@@ -30,7 +34,17 @@ export async function ReviewView({ source }: { source: BillSource }) {
           <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-semibold sm:text-4xl">{t("title")}</h1>
             <p className="max-w-2xl text-lg text-muted-foreground">{t("subtitle")}</p>
+            <p className="text-base font-medium">{t("rowsRead", { count: confidence.rowCount })}</p>
           </div>
+          {confidence.low ? (
+            <p
+              role="note"
+              className="flex max-w-2xl items-start gap-3 rounded-lg border bg-muted p-4 text-base"
+            >
+              <Info aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
+              {t("lowConfidenceNote")}
+            </p>
+          ) : null}
         </header>
         <ReviewTable
           bill={bill}
