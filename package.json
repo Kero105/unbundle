@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "accuracy": "tsx scripts/accuracy.ts",
+    "check:live": "tsx scripts/check-fixtures-live.ts",
+    "check:contrast": "tsx scripts/check-contrast.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.133.0",
@@ -38,6 +41,7 @@
     "eslint-config-next": "16.4.0",
     "jsdom": "^30.1.2",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^4.1.11"
   }

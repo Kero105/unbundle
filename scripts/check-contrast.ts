@@ -2,7 +2,7 @@
  * Prints WCAG contrast ratios for the globals.css color tokens (light and dark)
  * and exits 1 if any pair is below AA (4.5 text, 3 for borders/focus rings).
  *
- *   JITI_ALIAS='{"@":"./src"}' npx jiti scripts/check-contrast.ts
+ *   npm run check:contrast
  */
 import { readFileSync } from "node:fs";
 import { checkContrast } from "../src/lib/a11y/contrast";

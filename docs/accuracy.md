@@ -31,4 +31,4 @@ None.
 - Pricing and MUE checks cover services on the Medicare Physician Fee Schedule only.
 - Locality: Los Angeles (LA) only.
 
-Regenerate with `JITI_ALIAS='{"@":"./src"}' npx jiti scripts/accuracy.ts` (needs `.env.local`).
+Regenerate with `npm run accuracy` (needs `.env.local`).

@@ -10,7 +10,7 @@
  * Needs the service role key in .env.local (reads public reference tables
  * only; the demo itself never uses the key). Output is counts only.
  *
- *   JITI_ALIAS='{"@":"./src"}' npx jiti scripts/precompute-demo-findings.ts
+ *   npx tsx scripts/precompute-demo-findings.ts
  */
 import fs from "node:fs";
 import path from "node:path";

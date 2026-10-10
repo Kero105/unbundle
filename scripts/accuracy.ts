@@ -8,7 +8,7 @@
  * Needs the service role key in .env.local, so it is not a committed test.
  * Output is rule IDs, fixture names and counts only; never bill contents.
  *
- *   JITI_ALIAS='{"@":"./src"}' npx jiti scripts/accuracy.ts
+ *   npm run accuracy
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -123,7 +123,7 @@ ${mismatchBlock}
 - Pricing and MUE checks cover services on the Medicare Physician Fee Schedule only.
 - Locality: Los Angeles (LA) only.
 
-Regenerate with \`JITI_ALIAS='{"@":"./src"}' npx jiti scripts/accuracy.ts\` (needs \`.env.local\`).
+Regenerate with \`npm run accuracy\` (needs \`.env.local\`).
 `;
 
   const round4 = (r: number | null) => (r === null ? null : Math.round(r * 10000) / 10000);

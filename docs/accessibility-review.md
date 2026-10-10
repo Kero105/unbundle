@@ -15,7 +15,7 @@ Reviewed 2026-10-10 from source only. No browser, screen reader or device testin
 
 ## Fixed in this pass
 
-1. **Contrast:** added `src/lib/a11y/contrast.ts`, a vitest guard (`contrast.test.ts`) and `scripts/check-contrast.ts`, covering 27 text/surface and border/ring pairs in light and dark. One failure: light `--input` border (#a99f8d, 2.45:1 on the page). Changed to #857b69 (3.90:1). All pairs now pass AA (4.5 text, 3 for borders and focus rings). Run: `JITI_ALIAS='{"@":"./src"}' npx jiti scripts/check-contrast.ts`.
+1. **Contrast:** added `src/lib/a11y/contrast.ts`, a vitest guard (`contrast.test.ts`) and `scripts/check-contrast.ts`, covering 27 text/surface and border/ring pairs in light and dark. One failure: light `--input` border (#a99f8d, 2.45:1 on the page). Changed to #857b69 (3.90:1). All pairs now pass AA (4.5 text, 3 for borders and focus rings). Run: `npm run check:contrast`.
 2. **Tap targets:** `Button` size `sm` and `icon-sm` were 36px; now 44px, like the default. Checkbox hit area extended to 44px with the existing `after:` overlay.
 3. **360px overflow safeguards:** `overflow-wrap: break-word` on `body`; `img`, `svg`, `video`, `canvas` capped at 100% width. The about table already scrolls inside its own `overflow-x-auto` wrapper, and the long-text containers on dashboard, review and letter use `min-w-0`/`break-words`.
 
