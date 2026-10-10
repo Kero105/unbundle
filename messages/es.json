@@ -9,7 +9,7 @@
     "footerNav": "Pie de página",
     "privacy": "Privacidad",
     "terms": "Términos",
-    "promise": "Sus facturas nunca se usan para entrenar modelos de IA y puede eliminarlas en cualquier momento.",
+    "promise": "Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos, y puede eliminarlas en cualquier momento.",
     "notAdvice": "No es asesoría legal ni médica.",
     "about": "Acerca de"
   },
@@ -76,7 +76,7 @@
       "body": "Un conjunto fijo de revisiones, basado en reglas públicas de Medicare, decide qué se señala. La IA nunca decide qué está mal. Convierte su factura en texto y, después, explica los hallazgos con palabras sencillas.",
       "privacyTitle": "Nuestra promesa de privacidad",
       "privacy": {
-        "training": "Sus facturas nunca se usan para entrenar modelos de IA.",
+        "training": "Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos.",
         "delete": "Puede eliminar sus facturas en cualquier momento.",
         "sell": "Nunca vendemos su información."
       },
@@ -473,7 +473,7 @@
     "submitPending": "Comenzando…",
     "privacy": {
       "title": "Tus archivos son privados",
-      "body": "Solo tu cuenta puede abrir tus archivos en Unbundle. Las fotos se reducen de tamaño en tu navegador antes de subirse. Para leer el texto de tu factura, enviamos tus archivos a la API de Anthropic, y solo para eso. Según los términos publicados de Anthropic, por defecto los datos enviados por su API no se usan para entrenar sus modelos. Puedes eliminar una factura cuando quieras: se borran sus archivos guardados y los datos que leímos de ellos.",
+      "body": "Solo tu cuenta puede abrir tus archivos en Unbundle. Las fotos se reducen de tamaño en tu navegador antes de subirse. Para leer el texto de tu factura, enviamos tus archivos a la API de Anthropic, y solo para eso. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Puedes eliminar una factura cuando quieras: se borran sus archivos guardados y los datos que leímos de ellos.",
       "more": "Lee la política de privacidad completa"
     },
     "progress": {

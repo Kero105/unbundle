@@ -9,7 +9,7 @@
     "footerNav": "Footer",
     "privacy": "Privacy",
     "terms": "Terms",
-    "promise": "Your bills are never used to train AI models and can be deleted at any time.",
+    "promise": "Anthropic's published terms say your bills aren't used to train its models by default, and you can delete them anytime.",
     "notAdvice": "Not legal or medical advice.",
     "about": "About"
   },
@@ -76,7 +76,7 @@
       "body": "A fixed set of checks built on public Medicare rules decides what gets flagged. The AI never decides what is wrong. It turns your bill into text and, afterward, explains the findings in plain words.",
       "privacyTitle": "Our privacy promise",
       "privacy": {
-        "training": "Your bills are never used to train AI models.",
+        "training": "Anthropic's published terms say your bills aren't used to train its models by default.",
         "delete": "You can delete your bills at any time.",
         "sell": "We never sell your information."
       },
@@ -473,7 +473,7 @@
     "submitPending": "Starting…",
     "privacy": {
       "title": "Your files are private",
-      "body": "Only your account can open your files in Unbundle. Photos are resized in your browser before they upload. To read the text on your bill, we send your files to Anthropic's API, and for nothing else. Under Anthropic's published terms, data sent through its API isn't used to train its models by default. You can delete a bill at any time, which removes its stored files and the data we read from them.",
+      "body": "Only your account can open your files in Unbundle. Photos are resized in your browser before they upload. To read the text on your bill, we send your files to Anthropic's API, and for nothing else. Anthropic's published terms say your bills aren't used to train its models by default. You can delete a bill at any time, which removes its stored files and the data we read from them.",
       "more": "Read the full privacy policy"
     },
     "progress": {
