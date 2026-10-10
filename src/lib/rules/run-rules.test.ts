@@ -3,6 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { ExtractedBillSchema, FindingSchema } from "@/lib/types";
 import { createInMemoryLookups } from "./in-memory-lookups";
+import type { PtpEdit } from "./lookups";
 import { runRules, type Rule } from "./index";
 import { bill, line } from "./test-helpers";
 
@@ -15,6 +16,22 @@ const names = [
   "bill-03-date-outside-range",
   "bill-13-clean-office-visit",
   "bill-14-clean-pt-multiday",
+];
+
+const ptp = (column1Code: string, column2Code: string, modifierIndicator: 0 | 1): PtpEdit => ({
+  column1Code,
+  column2Code,
+  effectiveDate: "2000-01-01",
+  deletionDate: null,
+  modifierIndicator,
+  rationale: "synthetic",
+});
+
+// Fixtures that need the exact PTP pair seeded.
+const ptpFixtures: [string, PtpEdit][] = [
+  ["bill-04-ncci-unbundling", ptp("80053", "80048", 0)],
+  ["bill-05-ncci-indicator1-no-modifier", ptp("20610", "99214", 1)],
+  ["bill-10-trap-ptp-modifier-59", ptp("96365", "96372", 1)],
 ];
 
 const summarize = (fs: { ruleId: string; lineItemIds: string[]; amountAtStakeCents: number }[]) =>
@@ -62,6 +79,20 @@ describe("runRules", () => {
       const b = ExtractedBillSchema.parse(readJson("bills", `${name}.json`));
       const expected = readJson("expected", `${name}.json`);
       expect(summarize(await runRules(b, createInMemoryLookups()))).toEqual(summarize(expected.expectedFindings));
+    });
+  });
+
+  describe.each(ptpFixtures)("fixture %s", (name, edit) => {
+    it("matches the expected findings", async () => {
+      const b = ExtractedBillSchema.parse(readJson("bills", `${name}.json`));
+      const expected = readJson("expected", `${name}.json`);
+      const found = await runRules(b, createInMemoryLookups({ ptpEdits: [edit] }));
+      expect(summarize(found)).toEqual(summarize(expected.expectedFindings));
+      // summarize sorts ids; column order matters for this rule, so check it unsorted.
+      expect(found.map((f) => f.lineItemIds)).toEqual(
+        expected.expectedFindings.map((f: { lineItemIds: string[] }) => f.lineItemIds),
+      );
+      for (const f of found) expect(FindingSchema.safeParse(f).success).toBe(true);
     });
   });
 });
