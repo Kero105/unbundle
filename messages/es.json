@@ -104,7 +104,9 @@
       "review": "Revisar",
       "findings": "Hallazgos",
       "letter": "Carta",
-      "current": "paso actual"
+      "current": "paso actual",
+      "assistance": "Ayuda financiera",
+      "optional": "opcional"
     },
     "provider": "Proveedor",
     "serviceDates": "Fechas de servicio",
@@ -222,7 +224,9 @@
       "fallback": "Una revisión fija de las líneas de su factura señaló esto. Pida a la oficina de facturación que le explique el cargo."
     },
     "makeLetter": "Crear una carta de reclamo",
-    "makeLetterPending": "Abriendo la carta…"
+    "makeLetterPending": "Abriendo la carta…",
+    "assistance": "Revisar ayuda financiera",
+    "assistancePending": "Abriendo…"
   },
   "Letter": {
     "page": {

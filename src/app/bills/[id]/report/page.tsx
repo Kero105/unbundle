@@ -178,6 +178,13 @@ async function Report({ params }: Pick<PageProps<"/bills/[id]/report">, "params"
             {t("makeLetter")}
           </PendingLink>
         ) : null}
+        <PendingLink
+          href={`/bills/${encodeURIComponent(id)}/assistance`}
+          className={buttonVariants({ variant: "outline" })}
+          pendingLabel={t("assistancePending")}
+        >
+          {t("assistance")}
+        </PendingLink>
       </div>
     </main>
   );
