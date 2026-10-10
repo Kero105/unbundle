@@ -1,0 +1,49 @@
+{
+  "Review": {
+    "title": "Review your bill",
+    "subtitle": "Check what we read from your bill and fix anything that looks wrong. Rows we were less sure about are highlighted.",
+    "provider": "Provider",
+    "serviceDates": "Dates of service",
+    "serviceDatesRange": "{start} – {end}",
+    "serviceDatesUnknown": "Not found",
+    "totalBilled": "Total billed",
+    "progress": "{verified} of {total} rows verified",
+    "needsAttention": "{count, plural, one {# row needs a closer look} other {# rows need a closer look}}",
+    "allClear": "No rows need a closer look",
+    "tableLabel": "Extracted line items",
+    "columns": {
+      "date": "Date",
+      "code": "Code",
+      "description": "Description",
+      "units": "Units",
+      "unitPrice": "Unit price",
+      "charge": "Charge",
+      "modifiers": "Modifiers",
+      "status": "Status",
+      "verified": "Verified"
+    },
+    "rowField": "{field}, row {row}",
+    "markVerified": "Mark row {row} as verified",
+    "status": {
+      "lowConfidence": "Low confidence",
+      "verified": "Verified"
+    },
+    "errors": {
+      "date": "Use a valid date.",
+      "units": "Enter a whole number of 1 or more.",
+      "money": "Enter a dollar amount like 125.00.",
+      "modifiers": "Use two-character modifiers separated by commas, like 59, 25.",
+      "description": "A description is required."
+    },
+    "placeholders": {
+      "code": "None",
+      "modifiers": "None"
+    },
+    "source": {
+      "title": "Original bill",
+      "description": "The part of your bill each row came from will appear here.",
+      "placeholder": "Source image coming soon"
+    },
+    "empty": "No line items were found on this bill."
+  }
+}
