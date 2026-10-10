@@ -51,6 +51,41 @@ describe("ncciUnbundling", () => {
     expect(await run([col1({ modifiers: ["59"] }), col2()], e)).toHaveLength(1);
   });
 
+  describe("modifier 25 on an E/M column 2 line", () => {
+    const e1 = [edit({ column2Code: "99213", modifierIndicator: 1 })];
+    const em = (o = {}) => col2({ code: "99213", ...o });
+
+    it("does not fire when the E/M line has modifier 25", async () => {
+      expect(await run([col1(), em({ modifiers: ["25"] })], e1)).toEqual([]);
+    });
+
+    it("still fires when the E/M line has no modifier 25", async () => {
+      expect(await run([col1(), em()], e1)).toHaveLength(1);
+    });
+
+    it("still fires for a non-E/M line with modifier 25", async () => {
+      expect(await run([col1(), col2({ modifiers: ["25"] })], [edit({ modifierIndicator: 1 })])).toHaveLength(1);
+    });
+
+    it("still fires for indicator 0 regardless of 25", async () => {
+      const e0 = [edit({ column2Code: "99213", modifierIndicator: 0 })];
+      expect(await run([col1(), em({ modifiers: ["25"] })], e0)).toHaveLength(1);
+    });
+
+    it("applies the E/M range boundaries 99202 and 99499 inclusively", async () => {
+      for (const [code, fires] of [["99201", true], ["99202", false], ["99499", false], ["99500", true]] as const) {
+        const e = [edit({ column2Code: code, modifierIndicator: 1 })];
+        const f = await run([col1(), col2({ code, modifiers: ["25"] })], e);
+        expect(f.length > 0).toBe(fires);
+      }
+    });
+
+    it("ignores modifier 25 on column 1 and in the description", async () => {
+      expect(await run([col1({ modifiers: ["25"] }), em()], e1)).toHaveLength(1);
+      expect(await run([col1(), em({ descriptionRaw: "SYNTHETIC -25" })], e1)).toHaveLength(1);
+    });
+  });
+
   it("reads modifiers only from the modifiers field, not the description", async () => {
     const f = await run([col1(), col2({ descriptionRaw: "SYNTHETIC -59 XS" })], [edit({ modifierIndicator: 1 })]);
     expect(f).toHaveLength(1);
