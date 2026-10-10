@@ -5,6 +5,7 @@ import { createTranslator } from "next-intl";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { locales, type Locale } from "@/i18n/locale";
@@ -31,9 +32,6 @@ function loadPdfModule() {
   });
   return pdfModule;
 }
-
-const textareaClass =
-  "min-h-24 w-full rounded-lg border border-input bg-card px-3 py-2 text-base text-foreground transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/40";
 
 /**
  * Fields, language toggle, live preview and PDF download. What the user types
@@ -154,11 +152,10 @@ export function LetterEditor({
         </div>
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="sender-address">{label("fields.senderAddress")}</Label>
-          <textarea
+          <Textarea
             id="sender-address"
             autoComplete="off"
             rows={3}
-            className={textareaClass}
             value={fields.senderAddress}
             onChange={(e) => set("senderAddress", e.target.value)}
           />
@@ -183,11 +180,10 @@ export function LetterEditor({
         </div>
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="provider-address">{label("fields.providerAddress")}</Label>
-          <textarea
+          <Textarea
             id="provider-address"
             autoComplete="off"
             rows={3}
-            className={textareaClass}
             value={fields.providerAddress}
             onChange={(e) => set("providerAddress", e.target.value)}
           />

@@ -83,7 +83,8 @@ const FOCUS_ORDER: ReadonlyArray<readonly [FieldError, string]> = [
   ["billedTotal", "billed-total"],
 ];
 
-const radioClass = "size-5 shrink-0 cursor-pointer accent-primary";
+const radioClass =
+  "relative size-6 shrink-0 cursor-pointer appearance-none rounded-full border border-input bg-card transition-colors outline-none hover:border-foreground/60 focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background checked:border-primary checked:bg-primary checked:after:absolute checked:after:top-1/2 checked:after:left-1/2 checked:after:size-2.5 checked:after:-translate-x-1/2 checked:after:-translate-y-1/2 checked:after:rounded-full checked:after:bg-primary-foreground";
 
 /**
  * Everything typed here lives in this component's state and is computed in the
