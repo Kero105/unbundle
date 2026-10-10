@@ -2,9 +2,11 @@
  * California hospital financial assistance estimate (AB 1020, Health & Safety
  * Code hospital fair pricing).
  *
- * VERIFY BEFORE LAUNCH: these thresholds reflect AB 1020 as we understand it
- * and must be checked against HCAI's current guidance
+ * Checked 2026-10-10 (docs/legal-verification.md): HCAI confirms the 400% FPL
+ * ceiling under AB 1020
  * (https://hcai.ca.gov/affordability/hospital-fair-billing-program/laws-and-regulations/).
+ * The 200% free-care tier could NOT be verified from an official page, so the
+ * 200% boundary stays an estimate heuristic and user copy does not assert it.
  * Each hospital's own policy governs the real outcome; this is an estimate.
  *
  * Pure and deterministic: integer cents, no network, no clock, no logging.

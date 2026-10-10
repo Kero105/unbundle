@@ -1,10 +1,11 @@
 /**
  * Good Faith Estimate comparison (No Surprises Act, uninsured / self-pay).
  *
- * VERIFY BEFORE LAUNCH: this reflects the federal patient-provider dispute
- * resolution process for uninsured or self-pay patients (billed charges at
- * least $400 above the Good Faith Estimate; dispute within 120 calendar days
- * of the bill) as we understand it, and must be verified against CMS guidance.
+ * Checked 2026-10-10 against https://www.cms.gov/medical-bill-rights/help/dispute-a-bill
+ * (see docs/legal-verification.md). This reflects the federal patient-provider dispute
+ * resolution process for uninsured or self-pay patients: billed charges at
+ * least $400 above the Good Faith Estimate, initial bill dated within the last
+ * 120 calendar days.
  *
  * Pure and deterministic: integer cents, no network, no clock, no logging. The
  * caller supplies `today`; the function never reads the current date.

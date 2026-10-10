@@ -421,9 +421,9 @@
       "year": "Based on the {year} federal poverty guidelines."
     },
     "fpl": {
-      "likely_free_care": "At this income you may qualify for free care. Many hospitals offer free care at this level, but each hospital sets its own policy. Ask for the hospital's financial assistance policy to see what applies to you.",
-      "likely_discount": "At this income you may qualify for a discounted bill. Many hospitals offer discounts at this level, but each hospital sets its own policy. Ask for the hospital's financial assistance policy to see what applies to you.",
-      "likely_not_eligible": "At this income you may not qualify under the usual guidelines, but some hospitals offer help at higher incomes, and bills can sometimes be reduced. Ask for the hospital's financial assistance policy to see what applies to you."
+      "likely_free_care": "At this income you may qualify for free care. California law lets people at or below 400% of the federal poverty level apply for help, but each hospital's policy decides whether care is free or discounted at your income. Ask for the hospital's financial assistance policy to see what applies to you.",
+      "likely_discount": "At this income you may qualify for a discounted bill. California law lets people at or below 400% of the federal poverty level apply for help, but each hospital's policy decides whether care is free or discounted at your income. Ask for the hospital's financial assistance policy to see what applies to you.",
+      "likely_not_eligible": "At this income you may be above the 400% level used in California law, but some hospitals offer help at higher incomes, and bills can sometimes be reduced. Ask for the hospital's financial assistance policy to see what applies to you."
     },
     "gfe": {
       "title": "Your bill compared with your Good Faith Estimate",

@@ -421,9 +421,9 @@
       "year": "Basado en las pautas federales de pobreza de {year}."
     },
     "fpl": {
-      "likely_free_care": "Con estos ingresos es posible que califique para atención gratuita. Muchos hospitales ofrecen atención gratuita a este nivel, pero cada hospital establece su propia política. Pida la política de ayuda financiera del hospital para saber qué le corresponde.",
-      "likely_discount": "Con estos ingresos es posible que califique para una factura con descuento. Muchos hospitales ofrecen descuentos a este nivel, pero cada hospital establece su propia política. Pida la política de ayuda financiera del hospital para saber qué le corresponde.",
-      "likely_not_eligible": "Con estos ingresos quizás no califique según las pautas habituales, pero algunos hospitales ayudan a personas con ingresos más altos, y a veces se pueden reducir las facturas. Pida la política de ayuda financiera del hospital para saber qué le corresponde."
+      "likely_free_care": "Con estos ingresos es posible que califique para atención gratuita. La ley de California permite que las personas con ingresos iguales o inferiores al 400% del nivel federal de pobreza soliciten ayuda, pero la política de cada hospital decide si la atención es gratuita o con descuento según sus ingresos. Pida la política de ayuda financiera del hospital para saber qué le corresponde.",
+      "likely_discount": "Con estos ingresos es posible que califique para una factura con descuento. La ley de California permite que las personas con ingresos iguales o inferiores al 400% del nivel federal de pobreza soliciten ayuda, pero la política de cada hospital decide si la atención es gratuita o con descuento según sus ingresos. Pida la política de ayuda financiera del hospital para saber qué le corresponde.",
+      "likely_not_eligible": "Con estos ingresos quizás supere el nivel del 400% que usa la ley de California, pero algunos hospitales ayudan a personas con ingresos más altos, y a veces se pueden reducir las facturas. Pida la política de ayuda financiera del hospital para saber qué le corresponde."
     },
     "gfe": {
       "title": "Su factura comparada con su Estimación de Buena Fe",
