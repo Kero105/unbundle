@@ -67,7 +67,7 @@
   --accent-foreground: #0b3d41;
 
   --border: #ddd5c7;
-  --input: #a99f8d;
+  --input: #857b69;
   --ring: #0e7c86;
 
   /* Amber: "needs a look". */
@@ -137,6 +137,14 @@
   body {
     @apply bg-background text-foreground antialiased;
     line-height: 1.6;
+    /* 360px safeguard: long words, URLs and codes wrap instead of scrolling. */
+    overflow-wrap: break-word;
+  }
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
   }
   h1,
   h2,
