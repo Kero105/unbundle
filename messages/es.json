@@ -84,7 +84,30 @@
   "Dashboard": {
     "title": "Panel",
     "signedInAs": "Sesión iniciada como {email}",
-    "signOut": "Cerrar sesión"
+    "signOut": "Cerrar sesión",
+    "subtitle": "Tus facturas subidas.",
+    "upload": "Subir una factura",
+    "uploadPending": "Abriendo…",
+    "empty": {
+      "title": "Aún no hay facturas",
+      "body": "Sube una factura y la leeremos para que puedas revisarla."
+    },
+    "listLabel": "Tus facturas",
+    "providerUnknown": "Factura (aún sin leer)",
+    "dateUnknown": "Fecha no encontrada",
+    "total": "Total: {amount}",
+    "uploadedOn": "Subida el {date}",
+    "status": {
+      "pending": "Carga sin terminar",
+      "extracting": "Leyendo…",
+      "needs_review": "Lista para revisar",
+      "failed": "No se pudo leer"
+    },
+    "open": "Abrir",
+    "openPending": "Abriendo…",
+    "retry": "Intentar leer de nuevo",
+    "retryPending": "Leyendo…",
+    "loadError": "No pudimos cargar tus facturas. Actualiza la página."
   },
   "Error": {
     "title": "Algo salió mal",
@@ -164,14 +187,21 @@
       "save": "Guardar para después",
       "reset": "Restablecer el ejemplo",
       "ready": "Todas las filas marcadas están verificadas.",
-      "blocked": "{count, plural, one {Verifique la # fila marcada para continuar.} other {Verifique las # filas marcadas para continuar.}}"
+      "blocked": "{count, plural, one {Verifique la # fila marcada para continuar.} other {Verifique las # filas marcadas para continuar.}}",
+      "savePending": "Abriendo el panel…"
     },
     "source": {
       "title": "Factura original",
       "description": "Aquí aparecerá la parte de su factura de donde salió cada fila.",
       "placeholder": "Aquí aparecerá su factura original"
     },
-    "empty": "No se encontraron partidas en esta factura."
+    "empty": "No se encontraron partidas en esta factura.",
+    "saveState": {
+      "saving": "Guardando…",
+      "saved": "Guardado",
+      "failed": "No pudimos guardar ese cambio, así que se deshizo. Inténtalo de nuevo.",
+      "autosave": "Los cambios se guardan automáticamente."
+    }
   },
   "Report": {
     "title": "Su informe",
@@ -505,5 +535,15 @@
       "fixBill": "Corrige el problema con tu factura, arriba, para continuar."
     },
     "keptFiles": "Tus archivos siguen aquí:"
+  },
+  "DeleteBill": {
+    "button": "Eliminar factura",
+    "title": "¿Eliminar esta factura?",
+    "body": "Esto elimina de forma permanente la factura, los cargos que leímos y tus archivos subidos. No se puede deshacer.",
+    "confirm": "Eliminar factura",
+    "confirmPending": "Eliminando…",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "error": "No pudimos eliminar esta factura. Inténtalo de nuevo."
   }
 }

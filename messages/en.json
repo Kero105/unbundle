@@ -84,7 +84,30 @@
   "Dashboard": {
     "title": "Dashboard",
     "signedInAs": "Signed in as {email}",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "subtitle": "Your uploaded bills.",
+    "upload": "Upload a bill",
+    "uploadPending": "Opening…",
+    "empty": {
+      "title": "No bills yet",
+      "body": "Upload a bill and we'll read it so you can check it."
+    },
+    "listLabel": "Your bills",
+    "providerUnknown": "Bill (not read yet)",
+    "dateUnknown": "Date not found",
+    "total": "Total: {amount}",
+    "uploadedOn": "Uploaded {date}",
+    "status": {
+      "pending": "Upload not finished",
+      "extracting": "Reading…",
+      "needs_review": "Ready to review",
+      "failed": "Couldn't read"
+    },
+    "open": "Open",
+    "openPending": "Opening…",
+    "retry": "Try reading again",
+    "retryPending": "Reading…",
+    "loadError": "We couldn't load your bills. Please refresh."
   },
   "Error": {
     "title": "Something went wrong",
@@ -164,14 +187,21 @@
       "save": "Save for later",
       "reset": "Reset sample",
       "ready": "All flagged rows are verified.",
-      "blocked": "{count, plural, one {Verify the # flagged row to continue.} other {Verify the # flagged rows to continue.}}"
+      "blocked": "{count, plural, one {Verify the # flagged row to continue.} other {Verify the # flagged rows to continue.}}",
+      "savePending": "Opening dashboard…"
     },
     "source": {
       "title": "Original bill",
       "description": "The part of your bill each row came from will appear here.",
       "placeholder": "Your original bill will appear here"
     },
-    "empty": "No line items were found on this bill."
+    "empty": "No line items were found on this bill.",
+    "saveState": {
+      "saving": "Saving…",
+      "saved": "Saved",
+      "failed": "Couldn't save that change, so it was undone. Please try again.",
+      "autosave": "Changes are saved automatically."
+    }
   },
   "Report": {
     "title": "Your report",
@@ -505,5 +535,15 @@
       "fixBill": "Fix the problem with your bill above to continue."
     },
     "keptFiles": "Your files are still here:"
+  },
+  "DeleteBill": {
+    "button": "Delete bill",
+    "title": "Delete this bill?",
+    "body": "This permanently removes the bill, the line items we read, and your uploaded files. This can't be undone.",
+    "confirm": "Delete bill",
+    "confirmPending": "Deleting…",
+    "cancel": "Cancel",
+    "close": "Close",
+    "error": "We couldn't delete this bill. Please try again."
   }
 }

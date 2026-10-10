@@ -14,7 +14,7 @@ export default function Terms() {
       <h1 className="mt-6 text-3xl font-semibold sm:text-4xl">
         Terms of Use
       </h1>
-      <p className="mt-2 text-base text-muted-foreground">Last updated October 7, 2026</p>
+      <p className="mt-2 text-base text-muted-foreground">Last updated October 10, 2026</p>
 
       <div className="mt-8 space-y-8">
         <p>
@@ -42,6 +42,19 @@ export default function Terms() {
             including misreading a bill or missing a problem. We don&apos;t
             guarantee that it is accurate, complete, or always available, and
             we aren&apos;t responsible for decisions you make based on it.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold">
+            Your uploads
+          </h2>
+          <p className="mt-2">
+            Only upload bills you have the right to use. Your files are sent
+            to Anthropic&apos;s API to be read, as explained in the Privacy
+            Policy. Reading is limited per account to keep the service
+            available, and may be turned off at any time. You can delete a
+            bill and its files whenever you like.
           </p>
         </section>
 
