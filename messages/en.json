@@ -157,6 +157,7 @@
     "actions": {
       "label": "Next steps",
       "continue": "Looks right, continue",
+      "continuePending": "Opening report…",
       "save": "Save for later",
       "ready": "All flagged rows are verified.",
       "blocked": "{count, plural, one {Verify the # flagged row to continue.} other {Verify the # flagged rows to continue.}}"
@@ -220,7 +221,8 @@
       "deniedBilled": "Your insurance denied this service, but the bill asks you to pay the full amount. It is worth asking whether the denial was appealed or the amount is correct.",
       "fallback": "A fixed check on your bill's line items flagged this. Ask the billing office to explain the charge."
     },
-    "makeLetter": "Create a dispute letter"
+    "makeLetter": "Create a dispute letter",
+    "makeLetterPending": "Opening letter…"
   },
   "Letter": {
     "page": {

@@ -157,6 +157,7 @@
     "actions": {
       "label": "Siguientes pasos",
       "continue": "Todo bien, continuar",
+      "continuePending": "Abriendo el informe…",
       "save": "Guardar para después",
       "ready": "Todas las filas marcadas están verificadas.",
       "blocked": "{count, plural, one {Verifique la # fila marcada para continuar.} other {Verifique las # filas marcadas para continuar.}}"
@@ -220,7 +221,8 @@
       "deniedBilled": "Su seguro negó este servicio, pero la factura le pide pagar el monto completo. Vale la pena preguntar si se apeló la negación o si el monto es correcto.",
       "fallback": "Una revisión fija de las líneas de su factura señaló esto. Pida a la oficina de facturación que le explique el cargo."
     },
-    "makeLetter": "Crear una carta de reclamo"
+    "makeLetter": "Crear una carta de reclamo",
+    "makeLetterPending": "Abriendo la carta…"
   },
   "Letter": {
     "page": {

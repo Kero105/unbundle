@@ -7,6 +7,7 @@ import type { VariantProps } from "class-variance-authority";
 import { CircleCheck, CircleHelp, Info, OctagonAlert, TriangleAlert, type LucideIcon } from "lucide-react";
 import { BillSteps } from "@/components/bill-steps";
 import { Badge, badgeVariants } from "@/components/ui/badge";
+import { PendingLink } from "@/components/pending-link";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -169,12 +170,13 @@ async function Report({ params }: Pick<PageProps<"/bills/[id]/report">, "params"
           {t("backToReview")}
         </Link>
         {report.findings.length > 0 ? (
-          <Link
+          <PendingLink
             href={`/bills/${encodeURIComponent(id)}/letter`}
             className={buttonVariants()}
+            pendingLabel={t("makeLetterPending")}
           >
             {t("makeLetter")}
-          </Link>
+          </PendingLink>
         ) : null}
       </div>
     </main>

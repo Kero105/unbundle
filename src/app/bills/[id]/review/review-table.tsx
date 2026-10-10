@@ -1,10 +1,10 @@
 "use client";
 
 import { Fragment, useId, useState } from "react";
-import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { Check, FileText, TriangleAlert, CircleCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { PendingLink } from "@/components/pending-link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -494,13 +494,14 @@ export function ReviewTable({ bill, billId }: { bill: ExtractedBill; billId: str
                 {t("actions.continue")}
               </Button>
             ) : (
-              <Link
+              <PendingLink
                 href={`/bills/${encodeURIComponent(billId)}/report`}
                 aria-describedby={helperId}
                 className={buttonVariants()}
+                pendingLabel={t("actions.continuePending")}
               >
                 {t("actions.continue")}
-              </Link>
+              </PendingLink>
             )}
           </div>
         </div>
