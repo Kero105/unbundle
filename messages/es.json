@@ -167,5 +167,58 @@
       "placeholder": "Aquí aparecerá su factura original"
     },
     "empty": "No se encontraron partidas en esta factura."
+  },
+  "Report": {
+    "title": "Su informe",
+    "subtitle": "Esto es lo que señalaron nuestras revisiones fijas en su factura.",
+    "backToReview": "Volver a la revisión",
+    "honest": "Estas son cosas que vale la pena preguntar, no errores seguros.",
+    "totalLabel": "Total en juego",
+    "totalCount": "{count, plural, one {En # hallazgo} other {En # hallazgos}}",
+    "listLabel": "Hallazgos",
+    "empty": {
+      "title": "No encontramos nada que valga la pena preguntar",
+      "body": "Nuestras revisiones se aplicaron a cada línea de su factura y ninguna señaló un problema. Es una buena señal. Estas revisiones no pueden detectarlo todo, así que si algo todavía le parece incorrecto, puede preguntar a la oficina de facturación."
+    },
+    "finding": {
+      "atStake": "Monto en juego",
+      "affectedItems": "Líneas afectadas",
+      "itemsLabel": "Líneas de este hallazgo",
+      "columns": {
+        "code": "Código",
+        "description": "Descripción",
+        "charge": "Cargo"
+      },
+      "noCode": "Sin código en la factura",
+      "whySummary": "Por qué lo señalamos",
+      "checkWithOffice": "Vale la pena consultarlo con la oficina de facturación.",
+      "severity": "{level, select, error {Gravedad alta} warning {Gravedad media} other {Gravedad baja}}",
+      "confidence": "{level, select, high {Confianza alta} medium {Confianza media} other {Confianza baja}}"
+    },
+    "rules": {
+      "duplicate_charge": "Posible cargo duplicado",
+      "math_error": "El cargo no coincide con unidades por precio",
+      "date_mismatch": "Fecha fuera de su visita",
+      "ncci_unbundling": "Posiblemente cobrado por separado cuando debería ir junto",
+      "mue_exceeded": "Más unidades de las que permite Medicare",
+      "balance_billing": "Posible facturación de saldo",
+      "denied_billed_in_full": "Negado por el seguro y luego cobrado a usted",
+      "price_outlier": "Precio muy superior al de Medicare",
+      "vague_charge": "Cargo vago o sin descripción"
+    },
+    "why": {
+      "duplicateCharge": "El mismo servicio, con el mismo código, fecha, unidades y precio, aparece más de una vez en su factura. A veces un servicio sí se realiza dos veces, pero vale la pena confirmarlo.",
+      "mathError": "El cargo es mayor que las unidades multiplicadas por el precio unitario que aparece en la misma línea, así que los números de esta línea no cuadran.",
+      "dateMismatch": "Este cargo tiene una fecha fuera de las fechas de servicio impresas en su factura, por lo que podría corresponder a otra visita o tener un error de captura.",
+      "ncciNever": "Las reglas de codificación de Medicare indican que estos dos servicios deben cobrarse juntos como uno solo, y ningún modificador permite separarlos. Cobrar ambos puede significar pagar dos veces por el mismo trabajo.",
+      "ncciModifier": "Las reglas de codificación de Medicare indican que estos dos servicios normalmente se cobran juntos como uno solo. Solo pueden cobrarse por separado cuando un modificador demuestra que fueron realmente distintos, así que vale la pena preguntar por qué se separaron.",
+      "mueLine": "Medicare fija un límite de cuántas unidades de este servicio se pueden cobrar en una línea. Esta factura muestra más que ese límite.",
+      "mueDayPolicy": "Medicare fija un límite estricto de cuántas unidades de este servicio se pueden cobrar a un paciente en un día. Esta factura muestra más que ese límite.",
+      "mueDayClinical": "Medicare fija un límite habitual de cuántas unidades de este servicio se cobran a un paciente en un día. Superarlo puede ser válido con documentación médica, así que vale la pena preguntar.",
+      "priceOutlier": "Este precio es más de cinco veces lo que Medicare paga por el mismo servicio en Los Ángeles. Los proveedores pueden cobrar más que Medicare, así que es un motivo para preguntar, no una prueba de error.",
+      "vagueCharge": "Esta línea no indica para qué servicio fue, por ejemplo un monto global o un cargo sin código. Puede pedir una explicación detallada.",
+      "deniedBilled": "Su seguro negó este servicio, pero la factura le pide pagar el monto completo. Vale la pena preguntar si se apeló la negación o si el monto es correcto.",
+      "fallback": "Una revisión fija de las líneas de su factura señaló esto. Pida a la oficina de facturación que le explique el cargo."
+    }
   }
 }

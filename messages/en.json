@@ -167,5 +167,58 @@
       "placeholder": "Your original bill will appear here"
     },
     "empty": "No line items were found on this bill."
+  },
+  "Report": {
+    "title": "Your report",
+    "subtitle": "Here is what our fixed checks flagged on your bill.",
+    "backToReview": "Back to review",
+    "honest": "These are things worth asking about, not certain mistakes.",
+    "totalLabel": "Total at stake",
+    "totalCount": "{count, plural, one {Across # finding} other {Across # findings}}",
+    "listLabel": "Findings",
+    "empty": {
+      "title": "We did not find anything worth asking about",
+      "body": "Our checks ran on every line of your bill and none of them flagged a concern. That is a good sign. These checks cannot catch everything, so if something still looks wrong to you, it is fine to ask the billing office."
+    },
+    "finding": {
+      "atStake": "Amount at stake",
+      "affectedItems": "Line items affected",
+      "itemsLabel": "Line items for this finding",
+      "columns": {
+        "code": "Code",
+        "description": "Description",
+        "charge": "Charge"
+      },
+      "noCode": "No code on bill",
+      "whySummary": "Why we flagged this",
+      "checkWithOffice": "Worth checking with the billing office.",
+      "severity": "{level, select, error {High severity} warning {Medium severity} other {Low severity}}",
+      "confidence": "{level, select, high {High confidence} medium {Medium confidence} other {Low confidence}}"
+    },
+    "rules": {
+      "duplicate_charge": "Possible duplicate charge",
+      "math_error": "Charge does not match units times price",
+      "date_mismatch": "Date outside your visit",
+      "ncci_unbundling": "Possibly billed separately when it should be together",
+      "mue_exceeded": "More units than Medicare allows",
+      "balance_billing": "Possible balance billing",
+      "denied_billed_in_full": "Denied by insurance, then billed to you",
+      "price_outlier": "Price far above Medicare",
+      "vague_charge": "Vague or unlabeled charge"
+    },
+    "why": {
+      "duplicateCharge": "The same service, with the same code, date, units, and price, appears more than once on your bill. Sometimes a service really is done twice, but it is worth confirming.",
+      "mathError": "The charge is higher than the units multiplied by the unit price shown on the same line, so the numbers on this line do not add up.",
+      "dateMismatch": "This charge is dated outside the dates of service printed on your bill, so it may belong to a different visit or have a typing error.",
+      "ncciNever": "Medicare's coding rules say these two services should be billed together as one, and no modifier is allowed to split them. Billing both can mean paying twice for the same work.",
+      "ncciModifier": "Medicare's coding rules say these two services are normally billed together as one. They may be billed separately only when a modifier shows they were truly distinct, so it is worth asking why they were split.",
+      "mueLine": "Medicare sets a limit on how many units of this service can be billed on one line. This bill shows more than that limit.",
+      "mueDayPolicy": "Medicare sets a firm limit on how many units of this service can be billed for one patient on one day. This bill shows more than that limit.",
+      "mueDayClinical": "Medicare sets a typical limit on how many units of this service are billed for one patient on one day. Going over can be valid with medical documentation, so it is worth asking.",
+      "priceOutlier": "This price is more than five times what Medicare pays for the same service in Los Angeles. Providers can charge more than Medicare, so this is a reason to ask, not proof of an error.",
+      "vagueCharge": "This line does not say what service it was for, such as a lump sum or a charge with no code. You can ask for an itemized explanation.",
+      "deniedBilled": "Your insurance denied this service, but the bill asks you to pay the full amount. It is worth asking whether the denial was appealed or the amount is correct.",
+      "fallback": "A fixed check on your bill's line items flagged this. Ask the billing office to explain the charge."
+    }
   }
 }
