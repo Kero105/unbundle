@@ -428,5 +428,82 @@
       "start": "Start the sample",
       "startPending": "Opening the sample…"
     }
+  },
+  "Upload": {
+    "title": "Upload your bill",
+    "subtitle": "Add a photo or PDF of your bill. Have the Explanation of Benefits (EOB) from your insurer? Add that too.",
+    "billLabel": "Your bill",
+    "billHint": "Required.",
+    "eobLabel": "Explanation of Benefits (EOB)",
+    "eobHint": "Optional. Shows what insurance paid.",
+    "formats": "Photos are resized for you. PDFs can be up to 4 MB and 6 pages.",
+    "submit": "Read my bill",
+    "submitPending": "Starting…",
+    "privacy": {
+      "title": "Your files are private",
+      "body": "Only your account can open your files in Unbundle. Photos are resized in your browser before they upload. To read the text on your bill, we send your files to Anthropic's API, and for nothing else. Under Anthropic's published terms, data sent through its API isn't used to train its models by default. You can delete a bill at any time, which removes its stored files and the data we read from them.",
+      "more": "Read the full privacy policy"
+    },
+    "progress": {
+      "label": "Upload progress",
+      "text": "Step {current} of {total}: {step}",
+      "creating": "Preparing",
+      "bill": "Uploading your bill",
+      "eob": "Uploading your EOB",
+      "reading": "Reading your bill"
+    },
+    "reading": {
+      "title": "Reading your bill…",
+      "body": "This can take up to a minute. Please keep this page open."
+    },
+    "errorTitle": "We couldn't finish",
+    "retry": "Try again",
+    "retryPending": "Trying again…",
+    "startOver": "Choose different files",
+    "errors": {
+      "empty": "That file is empty. Please choose another one.",
+      "too_large": "That file is too large. Try a smaller photo or a compressed PDF.",
+      "unsupported_type": "We can only read JPEG, PNG, WebP or PDF files.",
+      "pdf_unreadable": "We couldn't open that PDF. Try a photo of the bill instead.",
+      "pdf_encrypted": "That PDF is password protected. Please remove the password and try again.",
+      "pdf_too_many_pages": "That PDF has more than 6 pages. Please upload just the pages with charges.",
+      "unauthenticated": "Your session has ended. Please sign in again.",
+      "not_found": "We couldn't find that bill.",
+      "too_many_bills": "You've reached the limit of saved bills. Delete one to add another.",
+      "upload": "The upload didn't go through. Please try again.",
+      "busy": "This bill is already being read. Give it a minute.",
+      "rate_limited": "You've reached the hourly limit for reading bills. Please try again later.",
+      "unavailable": "Bill reading is turned off right now. Please try again later.",
+      "unreadable": "We couldn't read this bill reliably. Try a clearer, well-lit photo, or retry.",
+      "network": "We couldn't reach the server. Check your connection and try again.",
+      "unknown": "Something went wrong. Please try again.",
+      "pdf_too_large": "That PDF is larger than 4 MB. Please upload photos of the pages instead, or a smaller file.",
+      "image_unreadable": "We couldn't read that image. Try taking the photo again, or choose a different file.",
+      "heic_unsupported": "Your browser can't open this photo format (HEIC). Take the photo as a JPEG, or take a screenshot of it and upload that.",
+      "image_too_large": "That image is still too large after shrinking it. Try a photo of fewer pages at a time."
+    },
+    "zone": {
+      "prompt": "Choose a file or drag it here",
+      "drop": "Drop the file to add it",
+      "accepted": "JPEG, PNG, WebP or PDF",
+      "takePhoto": "Take a photo",
+      "compressing": "Compressing…",
+      "sizes": "{from} to {to}",
+      "replace": "Replace",
+      "remove": "Remove"
+    },
+    "tips": {
+      "title": "Tips for a good photo",
+      "flat": "Lay the bill flat on a table.",
+      "light": "Use good light and avoid shadows.",
+      "pages": "Include every page with charges.",
+      "edges": "Make sure nothing is cut off at the edges."
+    },
+    "blocked": {
+      "needBill": "Add your bill to continue.",
+      "compressing": "Getting your photo ready…",
+      "fixBill": "Fix the problem with your bill above to continue."
+    },
+    "keptFiles": "Your files are still here:"
   }
 }

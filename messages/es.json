@@ -428,5 +428,82 @@
       "start": "Comenzar el ejemplo",
       "startPending": "Abriendo el ejemplo…"
     }
+  },
+  "Upload": {
+    "title": "Sube tu factura",
+    "subtitle": "Agrega una foto o PDF de tu factura. ¿Tienes la Explicación de Beneficios (EOB) de tu aseguradora? Agrégala también.",
+    "billLabel": "Tu factura",
+    "billHint": "Obligatorio.",
+    "eobLabel": "Explicación de Beneficios (EOB)",
+    "eobHint": "Opcional. Muestra lo que pagó el seguro.",
+    "formats": "Reducimos el tamaño de las fotos por ti. Los PDF pueden pesar hasta 4 MB y tener 6 páginas.",
+    "submit": "Leer mi factura",
+    "submitPending": "Comenzando…",
+    "privacy": {
+      "title": "Tus archivos son privados",
+      "body": "Solo tu cuenta puede abrir tus archivos en Unbundle. Las fotos se reducen de tamaño en tu navegador antes de subirse. Para leer el texto de tu factura, enviamos tus archivos a la API de Anthropic, y solo para eso. Según los términos publicados de Anthropic, por defecto los datos enviados por su API no se usan para entrenar sus modelos. Puedes eliminar una factura cuando quieras: se borran sus archivos guardados y los datos que leímos de ellos.",
+      "more": "Lee la política de privacidad completa"
+    },
+    "progress": {
+      "label": "Progreso de la carga",
+      "text": "Paso {current} de {total}: {step}",
+      "creating": "Preparando",
+      "bill": "Subiendo tu factura",
+      "eob": "Subiendo tu EOB",
+      "reading": "Leyendo tu factura"
+    },
+    "reading": {
+      "title": "Leyendo tu factura…",
+      "body": "Puede tardar hasta un minuto. Mantén esta página abierta."
+    },
+    "errorTitle": "No pudimos terminar",
+    "retry": "Intentar de nuevo",
+    "retryPending": "Reintentando…",
+    "startOver": "Elegir otros archivos",
+    "errors": {
+      "empty": "Ese archivo está vacío. Elige otro.",
+      "too_large": "Ese archivo es demasiado grande. Prueba con una foto más pequeña o un PDF comprimido.",
+      "unsupported_type": "Solo podemos leer archivos JPEG, PNG, WebP o PDF.",
+      "pdf_unreadable": "No pudimos abrir ese PDF. Prueba con una foto de la factura.",
+      "pdf_encrypted": "Ese PDF tiene contraseña. Quítala e inténtalo de nuevo.",
+      "pdf_too_many_pages": "Ese PDF tiene más de 6 páginas. Sube solo las páginas con cargos.",
+      "unauthenticated": "Tu sesión terminó. Vuelve a iniciar sesión.",
+      "not_found": "No encontramos esa factura.",
+      "too_many_bills": "Llegaste al límite de facturas guardadas. Elimina una para agregar otra.",
+      "upload": "La carga no se completó. Inténtalo de nuevo.",
+      "busy": "Esta factura ya se está leyendo. Espera un minuto.",
+      "rate_limited": "Llegaste al límite por hora para leer facturas. Inténtalo más tarde.",
+      "unavailable": "La lectura de facturas está desactivada por ahora. Inténtalo más tarde.",
+      "unreadable": "No pudimos leer esta factura con confianza. Prueba con una foto más nítida y bien iluminada, o reintenta.",
+      "network": "No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.",
+      "unknown": "Algo salió mal. Inténtalo de nuevo.",
+      "pdf_too_large": "Ese PDF pesa más de 4 MB. Sube fotos de las páginas o un archivo más pequeño.",
+      "image_unreadable": "No pudimos leer esa imagen. Vuelve a tomar la foto o elige otro archivo.",
+      "heic_unsupported": "Tu navegador no puede abrir este formato de foto (HEIC). Toma la foto en formato JPEG o haz una captura de pantalla y súbela.",
+      "image_too_large": "La imagen sigue siendo demasiado grande aunque la redujimos. Prueba con una foto de menos páginas a la vez."
+    },
+    "zone": {
+      "prompt": "Elige un archivo o arrástralo aquí",
+      "drop": "Suelta el archivo para agregarlo",
+      "accepted": "JPEG, PNG, WebP o PDF",
+      "takePhoto": "Tomar una foto",
+      "compressing": "Comprimiendo…",
+      "sizes": "{from} a {to}",
+      "replace": "Reemplazar",
+      "remove": "Quitar"
+    },
+    "tips": {
+      "title": "Consejos para una buena foto",
+      "flat": "Coloca la factura sobre una mesa, bien plana.",
+      "light": "Usa buena luz y evita las sombras.",
+      "pages": "Incluye todas las páginas con cargos.",
+      "edges": "Asegúrate de que no se corte nada en los bordes."
+    },
+    "blocked": {
+      "needBill": "Agrega tu factura para continuar.",
+      "compressing": "Preparando tu foto…",
+      "fixBill": "Corrige el problema con tu factura, arriba, para continuar."
+    },
+    "keptFiles": "Tus archivos siguen aquí:"
   }
 }
