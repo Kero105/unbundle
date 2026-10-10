@@ -17,10 +17,25 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+// Optional public origin, used to build absolute Open Graph URLs. Not a secret.
+function siteOrigin(): URL | undefined {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL;
+  if (!raw) return undefined;
+  try {
+    return new URL(raw);
+  } catch {
+    return undefined;
+  }
+}
+
+// Every route sets its own localized title and description; these are the
+// fallback for anything that does not.
 export const metadata: Metadata = {
+  metadataBase: siteOrigin(),
   title: "Unbundle",
   description:
     "Check your medical bill for duplicate charges, unbundled procedures, and prices far above Medicare.",
+  openGraph: { siteName: "Unbundle", type: "website" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

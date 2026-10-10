@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { ErrorState } from "@/components/error-state";
 import { SignInButton } from "@/components/sign-in-button";
 import { buttonVariants } from "@/components/ui/button";
+import { routeMetadata } from "@/lib/metadata";
 
 async function AuthErrorContent() {
   const [locale, t] = await Promise.all([getLocale(), getTranslations("AuthError")]);
@@ -18,6 +19,8 @@ async function AuthErrorContent() {
     </div>
   );
 }
+
+export const generateMetadata = () => routeMetadata("authError");
 
 export default function AuthErrorPage() {
   return (

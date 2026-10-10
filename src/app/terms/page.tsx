@@ -1,16 +1,13 @@
 import { Suspense } from "react";
-import type { Metadata } from "next";
 import Link from "next/link";
+import { routeMetadata } from "@/lib/metadata";
 import { getLocale, getTranslations } from "next-intl/server";
 import { LegalPage, LegalSection, legalLinkClass } from "@/components/legal-page";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const CONTACT_EMAIL = "rohankelkar2020@gmail.com";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("Terms");
-  return { title: t("metaTitle") };
-}
+export const generateMetadata = () => routeMetadata("terms");
 
 async function Terms() {
   const [locale, t] = await Promise.all([getLocale(), getTranslations("Terms")]);

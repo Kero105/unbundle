@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UploadForm } from "./upload-form";
+import { routeMetadata } from "@/lib/metadata";
 
 async function UploadView() {
   const [locale, t] = await Promise.all([getLocale(), getTranslations("Upload")]);
@@ -21,6 +22,8 @@ async function UploadView() {
     </NextIntlClientProvider>
   );
 }
+
+export const generateMetadata = () => routeMetadata("upload");
 
 export default function NewBillPage() {
   return (

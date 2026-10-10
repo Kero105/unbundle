@@ -551,7 +551,6 @@
     "error": "No pudimos eliminar esta factura. Inténtelo de nuevo."
   },
   "Privacy": {
-    "metaTitle": "Política de privacidad | Unbundle",
     "home": "← Inicio",
     "title": "Política de privacidad",
     "updatedLabel": "Última actualización",
@@ -600,7 +599,6 @@
     }
   },
   "Terms": {
-    "metaTitle": "Términos de uso | Unbundle",
     "home": "← Inicio",
     "title": "Términos de uso",
     "updatedLabel": "Última actualización",
@@ -634,8 +632,6 @@
     }
   },
   "About": {
-    "metaTitle": "Acerca de | Unbundle",
-    "metaDescription": "Qué es Unbundle, cómo revisa una factura médica, qué tan preciso es y qué no puede hacer.",
     "title": "Acerca de Unbundle",
     "subtitle": "Una herramienta gratuita que revisa una factura médica con las reglas públicas de Medicare y le da una carta para llevar a la oficina de facturación.",
     "contents": "En esta página",
@@ -750,5 +746,57 @@
     "body": "El inicio de sesión no se completó. Esto puede pasar si cerró la ventana o el enlace venció. Inténtelo de nuevo.",
     "retry": "Iniciar sesión con Google",
     "home": "Volver al inicio"
+  },
+  "Meta": {
+    "home": {
+      "title": "Revise su factura médica en busca de errores | Unbundle",
+      "description": "Suba una factura médica y revísela en busca de cargos duplicados, procedimientos desglosados y precios muy superiores a los de Medicare. Gratis, con una carta que puede llevar a la oficina de facturación."
+    },
+    "demo": {
+      "title": "Pruebe una factura de muestra | Unbundle",
+      "description": "Recorra Unbundle con una factura de muestra inventada. Sin iniciar sesión y sin subir nada."
+    },
+    "upload": {
+      "title": "Suba su factura | Unbundle",
+      "description": "Suba una foto o un PDF de su factura médica para que Unbundle la lea y la revise."
+    },
+    "dashboard": {
+      "title": "Sus facturas | Unbundle",
+      "description": "Sus facturas subidas, su estado y sus informes en un solo lugar."
+    },
+    "review": {
+      "title": "Revise su factura | Unbundle",
+      "description": "Verifique las filas que Unbundle leyó de su factura y corrija lo que no se vea bien antes de que se ejecuten las revisiones."
+    },
+    "report": {
+      "title": "Su informe | Unbundle",
+      "description": "Lo que Unbundle encontró en su factura, con la regla detrás de cada hallazgo y el monto involucrado."
+    },
+    "letter": {
+      "title": "Su carta de disputa | Unbundle",
+      "description": "Edite y descargue una carta para la oficina de facturación con lo que vale la pena preguntar."
+    },
+    "assistance": {
+      "title": "Ayuda financiera y su factura | Unbundle",
+      "description": "Calcule si podría calificar para ayuda financiera, o compare su factura con un Estimado de Buena Fe."
+    },
+    "authError": {
+      "title": "Problema al iniciar sesión | Unbundle",
+      "description": "Algo salió mal al iniciar sesión. Inténtelo de nuevo."
+    },
+    "privacy": {
+      "title": "Política de privacidad | Unbundle",
+      "description": "Qué recopila Unbundle de su factura, quién la procesa, cuánto tiempo se conserva y cómo eliminarla."
+    },
+    "terms": {
+      "title": "Términos de uso | Unbundle",
+      "description": "Los términos para usar Unbundle, incluido lo que es y lo que no es."
+    },
+    "about": {
+      "title": "Acerca de | Unbundle",
+      "description": "Qué es Unbundle, cómo revisa una factura médica, qué tan preciso es y qué no puede hacer."
+    },
+    "og": "Revise su factura médica con las reglas públicas de Medicare.",
+    "ogAlt": "Unbundle: revise su factura médica con las reglas públicas de Medicare."
   }
 }

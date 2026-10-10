@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import type { Metadata } from "next";
+import { routeMetadata } from "@/lib/metadata";
 import { getLocale, getTranslations } from "next-intl/server";
 import { LegalPage, LegalSection, legalLinkClass } from "@/components/legal-page";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -8,10 +8,7 @@ const CONTACT_EMAIL = "rohankelkar2020@gmail.com";
 const ANTHROPIC_RETENTION_URL =
   "https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("Privacy");
-  return { title: t("metaTitle") };
-}
+export const generateMetadata = () => routeMetadata("privacy");
 
 async function Privacy() {
   const [locale, t] = await Promise.all([getLocale(), getTranslations("Privacy")]);

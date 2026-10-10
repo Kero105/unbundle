@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { buttonVariants } from "@/components/ui/button";
 import { PendingLink } from "@/components/pending-link";
 import { Skeleton } from "@/components/ui/skeleton";
+import { routeMetadata } from "@/lib/metadata";
 
 const STORY = ["bill", "check", "letter"] as const;
 
@@ -58,6 +59,8 @@ function DemoIntroSkeleton() {
     </main>
   );
 }
+
+export const generateMetadata = () => routeMetadata("demo");
 
 export default function DemoPage() {
   return (

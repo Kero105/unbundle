@@ -1,5 +1,8 @@
 import { Suspense } from "react";
 import { ReviewSkeleton, ReviewView } from "./review-view";
+import { routeMetadata } from "@/lib/metadata";
+
+export const generateMetadata = () => routeMetadata("review");
 
 export default function ReviewPage(props: PageProps<"/bills/[id]/review">) {
   return (

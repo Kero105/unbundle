@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import type { Metadata } from "next";
 import Link from "next/link";
+import { routeMetadata } from "@/lib/metadata";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import accuracy from "@/lib/accuracy/accuracy.json";
@@ -45,10 +45,7 @@ const SOURCES = [
 ] as const;
 const PRIVACY_SUMMARY = ["files", "browser", "anthropic", "delete", "sell"] as const;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("About");
-  return { title: t("metaTitle"), description: t("metaDescription") };
-}
+export const generateMetadata = () => routeMetadata("about");
 
 function SectionTitle({ id, children }: { id: string; children: string }) {
   return (

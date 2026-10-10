@@ -5,6 +5,7 @@
 | Name | Where set | Public / secret | Notes |
 |---|---|---|---|
 | `NEXT_PUBLIC_SUPABASE_URL` | Host env (build and runtime), `.env.local` | Public | Also baked into the CSP `connect-src` at build time; rebuild if it changes. |
+| `NEXT_PUBLIC_SITE_URL` | Host env (build time), optional | Public | Absolute origin (for example `https://your-domain`) used for Open Graph image URLs. Unset: Next falls back to the host default. |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Host env (build and runtime), `.env.local` | Public (publishable key) | Safe in the browser; RLS protects data. |
 | `ANTHROPIC_API_KEY` | Host env, server only | **Secret** | Required when `EXTRACTION_MODE=anthropic`. Never prefix with `NEXT_PUBLIC_`. |
 | `EXTRACTION_MODE` | Host env | Config | `mock` (default) or `anthropic`. **Must be `anthropic` in production**; the server refuses to start otherwise. |

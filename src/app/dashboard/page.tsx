@@ -14,6 +14,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { displayStatus } from "@/lib/bills/extraction-status";
 import { formatCents } from "@/lib/money";
 import { createClient } from "@/lib/supabase/server";
+import { routeMetadata } from "@/lib/metadata";
 
 // Request-time clock for the stale-extraction check; this runs after connection().
 const currentTimeMs = () => Date.now();
@@ -151,6 +152,8 @@ function DashboardSkeleton() {
     </main>
   );
 }
+
+export const generateMetadata = () => routeMetadata("dashboard");
 
 export default function DashboardPage() {
   return (

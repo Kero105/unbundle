@@ -16,6 +16,7 @@ import { SignInButton } from "@/components/sign-in-button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PendingLink } from "@/components/pending-link";
 import { buttonVariants } from "@/components/ui/button";
+import { routeMetadata } from "@/lib/metadata";
 
 const CHECKS = [
   { key: "duplicates", Icon: Copy },
@@ -145,6 +146,8 @@ function LandingSkeleton() {
     </main>
   );
 }
+
+export const generateMetadata = () => routeMetadata("home");
 
 export default function Home() {
   return (

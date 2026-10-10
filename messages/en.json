@@ -551,7 +551,6 @@
     "error": "We couldn't delete this bill. Please try again."
   },
   "Privacy": {
-    "metaTitle": "Privacy Policy | Unbundle",
     "home": "← Home",
     "title": "Privacy Policy",
     "updatedLabel": "Last updated",
@@ -600,7 +599,6 @@
     }
   },
   "Terms": {
-    "metaTitle": "Terms of Use | Unbundle",
     "home": "← Home",
     "title": "Terms of Use",
     "updatedLabel": "Last updated",
@@ -634,8 +632,6 @@
     }
   },
   "About": {
-    "metaTitle": "About | Unbundle",
-    "metaDescription": "What Unbundle is, how it checks a medical bill, how accurate it is, and what it cannot do.",
     "title": "About Unbundle",
     "subtitle": "A free tool that checks a medical bill against public Medicare rules and gives you a letter to take to the billing office.",
     "contents": "On this page",
@@ -750,5 +746,57 @@
     "body": "Sign-in did not finish. This can happen if the window was closed or the link expired. Please try again.",
     "retry": "Sign in with Google",
     "home": "Back to home"
+  },
+  "Meta": {
+    "home": {
+      "title": "Check your medical bill for errors | Unbundle",
+      "description": "Upload a medical bill and check it for duplicate charges, unbundled procedures and prices far above Medicare. Free, with a letter you can take to the billing office."
+    },
+    "demo": {
+      "title": "Try a sample bill | Unbundle",
+      "description": "Walk through Unbundle with a made-up sample bill. No sign-in, nothing uploaded."
+    },
+    "upload": {
+      "title": "Upload your bill | Unbundle",
+      "description": "Upload a photo or PDF of your medical bill so Unbundle can read it and check it."
+    },
+    "dashboard": {
+      "title": "Your bills | Unbundle",
+      "description": "Your uploaded bills, their status, and their reports in one place."
+    },
+    "review": {
+      "title": "Review your bill | Unbundle",
+      "description": "Check the rows Unbundle read from your bill and fix anything that looks wrong before the checks run."
+    },
+    "report": {
+      "title": "Your report | Unbundle",
+      "description": "What Unbundle found on your bill, with the rule behind each finding and the amount involved."
+    },
+    "letter": {
+      "title": "Your dispute letter | Unbundle",
+      "description": "Edit and download a letter to the billing office that lists what is worth asking about."
+    },
+    "assistance": {
+      "title": "Financial help and your bill | Unbundle",
+      "description": "Estimate whether you may qualify for financial assistance, or compare your bill with a Good Faith Estimate."
+    },
+    "authError": {
+      "title": "Sign-in problem | Unbundle",
+      "description": "Something went wrong while signing in. Please try again."
+    },
+    "privacy": {
+      "title": "Privacy Policy | Unbundle",
+      "description": "What Unbundle collects from your bill, who processes it, how long it is kept, and how to delete it."
+    },
+    "terms": {
+      "title": "Terms of Use | Unbundle",
+      "description": "The terms for using Unbundle, including what it is and what it is not."
+    },
+    "about": {
+      "title": "About | Unbundle",
+      "description": "What Unbundle is, how it checks a medical bill, how accurate it is, and what it cannot do."
+    },
+    "og": "Check your medical bill against public Medicare rules.",
+    "ogAlt": "Unbundle: check your medical bill against public Medicare rules."
   }
 }
