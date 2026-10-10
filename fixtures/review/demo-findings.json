@@ -1,0 +1,26 @@
+[
+  {
+    "id": "price_outlier:li-7",
+    "ruleId": "price_outlier",
+    "lineItemIds": [
+      "li-7"
+    ],
+    "severity": "warning",
+    "confidence": "medium",
+    "amountAtStakeCents": 28722,
+    "evidence": "code=71046;modifier=;units=1;medicare_cents=3778;billed_cents=32500",
+    "citation": "price_outlier.medicare_5x_la_office"
+  },
+  {
+    "id": "vague_charge:li-6",
+    "ruleId": "vague_charge",
+    "lineItemIds": [
+      "li-6"
+    ],
+    "severity": "warning",
+    "confidence": "medium",
+    "amountAtStakeCents": 3500,
+    "evidence": "term=misc;charge_cents=3500",
+    "citation": "vague_charge.uncoded_line"
+  }
+]
