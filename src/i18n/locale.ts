@@ -39,3 +39,19 @@ export function resolveLocale(
   }
   return defaultLocale;
 }
+
+const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
+
+/** The `document.cookie` assignment that persists an explicit locale choice. */
+export function localeCookie(locale: Locale): string {
+  return `${LOCALE_COOKIE}=${locale}; path=/; max-age=${ONE_YEAR_SECONDS}; samesite=lax`;
+}
+
+/**
+ * The locale a toggle click should switch to, or null when the click is a
+ * no-op (already active, or not a supported locale).
+ */
+export function localeToSwitchTo(current: Locale, requested: string): Locale | null {
+  if (requested === current) return null;
+  return (locales as readonly string[]).includes(requested) ? (requested as Locale) : null;
+}

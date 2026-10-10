@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveLocale } from "./locale";
+import { localeCookie, localeToSwitchTo, resolveLocale } from "./locale";
 
 describe("resolveLocale", () => {
   it("defaults to en with no signals", () => {
@@ -30,5 +30,33 @@ describe("resolveLocale", () => {
   it("falls back to en when nothing is supported", () => {
     expect(resolveLocale(null, "fr,de;q=0.5")).toBe("en");
     expect(resolveLocale(null, "*")).toBe("en");
+  });
+});
+
+describe("localeToSwitchTo", () => {
+  it("returns the requested locale when it differs", () => {
+    expect(localeToSwitchTo("en", "es")).toBe("es");
+    expect(localeToSwitchTo("es", "en")).toBe("en");
+  });
+
+  it("is a no-op for the active or an unsupported locale", () => {
+    expect(localeToSwitchTo("en", "en")).toBeNull();
+    expect(localeToSwitchTo("en", "fr")).toBeNull();
+    expect(localeToSwitchTo("en", "")).toBeNull();
+  });
+});
+
+describe("localeCookie", () => {
+  it("round-trips through resolveLocale", () => {
+    const value = localeCookie("es").split(";")[0].split("=")[1];
+    expect(resolveLocale(value, null)).toBe("es");
+  });
+
+  it("is site-wide, lax, and long-lived", () => {
+    const cookie = localeCookie("en");
+    expect(cookie).toContain("NEXT_LOCALE=en");
+    expect(cookie).toContain("path=/");
+    expect(cookie).toContain("samesite=lax");
+    expect(cookie).toContain("max-age=31536000");
   });
 });
