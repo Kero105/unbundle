@@ -2,7 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { ExtractedBillSchema, FindingSchema } from "@/lib/types";
-import { runRules } from "./index";
+import { createInMemoryLookups } from "./in-memory-lookups";
+import { runRules, type Rule } from "./index";
 import { bill, line } from "./test-helpers";
 
 const fixtures = path.join(__dirname, "../../../fixtures");
@@ -22,11 +23,11 @@ const summarize = (fs: { ruleId: string; lineItemIds: string[]; amountAtStakeCen
     .sort((a, b) => a.ruleId.localeCompare(b.ruleId) || a.lineItemIds.join().localeCompare(b.lineItemIds.join()));
 
 describe("runRules", () => {
-  it("returns no findings for an empty bill", () => {
-    expect(runRules(bill([]))).toEqual([]);
+  it("returns no findings for an empty bill", async () => {
+    expect(await runRules(bill([]))).toEqual([]);
   });
 
-  it("runs every registered rule and returns schema-valid findings", () => {
+  it("runs every registered rule and returns schema-valid findings", async () => {
     const b = bill(
       [
         line({ id: "a" }),
@@ -36,20 +37,31 @@ describe("runRules", () => {
       ],
       { serviceStart: "2026-10-02", serviceEnd: "2026-10-02" },
     );
-    const findings = runRules(b);
+    const findings = await runRules(b);
     expect(findings.map((f) => f.ruleId).sort()).toEqual(["date_mismatch", "duplicate_charge", "math_error"]);
     for (const f of findings) expect(FindingSchema.safeParse(f).success).toBe(true);
   });
 
-  it("accepts a custom rule list", () => {
-    expect(runRules(bill([line()]), [])).toEqual([]);
+  it("passes lookups to each rule", async () => {
+    const lookups = createInMemoryLookups();
+    const seen: unknown[] = [];
+    const spy: Rule = (_bill, l) => {
+      seen.push(l);
+      return [];
+    };
+    await runRules(bill([line()]), [spy, spy], lookups);
+    expect(seen).toEqual([lookups, lookups]);
+  });
+
+  it("accepts a custom rule list", async () => {
+    expect(await runRules(bill([line()]), [])).toEqual([]);
   });
 
   describe.each(names)("fixture %s", (name) => {
-    it("matches the expected findings", () => {
+    it("matches the expected findings", async () => {
       const b = ExtractedBillSchema.parse(readJson("bills", `${name}.json`));
       const expected = readJson("expected", `${name}.json`);
-      expect(summarize(runRules(b))).toEqual(summarize(expected.expectedFindings));
+      expect(summarize(await runRules(b))).toEqual(summarize(expected.expectedFindings));
     });
   });
 });

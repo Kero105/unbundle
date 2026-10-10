@@ -1,5 +1,5 @@
 import type { Finding } from "@/lib/types";
-import type { Rule } from "./types";
+import type { BillRule } from "./types";
 
 /**
  * Flags lines whose date of service falls outside the statement's service range
@@ -7,7 +7,7 @@ import type { Rule } from "./types";
  * checked. An inverted range (start after end) is treated as malformed and skipped.
  * Amount at stake is the line's full charge (never negative).
  */
-export const dateMismatch: Rule = (bill) => {
+export const dateMismatch: BillRule = (bill) => {
   const { serviceStart: start, serviceEnd: end } = bill;
   if (start !== null && end !== null && start > end) return [];
 

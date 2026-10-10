@@ -1,5 +1,5 @@
 import type { Finding, LineItem } from "@/lib/types";
-import type { Rule } from "./types";
+import type { BillRule } from "./types";
 
 function key(l: LineItem): string {
   return JSON.stringify([
@@ -17,7 +17,7 @@ function key(l: LineItem): string {
  * Lines without a code or date, or with a non-positive charge, are never compared.
  * Amount at stake is one copy's charge for each extra copy.
  */
-export const duplicateCharge: Rule = (bill) => {
+export const duplicateCharge: BillRule = (bill) => {
   const groups = new Map<string, LineItem[]>();
   for (const l of bill.lineItems) {
     if (l.code === null || l.dateOfService === null || l.chargeCents <= 0) continue;
