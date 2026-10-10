@@ -1,4 +1,33 @@
 {
+  "Shell": {
+    "skipToContent": "Skip to main content",
+    "homeLabel": "Unbundle, go to home page",
+    "languageLabel": "Language",
+    "languageEnglish": "English",
+    "languageSpanish": "Español",
+    "signOut": "Sign out",
+    "footerNav": "Footer",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "promise": "Your bills are never used to train AI models and can be deleted at any time.",
+    "notAdvice": "Not legal or medical advice."
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "signedInAs": "Signed in as {email}",
+    "signOut": "Sign out"
+  },
+  "Error": {
+    "title": "Something went wrong",
+    "body": "We could not load this page. Please try again in a moment.",
+    "retry": "Try again",
+    "home": "Back to home"
+  },
+  "NotFound": {
+    "title": "We could not find that page",
+    "body": "The link may be old or mistyped.",
+    "home": "Back to home"
+  },
   "Review": {
     "title": "Review your bill",
     "subtitle": "Check what we read from your bill and fix anything that looks wrong. Rows we were less sure about are highlighted.",

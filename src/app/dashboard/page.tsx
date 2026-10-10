@@ -1,6 +1,9 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { connection } from "next/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { createClient } from "@/lib/supabase/server";
 
 async function signOut() {
@@ -10,7 +13,7 @@ async function signOut() {
   redirect("/");
 }
 
-async function UserEmail() {
+async function Dashboard() {
   await connection();
   const supabase = await createClient();
   const {
@@ -19,30 +22,40 @@ async function UserEmail() {
 
   if (!user) redirect("/");
 
+  const [locale, t] = await Promise.all([getLocale(), getTranslations("Dashboard")]);
+
   return (
-    <p className="text-zinc-600 dark:text-zinc-400">
-      Signed in as {user.email}
-    </p>
+    <main
+      lang={locale}
+      className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 px-4 py-12 sm:px-6 sm:py-16"
+    >
+      <h1 className="text-3xl font-semibold sm:text-4xl">{t("title")}</h1>
+      <p className="text-lg text-muted-foreground">{t("signedInAs", { email: user.email ?? "" })}</p>
+      <form action={signOut}>
+        <Button type="submit" variant="outline">
+          {t("signOut")}
+        </Button>
+      </form>
+    </main>
+  );
+}
+
+function DashboardSkeleton() {
+  return (
+    <main
+      aria-busy="true"
+      className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 px-4 py-12 sm:px-6 sm:py-16"
+    >
+      <Skeleton className="h-10 w-56" />
+      <Skeleton className="h-7 w-72" />
+    </main>
   );
 }
 
 export default function DashboardPage() {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">Dashboard</h1>
-      <Suspense
-        fallback={<p className="text-zinc-600 dark:text-zinc-400">&nbsp;</p>}
-      >
-        <UserEmail />
-      </Suspense>
-      <form action={signOut}>
-        <button
-          type="submit"
-          className="h-10 rounded-full border border-black/[.12] px-5 text-sm font-medium transition-colors hover:bg-black/[.04] dark:border-white/[.2] dark:hover:bg-white/[.08]"
-        >
-          Sign out
-        </button>
-      </form>
-    </main>
+    <Suspense fallback={<DashboardSkeleton />}>
+      <Dashboard />
+    </Suspense>
   );
 }

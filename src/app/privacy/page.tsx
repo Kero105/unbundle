@@ -7,16 +7,16 @@ export const metadata: Metadata = {
 
 export default function Privacy() {
   return (
-    <main className="mx-auto w-full max-w-2xl px-6 py-16 font-sans text-zinc-800 dark:text-zinc-200">
-      <Link href="/" className="text-sm text-zinc-500 hover:underline">
+    <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-12 text-lg leading-8 sm:px-6 sm:py-16">
+      <Link href="/" className="text-base font-medium text-primary underline underline-offset-4 hover:no-underline">
         &larr; Home
       </Link>
-      <h1 className="mt-6 text-3xl font-semibold text-black dark:text-zinc-50">
+      <h1 className="mt-6 text-3xl font-semibold sm:text-4xl">
         Privacy Policy
       </h1>
-      <p className="mt-2 text-sm text-zinc-500">Last updated October 7, 2026</p>
+      <p className="mt-2 text-base text-muted-foreground">Last updated October 7, 2026</p>
 
-      <div className="mt-8 space-y-6 leading-7">
+      <div className="mt-8 space-y-8">
         <p>
           Unbundle is a student project built for the Congressional App
           Challenge. It helps people check their medical bills. This page
@@ -24,7 +24,7 @@ export default function Privacy() {
         </p>
 
         <section>
-          <h2 className="text-xl font-semibold text-black dark:text-zinc-50">
+          <h2 className="text-2xl font-semibold">
             What we collect
           </h2>
           <ul className="mt-2 list-disc space-y-1 pl-6">
@@ -38,7 +38,7 @@ export default function Privacy() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-black dark:text-zinc-50">
+          <h2 className="text-2xl font-semibold">
             How we use it
           </h2>
           <p className="mt-2">
@@ -49,7 +49,7 @@ export default function Privacy() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-black dark:text-zinc-50">
+          <h2 className="text-2xl font-semibold">
             What we don&apos;t do
           </h2>
           <p className="mt-2">
@@ -60,7 +60,7 @@ export default function Privacy() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-black dark:text-zinc-50">
+          <h2 className="text-2xl font-semibold">
             Deleting your data
           </h2>
           <p className="mt-2">
@@ -70,7 +70,7 @@ export default function Privacy() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-black dark:text-zinc-50">
+          <h2 className="text-2xl font-semibold">
             Contact
           </h2>
           <p className="mt-2">

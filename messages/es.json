@@ -1,4 +1,33 @@
 {
+  "Shell": {
+    "skipToContent": "Saltar al contenido principal",
+    "homeLabel": "Unbundle, ir a la página de inicio",
+    "languageLabel": "Idioma",
+    "languageEnglish": "English",
+    "languageSpanish": "Español",
+    "signOut": "Cerrar sesión",
+    "footerNav": "Pie de página",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "promise": "Sus facturas nunca se usan para entrenar modelos de IA y puede eliminarlas en cualquier momento.",
+    "notAdvice": "No es asesoría legal ni médica."
+  },
+  "Dashboard": {
+    "title": "Panel",
+    "signedInAs": "Sesión iniciada como {email}",
+    "signOut": "Cerrar sesión"
+  },
+  "Error": {
+    "title": "Algo salió mal",
+    "body": "No pudimos cargar esta página. Inténtelo de nuevo en un momento.",
+    "retry": "Intentar de nuevo",
+    "home": "Volver al inicio"
+  },
+  "NotFound": {
+    "title": "No encontramos esa página",
+    "body": "Es posible que el enlace sea antiguo o tenga un error.",
+    "home": "Volver al inicio"
+  },
   "Review": {
     "title": "Revise su factura",
     "subtitle": "Compruebe lo que leímos de su factura y corrija cualquier cosa que no se vea bien. Las filas de las que estábamos menos seguros están resaltadas.",
