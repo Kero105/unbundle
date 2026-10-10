@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 import {
   Ban,
@@ -14,6 +13,7 @@ import {
 } from "lucide-react";
 import { SignInButton } from "@/components/sign-in-button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { PendingLink } from "@/components/pending-link";
 import { buttonVariants } from "@/components/ui/button";
 
 const CHECKS = [
@@ -44,12 +44,13 @@ async function Landing() {
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <SignInButton>{t("signIn")}</SignInButton>
-            <Link
-              href="/bills/demo/review"
+            <PendingLink
+              href="/demo"
               className={buttonVariants({ variant: "outline", size: "lg" })}
+              pendingLabel={t("trySamplePending")}
             >
               {t("trySample")}
-            </Link>
+            </PendingLink>
           </div>
         </div>
       </section>

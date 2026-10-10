@@ -17,6 +17,7 @@
     "subtitle": "Unbundle encuentra cobros duplicados, procedimientos facturados por separado y precios muy por encima de Medicare, y le explica cada hallazgo en palabras sencillas.",
     "signIn": "Iniciar sesión con Google",
     "trySample": "Probar con una factura de ejemplo",
+    "trySamplePending": "Abriendo el ejemplo…",
     "how": {
       "title": "Cómo funciona",
       "upload": {
@@ -161,6 +162,7 @@
       "continue": "Todo bien, continuar",
       "continuePending": "Abriendo el informe…",
       "save": "Guardar para después",
+      "reset": "Restablecer el ejemplo",
       "ready": "Todas las filas marcadas están verificadas.",
       "blocked": "{count, plural, one {Verifique la # fila marcada para continuar.} other {Verifique las # filas marcadas para continuar.}}"
     },
@@ -406,6 +408,25 @@
       "application": "Pida la solicitud de ayuda financiera.",
       "policy": "Pida una copia de la política de ayuda financiera del hospital.",
       "paymentPlan": "Pregunte por un plan de pagos y pida que la factura no se envíe a cobranza mientras usted presenta la solicitud."
+    }
+  },
+  "Demo": {
+    "banner": {
+      "label": "Aviso de factura de ejemplo",
+      "message": "Está viendo una factura de ejemplo. Nada de lo que hace aquí se guarda.",
+      "signIn": "Inicie sesión con Google para usar su propia factura",
+      "signInPending": "Abriendo Google…"
+    },
+    "intro": {
+      "title": "Pruebe Unbundle con una factura de ejemplo",
+      "subtitle": "No necesita iniciar sesión. Todos los datos son inventados y nada de lo que haga se guarda.",
+      "story": {
+        "bill": "Una familia recibe una factura de una clínica y no está segura de que sea correcta.",
+        "check": "Unbundle revisa cada cargo con las reglas públicas de Medicare.",
+        "letter": "Recibe un informe claro y una carta para llevar a la oficina de facturación."
+      },
+      "start": "Comenzar el ejemplo",
+      "startPending": "Abriendo el ejemplo…"
     }
   }
 }

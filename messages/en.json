@@ -17,6 +17,7 @@
     "subtitle": "Unbundle finds duplicate charges, unbundled procedures, and prices far above Medicare, then explains each one in plain language.",
     "signIn": "Sign in with Google",
     "trySample": "Try a sample bill",
+    "trySamplePending": "Opening the sample…",
     "how": {
       "title": "How it works",
       "upload": {
@@ -161,6 +162,7 @@
       "continue": "Looks right, continue",
       "continuePending": "Opening report…",
       "save": "Save for later",
+      "reset": "Reset sample",
       "ready": "All flagged rows are verified.",
       "blocked": "{count, plural, one {Verify the # flagged row to continue.} other {Verify the # flagged rows to continue.}}"
     },
@@ -406,6 +408,25 @@
       "application": "Ask for the financial assistance application.",
       "policy": "Ask for a copy of the hospital's financial assistance policy.",
       "paymentPlan": "Ask about a payment plan, and ask that the bill not be sent to collections while you apply."
+    }
+  },
+  "Demo": {
+    "banner": {
+      "label": "Sample bill notice",
+      "message": "You are viewing a sample bill. Nothing here is saved.",
+      "signIn": "Sign in with Google to use your own bill",
+      "signInPending": "Opening Google…"
+    },
+    "intro": {
+      "title": "Try Unbundle with a sample bill",
+      "subtitle": "No sign-in needed. Everything here is made-up data, and nothing you do is saved.",
+      "story": {
+        "bill": "A family gets a bill from a clinic and is not sure it is right.",
+        "check": "Unbundle checks each charge against public Medicare rules.",
+        "letter": "They get a clear report and a letter to take to the billing office."
+      },
+      "start": "Start the sample",
+      "startPending": "Opening the sample…"
     }
   }
 }
