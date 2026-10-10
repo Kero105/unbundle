@@ -7,13 +7,14 @@ import { mueExceeded } from "./mue-exceeded";
 import { ncciUnbundling } from "./ncci-unbundling";
 import { priceOutlier } from "./price-outlier";
 import type { Rule } from "./types";
+import { vagueCharge } from "./vague-charge";
 
 export type { Rule } from "./types";
 export type { Mue, PtpEdit, RateLookup, RulesLookups } from "./lookups";
-export { dateMismatch, duplicateCharge, mathError, mueExceeded, ncciUnbundling, priceOutlier };
+export { dateMismatch, duplicateCharge, mathError, mueExceeded, ncciUnbundling, priceOutlier, vagueCharge };
 
 /** Registered rules, run in this order. */
-export const rules: readonly Rule[] = [duplicateCharge, mathError, dateMismatch, ncciUnbundling, mueExceeded, priceOutlier];
+export const rules: readonly Rule[] = [duplicateCharge, mathError, dateMismatch, ncciUnbundling, mueExceeded, priceOutlier, vagueCharge];
 
 /**
  * Runs the rules in order and concatenates their findings. `lookups` is required

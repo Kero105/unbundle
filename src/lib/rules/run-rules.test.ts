@@ -14,6 +14,7 @@ const names = [
   "bill-01-duplicate-charge",
   "bill-02-math-error",
   "bill-03-date-outside-range",
+  "bill-08-vague-charge",
   "bill-13-clean-office-visit",
   "bill-14-clean-pt-multiday",
 ];
