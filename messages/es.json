@@ -330,5 +330,78 @@
       "sincerely": "Atentamente,",
       "footer": "Esta carta se preparó con Unbundle y no constituye asesoría legal."
     }
+  },
+  "Assistance": {
+    "page": {
+      "title": "Ayuda financiera y su factura",
+      "subtitle": "Este paso opcional calcula si podría calificar para atención gratuita o con descuento en un hospital de California, y revisa su Estimación de Buena Fe si no tiene seguro.",
+      "backToReport": "Volver al informe",
+      "unavailable": "No pudimos cargar las pautas de pobreza en este momento, así que no podemos hacer este cálculo. Inténtelo de nuevo más tarde."
+    },
+    "estimateNotice": {
+      "title": "Esto es un cálculo aproximado, no una decisión",
+      "body": "El hospital es quien decide. Usted puede pedir su política de ayuda financiera."
+    },
+    "privacy": "Lo que escriba aquí solo se usa en esta página. No se guarda, no se envía a ningún lado ni se registra.",
+    "form": {
+      "legend": "Sobre su hogar",
+      "householdSize": "Personas en su hogar",
+      "householdSizeHint": "Cuéntese a usted, a su cónyuge o pareja y a quienes mantiene.",
+      "income": "Ingreso anual del hogar (antes de impuestos)",
+      "incomeHint": "Sume los ingresos de todos durante el año, en dólares.",
+      "insurance": "¿Tiene seguro médico?",
+      "insured": "Sí, tengo seguro",
+      "uninsured": "No, no tengo seguro o pago por mi cuenta",
+      "gfeLegend": "Su Estimación de Buena Fe",
+      "gfeHint": "Si el proveedor le dio un estimado antes de su atención, escríbalo para compararlo con su factura. Puede dejarlo en blanco.",
+      "estimateTotal": "Total del estimado",
+      "billedTotal": "Total de la factura",
+      "estimateDate": "Fecha del estimado",
+      "billDate": "Fecha de la factura",
+      "submit": "Ver mi cálculo",
+      "householdSizePlaceholder": "p. ej. 4",
+      "incomePlaceholder": "p. ej. 60,000",
+      "estimateTotalPlaceholder": "p. ej. 1,000.00",
+      "billedTotalPlaceholder": "p. ej. 1,000.00",
+      "estimateDateHint": "La fecha de su Estimación de Buena Fe",
+      "billDateHint": "La fecha de su factura"
+    },
+    "errors": {
+      "householdSize": "Escriba un número entero de 1 o más.",
+      "income": "Escriba un número de cero o más, por ejemplo 42000 o 42,000.50.",
+      "estimateTotal": "Escriba el total del estimado en dólares.",
+      "billedTotal": "Escriba el total facturado en dólares.",
+      "missingGuidelines": "Todavía no tenemos pautas de pobreza para el tamaño de su hogar.",
+      "insurance": "Elija una opción.",
+      "datesMissing": "Agregue ambas fechas para comparar.",
+      "estimateAfterBill": "El estimado no puede tener una fecha posterior a la factura.",
+      "billInFuture": "La factura no puede tener una fecha futura."
+    },
+    "result": {
+      "title": "Su cálculo",
+      "percent": "El ingreso de su hogar es de aproximadamente el {percent}% del nivel federal de pobreza.",
+      "year": "Basado en las pautas federales de pobreza de {year}."
+    },
+    "fpl": {
+      "likely_free_care": "Con estos ingresos es posible que califique para atención gratuita. Muchos hospitales ofrecen atención gratuita a este nivel, pero cada hospital establece su propia política. Pida la política de ayuda financiera del hospital para saber qué le corresponde.",
+      "likely_discount": "Con estos ingresos es posible que califique para una factura con descuento. Muchos hospitales ofrecen descuentos a este nivel, pero cada hospital establece su propia política. Pida la política de ayuda financiera del hospital para saber qué le corresponde.",
+      "likely_not_eligible": "Con estos ingresos quizás no califique según las pautas habituales, pero algunos hospitales ayudan a personas con ingresos más altos, y a veces se pueden reducir las facturas. Pida la política de ayuda financiera del hospital para saber qué le corresponde."
+    },
+    "gfe": {
+      "title": "Su factura comparada con su Estimación de Buena Fe",
+      "differenceOver": "La factura es {amount} más alta que el estimado.",
+      "differenceUnder": "La factura es {amount} más baja que el estimado.",
+      "differenceSame": "La factura coincide con el estimado.",
+      "over_threshold_in_window": "La factura supera su estimado por $400 o más, y parece que aún está dentro de los 120 días para iniciar una disputa. Es posible que pueda usar el proceso federal de disputas para pacientes sin seguro o que pagan por su cuenta. Pregunte pronto en la oficina de facturación.",
+      "over_threshold_window_closed": "La factura supera su estimado por $400 o más, pero han pasado más de 120 días desde la fecha de la factura, por lo que el plazo para disputar podría haber vencido. De todos modos, vale la pena preguntar en la oficina de facturación por la diferencia.",
+      "under_threshold": "La diferencia es menor de $400, por debajo del nivel habitual del proceso federal de disputas. Si la factura aún le parece incorrecta, puede pedir a la oficina de facturación que se la explique."
+    },
+    "ask": {
+      "title": "Qué preguntar en la oficina de facturación",
+      "intro": "Puede pedir cualquiera de estas cosas por teléfono o por escrito.",
+      "application": "Pida la solicitud de ayuda financiera.",
+      "policy": "Pida una copia de la política de ayuda financiera del hospital.",
+      "paymentPlan": "Pregunte por un plan de pagos y pida que la factura no se envíe a cobranza mientras usted presenta la solicitud."
+    }
   }
 }

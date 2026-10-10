@@ -330,5 +330,78 @@
       "sincerely": "Sincerely,",
       "footer": "This letter was prepared with Unbundle and is not legal advice."
     }
+  },
+  "Assistance": {
+    "page": {
+      "title": "Financial help and your bill",
+      "subtitle": "This optional step estimates whether you might qualify for free or discounted care at a California hospital, and checks a Good Faith Estimate if you are uninsured.",
+      "backToReport": "Back to report",
+      "unavailable": "We could not load the poverty guidelines right now, so we cannot make this estimate. Please try again later."
+    },
+    "estimateNotice": {
+      "title": "This is an estimate, not a decision",
+      "body": "The hospital decides. You can ask for its financial assistance policy."
+    },
+    "privacy": "What you enter here is used only on this page. It is not saved, sent anywhere, or logged.",
+    "form": {
+      "legend": "About your household",
+      "householdSize": "People in your household",
+      "householdSizeHint": "Include yourself, your spouse or partner, and anyone you support.",
+      "income": "Yearly household income (before taxes)",
+      "incomeHint": "Add up everyone's income for the year, in dollars.",
+      "insurance": "Do you have health insurance?",
+      "insured": "Yes, I have insurance",
+      "uninsured": "No, I am uninsured or paying myself",
+      "gfeLegend": "Your Good Faith Estimate",
+      "gfeHint": "If the provider gave you an estimate before your care, enter it to compare it with your bill. You can leave this blank.",
+      "estimateTotal": "Total on the estimate",
+      "billedTotal": "Total on the bill",
+      "estimateDate": "Date on the estimate",
+      "billDate": "Date on the bill",
+      "submit": "See my estimate",
+      "householdSizePlaceholder": "e.g. 4",
+      "incomePlaceholder": "e.g. 60,000",
+      "estimateTotalPlaceholder": "e.g. 1,000.00",
+      "billedTotalPlaceholder": "e.g. 1,000.00",
+      "estimateDateHint": "The date on your Good Faith Estimate",
+      "billDateHint": "The date on your bill"
+    },
+    "errors": {
+      "householdSize": "Enter a whole number of 1 or more.",
+      "income": "Enter a number that is zero or more, such as 42000 or 42,000.50.",
+      "estimateTotal": "Enter the estimate total in dollars.",
+      "billedTotal": "Enter the billed total in dollars.",
+      "missingGuidelines": "We do not have poverty guidelines for your household size yet.",
+      "insurance": "Choose one.",
+      "datesMissing": "Add both dates to compare.",
+      "estimateAfterBill": "The estimate cannot be dated after the bill.",
+      "billInFuture": "The bill cannot be dated in the future."
+    },
+    "result": {
+      "title": "Your estimate",
+      "percent": "Your household income is about {percent}% of the federal poverty level.",
+      "year": "Based on the {year} federal poverty guidelines."
+    },
+    "fpl": {
+      "likely_free_care": "At this income you may qualify for free care. Many hospitals offer free care at this level, but each hospital sets its own policy. Ask for the hospital's financial assistance policy to see what applies to you.",
+      "likely_discount": "At this income you may qualify for a discounted bill. Many hospitals offer discounts at this level, but each hospital sets its own policy. Ask for the hospital's financial assistance policy to see what applies to you.",
+      "likely_not_eligible": "At this income you may not qualify under the usual guidelines, but some hospitals offer help at higher incomes, and bills can sometimes be reduced. Ask for the hospital's financial assistance policy to see what applies to you."
+    },
+    "gfe": {
+      "title": "Your bill compared with your Good Faith Estimate",
+      "differenceOver": "The bill is {amount} higher than the estimate.",
+      "differenceUnder": "The bill is {amount} lower than the estimate.",
+      "differenceSame": "The bill matches the estimate.",
+      "over_threshold_in_window": "The bill is $400 or more above your estimate, and it looks like you are still within the 120 days to start a dispute. You may be able to use the federal dispute process for uninsured and self-pay patients. Ask the billing office about it soon.",
+      "over_threshold_window_closed": "The bill is $400 or more above your estimate, but it has been more than 120 days since the bill date, so the dispute window may have closed. It is still worth asking the billing office about the difference.",
+      "under_threshold": "The difference is under $400, which is below the usual level for the federal dispute process. If the bill still seems wrong, you can ask the billing office to explain it."
+    },
+    "ask": {
+      "title": "What to ask the billing office",
+      "intro": "You can ask for any of these by phone or in writing.",
+      "application": "Ask for the financial assistance application.",
+      "policy": "Ask for a copy of the hospital's financial assistance policy.",
+      "paymentPlan": "Ask about a payment plan, and ask that the bill not be sent to collections while you apply."
+    }
   }
 }
