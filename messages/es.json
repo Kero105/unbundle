@@ -10,7 +10,8 @@
     "privacy": "Privacidad",
     "terms": "Términos",
     "promise": "Sus facturas nunca se usan para entrenar modelos de IA y puede eliminarlas en cualquier momento.",
-    "notAdvice": "No es asesoría legal ni médica."
+    "notAdvice": "No es asesoría legal ni médica.",
+    "about": "Acerca de"
   },
   "Home": {
     "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
@@ -78,7 +79,8 @@
         "training": "Sus facturas nunca se usan para entrenar modelos de IA.",
         "delete": "Puede eliminar sus facturas en cualquier momento.",
         "sell": "Nunca vendemos su información."
-      }
+      },
+      "aboutLink": "Cómo revisamos y qué tan preciso es"
     }
   },
   "Dashboard": {
@@ -627,6 +629,118 @@
     "contact": {
       "title": "Contacto",
       "body": "¿Tiene preguntas? Escriba a {email}."
+    }
+  },
+  "About": {
+    "metaTitle": "Acerca de | Unbundle",
+    "metaDescription": "Qué es Unbundle, cómo revisa una factura médica, qué tan preciso es y qué no puede hacer.",
+    "title": "Acerca de Unbundle",
+    "subtitle": "Una herramienta gratuita que revisa una factura médica con las reglas públicas de Medicare y le da una carta para llevar a la oficina de facturación.",
+    "contents": "En esta página",
+    "what": {
+      "title": "Qué es Unbundle",
+      "line1": "Una familia recibe una factura de hospital que no puede verificar.",
+      "line2": "Unbundle la revisa con las reglas públicas de Medicare.",
+      "line3": "La familia recibe una carta que dice qué vale la pena preguntar."
+    },
+    "how": {
+      "title": "Cómo funciona",
+      "intro": "La IA solo lee su factura y la convierte en datos estructurados. Nunca decide qué está mal. Cada hallazgo viene de reglas fijas y probadas, basadas en datos públicos de los Centros de Servicios de Medicare y Medicaid (CMS):",
+      "ncci": "las revisiones NCCI de procedimiento con procedimiento, que enumeran servicios que no deberían cobrarse juntos",
+      "mue": "las revisiones de cantidades médicamente improbables, que limitan cuántas unidades de un servicio tienen sentido en una visita",
+      "mpfs": "la Lista de Tarifas de Médicos de Medicare (Physician Fee Schedule), que fija lo que Medicare paga por cada servicio",
+      "explain": "Después de que las reglas producen sus hallazgos, la IA ayuda a redactar una explicación en lenguaje sencillo de cada uno. No puede agregar, quitar ni cambiar un hallazgo ni su monto.",
+      "diagramLabel": "Los cuatro pasos, en orden",
+      "steps": {
+        "upload": {
+          "title": "Subir",
+          "body": "Usted agrega una foto o un PDF de su factura."
+        },
+        "read": {
+          "title": "Leer",
+          "body": "La IA convierte lo impreso en partidas."
+        },
+        "check": {
+          "title": "Revisar",
+          "body": "Reglas fijas comparan las partidas con datos públicos de Medicare."
+        },
+        "letter": {
+          "title": "Carta",
+          "body": "Usted recibe una carta con lo que vale la pena preguntar."
+        }
+      }
+    },
+    "checks": {
+      "title": "Qué revisamos",
+      "intro": "Nueve revisiones, explicadas con palabras sencillas. Ocho se aplican a cada factura. La novena es un paso opcional para personas sin seguro.",
+      "gfe": {
+        "title": "Estimación de buena fe",
+        "body": "Si no tiene seguro y le dieron una estimación antes de su atención, la comparamos con su factura y le decimos si la diferencia podría valer la pena disputarla."
+      }
+    },
+    "accuracy": {
+      "title": "La precisión, con honestidad",
+      "intro": "Probamos cada regla con nuestras facturas de prueba y comparamos lo que señaló con lo que esperábamos.",
+      "caveat": "Estos resultados provienen de {fixtures} facturas de prueba sintéticas que escribimos para ejercitar cada regla, incluidas {traps} facturas engañosas diseñadas para detectar falsas alarmas. Muestran que las reglas se comportan como fueron diseñadas, no que detecten todos los errores reales. Las facturas reales son más desordenadas.",
+      "tableLabel": "Precisión de cada regla en las facturas de prueba",
+      "legend": {
+        "title": "Cómo leer la tabla",
+        "tp": "VP, verdaderos positivos: problemas que esperábamos y que la regla encontró.",
+        "fp": "FP, falsos positivos: cosas que la regla señaló y no esperábamos (falsas alarmas).",
+        "fn": "FN, falsos negativos: problemas esperados que la regla no encontró.",
+        "precision": "Precisión: de todo lo señalado, la proporción que era esperada.",
+        "recall": "Exhaustividad: de todo lo esperado, la proporción que fue señalada."
+      },
+      "columns": {
+        "rule": "Regla",
+        "tp": "VP",
+        "tpFull": "Verdaderos positivos",
+        "fp": "FP",
+        "fpFull": "Falsos positivos",
+        "fn": "FN",
+        "fnFull": "Falsos negativos",
+        "precision": "Precisión",
+        "recall": "Exhaustividad"
+      },
+      "overall": "Total",
+      "na": "n/d",
+      "gfeNote": "La tabla abarca las ocho reglas de la factura. La comparación con la estimación de buena fe no forma parte de ella.",
+      "rules": {
+        "duplicate_charge": "Cobros duplicados",
+        "math_error": "Errores de cálculo",
+        "date_mismatch": "Fechas incorrectas",
+        "ncci_unbundling": "Servicios separados de más",
+        "mue_exceeded": "Límites de cantidad",
+        "price_outlier": "Precios fuera de lo normal",
+        "vague_charge": "Cargos poco claros",
+        "denied_billed_in_full": "Negado y luego cobrado"
+      }
+    },
+    "scope": {
+      "title": "Alcance y límites",
+      "ncci": "Solo usamos las revisiones NCCI de profesionales (reclamaciones profesionales).",
+      "prices": "Solo comparamos precios de servicios que están en la Lista de Tarifas de Médicos de Medicare. Eso no incluye cargos de instalaciones hospitalarias, pruebas de laboratorio ni anestesia.",
+      "la": "Los precios corresponden a Los Ángeles, localidad 18 de Medicare.",
+      "findings": "Los hallazgos son cosas que vale la pena preguntar, no errores seguros.",
+      "advice": "Unbundle no es asesoría legal ni médica."
+    },
+    "sources": {
+      "title": "Fuentes de datos",
+      "intro": "Todo lo que usan las reglas es público.",
+      "ncciPtp": "CMS: revisiones NCCI de procedimiento con procedimiento (PTP) de Medicare",
+      "ncciMue": "CMS: revisiones NCCI de cantidades médicamente improbables (MUE) de Medicare",
+      "mpfs": "CMS: Lista de Tarifas de Médicos (Physician Fee Schedule)",
+      "poverty": "HHS: guías federales de pobreza",
+      "hcai": "HCAI de California: Programa de Facturación Justa de Hospitales",
+      "releases": "Versiones usadas: NCCI 2026 T4 (4.º trimestre) y RVU26A."
+    },
+    "privacy": {
+      "title": "Privacidad",
+      "link": "Lea la política de privacidad completa"
+    },
+    "built": {
+      "title": "Quién lo creó",
+      "body": "Unbundle fue creado por un estudiante para el Congressional App Challenge, CA-43."
     }
   }
 }

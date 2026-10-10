@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 import {
   Ban,
@@ -112,6 +113,11 @@ async function Landing() {
             </h2>
             <p className="mt-4 text-xl font-medium">{t("trust.subtitle")}</p>
             <p className="mt-4 max-w-xl text-lg opacity-90">{t("trust.body")}</p>
+            <p className="mt-6 text-lg">
+              <Link href="/about" className="font-medium underline underline-offset-4 hover:no-underline">
+                {t("trust.aboutLink")}
+              </Link>
+            </p>
           </div>
           <div className="rounded-lg border border-primary-foreground/30 p-6">
             <h3 className="text-xl font-semibold">{t("trust.privacyTitle")}</h3>

@@ -3,7 +3,7 @@
  * real Supabase reference tables (createSupabaseLookups). Findings are compared to
  * fixtures/expected on (ruleId, lineItemIds, amountAtStakeCents); an exact match is a true
  * positive. Prints precision/recall per rule and overall, plus mismatches, and writes
- * docs/accuracy.md.
+ * docs/accuracy.md and src/lib/accuracy/accuracy.json (the numbers the /about page shows).
  *
  * Needs the service role key in .env.local, so it is not a committed test.
  * Output is rule IDs, fixture names and counts only; never bill contents.
@@ -126,13 +126,36 @@ ${mismatchBlock}
 Regenerate with \`JITI_ALIAS='{"@":"./src"}' npx jiti scripts/accuracy.ts\` (needs \`.env.local\`).
 `;
 
+  const round4 = (r: number | null) => (r === null ? null : Math.round(r * 10000) / 10000);
+  const json = {
+    fixtureCount: names.length,
+    // Bills written to catch false alarms: the "trap" and "clean" fixtures.
+    trapFixtureCount: names.filter((n) => /-(trap|clean)-/.test(n)).length,
+    rules: [...perRule.entries()].map(([ruleId, c]) => ({
+      ruleId,
+      ...c,
+      precision: round4(ratio(c.tp, c.tp + c.fp)),
+      recall: round4(ratio(c.tp, c.tp + c.fn)),
+    })),
+    overall: {
+      ...total,
+      precision: round4(ratio(total.tp, total.tp + total.fp)),
+      recall: round4(ratio(total.tp, total.tp + total.fn)),
+    },
+  };
+  fs.mkdirSync(path.resolve(__dirname, "../src/lib/accuracy"), { recursive: true });
+  fs.writeFileSync(
+    path.resolve(__dirname, "../src/lib/accuracy/accuracy.json"),
+    `${JSON.stringify(json, null, 2)}\n`,
+  );
+
   fs.mkdirSync(path.resolve(__dirname, "../docs"), { recursive: true });
   fs.writeFileSync(path.resolve(__dirname, "../docs/accuracy.md"), md);
 
   console.log(`\nAccuracy over ${names.length} fixtures\n`);
   console.log(table);
   console.log(`\nMismatches:\n${mismatchBlock}\n`);
-  console.log("Wrote docs/accuracy.md");
+  console.log("Wrote docs/accuracy.md and src/lib/accuracy/accuracy.json");
 }
 
 main().catch((e) => {

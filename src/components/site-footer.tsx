@@ -10,6 +10,11 @@ export async function SiteFooter() {
         <nav aria-label={t("footerNav")}>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             <li>
+              <Link href="/about" className="font-medium underline underline-offset-4 hover:no-underline">
+                {t("about")}
+              </Link>
+            </li>
+            <li>
               <Link href="/privacy" className="font-medium underline underline-offset-4 hover:no-underline">
                 {t("privacy")}
               </Link>

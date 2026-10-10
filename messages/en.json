@@ -10,7 +10,8 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "promise": "Your bills are never used to train AI models and can be deleted at any time.",
-    "notAdvice": "Not legal or medical advice."
+    "notAdvice": "Not legal or medical advice.",
+    "about": "About"
   },
   "Home": {
     "title": "Think your hospital bill is wrong? Check it in minutes.",
@@ -78,7 +79,8 @@
         "training": "Your bills are never used to train AI models.",
         "delete": "You can delete your bills at any time.",
         "sell": "We never sell your information."
-      }
+      },
+      "aboutLink": "How we check, and how accurate it is"
     }
   },
   "Dashboard": {
@@ -627,6 +629,118 @@
     "contact": {
       "title": "Contact",
       "body": "Questions? Email {email}."
+    }
+  },
+  "About": {
+    "metaTitle": "About | Unbundle",
+    "metaDescription": "What Unbundle is, how it checks a medical bill, how accurate it is, and what it cannot do.",
+    "title": "About Unbundle",
+    "subtitle": "A free tool that checks a medical bill against public Medicare rules and gives you a letter to take to the billing office.",
+    "contents": "On this page",
+    "what": {
+      "title": "What Unbundle is",
+      "line1": "A family gets a hospital bill they can't verify.",
+      "line2": "Unbundle checks it against public Medicare rules.",
+      "line3": "They get a letter that says what is worth asking about."
+    },
+    "how": {
+      "title": "How it works",
+      "intro": "The AI only reads your bill into structured data. It never decides what is wrong. Every finding comes from fixed, tested rules built on public data from the Centers for Medicare & Medicaid Services (CMS):",
+      "ncci": "NCCI procedure-to-procedure edits, which list services that should not be billed together",
+      "mue": "medically unlikely edits, which cap how many units of a service make sense in one visit",
+      "mpfs": "the Medicare Physician Fee Schedule, which sets what Medicare pays for each service",
+      "explain": "After the rules have produced their findings, the AI helps write a plain-language explanation of each one. It cannot add, remove or change a finding or its amount.",
+      "diagramLabel": "The four steps, in order",
+      "steps": {
+        "upload": {
+          "title": "Upload",
+          "body": "You add a photo or PDF of your bill."
+        },
+        "read": {
+          "title": "Read",
+          "body": "AI turns what is printed into line items."
+        },
+        "check": {
+          "title": "Check",
+          "body": "Fixed rules compare the line items with public Medicare data."
+        },
+        "letter": {
+          "title": "Letter",
+          "body": "You get a letter listing what is worth asking about."
+        }
+      }
+    },
+    "checks": {
+      "title": "What we check",
+      "intro": "Nine checks, each in plain words. Eight run on every bill. The ninth is an optional step for people without insurance.",
+      "gfe": {
+        "title": "Good Faith Estimate",
+        "body": "If you are uninsured and were given an estimate before your care, we compare it with your bill and tell you whether the difference may be worth disputing."
+      }
+    },
+    "accuracy": {
+      "title": "Accuracy, honestly",
+      "intro": "We ran every rule against our test bills and compared what it flagged with what we expected.",
+      "caveat": "These results come from {fixtures} synthetic test bills we wrote to exercise each rule, including {traps} tricky bills designed to catch false alarms. They show the rules behave as designed, not that they catch every real error. Real bills are messier.",
+      "tableLabel": "Accuracy of each rule on the test bills",
+      "legend": {
+        "title": "How to read the table",
+        "tp": "TP, true positives: problems we expected and the rule found.",
+        "fp": "FP, false positives: things the rule flagged that we did not expect (false alarms).",
+        "fn": "FN, false negatives: expected problems the rule missed.",
+        "precision": "Precision: of everything flagged, the share that was expected.",
+        "recall": "Recall: of everything expected, the share that was flagged."
+      },
+      "columns": {
+        "rule": "Rule",
+        "tp": "TP",
+        "tpFull": "True positives",
+        "fp": "FP",
+        "fpFull": "False positives",
+        "fn": "FN",
+        "fnFull": "False negatives",
+        "precision": "Precision",
+        "recall": "Recall"
+      },
+      "overall": "Overall",
+      "na": "n/a",
+      "gfeNote": "The table covers the eight bill rules. The Good Faith Estimate comparison is not part of it.",
+      "rules": {
+        "duplicate_charge": "Duplicate charges",
+        "math_error": "Math errors",
+        "date_mismatch": "Wrong dates",
+        "ncci_unbundling": "Unbundling",
+        "mue_exceeded": "Quantity limits",
+        "price_outlier": "Price outliers",
+        "vague_charge": "Vague charges",
+        "denied_billed_in_full": "Denied, then billed"
+      }
+    },
+    "scope": {
+      "title": "Scope and limits",
+      "ncci": "We use practitioner (professional-claim) NCCI edits only.",
+      "prices": "We compare prices only for services on the Medicare Physician Fee Schedule. That does not include hospital facility charges, lab tests or anesthesia.",
+      "la": "Prices are for Los Angeles, Medicare locality 18.",
+      "findings": "Findings are things worth asking about, not certain mistakes.",
+      "advice": "Unbundle is not legal or medical advice."
+    },
+    "sources": {
+      "title": "Data sources",
+      "intro": "Everything the rules use is public.",
+      "ncciPtp": "CMS: Medicare NCCI procedure-to-procedure (PTP) edits",
+      "ncciMue": "CMS: Medicare NCCI medically unlikely edits (MUE)",
+      "mpfs": "CMS: Physician Fee Schedule",
+      "poverty": "HHS: poverty guidelines",
+      "hcai": "California HCAI: Hospital Fair Billing Program",
+      "releases": "Releases used: NCCI 2026 Q4 and RVU26A."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "link": "Read the full privacy policy"
+    },
+    "built": {
+      "title": "Who built it",
+      "body": "Unbundle was built by a student for the Congressional App Challenge, CA-43."
     }
   }
 }

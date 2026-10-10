@@ -1,0 +1,77 @@
+{
+  "fixtureCount": 14,
+  "trapFixtureCount": 5,
+  "rules": [
+    {
+      "ruleId": "duplicate_charge",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    {
+      "ruleId": "math_error",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    {
+      "ruleId": "date_mismatch",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    {
+      "ruleId": "ncci_unbundling",
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    {
+      "ruleId": "mue_exceeded",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    {
+      "ruleId": "price_outlier",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    {
+      "ruleId": "vague_charge",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    },
+    {
+      "ruleId": "denied_billed_in_full",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
+    }
+  ],
+  "overall": {
+    "tp": 9,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1,
+    "recall": 1
+  }
+}
