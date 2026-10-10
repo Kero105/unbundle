@@ -6,7 +6,7 @@ import { cn } from "cn"
 // Status variants always pair with an icon and text at the call site, so
 // meaning never depends on color alone.
 const badgeVariants = cva(
-  "inline-flex w-fit shrink-0 items-center justify-center gap-1.5 rounded-full border px-3 py-1 text-sm leading-none font-medium whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-4",
+  "inline-flex w-fit shrink-0 items-center justify-center gap-1.5 rounded-full border px-3 py-1 text-sm leading-none font-medium whitespace-nowrap [&>svg]:pointer-events-none [&>svg]:size-4 [a&]:cursor-pointer [button&]:cursor-pointer [button&]:disabled:cursor-not-allowed [a&]:hover:brightness-95 [button&]:hover:brightness-95 [a&]:active:brightness-90 [button&]:active:brightness-90",
   {
     variants: {
       variant: {

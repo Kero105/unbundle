@@ -144,6 +144,29 @@
     @apply font-heading;
     letter-spacing: -0.01em;
   }
+  /* Everything clickable shows the hand; disabled things say so. */
+  button:not(:disabled),
+  [role="button"],
+  [role="tab"],
+  [role="checkbox"],
+  summary,
+  label[for],
+  select,
+  input[type="checkbox"],
+  input[type="radio"],
+  a[href] {
+    cursor: pointer;
+  }
+  button:disabled,
+  select:disabled,
+  input:disabled,
+  button[aria-disabled="true"],
+  [role="button"][aria-disabled="true"],
+  [role="checkbox"][aria-disabled="true"],
+  [role="checkbox"][data-disabled],
+  a[aria-disabled="true"] {
+    cursor: not-allowed;
+  }
   :focus-visible {
     outline: 3px solid var(--ring);
     outline-offset: 2px;
