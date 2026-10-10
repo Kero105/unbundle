@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
+import { z } from "zod";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { loadBill, stepHref, type BillSource } from "@/lib/bills/source";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BillSteps } from "@/components/bill-steps";
+import { DeleteBillButton } from "@/components/delete-bill-button";
 import { ReviewTable } from "./review-table";
 
 // The request locale is request-time data, so callers render this inside
@@ -11,6 +13,9 @@ import { ReviewTable } from "./review-table";
 export async function ReviewView({ source }: { source: BillSource }) {
   const bill = await loadBill(source);
   if (!bill) notFound();
+
+  // The bundled fixture served at /bills/demo has no rows to save to.
+  const persisted = source.kind === "bill" && z.uuid().safeParse(source.id).success;
 
   const [locale, t] = await Promise.all([getLocale(), getTranslations("Review")]);
 
@@ -31,7 +36,13 @@ export async function ReviewView({ source }: { source: BillSource }) {
           bill={bill}
           reportHref={stepHref(source, "report")}
           demo={source.kind === "demo"}
+          billId={persisted ? source.id : undefined}
         />
+        {persisted ? (
+          <div className="flex">
+            <DeleteBillButton billId={source.id} size="sm" />
+          </div>
+        ) : null}
       </main>
     </NextIntlClientProvider>
   );

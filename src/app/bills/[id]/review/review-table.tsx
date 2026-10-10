@@ -1,8 +1,9 @@
 "use client";
 
-import { Fragment, useId, useState } from "react";
+import { Fragment, useId, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Check, FileText, RotateCcw, TriangleAlert, CircleCheck } from "lucide-react";
+import { Check, FileText, Loader2, RotateCcw, TriangleAlert, CircleCheck } from "lucide-react";
+import { updateLineItemAction } from "@/app/bills/actions";
 import { Badge } from "@/components/ui/badge";
 import { PendingLink } from "@/components/pending-link";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -143,15 +144,22 @@ function Missing({ children }: { children: React.ReactNode }) {
   return <span className="text-muted-foreground italic">{children}</span>;
 }
 
+type SaveState = "idle" | "saving" | "saved" | "failed";
+
 export function ReviewTable({
   bill,
   reportHref,
   demo = false,
+  billId,
+  dashboardHref = "/dashboard",
 }: {
   bill: ExtractedBill;
   reportHref: string;
   /** Sample bill: nothing is saved, and the edits can be reset. */
   demo?: boolean;
+  /** A real bill: edits are saved to the database as they are made. */
+  billId?: string;
+  dashboardHref?: string;
 }) {
   const t = useTranslations("Review");
   const locale = useLocale();
@@ -165,8 +173,40 @@ export function ReviewTable({
     setResetCount((n) => n + 1);
   }
 
+  const [saveState, setSaveState] = useState<SaveState>("idle");
+  // Saves run one at a time, in edit order, so a slow request can't overwrite a newer one.
+  const queue = useRef<Promise<void>>(Promise.resolve());
+  const inflight = useRef(0);
+  const failed = useRef(false);
+
   function update(id: string, patch: Partial<LineItem>) {
+    const previous = items.find((item) => item.id === id);
+    // Optimistic: the screen changes now; a failed save puts the old values back.
     setItems((prev) => prev.map((item) => (item.id === id ? { ...item, ...patch } : item)));
+    if (!billId || !previous) return;
+
+    const revert = Object.fromEntries(
+      Object.keys(patch).map((key) => [key, previous[key as keyof LineItem]]),
+    ) as Partial<LineItem>;
+
+    if (inflight.current === 0) failed.current = false;
+    inflight.current += 1;
+    setSaveState("saving");
+
+    queue.current = queue.current.then(async () => {
+      let ok = false;
+      try {
+        ok = (await updateLineItemAction(billId, id, patch)).ok;
+      } catch {
+        ok = false;
+      }
+      if (!ok) {
+        failed.current = true;
+        setItems((prev) => prev.map((item) => (item.id === id ? { ...item, ...revert } : item)));
+      }
+      inflight.current -= 1;
+      if (inflight.current === 0) setSaveState(failed.current ? "failed" : "saved");
+    });
   }
 
   const verifiedCount = items.filter((i) => i.userVerified).length;
@@ -501,6 +541,29 @@ export function ReviewTable({
               ? t("actions.blocked", { count: attentionCount })
               : t("actions.ready")}
           </p>
+          {billId ? (
+            <p
+              role="status"
+              aria-live="polite"
+              className={cn(
+                "flex items-center gap-2 text-sm",
+                saveState === "failed" ? "text-destructive" : "text-muted-foreground",
+              )}
+            >
+              {saveState === "saving" ? (
+                <Loader2 aria-hidden="true" className="size-4 animate-spin motion-reduce:animate-none" />
+              ) : saveState === "saved" ? (
+                <Check aria-hidden="true" className="size-4" />
+              ) : null}
+              {saveState === "saving"
+                ? t("saveState.saving")
+                : saveState === "saved"
+                  ? t("saveState.saved")
+                  : saveState === "failed"
+                    ? t("saveState.failed")
+                    : t("saveState.autosave")}
+            </p>
+          ) : null}
           <div className="flex flex-col-reverse gap-3 sm:flex-row">
             {demo ? (
               <Button type="button" variant="outline" onClick={reset}>
@@ -508,9 +571,14 @@ export function ReviewTable({
                 {t("actions.reset")}
               </Button>
             ) : (
-              <Button type="button" variant="outline">
+              // Edits are already saved; this just leaves the bill in the dashboard.
+              <PendingLink
+                href={dashboardHref}
+                className={buttonVariants({ variant: "outline" })}
+                pendingLabel={t("actions.savePending")}
+              >
                 {t("actions.save")}
-              </Button>
+              </PendingLink>
             )}
             {attentionCount > 0 ? (
               <Button type="button" disabled focusableWhenDisabled aria-describedby={helperId}>
