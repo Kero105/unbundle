@@ -1,10 +1,11 @@
 "use client";
 
 import { Fragment, useId, useState } from "react";
+import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { Check, FileText, TriangleAlert, CircleCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -142,7 +143,7 @@ function Missing({ children }: { children: React.ReactNode }) {
   return <span className="text-muted-foreground italic">{children}</span>;
 }
 
-export function ReviewTable({ bill }: { bill: ExtractedBill }) {
+export function ReviewTable({ bill, billId }: { bill: ExtractedBill; billId: string }) {
   const t = useTranslations("Review");
   const locale = useLocale();
   const [items, setItems] = useState<LineItem[]>(bill.lineItems);
@@ -488,14 +489,19 @@ export function ReviewTable({ bill }: { bill: ExtractedBill }) {
             <Button type="button" variant="outline">
               {t("actions.save")}
             </Button>
-            <Button
-              type="button"
-              disabled={attentionCount > 0}
-              focusableWhenDisabled
-              aria-describedby={helperId}
-            >
-              {t("actions.continue")}
-            </Button>
+            {attentionCount > 0 ? (
+              <Button type="button" disabled focusableWhenDisabled aria-describedby={helperId}>
+                {t("actions.continue")}
+              </Button>
+            ) : (
+              <Link
+                href={`/bills/${encodeURIComponent(billId)}/report`}
+                aria-describedby={helperId}
+                className={buttonVariants()}
+              >
+                {t("actions.continue")}
+              </Link>
+            )}
           </div>
         </div>
       </section>
