@@ -15,7 +15,6 @@ function deps(overrides: Partial<ExplainDeps> = {}): ExplainDeps & {
     explainer,
     readCache: vi.fn().mockResolvedValue(null),
     claimBudget: vi.fn().mockResolvedValue(undefined),
-    writeCache: vi.fn().mockResolvedValue(undefined),
     ...overrides,
     explain,
   };
@@ -36,12 +35,13 @@ describe("explainWithCache", () => {
     expect(result.source).toBe("model");
   });
 
-  it("on a miss, claims the shared budget, calls the model and caches the answer", async () => {
+  it("on a miss, claims the shared budget and returns the model answer without caching it", async () => {
     const d = deps();
     const result = await explainWithCache(d, { code: "85025", language: "es" });
     expect(result).toEqual({ text: TEXT, source: "model" });
     expect(d.claimBudget).toHaveBeenCalledOnce();
-    expect(d.writeCache).toHaveBeenCalledWith("85025", "es", TEXT);
+    // The request path has no way to write the cache at all.
+    expect(Object.keys(d)).not.toContain("writeCache");
   });
 
   it("does not call the model when the budget is exhausted", async () => {
@@ -52,28 +52,17 @@ describe("explainWithCache", () => {
     expect(d.explain).not.toHaveBeenCalled();
   });
 
-  it("does not cache an answer that was shaped by bill text", async () => {
-    const d = deps();
-    await explainWithCache(d, { code: "85025", language: "en", description: "CBC W/AUTO DIFF" });
-    expect(d.explain).toHaveBeenCalledWith(
-      expect.objectContaining({ description: "CBC W/AUTO DIFF" }),
-    );
-    expect(d.writeCache).not.toHaveBeenCalled();
-  });
-
   it("rejects invalid model output instead of showing or caching it", async () => {
     const d = deps();
     d.explain.mockResolvedValue("short");
     await expect(explainWithCache(d, { code: "85025", language: "en" })).rejects.toMatchObject({
       code: "invalid_output",
     });
-    expect(d.writeCache).not.toHaveBeenCalled();
   });
 
-  it("survives a cache read or write failure", async () => {
+  it("survives a cache read failure", async () => {
     const d = deps({
       readCache: vi.fn().mockRejectedValue(new Error("db")),
-      writeCache: vi.fn().mockRejectedValue(new Error("db")),
     });
     const result = await explainWithCache(d, { code: "85025", language: "en" });
     expect(result.text).toBe(TEXT);
@@ -95,6 +84,5 @@ describe("explainWithCache", () => {
     expect(result).toEqual({ text: "Generic text for a hcpcs code that is long enough.", source: "mock" });
     expect(d.readCache).not.toHaveBeenCalled();
     expect(d.claimBudget).not.toHaveBeenCalled();
-    expect(d.writeCache).not.toHaveBeenCalled();
   });
 });

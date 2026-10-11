@@ -5,7 +5,6 @@ import { createClient } from "@/lib/supabase/server";
 import en from "../../../messages/en.json";
 import es from "../../../messages/es.json";
 import { AnthropicExplainer } from "./anthropic-explainer";
-import { writeExplanationToCache } from "./cache-writer";
 import { readExplainConfig } from "./config";
 import { MockExplainer } from "./mock-explainer";
 import { explainWithCache, type ExplainResult } from "./service";
@@ -30,7 +29,7 @@ export async function explainForRequest(input: {
 
   if (input.demo) {
     return explainWithCache(
-      { mode: "mock", explainer: mock, readCache: async () => null, claimBudget: async () => {}, writeCache: async () => {} },
+      { mode: "mock", explainer: mock, readCache: async () => null, claimBudget: async () => {} },
       { code: input.code, language },
     );
   }
@@ -44,7 +43,7 @@ export async function explainForRequest(input: {
   const config = readExplainConfig();
   if (config.mode === "mock") {
     return explainWithCache(
-      { mode: "mock", explainer: mock, readCache: async () => null, claimBudget: async () => {}, writeCache: async () => {} },
+      { mode: "mock", explainer: mock, readCache: async () => null, claimBudget: async () => {} },
       { code: input.code, language },
     );
   }
@@ -68,7 +67,6 @@ export async function explainForRequest(input: {
         if (data === "claimed") return;
         throw new ExplainError(data === "rate_limited" ? "rate_limited" : "unauthenticated");
       },
-      writeCache: (code, lang, text) => writeExplanationToCache(code, lang, text),
     },
     { code: input.code, language },
   );

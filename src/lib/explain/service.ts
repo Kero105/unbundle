@@ -10,17 +10,16 @@ export interface ExplainDeps {
   readCache(code: string, language: Locale): Promise<string | null>;
   /** Spends one slot of the shared per-user AI budget. Throws ExplainError("rate_limited") when exhausted. */
   claimBudget(): Promise<void>;
-  /** Stores a model-written explanation for everyone. Best effort; never throws into the request. */
-  writeCache(code: string, language: Locale, text: string): Promise<void>;
 }
 
 export type ExplainResult = { text: string; source: "cache" | "mock" | "model" };
 
 /**
- * Cache first, then the explainer. Only anthropic mode spends budget or
- * touches the shared cache; mock text is never cached. A model answer is
- * written back only when no bill description was part of the prompt, so one
- * user's bill text can never shape what other users are shown.
+ * Cache first, then the explainer. Only anthropic mode spends budget or reads
+ * the shared cache; mock text is never cached. A model answer on a cache miss
+ * is returned to that user only and is never written back: the cache is
+ * filled offline by `npm run explain:prefill`, so no request path can write
+ * to it or let one user's input shape what others see.
  */
 export async function explainWithCache(
   deps: ExplainDeps,
@@ -46,8 +45,5 @@ export async function explainWithCache(
   const checked = ExplanationTextSchema.safeParse(text);
   if (!checked.success) throw new ExplainError("invalid_output");
 
-  if (description === undefined) {
-    await deps.writeCache(code, input.language, checked.data).catch(() => undefined);
-  }
   return { text: checked.data, source: "model" };
 }
