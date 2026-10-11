@@ -243,7 +243,7 @@ export function ReviewTable({
   const progressText = t("progress", { verified: verifiedCount, total: items.length });
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
+    <div className="grid gap-6 2xl:grid-cols-[minmax(0,1fr)_22rem]">
       <div className="flex min-w-0 flex-col gap-6">
         <Card>
           <CardContent className="flex flex-col gap-6">
@@ -289,7 +289,7 @@ export function ReviewTable({
           </CardContent>
         </Card>
 
-        <details className="rounded-lg border bg-card xl:hidden">
+        <details className="rounded-lg border bg-card 2xl:hidden">
           <summary className="flex min-h-12 cursor-pointer items-center gap-2 px-4 font-medium">
             <FileText aria-hidden="true" className="size-5 text-muted-foreground" />
             {t("source.title")}
@@ -550,7 +550,7 @@ export function ReviewTable({
         )}
       </div>
 
-      <aside className="hidden xl:block" aria-label={t("source.title")}>
+      <aside className="hidden 2xl:block" aria-label={t("source.title")}>
         <Card size="sm" className="sticky top-6">
           <CardHeader>
             <CardTitle>{t("source.title")}</CardTitle>
@@ -569,7 +569,7 @@ export function ReviewTable({
 
       <section
         aria-label={t("actions.label")}
-        className="sticky bottom-0 z-10 -mx-4 border-t bg-background/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 xl:col-span-2"
+        className="sticky bottom-0 z-10 -mx-4 border-t bg-background/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 2xl:col-span-2"
       >
         <div className="mx-auto flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p
