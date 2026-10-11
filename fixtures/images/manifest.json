@@ -1432,6 +1432,178 @@
           }
         ]
       }
+    },
+    {
+      "file": "bill-15-balance-billing.png",
+      "layout": "twocolumn",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-15-balance-billing",
+      "expected": {
+        "totalBilledCents": 43500,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "73030",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 10500
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 1800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-15-balance-billing.pdf",
+      "layout": "twocolumn",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-15-balance-billing",
+      "expected": {
+        "totalBilledCents": 43500,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "73030",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 10500
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 1800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-16-trap-balance-billing-amounts-match.png",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-16-trap-balance-billing-amounts-match",
+      "expected": {
+        "totalBilledCents": 43500,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "73030",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 10500
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 1800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-16-trap-balance-billing-amounts-match.pdf",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-16-trap-balance-billing-amounts-match",
+      "expected": {
+        "totalBilledCents": 43500,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "73030",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 10500
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 1800
+          }
+        ]
+      }
     }
   ]
 }
