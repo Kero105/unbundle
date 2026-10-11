@@ -15,6 +15,7 @@ describe("route access", () => {
 
   it.each([
     "/dashboard",
+    "/settings",
     "/bills/abc",
     "/bills/abc/review",
     "/bills/abc/report",

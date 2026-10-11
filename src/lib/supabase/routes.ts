@@ -1,5 +1,5 @@
 /** Routes that require a signed-in user. Everything else is public. */
-export const PROTECTED_ROUTE = /^\/(dashboard|bills)(\/|$)/;
+export const PROTECTED_ROUTE = /^\/(dashboard|bills|settings)(\/|$)/;
 
 /**
  * The sample-bill flow. Public on purpose: it reads only bundled synthetic

@@ -11,7 +11,8 @@
     "terms": "Términos",
     "promise": "Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos, y puede eliminarlas en cualquier momento.",
     "notAdvice": "No es asesoría legal ni médica.",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "settings": "Configuración"
   },
   "Home": {
     "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
@@ -718,8 +719,8 @@
       "body": "Nunca vendemos su información. No la compartimos con nadie, salvo para enviar los archivos que usted sube a Anthropic, para que puedan ser leídos como se describe arriba."
     },
     "delete": {
-      "title": "Cómo eliminar sus datos",
-      "body": "Usted puede eliminar cualquier factura en cualquier momento, desde su panel o desde la página de revisión de la factura, con la opción “Eliminar factura”. Esto borra de forma permanente la factura, las partidas que leímos de ella y los archivos subidos del almacenamiento. Eliminar una factura no recupera las copias que Anthropic pueda conservar según su propia política de retención. Para eliminar toda su cuenta y todo lo que contiene, escríbanos al correo que aparece abajo."
+      "title": "Eliminación de sus datos",
+      "body": "Desde Configuración puede hacer dos cosas. «Eliminar todas mis facturas» elimina de forma permanente cada factura que subió, las filas y los hallazgos que guardamos de ellas y sus archivos subidos del almacenamiento; su cuenta se mantiene. «Eliminar mi cuenta y mis datos» hace lo mismo y luego elimina su cuenta de acceso de nuestro sistema de autenticación y cierra su sesión, de modo que los datos asociados a su cuenta se eliminan de nuestra base de datos y del almacenamiento. También puede eliminar una sola factura desde su panel o desde su página de revisión. Eliminar no recupera las copias que Anthropic pueda conservar según su propia política de retención, y una carta en PDF que ya descargó permanece en su dispositivo."
     },
     "contact": {
       "title": "Contacto",
@@ -926,7 +927,11 @@
       "description": "Qué es Unbundle, cómo revisa una factura médica, qué tan preciso es y qué no puede hacer."
     },
     "og": "Revise su factura médica con las reglas públicas de Medicare.",
-    "ogAlt": "Unbundle: revise su factura médica con las reglas públicas de Medicare."
+    "ogAlt": "Unbundle: revise su factura médica con las reglas públicas de Medicare.",
+    "settings": {
+      "title": "Configuración | Unbundle",
+      "description": "Su cuenta, su idioma y las opciones para eliminar sus facturas o su cuenta."
+    }
   },
   "Explain": {
     "summary": "¿Qué es esto?",
@@ -944,6 +949,41 @@
       "hcpcs": "Este es un código HCPCS. Los códigos que empiezan con una letra suelen usarse para suministros, medicamentos, equipo o servicios que no están en los códigos de procedimiento principales. Le indica a su aseguradora qué artículo o servicio se cobró.",
       "revenue": "Este es un código de ingresos. Los hospitales usan estos códigos de cuatro dígitos para indicar a qué departamento o tipo de servicio pertenece un cargo, como la sala de emergencias, el laboratorio o la farmacia.",
       "drg": "Este es un código DRG. Los hospitales lo usan para agrupar una estadía completa según el diagnóstico y el tratamiento, así que un solo código puede representar muchos servicios durante la estadía."
+    }
+  },
+  "Settings": {
+    "title": "Configuración",
+    "subtitle": "Su cuenta, su idioma y sus datos.",
+    "account": {
+      "title": "Cuenta",
+      "email": "Sesión iniciada como",
+      "noEmail": "Esta cuenta no tiene correo electrónico"
+    },
+    "language": {
+      "title": "Idioma",
+      "body": "Elija el idioma que Unbundle usa en todas las páginas. Su elección se recuerda en este navegador."
+    },
+    "data": {
+      "title": "Sus datos",
+      "billsTitle": "Eliminar todas mis facturas",
+      "billsBody": "Elimina de forma permanente todas las facturas que subió, las filas que leímos de ellas y los archivos subidos. Su cuenta se mantiene, así que puede volver a subir facturas.",
+      "billsButton": "Eliminar todas mis facturas",
+      "billsDeleted": "Se eliminaron todas sus facturas.",
+      "accountTitle": "Eliminar mi cuenta y mis datos",
+      "accountBody": "Hace todo lo anterior y luego elimina su cuenta de acceso y cierra su sesión. Tendría que iniciar sesión con Google de nuevo para empezar otra vez.",
+      "accountButton": "Eliminar mi cuenta y mis datos"
+    },
+    "confirm": {
+      "billsTitle": "¿Eliminar todas sus facturas?",
+      "billsBody": "Esto elimina de forma permanente cada factura, sus filas y sus archivos subidos. No se puede deshacer.",
+      "accountTitle": "¿Eliminar su cuenta y todos sus datos?",
+      "accountBody": "Esto elimina de forma permanente cada factura, sus filas y sus archivos subidos, y luego elimina su cuenta y cierra su sesión. No se puede deshacer.",
+      "billsConfirm": "Eliminar todas las facturas",
+      "accountConfirm": "Eliminar mi cuenta",
+      "pending": "Eliminando…",
+      "cancel": "Cancelar",
+      "billsError": "No pudimos eliminar todo. Nada cambió en su cuenta. Inténtelo de nuevo.",
+      "accountError": "No pudimos terminar de eliminar su cuenta. Si se eliminaron algunos de sus datos, inténtelo de nuevo."
     }
   }
 }

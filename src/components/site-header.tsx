@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { getLocale, getTranslations } from "next-intl/server";
-import { LogOut } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguageToggle } from "@/components/language-toggle";
 import { createClient } from "@/lib/supabase/server";
@@ -79,6 +79,15 @@ export async function SiteHeader() {
               { value: "es", short: "ES", name: t("languageSpanish") },
             ]}
           />
+          {signedIn ? (
+            <Link
+              href="/settings"
+              className="inline-flex h-10 items-center gap-2 rounded-lg border border-input bg-background px-3 text-sm font-medium hover:bg-muted"
+            >
+              <Settings aria-hidden="true" className="size-4" />
+              <span className="max-sm:sr-only">{t("settings")}</span>
+            </Link>
+          ) : null}
           {signedIn ? (
             <form action={signOut}>
               <Button type="submit" variant="outline">

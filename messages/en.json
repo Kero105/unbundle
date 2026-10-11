@@ -11,7 +11,8 @@
     "terms": "Terms",
     "promise": "Anthropic's published terms say your bills aren't used to train its models by default, and you can delete them anytime.",
     "notAdvice": "Not legal or medical advice.",
-    "about": "About"
+    "about": "About",
+    "settings": "Settings"
   },
   "Home": {
     "title": "Think your hospital bill is wrong? Check it in minutes.",
@@ -719,7 +720,7 @@
     },
     "delete": {
       "title": "Deleting your data",
-      "body": "You can delete any bill yourself at any time, from your dashboard or from the bill's review page using “Delete bill.” That permanently removes the bill, the line items we read from it, and the uploaded files from storage. Deleting a bill does not recall copies Anthropic may keep under its own retention policy. To delete your whole account and everything in it, email us at the address below."
+      "body": "From Settings you can do two things. “Delete all my bills” permanently removes every bill you uploaded, the line items and findings we stored for them, and your uploaded files from storage; your account stays. “Delete my account and data” does the same and then removes your sign-in account from our authentication system and signs you out, so the data tied to your account is removed from our database and storage. You can also delete a single bill from your dashboard or its review page. Deleting does not recall copies Anthropic may keep under its own retention policy, and a PDF letter you already downloaded stays on your device."
     },
     "contact": {
       "title": "Contact",
@@ -926,7 +927,11 @@
       "description": "What Unbundle is, how it checks a medical bill, how accurate it is, and what it cannot do."
     },
     "og": "Check your medical bill against public Medicare rules.",
-    "ogAlt": "Unbundle: check your medical bill against public Medicare rules."
+    "ogAlt": "Unbundle: check your medical bill against public Medicare rules.",
+    "settings": {
+      "title": "Settings | Unbundle",
+      "description": "Your account, language, and options for deleting your bills or your account."
+    }
   },
   "Explain": {
     "summary": "What is this?",
@@ -944,6 +949,41 @@
       "hcpcs": "This is a HCPCS code. Codes that start with a letter are often used for supplies, drugs, equipment, or services that are not covered by the main procedure codes. It tells your insurer which item or service was billed.",
       "revenue": "This is a revenue code. Hospitals use these four-digit codes to say which department or type of service a charge belongs to, such as the emergency room, the lab, or pharmacy.",
       "drg": "This is a DRG code. Hospitals use it to group a whole hospital stay by diagnosis and treatment, so one code can stand for many services during the stay."
+    }
+  },
+  "Settings": {
+    "title": "Settings",
+    "subtitle": "Your account, your language, and your data.",
+    "account": {
+      "title": "Account",
+      "email": "Signed in as",
+      "noEmail": "No email on this account"
+    },
+    "language": {
+      "title": "Language",
+      "body": "Choose the language Unbundle uses on every page. Your choice is remembered in this browser."
+    },
+    "data": {
+      "title": "Your data",
+      "billsTitle": "Delete all my bills",
+      "billsBody": "Permanently removes every bill you uploaded, the line items we read from them, and the uploaded files. Your account stays, so you can upload again.",
+      "billsButton": "Delete all my bills",
+      "billsDeleted": "All of your bills were deleted.",
+      "accountTitle": "Delete my account and data",
+      "accountBody": "Does everything above, then removes your sign-in account and signs you out. You would need to sign in with Google again to start over.",
+      "accountButton": "Delete my account and data"
+    },
+    "confirm": {
+      "billsTitle": "Delete all your bills?",
+      "billsBody": "This permanently removes every bill, its line items, and your uploaded files. This can't be undone.",
+      "accountTitle": "Delete your account and all your data?",
+      "accountBody": "This permanently removes every bill, its line items, and your uploaded files, and then removes your account and signs you out. This can't be undone.",
+      "billsConfirm": "Delete all bills",
+      "accountConfirm": "Delete my account",
+      "pending": "Deleting…",
+      "cancel": "Cancel",
+      "billsError": "We couldn't delete everything. Nothing about your account changed. Please try again.",
+      "accountError": "We couldn't finish deleting your account. If some of your data was removed, please try again."
     }
   }
 }
