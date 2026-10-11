@@ -4,6 +4,7 @@ import { connection } from "next/server";
 import { getLocale, getTranslations } from "next-intl/server";
 import { LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HtmlLangSync } from "@/components/html-lang-sync";
 import { LanguageToggle } from "@/components/language-toggle";
 import { createClient } from "@/lib/supabase/server";
 import type { Locale } from "@/i18n/locale";
@@ -56,6 +57,7 @@ export async function SiteHeader() {
 
   return (
     <header lang={locale} className="border-b bg-background print:hidden">
+      <HtmlLangSync locale={locale} />
       <a
         href="#content"
         className="sr-only rounded-lg bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50"
