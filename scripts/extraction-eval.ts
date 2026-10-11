@@ -85,7 +85,7 @@ async function main() {
     const mimeType = detectFileType(bytes);
     const base = { fixtureId: entry.fixtureId, file: entry.file, variant: entry.variant };
     if (!mimeType) {
-      results.push({ ...base, comparison: null, errorCode: "unsupported_type" });
+      results.push({ ...base, comparison: compareLines(entry.expected.lineItems, []), errorCode: "unsupported_type" });
       continue;
     }
     try {
@@ -101,7 +101,8 @@ async function main() {
       console.log(`${entry.file}: ${comparison.mismatches.length} row mismatches`);
     } catch (error) {
       const errorCode = toErrorCode(error);
-      results.push({ ...base, comparison: null, errorCode });
+      // A failure counts as every expected row missing, so it can't inflate accuracy.
+      results.push({ ...base, comparison: compareLines(entry.expected.lineItems, []), errorCode });
       console.log(`${entry.file}: failed (${errorCode})`);
     }
   }

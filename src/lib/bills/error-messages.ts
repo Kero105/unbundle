@@ -5,7 +5,7 @@
 export type ErrorMessageKey =
   | "empty" | "too_large" | "unsupported_type" | "pdf_unreadable" | "pdf_encrypted"
   | "pdf_too_many_pages" | "unauthenticated" | "not_found" | "too_many_bills" | "upload"
-  | "busy" | "rate_limited" | "unavailable" | "unreadable" | "network" | "unknown";
+  | "busy" | "rate_limited" | "provider_busy" | "file_too_large" | "unavailable" | "unreadable" | "network" | "unknown";
 
 const KEYS: Record<string, ErrorMessageKey> = {
   empty: "empty",
@@ -29,9 +29,11 @@ const KEYS: Record<string, ErrorMessageKey> = {
   refused: "unreadable",
   truncated: "unreadable",
   timeout: "unreadable",
+  provider_busy: "provider_busy",
   provider_error: "unreadable",
   no_files: "upload",
   file_unreadable: "upload",
+  file_too_large: "file_too_large",
   save_failed: "unknown",
   claim_failed: "unknown",
   network: "network",

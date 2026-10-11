@@ -5,15 +5,45 @@ import { MODEL_OUTPUT_JSON_SCHEMA, parseModelOutput } from "./model-schema";
 import { EXTRACTION_SYSTEM_PROMPT, EXTRACTION_USER_PROMPT } from "./prompt";
 import type { BillExtractor, ExtractionFile } from "./types";
 
-export const EXTRACTION_MAX_TOKENS = 8000;
+/**
+ * Includes adaptive thinking tokens. Non-streaming stays valid in SDK 0.133:
+ * its guard only throws when max_tokens * 3600 / 128000 exceeds 600s (that is,
+ * above 21,333 tokens), and there is no per-model cap for the models we use.
+ */
+export const EXTRACTION_MAX_TOKENS = 16_000;
 export const EXTRACTION_TIMEOUT_MS = 90_000;
+
+/**
+ * Models known to accept output_config.effort. Anything else (for example an
+ * older Haiku or Sonnet set through EXTRACTION_MODEL) is sent without it,
+ * because an unsupported parameter is a 400 on every call.
+ */
+export const EFFORT_MODELS: readonly string[] = [
+  "claude-sonnet-5-5",
+  "claude-sonnet-5",
+  "claude-opus-5-5",
+  "claude-opus-5",
+];
+
+const MIB = 1024 * 1024;
+/** Conservative per-image limit, measured on the base64 payload (documented as 10 MB on the direct API, 5 MB on Bedrock and Vertex). */
+export const MAX_IMAGE_BASE64_BYTES = 5 * MIB;
+/** Documented request-size limit (PDFs count toward the whole request payload). */
+export const MAX_REQUEST_BASE64_BYTES = 32 * MIB;
+
+const base64Length = (bytes: number) => Math.ceil(bytes / 3) * 4;
 
 /** The one method of the SDK this class uses, so tests can substitute it. */
 export type MessagesClient = {
-  messages: { create: (body: never, options?: never) => Promise<Anthropic.Message> };
+  messages: {
+    create: (
+      body: Anthropic.MessageCreateParamsNonStreaming,
+      options?: Parameters<Anthropic["messages"]["create"]>[1],
+    ) => Promise<Anthropic.Message>;
+  };
 };
 
-function toContentBlock(file: ExtractionFile) {
+function toContentBlock(file: ExtractionFile): Anthropic.ContentBlockParam {
   const data = Buffer.from(file.bytes).toString("base64");
   if (file.mimeType === "application/pdf") {
     return {
@@ -42,42 +72,61 @@ export class AnthropicExtractor implements BillExtractor {
 
   static fromApiKey(apiKey: string, model: string): AnthropicExtractor {
     const client = new Anthropic({ apiKey, maxRetries: 0, timeout: EXTRACTION_TIMEOUT_MS });
-    return new AnthropicExtractor(client as unknown as MessagesClient, model);
+    return new AnthropicExtractor(client, model);
   }
 
   async extractBill(files: ExtractionFile[]): Promise<ExtractedBill> {
     if (files.length === 0) throw new ExtractionError("no_files");
 
+    // Reject before spending a request: the API would answer with a 400.
+    let total = 0;
+    for (const file of files) {
+      const size = base64Length(file.bytes.byteLength);
+      total += size;
+      if (file.mimeType !== "application/pdf" && size > MAX_IMAGE_BASE64_BYTES) {
+        throw new ExtractionError("file_too_large");
+      }
+    }
+    if (total > MAX_REQUEST_BASE64_BYTES) throw new ExtractionError("file_too_large");
+
     // Bill first, then the EOB, each introduced so the model knows which is which.
     const ordered = [...files].sort((a, b) => (a.kind === b.kind ? 0 : a.kind === "bill" ? -1 : 1));
-    const content = [
+    const content: Anthropic.ContentBlockParam[] = [
       ...ordered.map(toContentBlock),
-      { type: "text" as const, text: EXTRACTION_USER_PROMPT },
+      { type: "text", text: EXTRACTION_USER_PROMPT },
     ];
+    const params = {
+      model: this.model,
+      max_tokens: EXTRACTION_MAX_TOKENS,
+      system: EXTRACTION_SYSTEM_PROMPT,
+      messages: [{ role: "user", content }],
+      output_config: {
+        ...(EFFORT_MODELS.includes(this.model) ? { effort: "medium" as const } : {}),
+        format: { type: "json_schema", schema: MODEL_OUTPUT_JSON_SCHEMA },
+      },
+    } satisfies Anthropic.MessageCreateParamsNonStreaming;
 
     let response: Anthropic.Message;
     try {
-      response = await this.client.messages.create(
-        {
-          model: this.model,
-          max_tokens: EXTRACTION_MAX_TOKENS,
-          system: EXTRACTION_SYSTEM_PROMPT,
-          messages: [{ role: "user", content }],
-          output_config: {
-            effort: "medium",
-            format: { type: "json_schema", schema: MODEL_OUTPUT_JSON_SCHEMA },
-          },
-        } as never,
-        { timeout: EXTRACTION_TIMEOUT_MS, maxRetries: 0 } as never,
-      );
+      response = await this.client.messages.create(params, {
+        timeout: EXTRACTION_TIMEOUT_MS,
+        maxRetries: 0,
+      });
     } catch (error) {
-      throw new ExtractionError(
-        error instanceof Anthropic.APIConnectionTimeoutError ? "timeout" : "provider_error",
-      );
+      if (error instanceof Anthropic.APIConnectionTimeoutError) throw new ExtractionError("timeout");
+      // 429 (rate limited) and 529 (overloaded) are transient: tell the user to wait, not to retake the photo.
+      if (error instanceof Anthropic.APIError && (error.status === 429 || error.status === 529)) {
+        throw new ExtractionError("provider_busy");
+      }
+      throw new ExtractionError("provider_error");
     }
 
     if (response.stop_reason === "refusal") throw new ExtractionError("refused");
-    if (response.stop_reason === "max_tokens") throw new ExtractionError("truncated");
+    if (response.stop_reason === "max_tokens" || response.stop_reason === "model_context_window_exceeded") {
+      throw new ExtractionError("truncated");
+    }
+    // Anything else that is not a normal finish (tool_use, pause_turn) is not output we can trust.
+    if (response.stop_reason !== "end_turn") throw new ExtractionError("invalid_output");
 
     const block = response.content.find((b) => b.type === "text");
     if (!block || block.type !== "text") throw new ExtractionError("invalid_output");

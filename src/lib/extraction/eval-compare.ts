@@ -138,6 +138,11 @@ export type ReportEntry = {
   fixtureId: string;
   file: string;
   variant: string;
+  /**
+   * Scored result. For a failed extraction pass compareLines(expected, []) so
+   * every expected row counts as wrong; null is only for an entry with no
+   * ground truth and is left out of the accuracy numbers.
+   */
   comparison: FixtureComparison | null;
   /** Opaque error code when the extractor failed, never a message. */
   errorCode?: string;
@@ -145,7 +150,9 @@ export type ReportEntry = {
 
 /** Markdown for docs/extraction-eval.md. Contains ids, counts and field names only. */
 export function renderReport(entries: readonly ReportEntry[], meta: { model: string; date: string }): string {
+  // Failed extractions are scored too (all rows missing), so they pull accuracy down.
   const ok = entries.filter((e) => e.comparison !== null);
+  const failed = entries.filter((e) => e.errorCode).length;
   const overall = summarize(ok.map((e) => e.comparison!));
   const lines: string[] = [];
   lines.push("# Extraction evaluation", "");
@@ -157,7 +164,7 @@ export function renderReport(entries: readonly ReportEntry[], meta: { model: str
     "",
   );
   lines.push(
-    `Images evaluated: ${ok.length} of ${entries.length}. Rows expected: ${overall.expectedRows}, ` +
+    `Images: ${entries.length}, extraction failed: ${failed}. Rows expected: ${overall.expectedRows}, ` +
       `matched: ${overall.matchedRows}, extra rows: ${overall.extraRows}.`,
     "",
   );

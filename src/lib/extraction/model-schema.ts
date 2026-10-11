@@ -48,11 +48,24 @@ export const ModelOutputSchema = z.object({
 
 export type ModelOutput = z.infer<typeof ModelOutputSchema>;
 
+/**
+ * Rewrites `type: ["string", "null"]` as `anyOf: [{type: "string"}, {type: "null"}]`,
+ * the nullable form structured outputs documents. Zod emits the array form.
+ */
+export function nullableToAnyOf(node: unknown): unknown {
+  if (Array.isArray(node)) return node.map(nullableToAnyOf);
+  if (node === null || typeof node !== "object") return node;
+  const { type, ...rest } = node as Record<string, unknown>;
+  const converted = Object.fromEntries(Object.entries(rest).map(([k, v]) => [k, nullableToAnyOf(v)]));
+  if (Array.isArray(type)) return { ...converted, anyOf: type.map((t) => ({ type: t })) };
+  return type === undefined ? converted : { type, ...converted };
+}
+
 /** JSON Schema handed to the API as the output format. */
 export const MODEL_OUTPUT_JSON_SCHEMA: Record<string, unknown> = (() => {
   const { $schema, ...schema } = z.toJSONSchema(ModelOutputSchema) as Record<string, unknown>;
   void $schema;
-  return schema;
+  return nullableToAnyOf(schema) as Record<string, unknown>;
 })();
 
 /**

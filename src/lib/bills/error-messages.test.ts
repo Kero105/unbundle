@@ -16,6 +16,12 @@ describe("errorMessageKey", () => {
     }
   });
 
+  it("gives a busy provider and an oversized file their own messages", () => {
+    expect(errorMessageKey("provider_busy")).toBe("provider_busy");
+    expect(errorMessageKey("file_too_large")).toBe("file_too_large");
+    expect(errorMessageKey("provider_error")).toBe("unreadable");
+  });
+
   it("falls back to unknown", () => {
     expect(errorMessageKey("nope")).toBe("unknown");
     expect(errorMessageKey(undefined)).toBe("unknown");

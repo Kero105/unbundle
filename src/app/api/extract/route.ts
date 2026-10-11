@@ -26,10 +26,12 @@ const STATUS: Record<ExtractionErrorCode, number> = {
   claim_failed: 500,
   no_files: 400,
   file_unreadable: 500,
+  file_too_large: 413,
   invalid_output: 502,
   refused: 502,
   truncated: 502,
   timeout: 504,
+  provider_busy: 503,
   provider_error: 502,
   save_failed: 500,
 };

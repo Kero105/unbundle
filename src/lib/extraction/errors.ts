@@ -15,10 +15,12 @@ export const EXTRACTION_ERROR_CODES = [
   "claim_failed",
   "no_files",
   "file_unreadable",
+  "file_too_large",
   "invalid_output",
   "refused",
   "truncated",
   "timeout",
+  "provider_busy",
   "provider_error",
   "save_failed",
 ] as const;

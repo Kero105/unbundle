@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import good from "../../../fixtures/extraction/model-output-good.json";
 import { ExtractionError } from "./errors";
-import { MODEL_OUTPUT_JSON_SCHEMA, parseModelOutput } from "./model-schema";
+import { MODEL_OUTPUT_JSON_SCHEMA, nullableToAnyOf, parseModelOutput } from "./model-schema";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const clone = () => structuredClone(good) as Record<string, any>;
@@ -114,5 +114,42 @@ describe("MODEL_OUTPUT_JSON_SCHEMA", () => {
     expect(MODEL_OUTPUT_JSON_SCHEMA.type).toBe("object");
     expect(MODEL_OUTPUT_JSON_SCHEMA).not.toHaveProperty("$schema");
     expect(MODEL_OUTPUT_JSON_SCHEMA.additionalProperties).toBe(false);
+  });
+});
+
+describe("MODEL_OUTPUT_JSON_SCHEMA", () => {
+  function typeArrays(node: unknown, path = "$"): string[] {
+    if (Array.isArray(node)) return node.flatMap((v, i) => typeArrays(v, `${path}[${i}]`));
+    if (node === null || typeof node !== "object") return [];
+    return Object.entries(node).flatMap(([k, v]) =>
+      k === "type" && Array.isArray(v) ? [`${path}.type`] : typeArrays(v, `${path}.${k}`),
+    );
+  }
+
+  it("never uses an array for a type", () => {
+    expect(typeArrays(MODEL_OUTPUT_JSON_SCHEMA)).toEqual([]);
+  });
+
+  it("expresses nullable fields as anyOf", () => {
+    const props = (MODEL_OUTPUT_JSON_SCHEMA.properties as Record<string, unknown>);
+    expect(props.serviceStart).toEqual({ anyOf: [{ type: "string" }, { type: "null" }] });
+    expect(props.totalBilledCents).toEqual({ anyOf: [{ type: "number" }, { type: "null" }] });
+  });
+
+  it("converts nested type arrays and leaves other nodes alone", () => {
+    const input = {
+      type: "object",
+      properties: { a: { type: ["integer", "null"] }, b: { type: "string" }, c: { type: "array", items: { type: ["string", "null"] } } },
+      required: ["a"],
+    };
+    expect(nullableToAnyOf(input)).toEqual({
+      type: "object",
+      properties: {
+        a: { anyOf: [{ type: "integer" }, { type: "null" }] },
+        b: { type: "string" },
+        c: { type: "array", items: { anyOf: [{ type: "string" }, { type: "null" }] } },
+      },
+      required: ["a"],
+    });
   });
 });

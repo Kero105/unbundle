@@ -1,5 +1,7 @@
+import fs from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { compareLines, renderReport, summarize, type EvalLine } from "./eval-compare";
+import { compareLines, EVAL_FIELDS, renderReport, summarize, type EvalLine } from "./eval-compare";
 
 const line = (code: string | null, date: string | null, units: number, chargeCents: number): EvalLine => ({
   code,
@@ -91,6 +93,22 @@ describe("summarize and renderReport", () => {
     expect(summarize([]).perField.code.accuracy).toBeNull();
   });
 
+  it("counts a failed extraction as every row missing instead of leaving it out", () => {
+    const perfect = compareLines(expected, expected);
+    const failedRun = compareLines(expected, []);
+    const md = renderReport(
+      [
+        { fixtureId: "a", file: "a.png", variant: "clean", comparison: perfect },
+        { fixtureId: "b", file: "b.png", variant: "clean", comparison: failedRun, errorCode: "timeout" },
+      ],
+      { model: "m", date: "2026-10-10" },
+    );
+    expect(summarize([perfect, failedRun]).perField.charge.accuracy).toBe(0.5);
+    expect(md).toContain("| charge | 3 | 6 | 50.0% |");
+    expect(md).toContain("extraction failed: 1");
+    expect(md).toContain("extraction failed (timeout)");
+  });
+
   it("renders ids, row numbers and field names without any values", () => {
     const comparison = compareLines(expected, [line("99214", "2026-10-02", 1, 123456), expected[1]]);
     const md = renderReport(
@@ -106,5 +124,62 @@ describe("summarize and renderReport", () => {
     expect(md).toContain("extraction failed (timeout)");
     expect(md).not.toContain("123456");
     expect(md).not.toContain("22000");
+  });
+});
+
+describe("scoring the real manifest", () => {
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "../../../fixtures/images/manifest.json"), "utf8"),
+  ) as { entries: { file: string; fixtureId: string; variant: string; expected: { lineItems: EvalLine[] } }[] };
+  const rows = (e: (typeof manifest.entries)[number]): EvalLine[] =>
+    e.expected.lineItems.map((l) => ({
+      code: l.code,
+      dateOfService: l.dateOfService,
+      units: l.units,
+      chargeCents: l.chargeCents,
+    }));
+
+  it("has fixtures to score", () => {
+    expect(manifest.entries.length).toBeGreaterThan(0);
+  });
+
+  it("reports 100% on every field when the output equals the ground truth", () => {
+    const comparisons = manifest.entries.map((e) => compareLines(rows(e), rows(e)));
+    for (const c of comparisons) {
+      expect(c.mismatches).toEqual([]);
+      expect(c.extraRows).toBe(0);
+    }
+    const s = summarize(comparisons);
+    for (const f of EVAL_FIELDS) expect(s.perField[f].accuracy).toBe(1);
+
+    const md = renderReport(
+      manifest.entries.map((e, i) => ({ fixtureId: e.fixtureId, file: e.file, variant: e.variant, comparison: comparisons[i] })),
+      { model: "m", date: "2026-10-10" },
+    );
+    expect(md).toContain("## Mismatches\n\nNone.");
+    expect(md).toContain("100.0%");
+  });
+
+  it("reports a wrong code, wrong cents and a missing line as diffs on every fixture", () => {
+    for (const e of manifest.entries) {
+      const truth = rows(e);
+      if (truth.length < 3) continue;
+      const got = truth.map((r) => ({ ...r }));
+      got[0].code = "00000";
+      got[1].chargeCents += 1;
+      got.splice(2, 1);
+
+      const c = compareLines(truth, got);
+      // Rows can match out of position when lines are identical, so check by field totals.
+      expect(c.fieldCorrect.code).toBe(truth.length - 2); // wrong code + missing line
+      expect(c.fieldCorrect.charge).toBe(truth.length - 2); // wrong cents + missing line
+      expect(c.mismatches.length).toBeGreaterThanOrEqual(1);
+      expect(c.mismatches.some((m) => m.missing)).toBe(true);
+      const md = renderReport(
+        [{ fixtureId: e.fixtureId, file: e.file, variant: e.variant, comparison: c }],
+        { model: "m", date: "2026-10-10" },
+      );
+      expect(md).not.toContain("## Mismatches\n\nNone.");
+    }
   });
 });

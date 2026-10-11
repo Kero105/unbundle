@@ -639,6 +639,8 @@
       "rate_limited": "Llegó al límite por hora para leer facturas. Inténtelo más tarde.",
       "unavailable": "La lectura de facturas está desactivada por ahora. Inténtelo más tarde.",
       "unreadable": "No pudimos leer esta factura con confianza. Pruebe con una foto más nítida y bien iluminada, o vuelva a intentarlo.",
+      "provider_busy": "El servicio de lectura está ocupado. Espere un minuto e inténtelo de nuevo.",
+      "file_too_large": "Uno de sus archivos es demasiado grande para que lo leamos. Pruebe con una foto de menos páginas a la vez, o con un archivo más pequeño.",
       "network": "No pudimos conectar con el servidor. Revise su conexión e inténtelo de nuevo.",
       "unknown": "Algo salió mal. Inténtelo de nuevo.",
       "pdf_too_large": "Ese PDF pesa más de 4 MB. Suba fotos de las páginas o un archivo más pequeño.",
