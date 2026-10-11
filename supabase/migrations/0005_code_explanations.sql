@@ -49,7 +49,7 @@ as $$
 declare
   uid uuid := (select auth.uid());
   recent int;
-  max_total constant int := 40;
+  max_total constant int := 100;
   run_window constant interval := interval '1 hour';
 begin
   if uid is null then
@@ -90,7 +90,7 @@ declare
   recent int;
   recent_total int;
   max_runs constant int := 5;
-  max_total constant int := 40;
+  max_total constant int := 100;
   run_window constant interval := interval '1 hour';
   stale_after constant interval := interval '5 minutes';
 begin
