@@ -177,6 +177,13 @@ export async function ReportView({ source }: { source: BillSource }) {
           </PendingLink>
         ) : null}
         <PendingLink
+          href={`${stepHref(source, "letter")}?type=itemized`}
+          className={buttonVariants({ variant: "outline" })}
+          pendingLabel={t("makeLetterPending")}
+        >
+          {t("requestItemized")}
+        </PendingLink>
+        <PendingLink
           href={stepHref(source, "assistance")}
           className={buttonVariants({ variant: "outline" })}
           pendingLabel={t("assistancePending")}

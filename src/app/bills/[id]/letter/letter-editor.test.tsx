@@ -92,3 +92,46 @@ describe("LetterEditor download", () => {
     expect(lastContent().locale).toBe("es");
   });
 });
+
+describe("LetterEditor letter types", () => {
+  beforeEach(() => {
+    renderMock.mockClear();
+    downloads = [];
+    URL.createObjectURL = vi.fn(() => "blob:test");
+    URL.revokeObjectURL = vi.fn();
+    vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(function (this: HTMLAnchorElement) {
+      downloads.push(this.download);
+    });
+  });
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
+  });
+
+  it("switches to the itemized request and downloads it under its own name", async () => {
+    setup("en");
+    fireEvent.click(screen.getByRole("button", { name: en.Letter.page.types.itemized }));
+    await download(1);
+    expect(lastContent().kind).toBe("itemized");
+    expect(lastContent().subject).toBe(en.Letter.doc.itemized.subject);
+    expect(downloads[0]).toBe("itemized-bill-request-en.pdf");
+  });
+
+  it("offers only the itemized request when nothing was flagged", async () => {
+    render(
+      <LetterEditor
+        model={{ items: [] }}
+        uiLocale="es"
+        messages={messages}
+        initialDate="2026-10-10"
+        initialProviderName=""
+      />,
+    );
+    expect(
+      (screen.getByRole("button", { name: es.Letter.page.types.dispute }) as HTMLButtonElement).disabled,
+    ).toBe(true);
+    await download(1);
+    expect(lastContent().kind).toBe("itemized");
+    expect(lastContent().locale).toBe("es");
+  });
+});

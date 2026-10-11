@@ -109,7 +109,8 @@
     "openPending": "Opening…",
     "retry": "Try reading again",
     "retryPending": "Reading…",
-    "loadError": "We couldn't load your bills. Please refresh."
+    "loadError": "We couldn't load your bills. Please refresh.",
+    "requestItemized": "Request an itemized bill"
   },
   "Error": {
     "title": "Something went wrong",
@@ -290,7 +291,8 @@
     "makeLetter": "Create a dispute letter",
     "makeLetterPending": "Opening letter…",
     "assistance": "Check financial assistance",
-    "assistancePending": "Opening…"
+    "assistancePending": "Opening…",
+    "requestItemized": "Request an itemized bill"
   },
   "Letter": {
     "page": {
@@ -316,9 +318,13 @@
       "preparing": "Preparing PDF…",
       "downloadError": "We could not create the PDF. Please try again.",
       "reviewReminder": "Read the letter and check each item against your bill before you send it.",
-      "empty": {
-        "title": "There is nothing to put in a letter",
-        "body": "Our checks did not flag anything on this bill, so there are no items to ask about. If something still looks wrong to you, you can always contact the billing office directly."
+      "itemizedTitle": "Your itemized bill request",
+      "itemizedSubtitle": "A polite letter asking the billing office for a fully itemized bill and its financial assistance policy. It works for any bill, even one with no flagged items.",
+      "types": {
+        "group": "Letter type",
+        "dispute": "Dispute letter",
+        "itemized": "Request an itemized bill",
+        "noDispute": "Our checks did not flag anything on this bill, so there is no dispute letter to write. You can still ask the billing office for an itemized bill below."
       }
     },
     "doc": {
@@ -396,7 +402,17 @@
       "response": "I would be grateful for a written response within 30 days of receiving this letter. If any of these charges are correct, an explanation of the service and its billing code would be very helpful.",
       "closing": "Thank you for your time and help.",
       "sincerely": "Sincerely,",
-      "footer": "This letter was prepared with Unbundle and is not legal advice."
+      "footer": "This letter was prepared with Unbundle and is not legal advice.",
+      "itemized": {
+        "subject": "Request for an itemized bill and financial assistance policy",
+        "intro": "I am writing about my account with your facility. Please send me the following in writing so that I can review my charges.",
+        "requestsHeading": "What I am requesting",
+        "requests": {
+          "itemizedStatement": "A fully itemized statement that lists every service and supply with its CPT or HCPCS billing code, date of service, number of units, and charge.",
+          "assistancePolicy": "A copy of your financial assistance (charity care) policy, along with the application and any plain-language summary you provide."
+        },
+        "response": "I would be grateful for a written response within 30 days of receiving this letter. Thank you for your help in making my bill clear."
+      }
     }
   },
   "Assistance": {

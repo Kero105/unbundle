@@ -109,7 +109,8 @@
     "openPending": "Abriendo…",
     "retry": "Intentar leer de nuevo",
     "retryPending": "Leyendo…",
-    "loadError": "No pudimos cargar sus facturas. Actualice la página."
+    "loadError": "No pudimos cargar sus facturas. Actualice la página.",
+    "requestItemized": "Solicitar una factura detallada"
   },
   "Error": {
     "title": "Algo salió mal",
@@ -290,7 +291,8 @@
     "makeLetter": "Crear una carta de reclamo",
     "makeLetterPending": "Abriendo la carta…",
     "assistance": "Revisar ayuda financiera",
-    "assistancePending": "Abriendo…"
+    "assistancePending": "Abriendo…",
+    "requestItemized": "Solicitar una factura detallada"
   },
   "Letter": {
     "page": {
@@ -316,9 +318,13 @@
       "preparing": "Preparando el PDF…",
       "downloadError": "No pudimos crear el PDF. Inténtelo de nuevo.",
       "reviewReminder": "Lea la carta y compare cada punto con su factura antes de enviarla.",
-      "empty": {
-        "title": "No hay nada que incluir en una carta",
-        "body": "Nuestras revisiones no señalaron nada en esta factura, así que no hay puntos sobre los cuales preguntar. Si algo todavía le parece incorrecto, siempre puede comunicarse directamente con la oficina de facturación."
+      "itemizedTitle": "Su solicitud de factura detallada",
+      "itemizedSubtitle": "Una carta cortés que pide a la oficina de facturación una factura totalmente detallada y su política de asistencia financiera. Sirve para cualquier factura, incluso una sin puntos señalados.",
+      "types": {
+        "group": "Tipo de carta",
+        "dispute": "Carta de reclamo",
+        "itemized": "Solicitar una factura detallada",
+        "noDispute": "Nuestras revisiones no señalaron nada en esta factura, así que no hay una carta de reclamo que redactar. Aun así, puede pedir una factura detallada a la oficina de facturación aquí abajo."
       }
     },
     "doc": {
@@ -396,7 +402,17 @@
       "response": "Les agradecería una respuesta por escrito dentro de los 30 días siguientes a la recepción de esta carta. Si alguno de estos cargos es correcto, me ayudaría mucho que me explicaran el servicio y su código de facturación.",
       "closing": "Gracias por su tiempo y su ayuda.",
       "sincerely": "Atentamente,",
-      "footer": "Esta carta se preparó con Unbundle y no constituye asesoría legal."
+      "footer": "Esta carta se preparó con Unbundle y no constituye asesoría legal.",
+      "itemized": {
+        "subject": "Solicitud de factura detallada y de la política de asistencia financiera",
+        "intro": "Les escribo con respecto a mi cuenta en su centro. Les pido que me envíen por escrito lo siguiente para poder revisar mis cargos.",
+        "requestsHeading": "Lo que solicito",
+        "requests": {
+          "itemizedStatement": "Una factura totalmente detallada que enumere cada servicio y suministro con su código de facturación CPT o HCPCS, la fecha del servicio, el número de unidades y el cargo.",
+          "assistancePolicy": "Una copia de su política de asistencia financiera (atención caritativa), junto con la solicitud y cualquier resumen en lenguaje sencillo que tengan."
+        },
+        "response": "Les agradecería una respuesta por escrito dentro de los 30 días siguientes a la recepción de esta carta. Gracias por su ayuda para aclarar mi factura."
+      }
     }
   },
   "Assistance": {

@@ -22,7 +22,15 @@ export interface LetterContentItem {
 }
 
 /** Fully resolved letter text, shared by the HTML preview and the PDF. */
+export type LetterKind = "dispute" | "itemized";
+
+/** Reads the `?type=` query value; anything unknown means the default letter. */
+export function parseLetterKind(value: string | string[] | undefined): LetterKind | undefined {
+  return value === "itemized" ? "itemized" : value === "dispute" ? "dispute" : undefined;
+}
+
 export interface LetterContent {
+  kind: LetterKind;
   locale: Locale;
   sender: string[];
   date: string;
@@ -33,6 +41,8 @@ export interface LetterContent {
   intro: string;
   itemsHeading: string;
   items: LetterContentItem[];
+  /** Itemized-bill request only: the numbered things being asked for. */
+  requests: string[];
   response: string;
   closing: string;
   sincerely: string;
@@ -75,12 +85,42 @@ export function composeLetter(
   fields: LetterFields,
   locale: Locale,
   messages: LetterMessages,
+  kind: LetterKind = "dispute",
 ): LetterContent {
   const t = translatorFor(locale, messages);
   const single = (value: string, placeholderKey: string) => value.trim() || t(placeholderKey);
   const senderName = single(fields.senderName, "placeholders.senderName");
 
+  if (kind === "itemized") {
+    return {
+      kind,
+      locale,
+      sender: [senderName, ...addressLines(fields.senderAddress, t("placeholders.senderAddress"))],
+      date: fields.date ? formatDate(fields.date, locale, "long") : t("placeholders.date"),
+      recipient: [
+        single(fields.providerName, "placeholders.providerName"),
+        ...addressLines(fields.providerAddress, t("placeholders.providerAddress")),
+      ],
+      account: t("account", { account: single(fields.accountNumber, "placeholders.accountNumber") }),
+      subject: t("itemized.subject"),
+      salutation: t("salutation"),
+      intro: t("itemized.intro"),
+      itemsHeading: t("itemized.requestsHeading"),
+      items: [],
+      requests: [
+        t("itemized.requests.itemizedStatement"),
+        t("itemized.requests.assistancePolicy"),
+      ],
+      response: t("itemized.response"),
+      closing: t("closing"),
+      sincerely: t("sincerely"),
+      signature: senderName,
+      footer: t("footer"),
+    };
+  }
+
   return {
+    kind,
     locale,
     sender: [senderName, ...addressLines(fields.senderAddress, t("placeholders.senderAddress"))],
     date: fields.date ? formatDate(fields.date, locale, "long") : t("placeholders.date"),
@@ -110,6 +150,7 @@ export function composeLetter(
       amountInQuestion: t("amountInQuestion", { amount: formatCents(item.amountInQuestionCents) }),
       reason: t(`reasons.${item.reason}.${item.tone}`),
     })),
+    requests: [],
     response: t("response"),
     closing: t("closing"),
     sincerely: t("sincerely"),

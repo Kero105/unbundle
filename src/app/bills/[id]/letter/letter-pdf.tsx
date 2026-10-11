@@ -42,6 +42,13 @@ export function LetterPdf({ content }: { content: LetterContent }) {
         <Text style={styles.block}>{content.salutation}</Text>
         <Text style={styles.block}>{content.intro}</Text>
         <Text style={[styles.block, styles.bold]}>{content.itemsHeading}</Text>
+        {content.requests.map((request, i) => (
+          <View key={i} style={styles.item} wrap={false}>
+            <Text>
+              {i + 1}. {request}
+            </Text>
+          </View>
+        ))}
         {content.items.map((item) => (
           <View key={item.number} style={styles.item} wrap={false}>
             <Text style={styles.bold}>{item.number}.</Text>

@@ -9,7 +9,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { locales, type Locale } from "@/i18n/locale";
-import { composeLetter, type LetterFields, type LetterMessages } from "./letter-content";
+import {
+  composeLetter,
+  type LetterFields,
+  type LetterKind,
+  type LetterMessages,
+} from "./letter-content";
 import type { LetterModel } from "./letter-model";
 
 interface LetterEditorProps {
@@ -20,6 +25,8 @@ interface LetterEditorProps {
   messages: Record<Locale, { page: Record<string, unknown>; doc: LetterMessages }>;
   initialDate: string;
   initialProviderName: string;
+  /** Which letter opens first. Falls back to the itemized request when nothing was flagged. */
+  initialKind?: LetterKind;
 }
 
 // The PDF renderer is large, so load it on demand and only once. The module is
@@ -43,7 +50,11 @@ export function LetterEditor({
   messages,
   initialDate,
   initialProviderName,
+  initialKind = "dispute",
 }: LetterEditorProps) {
+  const disputeAvailable = model.items.length > 0;
+  const [requestedKind, setKind] = useState<LetterKind>(initialKind);
+  const kind: LetterKind = disputeAvailable ? requestedKind : "itemized";
   const [letterLocale, setLetterLocale] = useState<Locale>(uiLocale);
   const [fields, setFields] = useState<LetterFields>({
     senderName: "",
@@ -62,8 +73,8 @@ export function LetterEditor({
   const label = (key: string) => (t as unknown as (k: string) => string)(key);
 
   const content = useMemo(
-    () => composeLetter(model, fields, letterLocale, messages[letterLocale].doc),
-    [model, fields, letterLocale, messages],
+    () => composeLetter(model, fields, letterLocale, messages[letterLocale].doc, kind),
+    [model, fields, letterLocale, messages, kind],
   );
 
   // Warm the renderer while the user types, so the first download is quick.
@@ -80,13 +91,13 @@ export function LetterEditor({
     try {
       // Compose from the language and fields as they are right now, with the
       // same composer the preview uses, rather than reusing any earlier render.
-      const current = composeLetter(model, fields, letterLocale, messages[letterLocale].doc);
+      const current = composeLetter(model, fields, letterLocale, messages[letterLocale].doc, kind);
       const { renderLetterPdf } = await loadPdfModule();
       const blob = await renderLetterPdf(current);
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `dispute-letter-${current.locale}.pdf`;
+      link.download = `${kind === "itemized" ? "itemized-bill-request" : "dispute-letter"}-${current.locale}.pdf`;
       document.body.append(link);
       link.click();
       link.remove();
@@ -103,7 +114,51 @@ export function LetterEditor({
     es: { short: "ES", name: label("languageSpanish") },
   };
 
+  const kinds: { value: LetterKind; label: string; disabled: boolean }[] = [
+    { value: "dispute", label: label("types.dispute"), disabled: !disputeAvailable },
+    { value: "itemized", label: label("types.itemized"), disabled: false },
+  ];
+
   return (
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-2">
+        <h1 className="text-3xl font-semibold sm:text-4xl">
+          {kind === "itemized" ? label("itemizedTitle") : label("title")}
+        </h1>
+        <p className="max-w-2xl text-lg text-muted-foreground">
+          {kind === "itemized" ? label("itemizedSubtitle") : label("subtitle")}
+        </p>
+      </div>
+
+      <div
+        role="group"
+        aria-label={label("types.group")}
+        className="inline-flex w-fit flex-wrap items-center gap-1 rounded-lg border border-input bg-card p-0.5"
+      >
+        {kinds.map((option) => (
+          <button
+            key={option.value}
+            type="button"
+            aria-pressed={kind === option.value}
+            disabled={option.disabled}
+            onClick={() => setKind(option.value)}
+            className={cn(
+              "inline-flex min-h-11 items-center justify-center rounded-md px-4 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50",
+              kind === option.value
+                ? "bg-primary text-primary-foreground"
+                : "text-foreground hover:bg-muted active:bg-muted/60",
+            )}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+      {!disputeAvailable ? (
+        <p role="note" className="max-w-2xl text-muted-foreground">
+          {label("types.noDispute")}
+        </p>
+      ) : null}
+
     <div className="grid gap-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
       <section aria-labelledby="letter-details" className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
@@ -248,6 +303,16 @@ export function LetterEditor({
           <p>{content.salutation}</p>
           <p>{content.intro}</p>
           <h3 className="font-semibold">{content.itemsHeading}</h3>
+          {content.requests.length > 0 ? (
+            <ol className="flex flex-col gap-3">
+              {content.requests.map((request, i) => (
+                <li key={i} className="flex gap-2">
+                  <span className="font-semibold">{i + 1}.</span>
+                  <p>{request}</p>
+                </li>
+              ))}
+            </ol>
+          ) : null}
           <ol className="flex flex-col gap-3">
             {content.items.map((item) => (
               <li key={item.number} className="flex gap-2">
@@ -276,6 +341,7 @@ export function LetterEditor({
           <p className="border-t pt-3 text-xs text-neutral-600">{content.footer}</p>
         </article>
       </section>
+    </div>
     </div>
   );
 }

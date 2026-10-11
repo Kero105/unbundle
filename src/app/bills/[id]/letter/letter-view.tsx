@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { getLocale, getTranslations } from "next-intl/server";
-import { CircleCheck } from "lucide-react";
 import { BillSteps } from "@/components/bill-steps";
 import { buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -11,9 +10,16 @@ import { resolveLocale } from "@/i18n/locale";
 import en from "../../../../../messages/en.json";
 import es from "../../../../../messages/es.json";
 import { LetterEditor } from "./letter-editor";
+import type { LetterKind } from "./letter-content";
 import { buildLetterModel } from "./letter-model";
 
-export async function LetterView({ source }: { source: BillSource }) {
+export async function LetterView({
+  source,
+  initialKind,
+}: {
+  source: BillSource;
+  initialKind?: LetterKind;
+}) {
   // Findings depend on live reference data, so never prerender them.
   await connection();
   const result = await loadFindings(source);
@@ -32,29 +38,16 @@ export async function LetterView({ source }: { source: BillSource }) {
     >
       <header className="flex flex-col gap-4">
         <BillSteps current="letter" />
-        <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-semibold sm:text-4xl">{t("title")}</h1>
-          <p className="max-w-2xl text-lg text-muted-foreground">{t("subtitle")}</p>
-        </div>
       </header>
 
-      {model.items.length === 0 ? (
-        <section className="flex flex-col gap-3 rounded-xl border border-success-border/50 bg-success-surface p-6 text-success-foreground">
-          <h2 className="flex items-center gap-2 text-xl font-semibold">
-            <CircleCheck aria-hidden="true" className="size-6 shrink-0" />
-            {t("empty.title")}
-          </h2>
-          <p>{t("empty.body")}</p>
-        </section>
-      ) : (
-        <LetterEditor
-          model={model}
-          uiLocale={locale}
-          messages={{ en: en.Letter, es: es.Letter }}
-          initialDate={today}
-          initialProviderName={bill.providerName}
-        />
-      )}
+      <LetterEditor
+        model={model}
+        uiLocale={locale}
+        messages={{ en: en.Letter, es: es.Letter }}
+        initialDate={today}
+        initialProviderName={bill.providerName}
+        initialKind={initialKind}
+      />
 
       <div>
         <Link

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import en from "../../../../../messages/en.json";
 import es from "../../../../../messages/es.json";
-import { composeLetter, type LetterFields } from "./letter-content";
+import { composeLetter, parseLetterKind, type LetterFields } from "./letter-content";
 import type { LetterItem, LetterModel } from "./letter-model";
 
 const fields: LetterFields = {
@@ -110,5 +110,66 @@ describe("composeLetter", () => {
     expect(spanish.items[0].reason).not.toBe(first.items[0].reason);
     expect(again).toEqual(first);
     expect(again.locale).toBe("en");
+  });
+});
+
+describe("itemized bill request", () => {
+  const empty = model();
+
+  it("works with no flagged items, in English", () => {
+    const c = composeLetter(empty, fields, "en", en.Letter.doc, "itemized");
+    expect(c.kind).toBe("itemized");
+    expect(c.items).toEqual([]);
+    expect(c.subject).toBe(en.Letter.doc.itemized.subject);
+    expect(c.requests).toEqual([
+      en.Letter.doc.itemized.requests.itemizedStatement,
+      en.Letter.doc.itemized.requests.assistancePolicy,
+    ]);
+    expect(c.requests[0]).toMatch(/CPT or HCPCS/);
+    expect(c.requests[0]).toMatch(/units/);
+    expect(c.requests[1]).toMatch(/financial assistance/);
+    expect(c.response).toMatch(/30 days/);
+    expect(c.footer).toMatch(/not legal advice/);
+  });
+
+  it("works in Spanish with the formal register", () => {
+    const c = composeLetter(empty, fields, "es", es.Letter.doc, "itemized");
+    expect(c.locale).toBe("es");
+    expect(c.subject).toBe(es.Letter.doc.itemized.subject);
+    expect(c.requests[0]).toMatch(/CPT o HCPCS/);
+    expect(c.requests[1]).toMatch(/asistencia financiera/);
+    expect(c.response).toMatch(/30 días/);
+    expect(c.salutation).toBe(es.Letter.doc.salutation);
+  });
+
+  it("ignores flagged items so the two letters never mix", () => {
+    const c = composeLetter(model(item()), fields, "en", en.Letter.doc, "itemized");
+    expect(c.items).toEqual([]);
+    expect(c.intro).toBe(en.Letter.doc.itemized.intro);
+  });
+
+  it("uses bracketed placeholders for blank sender fields", () => {
+    const blank = { ...fields, senderName: "", senderAddress: "", accountNumber: "", providerName: "", providerAddress: "" };
+    for (const [locale, doc] of [["en", en.Letter.doc], ["es", es.Letter.doc]] as const) {
+      const c = composeLetter(empty, blank, locale, doc, "itemized");
+      expect(c.sender).toEqual([doc.placeholders.senderName, doc.placeholders.senderAddress]);
+      expect(c.recipient).toEqual([doc.placeholders.providerName, doc.placeholders.providerAddress]);
+      expect(c.account).toContain(doc.placeholders.accountNumber);
+      expect(c.signature).toBe(doc.placeholders.senderName);
+    }
+  });
+
+  it("defaults to the dispute letter", () => {
+    expect(composeLetter(model(item()), fields, "en", en.Letter.doc).kind).toBe("dispute");
+  });
+});
+
+describe("parseLetterKind", () => {
+  it("accepts only known kinds", () => {
+    expect(parseLetterKind("itemized")).toBe("itemized");
+    expect(parseLetterKind("dispute")).toBe("dispute");
+    expect(parseLetterKind("other")).toBeUndefined();
+    expect(parseLetterKind(["itemized"])).toBeUndefined();
+    expect(parseLetterKind(undefined)).toBeUndefined();
   });
 });

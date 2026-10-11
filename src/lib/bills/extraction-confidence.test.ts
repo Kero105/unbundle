@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { summarizeConfidence } from "./extraction-confidence";
+import { suggestsItemizedRequest, summarizeConfidence } from "./extraction-confidence";
 
 const rows = (...c: ("high" | "medium" | "low")[]) => c.map((confidence) => ({ confidence }));
 
@@ -22,5 +22,19 @@ describe("summarizeConfidence", () => {
 
   it("is low when every row is low", () => {
     expect(summarizeConfidence(rows("low", "low", "low")).low).toBe(true);
+  });
+});
+
+describe("suggestsItemizedRequest", () => {
+  it("suggests it when no rows were read", () => {
+    expect(suggestsItemizedRequest(summarizeConfidence([]))).toBe(true);
+  });
+
+  it("suggests it when at least half the rows are low confidence", () => {
+    expect(suggestsItemizedRequest(summarizeConfidence(rows("low", "high")))).toBe(true);
+  });
+
+  it("does not suggest it for a confident read", () => {
+    expect(suggestsItemizedRequest(summarizeConfidence(rows("high", "high", "low")))).toBe(false);
   });
 });

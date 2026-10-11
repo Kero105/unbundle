@@ -12,6 +12,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { displayStatus } from "@/lib/bills/extraction-status";
+import { suggestsItemizedRequest, summarizeConfidence } from "@/lib/bills/extraction-confidence";
 import { formatCents } from "@/lib/money";
 import { createClient } from "@/lib/supabase/server";
 import { routeMetadata } from "@/lib/metadata";
@@ -41,6 +42,21 @@ async function Dashboard() {
   const day = new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "UTC" });
   const bills = result.data ?? [];
   const now = currentTimeMs();
+
+  // Only confidence labels are read here, never bill text.
+  const readyIds = bills.filter((b) => b.extraction_status === "needs_review").map((b) => b.id);
+  const rowsByBill = new Map<string, { confidence: "high" | "medium" | "low" }[]>();
+  if (readyIds.length > 0) {
+    const { data: rows } = await supabase
+      .from("line_items")
+      .select("bill_id, confidence")
+      .in("bill_id", readyIds);
+    for (const row of rows ?? []) {
+      const list = rowsByBill.get(row.bill_id) ?? [];
+      list.push({ confidence: row.confidence ?? "low" });
+      rowsByBill.set(row.bill_id, list);
+    }
+  }
 
   return (
     <NextIntlClientProvider>
@@ -121,6 +137,16 @@ async function Dashboard() {
                             pendingLabel={t("openPending")}
                           >
                             {t("open")}
+                          </PendingLink>
+                        ) : null}
+                        {status === "needs_review" &&
+                        suggestsItemizedRequest(summarizeConfidence(rowsByBill.get(bill.id) ?? [])) ? (
+                          <PendingLink
+                            href={`/bills/${bill.id}/letter?type=itemized`}
+                            className={buttonVariants({ size: "sm", variant: "outline" })}
+                            pendingLabel={t("openPending")}
+                          >
+                            {t("requestItemized")}
                           </PendingLink>
                         ) : null}
                         {status === "failed" ? (
