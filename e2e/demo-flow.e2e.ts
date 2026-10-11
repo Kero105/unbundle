@@ -41,3 +41,18 @@ test("signed-out sample bill flow", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Your estimate" })).toBeVisible();
   await expect(page.getByText(/Your household income is about \d+% of the federal poverty level/)).toBeVisible();
 });
+
+// Keyboard: the first Tab stop is a visible skip link that moves focus to the main content.
+test("skip link is reachable by keyboard and works", async ({ page }) => {
+  for (const path of ["/", "/demo", "/help"]) {
+    await page.goto(path);
+    const skip = page.getByRole("link", { name: "Skip to main content" });
+    // The header streams in behind Suspense; wait for it before tabbing.
+    await expect(skip).toBeAttached();
+    await page.keyboard.press("Tab");
+    await expect(skip).toBeFocused();
+    await expect(skip).toBeVisible();
+    await page.keyboard.press("Enter");
+    await expect(page.locator("#content")).toBeFocused();
+  }
+});
