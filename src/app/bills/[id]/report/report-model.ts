@@ -82,6 +82,7 @@ const WHY_KEYS = {
   "price_outlier.medicare_5x_la_office": "priceOutlier",
   "vague_charge.uncoded_line": "vagueCharge",
   "denied_billed_in_full.denied_line_charged_to_patient": "deniedBilled",
+  "balance_billing.patient_charged_above_eob_responsibility": "balanceBilling",
 } as const;
 
 export type WhyKey = (typeof WHY_KEYS)[keyof typeof WHY_KEYS] | "fallback";

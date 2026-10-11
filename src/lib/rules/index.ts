@@ -1,4 +1,5 @@
 import type { ExtractedBill, Finding } from "@/lib/types";
+import { balanceBilling } from "./balance-billing";
 import { dateMismatch } from "./date-mismatch";
 import { deniedBilledInFull } from "./denied-billed-in-full";
 import { duplicateCharge } from "./duplicate-charge";
@@ -12,10 +13,10 @@ import { vagueCharge } from "./vague-charge";
 
 export type { Rule } from "./types";
 export type { Mue, PtpEdit, RateLookup, RulesLookups } from "./lookups";
-export { dateMismatch, deniedBilledInFull, duplicateCharge, mathError, mueExceeded, ncciUnbundling, priceOutlier, vagueCharge };
+export { balanceBilling, dateMismatch, deniedBilledInFull, duplicateCharge, mathError, mueExceeded, ncciUnbundling, priceOutlier, vagueCharge };
 
 /** Registered rules, run in this order. */
-export const rules: readonly Rule[] = [duplicateCharge, mathError, dateMismatch, ncciUnbundling, mueExceeded, priceOutlier, vagueCharge, deniedBilledInFull];
+export const rules: readonly Rule[] = [duplicateCharge, mathError, dateMismatch, ncciUnbundling, mueExceeded, priceOutlier, vagueCharge, deniedBilledInFull, balanceBilling];
 
 /**
  * Runs the rules in order and concatenates their findings. `lookups` is required

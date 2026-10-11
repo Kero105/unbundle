@@ -286,7 +286,8 @@
       "priceOutlier": "Este precio es más de cinco veces lo que Medicare paga por el mismo servicio en Los Ángeles. Los proveedores pueden cobrar más que Medicare, así que es un motivo para preguntar, no una prueba de error.",
       "vagueCharge": "Esta línea no indica para qué servicio fue, por ejemplo un monto global o un cargo sin código. Puede pedir una explicación detallada.",
       "deniedBilled": "Su seguro negó este servicio, pero la factura le pide pagar el monto completo. Vale la pena preguntar si se apeló la negación o si el monto es correcto.",
-      "fallback": "Una revisión fija de las líneas de su factura señaló esto. Pida a la oficina de facturación que le explique el cargo."
+      "fallback": "Una revisión fija de las líneas de su factura señaló esto. Pida a la oficina de facturación que le explique el cargo.",
+      "balanceBilling": "La Explicación de Beneficios de su aseguradora indica que usted debe menos por este servicio de lo que le pide pagar la factura. La diferencia puede ser un pago o ajuste que aún no aparece en la factura, así que vale la pena preguntar antes de pagar."
     },
     "makeLetter": "Crear una carta de reclamo",
     "makeLetterPending": "Abriendo la carta…",
@@ -326,6 +327,34 @@
         "confidence": "Confianza",
         "amount": "Monto en juego"
       }
+    },
+    "eob": {
+      "title": "Su factura comparada con la EOB de su aseguradora",
+      "intro": "Cada servicio de su factura se compara con su Explicación de Beneficios por fecha y código. Se resaltan las filas donde la factura le pide pagar un monto distinto del que indica la EOB.",
+      "tableLabel": "Factura comparada con la Explicación de Beneficios",
+      "columns": {
+        "service": "Fecha y código",
+        "billed": "Facturado",
+        "allowed": "Permitido",
+        "planPaid": "Pagado por el plan",
+        "eobOwed": "EOB: usted debe",
+        "billOwed": "Factura: usted debe",
+        "status": "Estado"
+      },
+      "unknown": "No indicado",
+      "noCode": "Sin código",
+      "noDate": "Sin fecha",
+      "status": {
+        "match": "Los montos coinciden",
+        "billHigher": "La factura pide más que la EOB",
+        "billLower": "La factura pide menos que la EOB",
+        "denied": "Negado por la aseguradora",
+        "unknown": "No se puede comparar",
+        "notOnEob": "No aparece en la EOB",
+        "notOnBill": "Aparece en la EOB, no en la factura"
+      },
+      "difference": "Diferencia: {amount}",
+      "note": "Una diferencia es un motivo para preguntar, no una prueba de error. Es posible que un pago o ajuste aún no haya llegado a la factura."
     }
   },
   "Letter": {
@@ -431,6 +460,10 @@
         "fallback": {
           "firm": "¿Podrían explicarme este cargo y confirmar que es correcto?",
           "soft": "¿Podrían volver a revisar este cargo?"
+        },
+        "balanceBilling": {
+          "firm": "La Explicación de Beneficios de mi aseguradora muestra un monto menor por este servicio que el que me pide pagar mi factura. ¿Podrían explicarme la diferencia y enviarme un estado de cuenta corregido?",
+          "soft": "Es posible que la Explicación de Beneficios de mi aseguradora muestre un monto menor por este servicio que mi factura. ¿Podrían confirmar si el monto que se me pide pagar es correcto?"
         }
       },
       "response": "Les agradecería una respuesta por escrito dentro de los 30 días siguientes a la recepción de esta carta. Si alguno de estos cargos es correcto, me ayudaría mucho que me explicaran el servicio y su código de facturación.",
@@ -748,7 +781,7 @@
     },
     "checks": {
       "title": "Qué revisamos",
-      "intro": "Nueve revisiones, explicadas con palabras sencillas. Ocho se aplican a cada factura. La novena es un paso opcional para personas sin seguro.",
+      "intro": "Diez revisiones, explicadas con palabras sencillas. Nueve se aplican a cada factura. La décima es un paso opcional para personas sin seguro.",
       "gfe": {
         "title": "Estimación de buena fe",
         "body": "Si no tiene seguro y le dieron una estimación antes de su atención, la comparamos con su factura y le decimos si la diferencia podría valer la pena disputarla."
@@ -780,7 +813,7 @@
       },
       "overall": "Total",
       "na": "n/d",
-      "gfeNote": "La tabla abarca las ocho reglas de la factura. La comparación con la estimación de buena fe no forma parte de ella.",
+      "gfeNote": "La tabla abarca las nueve reglas de la factura. La comparación con la estimación de buena fe no forma parte de ella.",
       "rules": {
         "duplicate_charge": "Cobros duplicados",
         "math_error": "Errores de cálculo",
@@ -789,7 +822,8 @@
         "mue_exceeded": "Límites de cantidad",
         "price_outlier": "Precios fuera de lo normal",
         "vague_charge": "Cargos poco claros",
-        "denied_billed_in_full": "Negado y luego cobrado"
+        "denied_billed_in_full": "Negado y luego cobrado",
+        "balance_billing": "Facturación de saldo"
       }
     },
     "scope": {

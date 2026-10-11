@@ -112,6 +112,7 @@ describe("whyKey", () => {
       "price_outlier.medicare_5x_la_office",
       "vague_charge.uncoded_line",
       "denied_billed_in_full.denied_line_charged_to_patient",
+      "balance_billing.patient_charged_above_eob_responsibility",
     ];
     for (const c of citations) {
       expect(whyKey(c)).not.toBe("fallback");

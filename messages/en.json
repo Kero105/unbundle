@@ -286,7 +286,8 @@
       "priceOutlier": "This price is more than five times what Medicare pays for the same service in Los Angeles. Providers can charge more than Medicare, so this is a reason to ask, not proof of an error.",
       "vagueCharge": "This line does not say what service it was for, such as a lump sum or a charge with no code. You can ask for an itemized explanation.",
       "deniedBilled": "Your insurance denied this service, but the bill asks you to pay the full amount. It is worth asking whether the denial was appealed or the amount is correct.",
-      "fallback": "A fixed check on your bill's line items flagged this. Ask the billing office to explain the charge."
+      "fallback": "A fixed check on your bill's line items flagged this. Ask the billing office to explain the charge.",
+      "balanceBilling": "Your insurer's Explanation of Benefits says you owe less for this service than the bill asks you to pay. The difference may be a payment or adjustment that has not shown up on the bill yet, so it is worth asking before you pay."
     },
     "makeLetter": "Create a dispute letter",
     "makeLetterPending": "Opening letter…",
@@ -326,6 +327,34 @@
         "confidence": "Confidence",
         "amount": "Amount at stake"
       }
+    },
+    "eob": {
+      "title": "Your bill compared with your insurer's EOB",
+      "intro": "Each service on your bill is matched to your Explanation of Benefits by date and code. Rows where the bill asks you to pay a different amount than the EOB says you owe are highlighted.",
+      "tableLabel": "Bill compared with Explanation of Benefits",
+      "columns": {
+        "service": "Date and code",
+        "billed": "Billed",
+        "allowed": "Allowed",
+        "planPaid": "Plan paid",
+        "eobOwed": "EOB: you owe",
+        "billOwed": "Bill: you owe",
+        "status": "Status"
+      },
+      "unknown": "Not shown",
+      "noCode": "No code",
+      "noDate": "No date",
+      "status": {
+        "match": "Amounts match",
+        "billHigher": "Bill asks for more than the EOB",
+        "billLower": "Bill asks for less than the EOB",
+        "denied": "Denied by insurer",
+        "unknown": "Can't compare",
+        "notOnEob": "Not on the EOB",
+        "notOnBill": "On the EOB, not on the bill"
+      },
+      "difference": "Difference: {amount}",
+      "note": "A difference is a reason to ask, not proof of a mistake. A payment or adjustment may not have reached the bill yet."
     }
   },
   "Letter": {
@@ -431,6 +460,10 @@
         "fallback": {
           "firm": "Could you please explain this charge and confirm that it is correct?",
           "soft": "Could you please double-check this charge?"
+        },
+        "balanceBilling": {
+          "firm": "My insurer's Explanation of Benefits shows a lower amount owed for this service than my bill asks me to pay. Could you explain the difference and send me a corrected statement?",
+          "soft": "My insurer's Explanation of Benefits may show a lower amount owed for this service than my bill. Could you please check whether the amount I am being asked to pay is correct?"
         }
       },
       "response": "I would be grateful for a written response within 30 days of receiving this letter. If any of these charges are correct, an explanation of the service and its billing code would be very helpful.",
@@ -748,7 +781,7 @@
     },
     "checks": {
       "title": "What we check",
-      "intro": "Nine checks, each in plain words. Eight run on every bill. The ninth is an optional step for people without insurance.",
+      "intro": "Ten checks, each in plain words. Nine run on every bill. The tenth is an optional step for people without insurance.",
       "gfe": {
         "title": "Good Faith Estimate",
         "body": "If you are uninsured and were given an estimate before your care, we compare it with your bill and tell you whether the difference may be worth disputing."
@@ -780,7 +813,7 @@
       },
       "overall": "Overall",
       "na": "n/a",
-      "gfeNote": "The table covers the eight bill rules. The Good Faith Estimate comparison is not part of it.",
+      "gfeNote": "The table covers the nine bill rules. The Good Faith Estimate comparison is not part of it.",
       "rules": {
         "duplicate_charge": "Duplicate charges",
         "math_error": "Math errors",
@@ -789,7 +822,8 @@
         "mue_exceeded": "Quantity limits",
         "price_outlier": "Price outliers",
         "vague_charge": "Vague charges",
-        "denied_billed_in_full": "Denied, then billed"
+        "denied_billed_in_full": "Denied, then billed",
+        "balance_billing": "Balance billing"
       }
     },
     "scope": {
