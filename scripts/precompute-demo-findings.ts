@@ -7,10 +7,14 @@
  *   fixtures/review/demo-reference.json  every lookup result the rules read,
  *                                        plus the poverty guidelines
  *
+ * With a scenario name (er-visit, clean) it reads
+ * fixtures/review/scenarios/<name>/bill.json and writes findings.json and
+ * reference.json beside it.
+ *
  * Needs the service role key in .env.local (reads public reference tables
  * only; the demo itself never uses the key). Output is counts only.
  *
- *   npx tsx scripts/precompute-demo-findings.ts
+ *   npx tsx scripts/precompute-demo-findings.ts [er-visit|clean]
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -21,7 +25,13 @@ import { createSupabaseLookups } from "../src/lib/rules/supabase-lookups";
 import { ExtractedBillSchema } from "../src/lib/types";
 import { serviceClient } from "./lib/env.mjs";
 
-const dir = path.resolve(__dirname, "../fixtures/review");
+const reviewDir = path.resolve(__dirname, "../fixtures/review");
+const scenario = process.argv[2];
+if (scenario !== undefined && !/^[a-z-]+$/.test(scenario)) throw new Error("invalid scenario name");
+const dir = scenario ? path.join(reviewDir, "scenarios", scenario) : reviewDir;
+const names = scenario
+  ? { bill: "bill.json", findings: "findings.json", reference: "reference.json" }
+  : { bill: "demo-bill.json", findings: "demo-findings.json", reference: "demo-reference.json" };
 
 const PovertyDbRow = z.object({
   guideline_year: z.number().int(),
@@ -34,7 +44,7 @@ const PovertyDbRow = z.object({
 async function main() {
   const db = serviceClient();
   const bill = ExtractedBillSchema.parse(
-    JSON.parse(fs.readFileSync(path.join(dir, "demo-bill.json"), "utf8")),
+    JSON.parse(fs.readFileSync(path.join(dir, names.bill), "utf8")),
   );
 
   const { lookups, rules } = recordLookups(createSupabaseLookups(db));
@@ -63,8 +73,8 @@ async function main() {
 
   const reference = DemoReferenceSchema.parse({ rules, poverty: { guidelineYear, rows } });
 
-  fs.writeFileSync(path.join(dir, "demo-findings.json"), `${JSON.stringify(findings, null, 2)}\n`);
-  fs.writeFileSync(path.join(dir, "demo-reference.json"), `${JSON.stringify(reference, null, 2)}\n`);
+  fs.writeFileSync(path.join(dir, names.findings), `${JSON.stringify(findings, null, 2)}\n`);
+  fs.writeFileSync(path.join(dir, names.reference), `${JSON.stringify(reference, null, 2)}\n`);
   console.log(
     `findings: ${findings.length}; recorded lookups: ptp ${rules.ptp.length}, mue ${rules.mue.length}, rate ${rules.rate.length}; poverty rows: ${rows.length} (${guidelineYear})`,
   );

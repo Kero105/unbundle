@@ -1,0 +1,115 @@
+{
+  "providerName": "Sample Neighborhood Primary Care (synthetic)",
+  "serviceStart": "2026-09-12",
+  "serviceEnd": "2026-09-12",
+  "totalBilledCents": 36800,
+  "insuranceStatus": "insured",
+  "lineItems": [
+    {
+      "id": "li-1",
+      "dateOfService": "2026-09-12",
+      "code": "99214",
+      "codeType": "CPT",
+      "descriptionRaw": "OFFICE O/P VISIT EST LEVL 4",
+      "units": 1,
+      "unitPriceCents": 22000,
+      "chargeCents": 22000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.25,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-2",
+      "dateOfService": "2026-09-12",
+      "code": "93000",
+      "codeType": "CPT",
+      "descriptionRaw": "ECG ROUTINE W/ INTERP & REPORT",
+      "units": 1,
+      "unitPriceCents": 5000,
+      "chargeCents": 5000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.295,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-3",
+      "dateOfService": "2026-09-12",
+      "code": "85025",
+      "codeType": "CPT",
+      "descriptionRaw": "CBC W/ AUTO DIFF WBC",
+      "units": 1,
+      "unitPriceCents": 3800,
+      "chargeCents": 3800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.34,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-4",
+      "dateOfService": "2026-09-12",
+      "code": "80061",
+      "codeType": "CPT",
+      "descriptionRaw": "LIPID PANEL",
+      "units": 1,
+      "unitPriceCents": 4200,
+      "chargeCents": 4200,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.385,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-5",
+      "dateOfService": "2026-09-12",
+      "code": "36415",
+      "codeType": "CPT",
+      "descriptionRaw": "VENIPUNCTURE ROUTINE",
+      "units": 1,
+      "unitPriceCents": 1800,
+      "chargeCents": 1800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.43,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    }
+  ],
+  "eobLines": []
+}

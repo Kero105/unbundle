@@ -1,0 +1,40 @@
+[
+  {
+    "id": "ncci_unbundling:li-1+li-7",
+    "ruleId": "ncci_unbundling",
+    "lineItemIds": [
+      "li-1",
+      "li-7"
+    ],
+    "severity": "warning",
+    "confidence": "medium",
+    "amountAtStakeCents": 8500,
+    "evidence": "column1=99284;column2=96372;date=2026-09-20;indicator=1",
+    "citation": "ncci_unbundling.ptp_indicator_1"
+  },
+  {
+    "id": "ncci_unbundling:li-3+li-4",
+    "ruleId": "ncci_unbundling",
+    "lineItemIds": [
+      "li-3",
+      "li-4"
+    ],
+    "severity": "warning",
+    "confidence": "high",
+    "amountAtStakeCents": 4100,
+    "evidence": "column1=80053;column2=80048;date=2026-09-20;indicator=0",
+    "citation": "ncci_unbundling.ptp_indicator_0"
+  },
+  {
+    "id": "mue_exceeded:li-6",
+    "ruleId": "mue_exceeded",
+    "lineItemIds": [
+      "li-6"
+    ],
+    "severity": "warning",
+    "confidence": "high",
+    "amountAtStakeCents": 6000,
+    "evidence": "code=71046;date=2026-09-20;units=3;mue=2;indicator=3",
+    "citation": "mue_exceeded.adjudication_indicator_3"
+  }
+]

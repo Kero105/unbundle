@@ -1,0 +1,673 @@
+{
+  "rules": {
+    "ptp": [
+      {
+        "code1": "99284",
+        "code2": "36415",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "99284",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "99284",
+        "code2": "80053",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80053",
+        "code2": "99284",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "99284",
+        "code2": "80048",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80048",
+        "code2": "99284",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "99284",
+        "code2": "85025",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "99284",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "99284",
+        "code2": "71046",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "71046",
+        "code2": "99284",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "99284",
+        "code2": "96372",
+        "date": "2026-09-20",
+        "edits": [
+          {
+            "column1Code": "99284",
+            "column2Code": "96372",
+            "effectiveDate": "2020-10-01",
+            "deletionDate": null,
+            "modifierIndicator": 1,
+            "rationale": "Standards of medical/surgical practice"
+          }
+        ]
+      },
+      {
+        "code1": "96372",
+        "code2": "99284",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "99284",
+        "code2": "J1885",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "J1885",
+        "code2": "99284",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "80053",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80053",
+        "code2": "36415",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "80048",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80048",
+        "code2": "36415",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "85025",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "36415",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "71046",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "71046",
+        "code2": "36415",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "96372",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "96372",
+        "code2": "36415",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "J1885",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "J1885",
+        "code2": "36415",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80053",
+        "code2": "80048",
+        "date": "2026-09-20",
+        "edits": [
+          {
+            "column1Code": "80053",
+            "column2Code": "80048",
+            "effectiveDate": "2000-07-01",
+            "deletionDate": null,
+            "modifierIndicator": 0,
+            "rationale": "CPT Manual or CMS manual coding instruction"
+          }
+        ]
+      },
+      {
+        "code1": "80048",
+        "code2": "80053",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80053",
+        "code2": "85025",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "80053",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80053",
+        "code2": "71046",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "71046",
+        "code2": "80053",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80053",
+        "code2": "96372",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "96372",
+        "code2": "80053",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80053",
+        "code2": "J1885",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "J1885",
+        "code2": "80053",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80048",
+        "code2": "85025",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "80048",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80048",
+        "code2": "71046",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "71046",
+        "code2": "80048",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80048",
+        "code2": "96372",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "96372",
+        "code2": "80048",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "80048",
+        "code2": "J1885",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "J1885",
+        "code2": "80048",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "71046",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "71046",
+        "code2": "85025",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "96372",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "96372",
+        "code2": "85025",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "J1885",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "J1885",
+        "code2": "85025",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "71046",
+        "code2": "96372",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "96372",
+        "code2": "71046",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "71046",
+        "code2": "J1885",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "J1885",
+        "code2": "71046",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "96372",
+        "code2": "J1885",
+        "date": "2026-09-20",
+        "edits": []
+      },
+      {
+        "code1": "J1885",
+        "code2": "96372",
+        "date": "2026-09-20",
+        "edits": []
+      }
+    ],
+    "mue": [
+      {
+        "code": "99284",
+        "mue": {
+          "code": "99284",
+          "mueValue": 1,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "Clinical: Data"
+        }
+      },
+      {
+        "code": "36415",
+        "mue": {
+          "code": "36415",
+          "mueValue": 2,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "CMS Policy"
+        }
+      },
+      {
+        "code": "80053",
+        "mue": {
+          "code": "80053",
+          "mueValue": 1,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "CMS Policy"
+        }
+      },
+      {
+        "code": "80048",
+        "mue": {
+          "code": "80048",
+          "mueValue": 2,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "Clinical: Data"
+        }
+      },
+      {
+        "code": "85025",
+        "mue": {
+          "code": "85025",
+          "mueValue": 2,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "Clinical: Data"
+        }
+      },
+      {
+        "code": "71046",
+        "mue": {
+          "code": "71046",
+          "mueValue": 2,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "Clinical: Data"
+        }
+      },
+      {
+        "code": "96372",
+        "mue": {
+          "code": "96372",
+          "mueValue": 4,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "Clinical: Data"
+        }
+      },
+      {
+        "code": "J1885",
+        "mue": {
+          "code": "J1885",
+          "mueValue": 8,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "Prescribing Information"
+        }
+      }
+    ],
+    "rate": [
+      {
+        "code": "99284",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "A",
+            "workRvuX100": 274,
+            "nonfacilityPeRvuX100": 45,
+            "facilityPeRvuX100": 45,
+            "malpracticeRvuX100": 35,
+            "nonfacilityPeNa": true,
+            "facilityPeNa": false,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "36415",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "X",
+            "workRvuX100": 0,
+            "nonfacilityPeRvuX100": 0,
+            "facilityPeRvuX100": 0,
+            "malpracticeRvuX100": 0,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": false,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "80053",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "X",
+            "workRvuX100": 0,
+            "nonfacilityPeRvuX100": 0,
+            "facilityPeRvuX100": 0,
+            "malpracticeRvuX100": 0,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": false,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "80048",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "X",
+            "workRvuX100": 0,
+            "nonfacilityPeRvuX100": 0,
+            "facilityPeRvuX100": 0,
+            "malpracticeRvuX100": 0,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": false,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "85025",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "X",
+            "workRvuX100": 0,
+            "nonfacilityPeRvuX100": 0,
+            "facilityPeRvuX100": 0,
+            "malpracticeRvuX100": 0,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": false,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "71046",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "A",
+            "workRvuX100": 21,
+            "nonfacilityPeRvuX100": 76,
+            "facilityPeRvuX100": 76,
+            "malpracticeRvuX100": 2,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": true,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "96372",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "A",
+            "workRvuX100": 17,
+            "nonfacilityPeRvuX100": 28,
+            "facilityPeRvuX100": 28,
+            "malpracticeRvuX100": 1,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": true,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "J1885",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "E",
+            "workRvuX100": 0,
+            "nonfacilityPeRvuX100": 0,
+            "facilityPeRvuX100": 0,
+            "malpracticeRvuX100": 0,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": false,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      }
+    ]
+  },
+  "poverty": {
+    "guidelineYear": 2026,
+    "rows": [
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 1,
+        "povertyLineCents": 1596000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 2,
+        "povertyLineCents": 2164000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 3,
+        "povertyLineCents": 2732000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 4,
+        "povertyLineCents": 3300000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 5,
+        "povertyLineCents": 3868000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 6,
+        "povertyLineCents": 4436000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 7,
+        "povertyLineCents": 5004000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 8,
+        "povertyLineCents": 5572000,
+        "perAdditionalPersonCents": 568000
+      }
+    ]
+  }
+}

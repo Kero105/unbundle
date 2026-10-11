@@ -1,0 +1,178 @@
+{
+  "providerName": "Sample Community Emergency Department (synthetic)",
+  "serviceStart": "2026-09-20",
+  "serviceEnd": "2026-09-20",
+  "totalBilledCents": 107200,
+  "insuranceStatus": "self_pay",
+  "lineItems": [
+    {
+      "id": "li-1",
+      "dateOfService": "2026-09-20",
+      "code": "99284",
+      "codeType": "CPT",
+      "descriptionRaw": "ED VISIT LEVEL 4",
+      "units": 1,
+      "unitPriceCents": 62000,
+      "chargeCents": 62000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.25,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-2",
+      "dateOfService": "2026-09-20",
+      "code": "36415",
+      "codeType": "CPT",
+      "descriptionRaw": "ROUTINE VENIPUNCTURE",
+      "units": 1,
+      "unitPriceCents": 1800,
+      "chargeCents": 1800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.295,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-3",
+      "dateOfService": "2026-09-20",
+      "code": "80053",
+      "codeType": "CPT",
+      "descriptionRaw": "COMPREHEN METABOLIC PANEL",
+      "units": 1,
+      "unitPriceCents": 6200,
+      "chargeCents": 6200,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.34,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-4",
+      "dateOfService": "2026-09-20",
+      "code": "80048",
+      "codeType": "CPT",
+      "descriptionRaw": "METABOLIC PANEL TOTAL CA",
+      "units": 1,
+      "unitPriceCents": 4100,
+      "chargeCents": 4100,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.385,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-5",
+      "dateOfService": "2026-09-20",
+      "code": "85025",
+      "codeType": "CPT",
+      "descriptionRaw": "CBC W/AUTO DIFF WBC",
+      "units": 1,
+      "unitPriceCents": 3800,
+      "chargeCents": 3800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.43,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-6",
+      "dateOfService": "2026-09-20",
+      "code": "71046",
+      "codeType": "CPT",
+      "descriptionRaw": "XRAY EXAM CHEST 2 VIEWS",
+      "units": 3,
+      "unitPriceCents": 6000,
+      "chargeCents": 18000,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.475,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-7",
+      "dateOfService": "2026-09-20",
+      "code": "96372",
+      "codeType": "CPT",
+      "descriptionRaw": "THER/PROPH/DIAG INJ SC/IM",
+      "units": 1,
+      "unitPriceCents": 8500,
+      "chargeCents": 8500,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.52,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    },
+    {
+      "id": "li-8",
+      "dateOfService": "2026-09-20",
+      "code": "J1885",
+      "codeType": "HCPCS",
+      "descriptionRaw": "INJ KETOROLAC TROMETHAMINE PER 15 MG",
+      "units": 2,
+      "unitPriceCents": 1400,
+      "chargeCents": 2800,
+      "insurancePaidCents": null,
+      "patientOwesCents": null,
+      "sourcePage": 1,
+      "sourceBox": {
+        "x": 0.05,
+        "y": 0.565,
+        "width": 0.9,
+        "height": 0.035
+      },
+      "confidence": "high",
+      "userVerified": false
+    }
+  ],
+  "eobLines": []
+}

@@ -1,0 +1,346 @@
+{
+  "rules": {
+    "ptp": [
+      {
+        "code1": "99214",
+        "code2": "93000",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "93000",
+        "code2": "99214",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "99214",
+        "code2": "85025",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "99214",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "99214",
+        "code2": "80061",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "80061",
+        "code2": "99214",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "99214",
+        "code2": "36415",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "99214",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "93000",
+        "code2": "85025",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "93000",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "93000",
+        "code2": "80061",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "80061",
+        "code2": "93000",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "93000",
+        "code2": "36415",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "93000",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "80061",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "80061",
+        "code2": "85025",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "85025",
+        "code2": "36415",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "85025",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "80061",
+        "code2": "36415",
+        "date": "2026-09-12",
+        "edits": []
+      },
+      {
+        "code1": "36415",
+        "code2": "80061",
+        "date": "2026-09-12",
+        "edits": []
+      }
+    ],
+    "mue": [
+      {
+        "code": "99214",
+        "mue": {
+          "code": "99214",
+          "mueValue": 2,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "Clinical: Data"
+        }
+      },
+      {
+        "code": "93000",
+        "mue": {
+          "code": "93000",
+          "mueValue": 3,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "Clinical: Data"
+        }
+      },
+      {
+        "code": "85025",
+        "mue": {
+          "code": "85025",
+          "mueValue": 2,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "Clinical: Data"
+        }
+      },
+      {
+        "code": "80061",
+        "mue": {
+          "code": "80061",
+          "mueValue": 1,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "Nature of Analyte"
+        }
+      },
+      {
+        "code": "36415",
+        "mue": {
+          "code": "36415",
+          "mueValue": 2,
+          "adjudicationIndicator": 3,
+          "adjudicationText": "Date of Service Edit: Clinical",
+          "rationale": "CMS Policy"
+        }
+      }
+    ],
+    "rate": [
+      {
+        "code": "99214",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "A",
+            "workRvuX100": 192,
+            "nonfacilityPeRvuX100": 200,
+            "facilityPeRvuX100": 47,
+            "malpracticeRvuX100": 14,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": false,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "93000",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "A",
+            "workRvuX100": 17,
+            "nonfacilityPeRvuX100": 27,
+            "facilityPeRvuX100": 27,
+            "malpracticeRvuX100": 2,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": true,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "85025",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "X",
+            "workRvuX100": 0,
+            "nonfacilityPeRvuX100": 0,
+            "facilityPeRvuX100": 0,
+            "malpracticeRvuX100": 0,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": false,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "80061",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "X",
+            "workRvuX100": 0,
+            "nonfacilityPeRvuX100": 0,
+            "facilityPeRvuX100": 0,
+            "malpracticeRvuX100": 0,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": false,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      },
+      {
+        "code": "36415",
+        "modifier": "",
+        "rate": {
+          "rvu": {
+            "statusCode": "X",
+            "workRvuX100": 0,
+            "nonfacilityPeRvuX100": 0,
+            "facilityPeRvuX100": 0,
+            "malpracticeRvuX100": 0,
+            "nonfacilityPeNa": false,
+            "facilityPeNa": false,
+            "conversionFactorX10000": 334009
+          },
+          "gpci": {
+            "workGpciNofloorX1000": 1041,
+            "peGpciX1000": 1183,
+            "mpGpciX1000": 664
+          }
+        }
+      }
+    ]
+  },
+  "poverty": {
+    "guidelineYear": 2026,
+    "rows": [
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 1,
+        "povertyLineCents": 1596000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 2,
+        "povertyLineCents": 2164000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 3,
+        "povertyLineCents": 2732000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 4,
+        "povertyLineCents": 3300000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 5,
+        "povertyLineCents": 3868000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 6,
+        "povertyLineCents": 4436000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 7,
+        "povertyLineCents": 5004000,
+        "perAdditionalPersonCents": 568000
+      },
+      {
+        "guidelineYear": 2026,
+        "region": "contiguous",
+        "householdSize": 8,
+        "povertyLineCents": 5572000,
+        "perAdditionalPersonCents": 568000
+      }
+    ]
+  }
+}
