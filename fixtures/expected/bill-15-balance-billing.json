@@ -1,0 +1,14 @@
+{
+  "bill": "bill-15-balance-billing.json",
+  "description": "EOB makes the patient responsible for $26.40 on 99214, but the bill charges the patient $114.40 (charge minus plan payment)",
+  "expectedFindings": [
+    {
+      "ruleId": "balance_billing",
+      "lineItemIds": [
+        "li-1"
+      ],
+      "amountAtStakeCents": 8800
+    }
+  ],
+  "notes": "amountAtStakeCents = patientOwesCents (11440) minus the EOB patientResponsibilityCents (2640). Every other line's patient amount equals its EOB patient responsibility."
+}

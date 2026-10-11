@@ -26,6 +26,7 @@ const RULE_IDS = [
   "price_outlier",
   "vague_charge",
   "denied_billed_in_full",
+  "balance_billing",
 ];
 
 const root = path.resolve(__dirname, "../fixtures");

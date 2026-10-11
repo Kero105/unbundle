@@ -9,7 +9,7 @@ const readJson = (...p: string[]) => JSON.parse(fs.readFileSync(path.join(root, 
 
 describe("synthetic bill fixtures", () => {
   it("has the expected number of bills", () => {
-    expect(billFiles).toHaveLength(14);
+    expect(billFiles).toHaveLength(16);
   });
 
   it("has no expected file without a bill", () => {

@@ -1,0 +1,6 @@
+{
+  "bill": "bill-16-trap-balance-billing-amounts-match.json",
+  "description": "Trap: an EOB is attached and every line charges the patient exactly the EOB patient responsibility, so nothing should fire",
+  "expectedFindings": [],
+  "notes": "Same shape as bill-15 with the patient amounts matching the EOB. Guards against flagging a normal copay/coinsurance bill."
+}

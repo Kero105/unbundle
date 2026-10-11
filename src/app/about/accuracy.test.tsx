@@ -119,7 +119,7 @@ describe("accuracy caveat", () => {
       expect(about.accuracy.caveat).toContain("{fixtures}");
       expect(about.accuracy.caveat).toContain("{traps}");
     }
-    expect(accuracy.fixtureCount).toBe(14);
-    expect(accuracy.trapFixtureCount).toBe(5);
+    expect(accuracy.fixtureCount).toBe(16);
+    expect(accuracy.trapFixtureCount).toBe(6);
   });
 });

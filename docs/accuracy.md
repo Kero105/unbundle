@@ -1,6 +1,6 @@
 # Accuracy
 
-Rule findings for 14 fixtures compared to their expected files, run through `runRules`
+Rule findings for 16 fixtures compared to their expected files, run through `runRules`
 with `createSupabaseLookups` against the real reference database.
 
 A finding counts as a true positive only when rule ID, line item IDs and amount at stake all match
@@ -17,7 +17,8 @@ false negative. Precision and recall are `n/a` where the denominator is zero.
 | price_outlier | 1 | 0 | 0 | 100.0% | 100.0% |
 | vague_charge | 1 | 0 | 0 | 100.0% | 100.0% |
 | denied_billed_in_full | 1 | 0 | 0 | 100.0% | 100.0% |
-| **overall** | 9 | 0 | 0 | 100.0% | 100.0% |
+| balance_billing | 1 | 0 | 0 | 100.0% | 100.0% |
+| **overall** | 10 | 0 | 0 | 100.0% | 100.0% |
 
 ## Mismatches
 

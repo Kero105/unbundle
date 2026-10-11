@@ -1,6 +1,6 @@
 {
-  "fixtureCount": 14,
-  "trapFixtureCount": 5,
+  "fixtureCount": 16,
+  "trapFixtureCount": 6,
   "rules": [
     {
       "ruleId": "duplicate_charge",
@@ -65,10 +65,18 @@
       "fn": 0,
       "precision": 1,
       "recall": 1
+    },
+    {
+      "ruleId": "balance_billing",
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1
     }
   ],
   "overall": {
-    "tp": 9,
+    "tp": 10,
     "fp": 0,
     "fn": 0,
     "precision": 1,
