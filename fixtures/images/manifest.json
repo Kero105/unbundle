@@ -1,0 +1,1437 @@
+{
+  "description": "Fictional bill images rendered from fixtures/bills. 'expected' is the ground-truth extraction for each file.",
+  "entries": [
+    {
+      "file": "bill-01-duplicate-charge.png",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-01-duplicate-charge",
+      "expected": {
+        "totalBilledCents": 43500,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "84443",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-01-duplicate-charge.pdf",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-01-duplicate-charge",
+      "expected": {
+        "totalBilledCents": 43500,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "84443",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-01-duplicate-charge.rotated.jpg",
+      "layout": "itemized",
+      "variant": "rotated",
+      "format": "jpg",
+      "pageCount": 1,
+      "note": "rotated 2.5 degrees on a gray desk",
+      "fixtureId": "bill-01-duplicate-charge",
+      "expected": {
+        "totalBilledCents": 43500,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "84443",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-02-math-error.png",
+      "layout": "summary",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-02-math-error",
+      "expected": {
+        "totalBilledCents": 81000,
+        "lineItems": [
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-01",
+            "units": 3,
+            "chargeCents": 32000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 15000
+          },
+          {
+            "code": "97530",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 19000
+          },
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-01",
+            "units": 1,
+            "chargeCents": 15000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-02-math-error.pdf",
+      "layout": "summary",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-02-math-error",
+      "expected": {
+        "totalBilledCents": 81000,
+        "lineItems": [
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-01",
+            "units": 3,
+            "chargeCents": 32000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 15000
+          },
+          {
+            "code": "97530",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 19000
+          },
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-01",
+            "units": 1,
+            "chargeCents": 15000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-02-math-error.lowres.jpg",
+      "layout": "summary",
+      "variant": "lowres",
+      "format": "jpg",
+      "pageCount": 1,
+      "note": "downscaled to about 520px wide",
+      "fixtureId": "bill-02-math-error",
+      "expected": {
+        "totalBilledCents": 81000,
+        "lineItems": [
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-01",
+            "units": 3,
+            "chargeCents": 32000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 15000
+          },
+          {
+            "code": "97530",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 19000
+          },
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-01",
+            "units": 1,
+            "chargeCents": 15000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-03-date-outside-range.png",
+      "layout": "twocolumn",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-03-date-outside-range",
+      "expected": {
+        "totalBilledCents": 53500,
+        "lineItems": [
+          {
+            "code": "99203",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 21000
+          },
+          {
+            "code": "73560",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 10000
+          },
+          {
+            "code": "73030",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 10500
+          },
+          {
+            "code": "29125",
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 12000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-03-date-outside-range.pdf",
+      "layout": "twocolumn",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-03-date-outside-range",
+      "expected": {
+        "totalBilledCents": 53500,
+        "lineItems": [
+          {
+            "code": "99203",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 21000
+          },
+          {
+            "code": "73560",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 10000
+          },
+          {
+            "code": "73030",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 10500
+          },
+          {
+            "code": "29125",
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 12000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-03-date-outside-range.jpeg-artifacts.jpg",
+      "layout": "twocolumn",
+      "variant": "jpeg-artifacts",
+      "format": "jpg",
+      "pageCount": 1,
+      "note": "heavy JPEG compression",
+      "fixtureId": "bill-03-date-outside-range",
+      "expected": {
+        "totalBilledCents": 53500,
+        "lineItems": [
+          {
+            "code": "99203",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 21000
+          },
+          {
+            "code": "73560",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 10000
+          },
+          {
+            "code": "73030",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 10500
+          },
+          {
+            "code": "29125",
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 12000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-04-ncci-unbundling.png",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-04-ncci-unbundling",
+      "expected": {
+        "totalBilledCents": 35100,
+        "lineItems": [
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 15000
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "80053",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5200
+          },
+          {
+            "code": "80048",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 3800
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 3800
+          },
+          {
+            "code": "84443",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-04-ncci-unbundling.pdf",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-04-ncci-unbundling",
+      "expected": {
+        "totalBilledCents": 35100,
+        "lineItems": [
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 15000
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "80053",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5200
+          },
+          {
+            "code": "80048",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 3800
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 3800
+          },
+          {
+            "code": "84443",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-04-ncci-unbundling.shadow.jpg",
+      "layout": "itemized",
+      "variant": "shadow",
+      "format": "jpg",
+      "pageCount": 1,
+      "note": "shadow gradient across the page",
+      "fixtureId": "bill-04-ncci-unbundling",
+      "expected": {
+        "totalBilledCents": 35100,
+        "lineItems": [
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 15000
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "80053",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5200
+          },
+          {
+            "code": "80048",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 3800
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 3800
+          },
+          {
+            "code": "84443",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-05-ncci-indicator1-no-modifier.png",
+      "layout": "summary",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-05-ncci-indicator1-no-modifier",
+      "expected": {
+        "totalBilledCents": 46800,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "20610",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 11000
+          },
+          {
+            "code": "73560",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 10000
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 3800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-05-ncci-indicator1-no-modifier.pdf",
+      "layout": "summary",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-05-ncci-indicator1-no-modifier",
+      "expected": {
+        "totalBilledCents": 46800,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "20610",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 11000
+          },
+          {
+            "code": "73560",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 10000
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 3800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-05-ncci-indicator1-no-modifier.phone-photo.jpg",
+      "layout": "summary",
+      "variant": "phone-photo",
+      "format": "jpg",
+      "pageCount": 1,
+      "note": "rotated, shadowed and compressed like a phone photo",
+      "fixtureId": "bill-05-ncci-indicator1-no-modifier",
+      "expected": {
+        "totalBilledCents": 46800,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "20610",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 11000
+          },
+          {
+            "code": "73560",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 10000
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-07",
+            "units": 1,
+            "chargeCents": 3800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-06-mue-exceeded.png",
+      "layout": "twocolumn",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-06-mue-exceeded",
+      "expected": {
+        "totalBilledCents": 110500,
+        "lineItems": [
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-02",
+            "units": 3,
+            "chargeCents": 24000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-02",
+            "units": 7,
+            "chargeCents": 52500
+          },
+          {
+            "code": "97530",
+            "dateOfService": "2026-10-02",
+            "units": 2,
+            "chargeCents": 19000
+          },
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 15000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-06-mue-exceeded.pdf",
+      "layout": "twocolumn",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-06-mue-exceeded",
+      "expected": {
+        "totalBilledCents": 110500,
+        "lineItems": [
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-02",
+            "units": 3,
+            "chargeCents": 24000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-02",
+            "units": 7,
+            "chargeCents": 52500
+          },
+          {
+            "code": "97530",
+            "dateOfService": "2026-10-02",
+            "units": 2,
+            "chargeCents": 19000
+          },
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 15000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-07-price-outlier.png",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-07-price-outlier",
+      "expected": {
+        "totalBilledCents": 79100,
+        "lineItems": [
+          {
+            "code": "99284",
+            "dateOfService": "2026-10-04",
+            "units": 1,
+            "chargeCents": 36000
+          },
+          {
+            "code": "71046",
+            "dateOfService": "2026-10-04",
+            "units": 1,
+            "chargeCents": 32500
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-04",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-04",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-04",
+            "units": 1,
+            "chargeCents": 3800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-07-price-outlier.pdf",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-07-price-outlier",
+      "expected": {
+        "totalBilledCents": 79100,
+        "lineItems": [
+          {
+            "code": "99284",
+            "dateOfService": "2026-10-04",
+            "units": 1,
+            "chargeCents": 36000
+          },
+          {
+            "code": "71046",
+            "dateOfService": "2026-10-04",
+            "units": 1,
+            "chargeCents": 32500
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-04",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-04",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-04",
+            "units": 1,
+            "chargeCents": 3800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-08-vague-charge.png",
+      "layout": "summary",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-08-vague-charge",
+      "expected": {
+        "totalBilledCents": 39800,
+        "lineItems": [
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 15000
+          },
+          {
+            "code": "87880",
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 4500
+          },
+          {
+            "code": "81002",
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": null,
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 18500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-08-vague-charge.pdf",
+      "layout": "summary",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-08-vague-charge",
+      "expected": {
+        "totalBilledCents": 39800,
+        "lineItems": [
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 15000
+          },
+          {
+            "code": "87880",
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 4500
+          },
+          {
+            "code": "81002",
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": null,
+            "dateOfService": "2026-10-06",
+            "units": 1,
+            "chargeCents": 18500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-09-denied-billed-in-full.png",
+      "layout": "twocolumn",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-09-denied-billed-in-full",
+      "expected": {
+        "totalBilledCents": 43500,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "73030",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 10500
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 1800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-09-denied-billed-in-full.pdf",
+      "layout": "twocolumn",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-09-denied-billed-in-full",
+      "expected": {
+        "totalBilledCents": 43500,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "73030",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 10500
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-02",
+            "units": 1,
+            "chargeCents": 1800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-10-trap-ptp-modifier-59.png",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-10-trap-ptp-modifier-59",
+      "expected": {
+        "totalBilledCents": 33600,
+        "lineItems": [
+          {
+            "code": "96365",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 19000
+          },
+          {
+            "code": "96372",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 4500
+          },
+          {
+            "code": "96375",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 4500
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 3800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-10-trap-ptp-modifier-59.pdf",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-10-trap-ptp-modifier-59",
+      "expected": {
+        "totalBilledCents": 33600,
+        "lineItems": [
+          {
+            "code": "96365",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 19000
+          },
+          {
+            "code": "96372",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 4500
+          },
+          {
+            "code": "96375",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 4500
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-05",
+            "units": 1,
+            "chargeCents": 3800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-11-trap-mue-at-limit.png",
+      "layout": "summary",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-11-trap-mue-at-limit",
+      "expected": {
+        "totalBilledCents": 97000,
+        "lineItems": [
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-01",
+            "units": 6,
+            "chargeCents": 48000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 15000
+          },
+          {
+            "code": "97530",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 19000
+          },
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-01",
+            "units": 1,
+            "chargeCents": 15000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-11-trap-mue-at-limit.pdf",
+      "layout": "summary",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-11-trap-mue-at-limit",
+      "expected": {
+        "totalBilledCents": 97000,
+        "lineItems": [
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-01",
+            "units": 6,
+            "chargeCents": 48000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 15000
+          },
+          {
+            "code": "97530",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 19000
+          },
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-01",
+            "units": 1,
+            "chargeCents": 15000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-12-trap-price-exactly-4x.png",
+      "layout": "twocolumn",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-12-trap-price-exactly-4x",
+      "expected": {
+        "totalBilledCents": 27808,
+        "lineItems": [
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 15000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 6808
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 1800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-12-trap-price-exactly-4x.pdf",
+      "layout": "twocolumn",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-12-trap-price-exactly-4x",
+      "expected": {
+        "totalBilledCents": 27808,
+        "lineItems": [
+          {
+            "code": "99213",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 15000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 6808
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-08",
+            "units": 1,
+            "chargeCents": 1800
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-13-clean-office-visit.png",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-13-clean-office-visit",
+      "expected": {
+        "totalBilledCents": 42300,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 3800
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "84443",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-13-clean-office-visit.pdf",
+      "layout": "itemized",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-13-clean-office-visit",
+      "expected": {
+        "totalBilledCents": 42300,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 3800
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "84443",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-13-clean-office-visit.2page.pdf",
+      "layout": "twopage",
+      "variant": "two-page",
+      "format": "pdf",
+      "pageCount": 2,
+      "note": "summary on page 1, itemized detail on page 2",
+      "fixtureId": "bill-13-clean-office-visit",
+      "expected": {
+        "totalBilledCents": 42300,
+        "lineItems": [
+          {
+            "code": "99214",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 22000
+          },
+          {
+            "code": "93000",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5000
+          },
+          {
+            "code": "85025",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 3800
+          },
+          {
+            "code": "80061",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 4200
+          },
+          {
+            "code": "36415",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 1800
+          },
+          {
+            "code": "84443",
+            "dateOfService": "2026-10-03",
+            "units": 1,
+            "chargeCents": 5500
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-14-clean-pt-multiday.png",
+      "layout": "summary",
+      "variant": "clean",
+      "format": "png",
+      "pageCount": 1,
+      "fixtureId": "bill-14-clean-pt-multiday",
+      "expected": {
+        "totalBilledCents": 113000,
+        "lineItems": [
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-01",
+            "units": 3,
+            "chargeCents": 24000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 15000
+          },
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-04",
+            "units": 3,
+            "chargeCents": 24000
+          },
+          {
+            "code": "97530",
+            "dateOfService": "2026-10-04",
+            "units": 2,
+            "chargeCents": 19000
+          },
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-08",
+            "units": 2,
+            "chargeCents": 16000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-08",
+            "units": 2,
+            "chargeCents": 15000
+          }
+        ]
+      }
+    },
+    {
+      "file": "bill-14-clean-pt-multiday.pdf",
+      "layout": "summary",
+      "variant": "clean",
+      "format": "pdf",
+      "pageCount": 1,
+      "fixtureId": "bill-14-clean-pt-multiday",
+      "expected": {
+        "totalBilledCents": 113000,
+        "lineItems": [
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-01",
+            "units": 3,
+            "chargeCents": 24000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-01",
+            "units": 2,
+            "chargeCents": 15000
+          },
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-04",
+            "units": 3,
+            "chargeCents": 24000
+          },
+          {
+            "code": "97530",
+            "dateOfService": "2026-10-04",
+            "units": 2,
+            "chargeCents": 19000
+          },
+          {
+            "code": "97110",
+            "dateOfService": "2026-10-08",
+            "units": 2,
+            "chargeCents": 16000
+          },
+          {
+            "code": "97140",
+            "dateOfService": "2026-10-08",
+            "units": 2,
+            "chargeCents": 15000
+          }
+        ]
+      }
+    }
+  ]
+}

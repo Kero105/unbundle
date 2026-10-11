@@ -11,7 +11,9 @@
     "accuracy": "tsx scripts/accuracy.ts",
     "check:live": "tsx scripts/check-fixtures-live.ts",
     "check:contrast": "tsx scripts/check-contrast.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "make:bill-images": "tsx scripts/make-bill-images.ts",
+    "eval:extraction": "tsx scripts/extraction-eval.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.133.0",
