@@ -39,6 +39,7 @@ import {
   parseUnits,
   type ParseResult,
 } from "./fields";
+import { isExplainableCode } from "@/lib/explain/validate";
 import { ExplainDisclosure } from "./explain-disclosure";
 import { SourcePanel, type PanelSource } from "./source-panel";
 
@@ -514,12 +515,12 @@ export function ReviewTable({
                         </div>
                       </TableCell>
                     </TableRow>
-                    {item.code?.trim() ? (
+                    {isExplainableCode(item.code) ? (
                       <TableRow className="bg-card hover:bg-card max-lg:block max-lg:border-0">
                         <TableCell colSpan={COLUMN_COUNT} className="pt-0 pb-3 max-lg:p-0 max-lg:pb-2">
                           <ExplainDisclosure
-                            key={item.code}
-                            code={item.code.trim()}
+                            key={item.code!}
+                            code={item.code!.trim().toUpperCase()}
                             demo={demo}
                             row={row}
                           />

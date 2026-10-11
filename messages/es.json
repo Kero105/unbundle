@@ -952,8 +952,7 @@
     "generic": {
       "cpt": "Este es un código CPT, un código de cinco caracteres que los consultorios médicos usan para nombrar un procedimiento o servicio específico, como una consulta, un análisis o un tratamiento. El código en su factura le indica al consultorio y a su aseguradora qué servicio se cobró.",
       "hcpcs": "Este es un código HCPCS. Los códigos que empiezan con una letra suelen usarse para suministros, medicamentos, equipo o servicios que no están en los códigos de procedimiento principales. Le indica a su aseguradora qué artículo o servicio se cobró.",
-      "revenue": "Este es un código de ingresos. Los hospitales usan estos códigos de cuatro dígitos para indicar a qué departamento o tipo de servicio pertenece un cargo, como la sala de emergencias, el laboratorio o la farmacia.",
-      "drg": "Este es un código DRG. Los hospitales lo usan para agrupar una estadía completa según el diagnóstico y el tratamiento, así que un solo código puede representar muchos servicios durante la estadía."
+      "other": "Este es un código de facturación de cinco caracteres que el proveedor usó para un servicio, suministro o artículo. El código en su factura le indica al consultorio y a su aseguradora qué se cobró, pero no podemos decirle más solo por su formato."
     }
   },
   "Settings": {

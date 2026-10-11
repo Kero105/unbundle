@@ -5,7 +5,8 @@
 --   1. code_explanations: a shared cache of model-written, general
 --      explanations per billing code and language. Holds NO user data. RLS is
 --      on; authenticated users can only select. There are no insert, update
---      or delete policies, so rows can only be written with the service role.
+--      or delete policies, so rows can only be written with the service role,
+--      which only `npm run explain:prefill` (local, offline) does.
 --   2. extraction_runs.kind + claim_explanation(): explanations draw from the
 --      same per-user hourly budget table as extraction, so one user cannot
 --      spend more than a fixed number of paid model calls per hour in total.
@@ -17,7 +18,7 @@
 -- ---------------------------------------------------------------------------
 
 create table code_explanations (
-  code text not null check (code ~ '^[0-9A-Z]{3,5}$'),
+  code text not null check (code ~ '^[0-9A-Z]{5}$'),
   language text not null check (language in ('en', 'es')),
   text text not null check (char_length(text) between 20 and 600),
   created_at timestamptz not null default now(),

@@ -952,8 +952,7 @@
     "generic": {
       "cpt": "This is a CPT code, a five-character code that medical offices use to name a specific procedure or service, such as a visit, a test, or a treatment. The code on your bill tells the office and your insurer which service was billed.",
       "hcpcs": "This is a HCPCS code. Codes that start with a letter are often used for supplies, drugs, equipment, or services that are not covered by the main procedure codes. It tells your insurer which item or service was billed.",
-      "revenue": "This is a revenue code. Hospitals use these four-digit codes to say which department or type of service a charge belongs to, such as the emergency room, the lab, or pharmacy.",
-      "drg": "This is a DRG code. Hospitals use it to group a whole hospital stay by diagnosis and treatment, so one code can stand for many services during the stay."
+      "other": "This is a five-character billing code that the provider used for a service, supply, or item. The code on your bill tells the office and your insurer what was billed, but we can't tell you more from the format alone."
     }
   },
   "Settings": {
