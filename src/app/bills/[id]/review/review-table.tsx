@@ -39,6 +39,7 @@ import {
   parseUnits,
   type ParseResult,
 } from "./fields";
+import { ExplainDisclosure } from "./explain-disclosure";
 import { SourcePanel, type PanelSource } from "./source-panel";
 
 type FieldInputProps<T> = {
@@ -513,6 +514,18 @@ export function ReviewTable({
                         </div>
                       </TableCell>
                     </TableRow>
+                    {item.code?.trim() ? (
+                      <TableRow className="bg-card hover:bg-card max-lg:block max-lg:border-0">
+                        <TableCell colSpan={COLUMN_COUNT} className="pt-0 pb-3 max-lg:p-0 max-lg:pb-2">
+                          <ExplainDisclosure
+                            key={item.code}
+                            code={item.code.trim()}
+                            demo={demo}
+                            row={row}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    ) : null}
                     {attention ? (
                       <TableRow className={cn(
                           "max-lg:hidden bg-warning-surface hover:bg-warning-surface lg:[&>td:first-child]:shadow-[inset_4px_0_0_var(--warning-border)]",

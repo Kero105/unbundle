@@ -553,7 +553,7 @@
     "submitPending": "Comenzando…",
     "privacy": {
       "title": "Sus archivos son privados",
-      "body": "Solo su cuenta puede abrir sus archivos en Unbundle. Las fotos se reducen de tamaño en su navegador antes de subirse. Para leer el texto de su factura, enviamos sus archivos a la API de Anthropic, y solo para eso. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Puede eliminar una factura cuando quiera: se borran sus archivos guardados y los datos que leímos de ellos.",
+      "body": "Solo su cuenta puede abrir sus archivos en Unbundle. Las fotos se reducen de tamaño en su navegador antes de subirse. Para leer el texto de su factura, enviamos sus archivos a la API de Anthropic. Lo único más que enviamos es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Puede eliminar una factura cuando quiera: se borran sus archivos guardados y los datos que leímos de ellos.",
       "more": "Lea la política de privacidad completa"
     },
     "progress": {
@@ -637,7 +637,7 @@
       "title": "En resumen",
       "files": "Sus archivos se guardan en una carpeta privada que solo su cuenta puede leer, modificar o eliminar.",
       "browser": "Las fotos se reducen de tamaño en su navegador antes de subirlas.",
-      "anthropic": "Sus archivos se envían a la API de Anthropic solo para que se pueda leer su factura. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos y los datos de la API se eliminan en un plazo de 30 días. Esos son los términos de Anthropic, no los nuestros.",
+      "anthropic": "Sus archivos se envían a la API de Anthropic para que se pueda leer su factura. Lo único más que se envía es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos y los datos de la API se eliminan en un plazo de 30 días. Esos son los términos de Anthropic, no los nuestros.",
       "delete": "Al eliminar una factura, se borran de nuestro almacenamiento la factura, sus partidas y los archivos subidos.",
       "sell": "Nunca vendemos su información."
     },
@@ -657,7 +657,7 @@
     },
     "anthropic": {
       "title": "Cómo participa Anthropic",
-      "body": "Para leer el texto de su factura, nuestro servidor envía los archivos que usted sube a Claude, un modelo de IA creado por Anthropic, a través de la API de Anthropic. Anthropic procesa las imágenes para leerlas y devuelve las partidas. El modelo solo lee lo que está impreso; no decide si un cobro es incorrecto. Esas revisiones las hacen reglas fijas de nuestro propio código. Los términos comerciales publicados por Anthropic indican que la empresa no puede entrenar sus modelos con el contenido de clientes enviado a través de sus servicios, y su política de datos de la API indica que, de forma predeterminada, elimina automáticamente de sus sistemas las entradas y salidas de la API en un plazo de 30 días, salvo cuando el contenido se marca por infringir su política de uso o cuando la ley le exige conservarlo por más tiempo. Esos son los términos de Anthropic, no los nuestros, y pueden cambiar; consulte la <link>política de retención de Anthropic</link>. Nuestra clave de API se mantiene en el servidor y nunca se envía a su navegador."
+      "body": "Para leer el texto de su factura, nuestro servidor envía los archivos que usted sube a Claude, un modelo de IA creado por Anthropic, a través de la API de Anthropic. Anthropic procesa las imágenes para leerlas y devuelve las partidas. El modelo solo lee lo que está impreso; no decide si un cobro es incorrecto. Esas revisiones las hacen reglas fijas de nuestro propio código. Los términos comerciales publicados por Anthropic indican que la empresa no puede entrenar sus modelos con el contenido de clientes enviado a través de sus servicios, y su política de datos de la API indica que, de forma predeterminada, elimina automáticamente de sus sistemas las entradas y salidas de la API en un plazo de 30 días, salvo cuando el contenido se marca por infringir su política de uso o cuando la ley le exige conservarlo por más tiempo. Esos son los términos de Anthropic, no los nuestros, y pueden cambiar; consulte la <link>política de retención de Anthropic</link>. Si abre «¿Qué es esto?» en una fila, solo se envía el código de facturación de esa fila (por ejemplo, 99213) para obtener una explicación general, nunca su nombre, fechas ni montos. Nuestra clave de API se mantiene en el servidor y nunca se envía a su navegador."
     },
     "kept": {
       "title": "Dónde se guarda",
@@ -876,5 +876,23 @@
     },
     "og": "Revise su factura médica con las reglas públicas de Medicare.",
     "ogAlt": "Unbundle: revise su factura médica con las reglas públicas de Medicare."
+  },
+  "Explain": {
+    "summary": "¿Qué es esto?",
+    "summaryRow": "¿Qué es esto? Fila {row}",
+    "loading": "Buscando la información…",
+    "disclaimer": "Explicación general, no sobre su atención específica.",
+    "errors": {
+      "failed": "No pudimos cargar una explicación en este momento. Puede intentarlo de nuevo cerrando y volviendo a abrir esto.",
+      "rateLimited": "Ha pedido muchas explicaciones en poco tiempo. Inténtelo de nuevo en un rato.",
+      "signedOut": "Vuelva a iniciar sesión para ver las explicaciones.",
+      "unavailable": "Las explicaciones no están disponibles por ahora."
+    },
+    "generic": {
+      "cpt": "Este es un código CPT, un código de cinco caracteres que los consultorios médicos usan para nombrar un procedimiento o servicio específico, como una consulta, un análisis o un tratamiento. El código en su factura le indica al consultorio y a su aseguradora qué servicio se cobró.",
+      "hcpcs": "Este es un código HCPCS. Los códigos que empiezan con una letra suelen usarse para suministros, medicamentos, equipo o servicios que no están en los códigos de procedimiento principales. Le indica a su aseguradora qué artículo o servicio se cobró.",
+      "revenue": "Este es un código de ingresos. Los hospitales usan estos códigos de cuatro dígitos para indicar a qué departamento o tipo de servicio pertenece un cargo, como la sala de emergencias, el laboratorio o la farmacia.",
+      "drg": "Este es un código DRG. Los hospitales lo usan para agrupar una estadía completa según el diagnóstico y el tratamiento, así que un solo código puede representar muchos servicios durante la estadía."
+    }
   }
 }

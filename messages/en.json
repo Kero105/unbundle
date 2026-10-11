@@ -553,7 +553,7 @@
     "submitPending": "Starting…",
     "privacy": {
       "title": "Your files are private",
-      "body": "Only your account can open your files in Unbundle. Photos are resized in your browser before they upload. To read the text on your bill, we send your files to Anthropic's API, and for nothing else. Anthropic's published terms say your bills aren't used to train its models by default. You can delete a bill at any time, which removes its stored files and the data we read from them.",
+      "body": "Only your account can open your files in Unbundle. Photos are resized in your browser before they upload. To read the text on your bill, we send your files to Anthropic's API. The only other thing we send is a single billing code, and only if you open “What is this?” on a line. Anthropic's published terms say your bills aren't used to train its models by default. You can delete a bill at any time, which removes its stored files and the data we read from them.",
       "more": "Read the full privacy policy"
     },
     "progress": {
@@ -637,7 +637,7 @@
       "title": "In short",
       "files": "Your files are stored in a private folder that only your account can read, write or delete.",
       "browser": "Photos are resized in your browser before they are uploaded.",
-      "anthropic": "Your files are sent to Anthropic's API only so your bill can be read. Anthropic's published terms say that, by default, your bills aren't used to train its models and API data is deleted within 30 days. Those are Anthropic's terms, not ours.",
+      "anthropic": "Your files are sent to Anthropic's API so your bill can be read. The only other thing sent is a single billing code, and only if you open “What is this?” on a line. Anthropic's published terms say that, by default, your bills aren't used to train its models and API data is deleted within 30 days. Those are Anthropic's terms, not ours.",
       "delete": "Deleting a bill removes the bill, its line items and the uploaded files from our storage.",
       "sell": "We never sell your information."
     },
@@ -657,7 +657,7 @@
     },
     "anthropic": {
       "title": "How Anthropic is involved",
-      "body": "To read the text on your bill, our server sends your uploaded files to Claude, an AI model made by Anthropic, through Anthropic's API. Anthropic processes the images to read them and returns the line items. The model only reads what is printed; it does not decide whether a charge is wrong. Those checks are run by fixed rules in our own code. Anthropic's published commercial terms say it may not train its models on customer content sent through its services, and its API data policy says that, by default, it automatically deletes API inputs and outputs from its systems within 30 days, except where content is flagged for violating its usage policy or the law requires it to keep it longer. Those are Anthropic's terms, not ours, and they can change; see <link>Anthropic's retention policy</link>. Our API key is kept on the server and never sent to your browser."
+      "body": "To read the text on your bill, our server sends your uploaded files to Claude, an AI model made by Anthropic, through Anthropic's API. Anthropic processes the images to read them and returns the line items. The model only reads what is printed; it does not decide whether a charge is wrong. Those checks are run by fixed rules in our own code. Anthropic's published commercial terms say it may not train its models on customer content sent through its services, and its API data policy says that, by default, it automatically deletes API inputs and outputs from its systems within 30 days, except where content is flagged for violating its usage policy or the law requires it to keep it longer. Those are Anthropic's terms, not ours, and they can change; see <link>Anthropic's retention policy</link>. If you open “What is this?” on a line, only that line's billing code (for example, 99213) is sent for a general explanation, never your name, dates, or amounts. Our API key is kept on the server and never sent to your browser."
     },
     "kept": {
       "title": "Where it is kept",
@@ -876,5 +876,23 @@
     },
     "og": "Check your medical bill against public Medicare rules.",
     "ogAlt": "Unbundle: check your medical bill against public Medicare rules."
+  },
+  "Explain": {
+    "summary": "What is this?",
+    "summaryRow": "What is this? Row {row}",
+    "loading": "Looking this up…",
+    "disclaimer": "General explanation, not about your specific care.",
+    "errors": {
+      "failed": "We couldn't load an explanation right now. You can try again by closing and reopening this.",
+      "rateLimited": "You've asked for a lot of explanations in a short time. Please try again in a little while.",
+      "signedOut": "Please sign in again to see explanations.",
+      "unavailable": "Explanations are not available right now."
+    },
+    "generic": {
+      "cpt": "This is a CPT code, a five-character code that medical offices use to name a specific procedure or service, such as a visit, a test, or a treatment. The code on your bill tells the office and your insurer which service was billed.",
+      "hcpcs": "This is a HCPCS code. Codes that start with a letter are often used for supplies, drugs, equipment, or services that are not covered by the main procedure codes. It tells your insurer which item or service was billed.",
+      "revenue": "This is a revenue code. Hospitals use these four-digit codes to say which department or type of service a charge belongs to, such as the emergency room, the lab, or pharmacy.",
+      "drg": "This is a DRG code. Hospitals use it to group a whole hospital stay by diagnosis and treatment, so one code can stand for many services during the stay."
+    }
   }
 }
