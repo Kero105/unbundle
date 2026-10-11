@@ -14,6 +14,7 @@ import { loadFindings, stepHref, type BillSource } from "@/lib/bills/source";
 import { formatCents } from "@/lib/money";
 import type { Confidence, Severity } from "@/lib/types";
 import { PrintButton } from "@/components/print-button";
+import { EobReconciliation } from "./eob-reconciliation-view";
 import { NextSteps } from "./next-steps";
 import { buildReport, whyKey, type ReportFinding } from "./report-model";
 
@@ -163,6 +164,8 @@ export async function ReportView({ source }: { source: BillSource }) {
           </section>
         </>
       )}
+
+      <EobReconciliation bill={bill} />
 
       <NextSteps letterHref={`${stepHref(source, "letter")}?type=itemized`} />
 
