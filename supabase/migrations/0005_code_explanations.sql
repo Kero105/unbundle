@@ -140,3 +140,6 @@ begin
   return 'claimed';
 end;
 $$;
+
+revoke all on function public.claim_extraction(uuid) from public, anon;
+grant execute on function public.claim_extraction(uuid) to authenticated;
