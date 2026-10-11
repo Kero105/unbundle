@@ -12,7 +12,8 @@
     "promise": "Anthropic's published terms say your bills aren't used to train its models by default, and you can delete them anytime.",
     "notAdvice": "Not legal or medical advice.",
     "about": "About",
-    "settings": "Settings"
+    "settings": "Settings",
+    "help": "Help"
   },
   "Home": {
     "title": "Think your hospital bill is wrong? Check it in minutes.",
@@ -931,6 +932,10 @@
     "settings": {
       "title": "Settings | Unbundle",
       "description": "Your account, language, and options for deleting your bills or your account."
+    },
+    "help": {
+      "title": "Help and common questions | Unbundle",
+      "description": "Plain answers about what Unbundle does, how accurate it is, how your information is handled, and what to do if you are uninsured."
     }
   },
   "Explain": {
@@ -984,6 +989,49 @@
       "cancel": "Cancel",
       "billsError": "We couldn't delete everything. Nothing about your account changed. Please try again.",
       "accountError": "We couldn't finish deleting your account. If some of your data was removed, please try again."
+    }
+  },
+  "Help": {
+    "title": "Help and common questions",
+    "subtitle": "Plain answers to what people ask most.",
+    "listLabel": "Common questions",
+    "links": {
+      "about": "How the checks work and how we tested them",
+      "privacy": "Read the full privacy policy"
+    },
+    "faqs": {
+      "legal": {
+        "q": "Is this legal advice?",
+        "a": "No. Unbundle is not legal or medical advice. It points out charges that may be worth asking about, using fixed checks built on public Medicare rules. A findings list is a reason to ask the billing office a question, not proof of a mistake. For advice about your rights, a lawyer or a patient advocate can help."
+      },
+      "bills": {
+        "q": "What kinds of bills does it work on?",
+        "a": "Itemized bills and statements from doctors' offices, clinics, and other providers, as a photo or a PDF. The price and quantity checks use Medicare's physician fee schedule for Los Angeles, so they fit services on that schedule best. Hospital facility charges, such as a room fee, are outside what the price checks cover. A bill with one lump sum and no line items can't be checked, so ask the billing office for an itemized bill first."
+      },
+      "accuracy": {
+        "q": "How accurate is it?",
+        "a": "We ran the checks against {fixtures} made-up test bills, including {traps} designed to catch false alarms, and they behaved as designed. Real bills are messier, so some problems will be missed and some flags will turn out to be fine. That is why every finding says what to ask rather than what is wrong."
+      },
+      "privacy": {
+        "q": "Is my information private?",
+        "a": "Your files are kept in a private folder that only your account can open. To read your bill, we send your files to Anthropic's API; Anthropic's published terms say that, by default, your bills aren't used to train its models. You can delete a bill, all your bills, or your whole account from Settings at any time."
+      },
+      "cost": {
+        "q": "How much does it cost?",
+        "a": "Unbundle is free to use, including the report and the letter."
+      },
+      "eob": {
+        "q": "What is an EOB?",
+        "a": "An Explanation of Benefits is a statement from your insurance company. It is not a bill. It shows what the provider charged, what your plan allowed and paid, and what you may owe. If you add one when you upload, Unbundle compares it with your bill."
+      },
+      "unbundling": {
+        "q": "What is unbundling?",
+        "a": "Some services are meant to be billed together as one charge. Unbundling is billing the pieces separately, which can add up to more. Medicare publishes pairs of codes that normally should not be billed together, and Unbundle flags those pairs so you can ask why they were split."
+      },
+      "uninsured": {
+        "q": "What if I don't have insurance?",
+        "a": "Ask for an itemized bill and for the provider's financial assistance policy and application, since many hospitals reduce bills based on income. If you were given a Good Faith Estimate before your care, you can compare it with your bill in the financial help step. You can also ask about prompt-pay discounts and payment plans, and ask that your account not go to collections while it is reviewed."
+      }
     }
   }
 }

@@ -14,7 +14,8 @@ export type MetaKey =
   | "authError"
   | "privacy"
   | "terms"
-  | "about";
+  | "about"
+  | "help";
 
 /** Title and description for a route, in the request locale. */
 export async function routeMetadata(key: MetaKey): Promise<Metadata> {

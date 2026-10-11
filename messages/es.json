@@ -12,7 +12,8 @@
     "promise": "Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos, y puede eliminarlas en cualquier momento.",
     "notAdvice": "No es asesoría legal ni médica.",
     "about": "Acerca de",
-    "settings": "Configuración"
+    "settings": "Configuración",
+    "help": "Ayuda"
   },
   "Home": {
     "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
@@ -931,6 +932,10 @@
     "settings": {
       "title": "Configuración | Unbundle",
       "description": "Su cuenta, su idioma y las opciones para eliminar sus facturas o su cuenta."
+    },
+    "help": {
+      "title": "Ayuda y preguntas frecuentes | Unbundle",
+      "description": "Respuestas sencillas sobre lo que hace Unbundle, qué tan preciso es, cómo se maneja su información y qué hacer si no tiene seguro."
     }
   },
   "Explain": {
@@ -984,6 +989,49 @@
       "cancel": "Cancelar",
       "billsError": "No pudimos eliminar todo. Nada cambió en su cuenta. Inténtelo de nuevo.",
       "accountError": "No pudimos terminar de eliminar su cuenta. Si se eliminaron algunos de sus datos, inténtelo de nuevo."
+    }
+  },
+  "Help": {
+    "title": "Ayuda y preguntas frecuentes",
+    "subtitle": "Respuestas sencillas a lo que más preguntan las personas.",
+    "listLabel": "Preguntas frecuentes",
+    "links": {
+      "about": "Cómo funcionan las revisiones y cómo las probamos",
+      "privacy": "Leer la política de privacidad completa"
+    },
+    "faqs": {
+      "legal": {
+        "q": "¿Esto es asesoría legal?",
+        "a": "No. Unbundle no ofrece asesoría legal ni médica. Señala cargos sobre los que puede valer la pena preguntar, usando revisiones fijas basadas en reglas públicas de Medicare. Una lista de hallazgos es un motivo para hacerle una pregunta a la oficina de facturación, no una prueba de un error. Para asesoría sobre sus derechos, puede ayudarle un abogado o un defensor del paciente."
+      },
+      "bills": {
+        "q": "¿Con qué tipos de facturas funciona?",
+        "a": "Facturas detalladas y estados de cuenta de consultorios médicos, clínicas y otros proveedores, en foto o en PDF. Las revisiones de precios y cantidades usan la lista de tarifas de médicos de Medicare para Los Ángeles, así que se ajustan mejor a los servicios de esa lista. Los cargos de instalaciones de un hospital, como la habitación, quedan fuera de lo que cubren las revisiones de precios. Una factura con un solo monto total y sin filas no se puede revisar, así que pida primero una factura detallada a la oficina de facturación."
+      },
+      "accuracy": {
+        "q": "¿Qué tan preciso es?",
+        "a": "Ejecutamos las revisiones con {fixtures} facturas de prueba inventadas, {traps} de ellas diseñadas para detectar falsas alarmas, y se comportaron como se diseñaron. Las facturas reales son más desordenadas, así que algunos problemas se pasarán por alto y algunas señales resultarán estar bien. Por eso cada hallazgo dice qué preguntar y no qué está mal."
+      },
+      "privacy": {
+        "q": "¿Mi información es privada?",
+        "a": "Sus archivos se guardan en una carpeta privada que solo su cuenta puede abrir. Para leer su factura, enviamos sus archivos a la API de Anthropic; según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Puede eliminar una factura, todas sus facturas o toda su cuenta desde Configuración en cualquier momento."
+      },
+      "cost": {
+        "q": "¿Cuánto cuesta?",
+        "a": "Unbundle es gratis, incluidos el informe y la carta."
+      },
+      "eob": {
+        "q": "¿Qué es una EOB?",
+        "a": "Una Explicación de Beneficios es un estado de cuenta de su compañía de seguros. No es una factura. Muestra lo que cobró el proveedor, lo que su plan permitió y pagó, y lo que usted podría deber. Si la agrega al subir su factura, Unbundle la compara con ella."
+      },
+      "unbundling": {
+        "q": "¿Qué es el desglose indebido (unbundling)?",
+        "a": "Algunos servicios deben cobrarse juntos como un solo cargo. El desglose indebido es cobrar las partes por separado, lo que puede sumar más. Medicare publica pares de códigos que normalmente no deben cobrarse juntos, y Unbundle señala esos pares para que usted pueda preguntar por qué se separaron."
+      },
+      "uninsured": {
+        "q": "¿Qué hago si no tengo seguro?",
+        "a": "Pida una factura detallada y la política de asistencia financiera del proveedor con su solicitud, ya que muchos hospitales reducen las facturas según los ingresos. Si le dieron una Estimación de Buena Fe antes de su atención, puede compararla con su factura en el paso de ayuda financiera. También puede preguntar por descuentos por pago rápido y planes de pago, y pedir que su cuenta no pase a cobranza mientras se revisa."
+      }
     }
   }
 }

@@ -15,6 +15,11 @@ export async function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/help" className="font-medium underline underline-offset-4 hover:no-underline">
+                {t("help")}
+              </Link>
+            </li>
+            <li>
               <Link href="/privacy" className="font-medium underline underline-offset-4 hover:no-underline">
                 {t("privacy")}
               </Link>
