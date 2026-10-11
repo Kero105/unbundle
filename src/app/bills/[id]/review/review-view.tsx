@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { BillSteps } from "@/components/bill-steps";
 import { DeleteBillButton } from "@/components/delete-bill-button";
 import { summarizeConfidence } from "@/lib/bills/extraction-confidence";
+import { getSourceFileForBill } from "@/lib/bills/source-file-server";
 import { ReviewTable } from "./review-table";
 
 // The request locale is request-time data, so callers render this inside
@@ -22,6 +23,14 @@ export async function ReviewView({ source }: { source: BillSource }) {
   const [locale, t] = await Promise.all([getLocale(), getTranslations("Review")]);
 
   const confidence = summarizeConfidence(bill.lineItems);
+
+  // Signed per request with the user-scoped client; never cached or stored.
+  const panelSource =
+    source.kind === "demo"
+      ? ({ kind: "demo" } as const)
+      : persisted
+        ? await getSourceFileForBill(source.id)
+        : ({ kind: "unavailable" } as const);
 
   return (
     <NextIntlClientProvider>
@@ -51,6 +60,7 @@ export async function ReviewView({ source }: { source: BillSource }) {
           reportHref={stepHref(source, "report")}
           demo={source.kind === "demo"}
           billId={persisted ? source.id : undefined}
+          source={panelSource}
         />
         {persisted ? (
           <div className="flex">

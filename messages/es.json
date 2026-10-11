@@ -194,8 +194,36 @@
     },
     "source": {
       "title": "Factura original",
-      "description": "Aquí aparecerá la parte de su factura de donde salió cada fila.",
-      "placeholder": "Aquí aparecerá su factura original"
+      "description": "Use el botón «Ver en la factura» de una fila para ver de dónde salió.",
+      "placeholder": "Aquí aparecerá su factura original",
+      "regionLabel": "Imagen de la factura original",
+      "imageAlt": "La factura que usted subió",
+      "demoAlt": "Una factura de muestra ficticia, página {page}",
+      "zoomIn": "Acercar",
+      "zoomOut": "Alejar",
+      "zoomReset": "Restablecer zoom",
+      "zoomLevel": "{percent} %",
+      "previousPage": "Página anterior",
+      "nextPage": "Página siguiente",
+      "pageOf": "Página {page} de {count}",
+      "keyboardHint": "Con la factura seleccionada, pulse + o − para acercar o alejar y 0 para restablecer.",
+      "showingRow": "Mostrando de dónde salió la fila {row}.",
+      "noBox": "No pudimos ubicar la fila {row} en su factura, así que no hay nada resaltado. Compárela con su factura por la descripción y el monto.",
+      "unavailable": "No pudimos cargar su factura original en este momento. Sus filas siguen a salvo; compárelas con su copia en papel.",
+      "pdfNote": "Su factura es un PDF, así que se abre en su propia pestaña. Deje esta página abierta para revisar cada fila.",
+      "openPdf": "Abrir su PDF original",
+      "linkExpires": "Este enlace funciona unos 5 minutos. Recargue esta página para obtener uno nuevo.",
+      "showOnBill": "Ver en la factura",
+      "showOnBillRow": "Ver la fila {row} en la factura original",
+      "demoNote": "Esta es una factura de muestra ficticia creada para la demostración. No es una factura real.",
+      "demo": {
+        "statement": "Estado de servicios",
+        "patient": "Paciente: Paciente de Muestra",
+        "account": "Cuenta: 000-SAMPLE",
+        "columnService": "Servicio",
+        "columnCharge": "Cargo",
+        "watermark": "MUESTRA – FICTICIA"
+      }
     },
     "empty": "No se encontraron partidas en esta factura.",
     "saveState": {

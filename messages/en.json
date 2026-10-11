@@ -194,8 +194,36 @@
     },
     "source": {
       "title": "Original bill",
-      "description": "The part of your bill each row came from will appear here.",
-      "placeholder": "Your original bill will appear here"
+      "description": "Select a row’s “Show on bill” button to see where it came from.",
+      "placeholder": "Your original bill will appear here",
+      "regionLabel": "Original bill image",
+      "imageAlt": "The bill you uploaded",
+      "demoAlt": "A fictional sample bill, page {page}",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "zoomReset": "Reset zoom",
+      "zoomLevel": "{percent}%",
+      "previousPage": "Previous page",
+      "nextPage": "Next page",
+      "pageOf": "Page {page} of {count}",
+      "keyboardHint": "With the bill focused, press + or − to zoom and 0 to reset.",
+      "showingRow": "Showing where row {row} came from.",
+      "noBox": "We couldn’t pinpoint where row {row} sits on your bill, so nothing is highlighted. Compare it with your bill by description and amount.",
+      "unavailable": "We couldn’t load your original bill right now. Your rows are still safe; please compare them with your paper copy.",
+      "pdfNote": "Your bill is a PDF, so it opens in its own tab. Keep this page open to check each row against it.",
+      "openPdf": "Open your original PDF",
+      "linkExpires": "This link works for about 5 minutes. Reload this page for a new one.",
+      "showOnBill": "Show on bill",
+      "showOnBillRow": "Show row {row} on the original bill",
+      "demoNote": "This is a fictional sample bill drawn for the demo. It is not a real bill.",
+      "demo": {
+        "statement": "Statement of services",
+        "patient": "Patient: Sample Patient",
+        "account": "Account: 000-SAMPLE",
+        "columnService": "Service",
+        "columnCharge": "Charge",
+        "watermark": "SAMPLE – FICTIONAL"
+      }
     },
     "empty": "No line items were found on this bill.",
     "saveState": {
