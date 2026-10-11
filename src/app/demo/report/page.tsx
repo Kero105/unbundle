@@ -1,14 +1,18 @@
 import { Suspense } from "react";
-import { DEMO_SOURCE } from "@/lib/bills/source";
+import { demoSourceFrom } from "../demo-source";
 import { ReportSkeleton, ReportView } from "@/app/bills/[id]/report/report-view";
 import { routeMetadata } from "@/lib/metadata";
 
 export const generateMetadata = () => routeMetadata("report");
 
-export default function DemoReportPage() {
+async function DemoReport({ searchParams }: Pick<PageProps<"/demo/report">, "searchParams">) {
+  return <ReportView source={await demoSourceFrom(searchParams)} />;
+}
+
+export default function DemoReportPage(props: PageProps<"/demo/report">) {
   return (
     <Suspense fallback={<ReportSkeleton />}>
-      <ReportView source={DEMO_SOURCE} />
+      <DemoReport searchParams={props.searchParams} />
     </Suspense>
   );
 }

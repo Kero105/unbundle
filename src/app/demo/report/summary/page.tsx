@@ -1,14 +1,20 @@
 import { Suspense } from "react";
-import { DEMO_SOURCE } from "@/lib/bills/source";
+import { demoSourceFrom } from "../../demo-source";
 import { routeMetadata } from "@/lib/metadata";
 import { ReportSummarySkeleton, ReportSummaryView } from "@/app/bills/[id]/report/report-summary-view";
 
 export const generateMetadata = () => routeMetadata("report");
 
-export default function DemoReportSummaryPage() {
+async function DemoReportSummary({
+  searchParams,
+}: Pick<PageProps<"/demo/report/summary">, "searchParams">) {
+  return <ReportSummaryView source={await demoSourceFrom(searchParams)} />;
+}
+
+export default function DemoReportSummaryPage(props: PageProps<"/demo/report/summary">) {
   return (
     <Suspense fallback={<ReportSummarySkeleton />}>
-      <ReportSummaryView source={DEMO_SOURCE} />
+      <DemoReportSummary searchParams={props.searchParams} />
     </Suspense>
   );
 }

@@ -1,14 +1,18 @@
 import { Suspense } from "react";
-import { DEMO_SOURCE } from "@/lib/bills/source";
+import { demoSourceFrom } from "../demo-source";
 import { ReviewSkeleton, ReviewView } from "@/app/bills/[id]/review/review-view";
 import { routeMetadata } from "@/lib/metadata";
 
 export const generateMetadata = () => routeMetadata("review");
 
-export default function DemoReviewPage() {
+async function DemoReview({ searchParams }: Pick<PageProps<"/demo/review">, "searchParams">) {
+  return <ReviewView source={await demoSourceFrom(searchParams)} />;
+}
+
+export default function DemoReviewPage(props: PageProps<"/demo/review">) {
   return (
     <Suspense fallback={<ReviewSkeleton />}>
-      <ReviewView source={DEMO_SOURCE} />
+      <DemoReview searchParams={props.searchParams} />
     </Suspense>
   );
 }

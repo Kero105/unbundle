@@ -571,7 +571,24 @@
         "letter": "They get a clear report and a letter to take to the billing office."
       },
       "start": "Start the sample",
-      "startPending": "Opening the sample…"
+      "startPending": "Opening the sample…",
+      "scenarios": {
+        "legend": "Choose a sample bill",
+        "items": {
+          "standard": {
+            "title": "Clinic visit with a vague charge",
+            "description": "A family clinic bill with a price far above Medicare and a charge that doesn't say what it was for."
+          },
+          "er-visit": {
+            "title": "Emergency room visit",
+            "description": "An ER bill where two lab panels were billed separately and one X-ray was billed more times than Medicare allows."
+          },
+          "clean": {
+            "title": "A bill with nothing to flag",
+            "description": "A routine office visit where every check passes. Unbundle tells you so, instead of finding something to worry about."
+          }
+        }
+      }
     }
   },
   "Upload": {

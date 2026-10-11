@@ -571,7 +571,24 @@
         "letter": "Recibe un informe claro y una carta para llevar a la oficina de facturación."
       },
       "start": "Comenzar el ejemplo",
-      "startPending": "Abriendo el ejemplo…"
+      "startPending": "Abriendo el ejemplo…",
+      "scenarios": {
+        "legend": "Elija una factura de muestra",
+        "items": {
+          "standard": {
+            "title": "Consulta en una clínica con un cargo poco claro",
+            "description": "La factura de una clínica familiar con un precio muy por encima de Medicare y un cargo que no dice para qué fue."
+          },
+          "er-visit": {
+            "title": "Visita a la sala de emergencias",
+            "description": "Una factura de emergencias donde dos paneles de laboratorio se cobraron por separado y una radiografía se cobró más veces de las que permite Medicare."
+          },
+          "clean": {
+            "title": "Una factura sin nada que señalar",
+            "description": "Una consulta de rutina donde todas las revisiones pasan. Unbundle se lo dice, en lugar de buscar algo de qué preocuparse."
+          }
+        }
+      }
     }
   },
   "Upload": {

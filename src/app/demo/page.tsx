@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
-import { buttonVariants } from "@/components/ui/button";
-import { PendingLink } from "@/components/pending-link";
+import { NextIntlClientProvider } from "next-intl";
+import { ScenarioPicker } from "./scenario-picker";
 import { Skeleton } from "@/components/ui/skeleton";
 import { routeMetadata } from "@/lib/metadata";
 
@@ -34,15 +34,9 @@ async function DemoIntro() {
         ))}
       </ol>
 
-      <div>
-        <PendingLink
-          href="/demo/review"
-          className={buttonVariants({ size: "lg" })}
-          pendingLabel={t("startPending")}
-        >
-          {t("start")}
-        </PendingLink>
-      </div>
+      <NextIntlClientProvider>
+        <ScenarioPicker />
+      </NextIntlClientProvider>
     </main>
   );
 }

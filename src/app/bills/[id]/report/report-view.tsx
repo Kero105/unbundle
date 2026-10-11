@@ -167,14 +167,14 @@ export async function ReportView({ source }: { source: BillSource }) {
 
       <EobReconciliation bill={bill} />
 
-      <NextSteps letterHref={`${stepHref(source, "letter")}?type=itemized`} />
+      <NextSteps letterHref={stepHref(source, "letter", { type: "itemized" })} />
 
       <p className="text-sm text-muted-foreground">{t("disclaimer")}</p>
 
       <div className="flex flex-wrap gap-3 print:hidden">
         <PrintButton label={t("print")} variant="outline" />
         <Link
-          href={`${stepHref(source, "report")}/summary`}
+          href={stepHref(source, "summary")}
           className={buttonVariants({ variant: "outline" })}
         >
           {t("openSummary")}
@@ -195,7 +195,7 @@ export async function ReportView({ source }: { source: BillSource }) {
           </PendingLink>
         ) : null}
         <PendingLink
-          href={`${stepHref(source, "letter")}?type=itemized`}
+          href={stepHref(source, "letter", { type: "itemized" })}
           className={buttonVariants({ variant: "outline" })}
           pendingLabel={t("makeLetterPending")}
         >
