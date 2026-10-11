@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
-import { ErrorState } from "@/components/error-state";
+import { ErrorState, ErrorStateSkeleton } from "@/components/error-state";
 import { buttonVariants } from "@/components/ui/button";
 
 async function NotFoundContent() {
@@ -19,7 +19,7 @@ async function NotFoundContent() {
 
 export default function NotFound() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<ErrorStateSkeleton />}>
       <NotFoundContent />
     </Suspense>
   );

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
-import { ErrorState } from "@/components/error-state";
+import { ErrorState, ErrorStateSkeleton } from "@/components/error-state";
 import { SignInButton } from "@/components/sign-in-button";
 import { buttonVariants } from "@/components/ui/button";
 import { routeMetadata } from "@/lib/metadata";
@@ -24,7 +24,7 @@ export const generateMetadata = () => routeMetadata("authError");
 
 export default function AuthErrorPage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<ErrorStateSkeleton />}>
       <AuthErrorContent />
     </Suspense>
   );
