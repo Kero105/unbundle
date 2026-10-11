@@ -292,7 +292,41 @@
     "makeLetterPending": "Abriendo la carta…",
     "assistance": "Revisar ayuda financiera",
     "assistancePending": "Abriendo…",
-    "requestItemized": "Solicitar una factura detallada"
+    "requestItemized": "Solicitar una factura detallada",
+    "disclaimer": "Este informe señala cargos sobre los que puede valer la pena preguntar. No es asesoría legal ni médica y no puede confirmar que un cargo sea incorrecto. Consulte con la oficina de facturación antes de apoyarse en él.",
+    "print": "Imprimir o guardar como PDF",
+    "openSummary": "Abrir resumen de una página",
+    "nextSteps": {
+      "title": "Qué hacer ahora",
+      "intro": "No tiene que hacerlo todo de una vez. Ir paso a paso está bien.",
+      "items": {
+        "call": "Llame a la oficina de facturación. Anote la fecha, la hora y el nombre de la persona con quien habló.",
+        "itemized": "Pida una factura totalmente detallada que muestre un código de facturación para cada cargo.",
+        "assistance": "Pida la política de asistencia financiera del hospital y la solicitud, aunque no esté seguro de si califica.",
+        "collections": "Pida que su cuenta no se envíe a cobranza mientras se revisa la factura, y pida que lo anoten en su cuenta.",
+        "writing": "Envíe su solicitud por escrito y guarde una copia para sus registros.",
+        "insurer": "Si tiene seguro, también puede pedirle a su aseguradora que revise el reclamo. El número de teléfono está en su tarjeta del seguro."
+      },
+      "letterLink": "Redactar la carta"
+    },
+    "summary": {
+      "kicker": "Resumen del informe de Unbundle",
+      "title": "Resumen de la revisión de la factura",
+      "print": "Imprimir o guardar como PDF",
+      "backToReport": "Volver al informe completo",
+      "provider": "Proveedor",
+      "providerUnknown": "No encontrado",
+      "serviceDates": "Fechas del servicio",
+      "datesUnknown": "No encontradas",
+      "dateRange": "{start} – {end}",
+      "totalBilled": "Total facturado",
+      "columns": {
+        "finding": "Hallazgo",
+        "codes": "Códigos",
+        "confidence": "Confianza",
+        "amount": "Monto en juego"
+      }
+    }
   },
   "Letter": {
     "page": {

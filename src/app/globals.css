@@ -227,3 +227,22 @@ html[data-locale-pending] #content {
     opacity: 0.8;
   }
 }
+
+/* Print: the report is meant to be saved as a PDF or handed to a billing office. */
+@media print {
+  @page {
+    size: letter;
+    margin: 0.6in;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  * {
+    box-shadow: none !important;
+  }
+  a {
+    color: inherit;
+  }
+}

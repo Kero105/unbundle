@@ -292,7 +292,41 @@
     "makeLetterPending": "Opening letter…",
     "assistance": "Check financial assistance",
     "assistancePending": "Opening…",
-    "requestItemized": "Request an itemized bill"
+    "requestItemized": "Request an itemized bill",
+    "disclaimer": "This report points out charges that may be worth asking about. It is not legal or medical advice, and it cannot confirm that any charge is wrong. Please check with the billing office before relying on it.",
+    "print": "Print or save as PDF",
+    "openSummary": "Open one-page summary",
+    "nextSteps": {
+      "title": "What to do next",
+      "intro": "You do not have to do all of this at once. Taking it one step at a time is fine.",
+      "items": {
+        "call": "Call the billing office. Write down the date, the time, and the name of the person you spoke with.",
+        "itemized": "Ask for a fully itemized bill that shows a billing code for every charge.",
+        "assistance": "Ask for the hospital's financial assistance policy and the application, even if you are not sure you qualify.",
+        "collections": "Ask that your account not be sent to collections while the bill is being reviewed, and ask them to note that on your account.",
+        "writing": "Send your request in writing and keep a copy for your records.",
+        "insurer": "If you have insurance, you can also ask your insurer to review the claim. The phone number is on your insurance card."
+      },
+      "letterLink": "Write the letter"
+    },
+    "summary": {
+      "kicker": "Unbundle report summary",
+      "title": "Bill review summary",
+      "print": "Print or save as PDF",
+      "backToReport": "Back to full report",
+      "provider": "Provider",
+      "providerUnknown": "Not found",
+      "serviceDates": "Dates of service",
+      "datesUnknown": "Not found",
+      "dateRange": "{start} – {end}",
+      "totalBilled": "Total billed",
+      "columns": {
+        "finding": "Finding",
+        "codes": "Codes",
+        "confidence": "Confidence",
+        "amount": "Amount at stake"
+      }
+    }
   },
   "Letter": {
     "page": {

@@ -55,7 +55,7 @@ export async function SiteHeader() {
   ]);
 
   return (
-    <header lang={locale} className="border-b bg-background">
+    <header lang={locale} className="border-b bg-background print:hidden">
       <a
         href="#content"
         className="sr-only rounded-lg bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50"

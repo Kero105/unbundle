@@ -5,7 +5,7 @@ export async function SiteFooter() {
   const [locale, t] = await Promise.all([getLocale(), getTranslations("Shell")]);
 
   return (
-    <footer lang={locale} className="mt-auto border-t bg-card text-[0.9375rem]">
+    <footer lang={locale} className="mt-auto border-t bg-card text-[0.9375rem] print:hidden">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 sm:px-6">
         <nav aria-label={t("footerNav")}>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">

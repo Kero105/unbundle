@@ -13,6 +13,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { loadFindings, stepHref, type BillSource } from "@/lib/bills/source";
 import { formatCents } from "@/lib/money";
 import type { Confidence, Severity } from "@/lib/types";
+import { PrintButton } from "@/components/print-button";
+import { NextSteps } from "./next-steps";
 import { buildReport, whyKey, type ReportFinding } from "./report-model";
 
 type BadgeVariant = NonNullable<VariantProps<typeof badgeVariants>["variant"]>;
@@ -37,7 +39,7 @@ async function FindingCard({ item }: { item: ReportFinding }) {
 
   return (
     <li>
-      <Card>
+      <Card className="break-inside-avoid">
         <CardHeader className="gap-3">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <CardTitle className="text-xl">
@@ -122,7 +124,9 @@ export async function ReportView({ source }: { source: BillSource }) {
       className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 px-4 py-8 sm:px-6 sm:py-10"
     >
       <header className="flex flex-col gap-4">
-        <BillSteps current="findings" />
+        <div className="print:hidden">
+          <BillSteps current="findings" />
+        </div>
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-semibold sm:text-4xl">{t("title")}</h1>
           <p className="max-w-2xl text-lg text-muted-foreground">{t("subtitle")}</p>
@@ -160,7 +164,18 @@ export async function ReportView({ source }: { source: BillSource }) {
         </>
       )}
 
-      <div className="flex flex-wrap gap-3">
+      <NextSteps letterHref={`${stepHref(source, "letter")}?type=itemized`} />
+
+      <p className="text-sm text-muted-foreground">{t("disclaimer")}</p>
+
+      <div className="flex flex-wrap gap-3 print:hidden">
+        <PrintButton label={t("print")} variant="outline" />
+        <Link
+          href={`${stepHref(source, "report")}/summary`}
+          className={buttonVariants({ variant: "outline" })}
+        >
+          {t("openSummary")}
+        </Link>
         <Link
           href={stepHref(source, "review")}
           className={buttonVariants({ variant: "outline" })}
