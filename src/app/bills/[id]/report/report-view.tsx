@@ -155,7 +155,10 @@ export async function ReportView({ source }: { source: BillSource }) {
             <p className="mt-2 font-medium">{t("honest")}</p>
           </section>
 
-          <section aria-label={t("listLabel")}>
+          <section aria-labelledby="findings-title">
+            <h2 id="findings-title" className="sr-only">
+              {t("listLabel")}
+            </h2>
             <ol className="flex flex-col gap-4">
               {report.findings.map((item) => (
                 <FindingCard key={item.finding.id} item={item} />
