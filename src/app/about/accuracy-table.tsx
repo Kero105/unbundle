@@ -48,7 +48,7 @@ export function AccuracyTable({
       role="region"
       aria-label={labels.caption}
       tabIndex={0}
-      className="overflow-x-auto rounded-lg border bg-card focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+      className="relative overflow-x-auto rounded-lg border bg-card focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
     >
       <table className="w-full min-w-[20rem] border-collapse text-left text-[0.9375rem]">
         <caption className="sr-only">{labels.caption}</caption>

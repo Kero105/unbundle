@@ -13,7 +13,12 @@ export async function DemoBanner() {
           <FlaskConical aria-hidden="true" className="mt-0.5 size-5 shrink-0" />
           {t("message")}
         </p>
-        <SignInButton size="default" variant="outline" pendingLabel={t("signInPending")}>
+        <SignInButton
+          size="default"
+          variant="outline"
+          pendingLabel={t("signInPending")}
+          className="h-auto min-h-11 py-2 text-left whitespace-normal"
+        >
           {t("signIn")}
         </SignInButton>
       </div>

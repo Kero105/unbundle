@@ -9,6 +9,7 @@ type SignInButtonProps = Pick<ComponentProps<typeof Button>, "size" | "variant">
   children: React.ReactNode;
   /** When set, the button shows a spinner and this label while redirecting. */
   pendingLabel?: string;
+  className?: string;
 };
 
 export function SignInButton({
@@ -16,6 +17,7 @@ export function SignInButton({
   size = "lg",
   variant,
   pendingLabel,
+  className,
 }: SignInButtonProps) {
   const [pending, setPending] = useState(false);
 
@@ -35,6 +37,7 @@ export function SignInButton({
       type="button"
       size={size}
       variant={variant}
+      className={className}
       onClick={signIn}
       disabled={pending && pendingLabel !== undefined}
       aria-busy={pending || undefined}
