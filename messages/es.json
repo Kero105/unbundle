@@ -17,7 +17,7 @@
   },
   "Home": {
     "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
-    "subtitle": "Unbundle encuentra cobros duplicados, procedimientos facturados por separado y precios muy por encima de Medicare, y le explica cada hallazgo en palabras sencillas.",
+    "subtitle": "Unbundle encuentra cobros duplicados, procedimientos facturados por separado y precios muy por encima de Medicare, y le dice en palabras sencillas qué vale la pena preguntar a la oficina de facturación.",
     "signIn": "Iniciar sesión con Google",
     "trySample": "Probar con una factura de ejemplo",
     "trySamplePending": "Abriendo el ejemplo…",
@@ -69,13 +69,13 @@
       },
       "denied": {
         "title": "Negado y luego cobrado",
-        "body": "El seguro negó un servicio, pero a usted se lo cobraron completo."
+        "body": "El seguro negó un servicio, pero a usted se lo cobraron completo. Requiere la EOB de su aseguradora."
       }
     },
     "trust": {
       "title": "Los hallazgos vienen de reglas públicas de Medicare, no de suposiciones de la IA.",
       "subtitle": "La IA solo lee su factura.",
-      "body": "Un conjunto fijo de revisiones, basado en reglas públicas de Medicare, decide qué se señala. La IA nunca decide qué está mal. Convierte su factura en texto y, después, explica los hallazgos con palabras sencillas.",
+      "body": "Un conjunto fijo de revisiones, basado en reglas públicas de Medicare, decide qué se señala, y el texto de cada hallazgo sale de plantillas fijas. La IA nunca decide qué está mal. Solo convierte su factura en datos estructurados y, si toca «¿Qué es esto?» en una fila, define ese único código de facturación.",
       "privacyTitle": "Nuestra promesa de privacidad",
       "privacy": {
         "training": "Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos.",
@@ -127,7 +127,7 @@
   },
   "Review": {
     "title": "Revise su factura",
-    "subtitle": "Compruebe lo que leímos de su factura y corrija cualquier cosa que no se vea bien. Las filas de las que estábamos menos seguros están marcadas.",
+    "subtitle": "Compruebe lo que leímos de su factura y corrija cualquier cosa que no se vea bien. Las filas que la IA marcó como inciertas están señaladas. Si agregó una EOB, sus montos también se leen, pero no se muestran aquí para editarlos.",
     "steps": {
       "label": "Su avance",
       "review": "Revisar",
@@ -166,7 +166,7 @@
       "lowConfidence": "Revisar esto",
       "verified": "Verificada"
     },
-    "lowConfidenceReason": "No estábamos seguros de haber leído bien esta fila. Compárela con su factura.",
+    "lowConfidenceReason": "La IA marcó su propia lectura de esta fila como incierta. Es su propia estimación, no una exactitud medida. Compárela con su factura.",
     "missing": {
       "date": "Sin fecha",
       "code": "Sin código en la factura",
@@ -236,7 +236,7 @@
       "autosave": "Los cambios se guardan automáticamente."
     },
     "rowsRead": "{count, plural, one {Leímos # fila de su factura.} other {Leímos # filas de su factura.}}",
-    "lowConfidenceNote": "Algunas partes de esta factura fueron difíciles de leer, por lo que muchas filas están marcadas. Es normal con fotos y escaneos. Compare cada fila marcada con su factura y corrija lo que no se vea bien antes de continuar."
+    "lowConfidenceNote": "La IA marcó muchas filas como inciertas, algo normal con fotos y escaneos. Esas marcas son su propia autoevaluación, no una exactitud medida. Compare cada fila marcada con su factura y corrija lo que no se vea bien antes de continuar."
   },
   "Report": {
     "title": "Su informe",
@@ -248,7 +248,7 @@
     "listLabel": "Hallazgos",
     "empty": {
       "title": "No encontramos nada que valga la pena preguntar",
-      "body": "Nuestras revisiones se aplicaron a cada línea de su factura y ninguna señaló un problema. Es una buena señal. Estas revisiones no pueden detectarlo todo, así que si algo todavía le parece incorrecto, puede preguntar a la oficina de facturación."
+      "body": "Todas las revisiones que correspondían a su factura se aplicaron y ninguna señaló un problema. Algunas revisiones solo cubren servicios de la Lista de Tarifas de Médicos de Medicare, así que las de precio, límite de cantidad y procedimientos facturados por separado omitieron toda fila que no está en ella, como cargos de instalaciones del hospital, pruebas de laboratorio y anestesia. Las dos revisiones que necesitan una EOB solo se aplicaron si usted subió una. Estas revisiones no pueden detectarlo todo, así que si algo todavía le parece incorrecto, puede preguntar a la oficina de facturación."
     },
     "finding": {
       "atStake": "Monto en juego",
@@ -605,7 +605,7 @@
     "submitPending": "Comenzando…",
     "privacy": {
       "title": "Sus archivos son privados",
-      "body": "Solo su cuenta puede abrir sus archivos en Unbundle. Las fotos se reducen de tamaño en su navegador antes de subirse. Para leer el texto de su factura, enviamos sus archivos a la API de Anthropic. Lo único más que enviamos es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Puede eliminar una factura cuando quiera: se borran sus archivos guardados y los datos que leímos de ellos.",
+      "body": "Solo su cuenta puede abrir sus archivos en Unbundle. Nuestro formulario de subida reduce el tamaño de las fotos en su navegador antes de subirse. Para leer el texto de su factura, enviamos sus archivos a la API de Anthropic. Lo único más que enviamos es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Puede eliminar una factura cuando quiera: se borran sus archivos guardados y los datos que leímos de ellos.",
       "more": "Lea la política de privacidad completa"
     },
     "progress": {
@@ -690,7 +690,7 @@
     "summary": {
       "title": "En resumen",
       "files": "Sus archivos se guardan en una carpeta privada que solo su cuenta puede leer, modificar o eliminar.",
-      "browser": "Las fotos se reducen de tamaño en su navegador antes de subirlas.",
+      "browser": "Nuestro formulario de subida reduce el tamaño de las fotos en su navegador antes de subirlas.",
       "anthropic": "Sus archivos se envían a la API de Anthropic para que se pueda leer su factura. Lo único más que se envía es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos y los datos de la API se eliminan en un plazo de 30 días. Esos son los términos de Anthropic, no los nuestros.",
       "delete": "Al eliminar una factura, se borran de nuestro almacenamiento la factura, sus partidas y los archivos subidos.",
       "sell": "Nunca vendemos su información."
@@ -705,7 +705,7 @@
     "files": {
       "title": "Qué pasa con los archivos que sube",
       "private": "Los archivos se guardan en un depósito de almacenamiento privado de Supabase, en una carpeta que solo su cuenta puede leer, modificar o eliminar.",
-      "resized": "Las fotos se reducen de tamaño y se vuelven a guardar como JPEG en su navegador antes de subirlas, así que la copia que guardamos es más pequeña que el original y ya no conserva los metadatos de la cámara. Los PDF se suben tal cual; los PDF de más de 4 MB se rechazan.",
+      "resized": "Nuestro formulario de subida reduce el tamaño de las fotos y las vuelve a guardar como JPEG en su navegador antes de subirlas, así que la copia que guardamos normalmente es más pequeña que el original y ya no conserva los metadatos de la cámara. Los PDF se suben tal cual, y nuestro formulario rechaza los PDF de más de 4 MB. Estos pasos ocurren en su navegador, por lo que nuestro servidor no los exige: acepta archivos hasta el límite indicado abajo y no vuelve a guardar las imágenes por sí mismo.",
       "checked": "Antes de guardar cada archivo, verificamos su tipo real, su tamaño (10 MB) y, en los PDF, el número de páginas (6). Solo se aceptan archivos JPEG, PNG, WebP y PDF.",
       "use": "Usamos sus archivos únicamente para leer su factura. No los usamos para entrenar modelos ni para publicidad."
     },
@@ -715,15 +715,15 @@
     },
     "kept": {
       "title": "Dónde se guarda",
-      "body": "Sus facturas, partidas y archivos se guardan en Supabase, y el acceso se limita a su cuenta mediante seguridad a nivel de fila. No incluimos el contenido de las facturas en nuestros registros."
+      "body": "Sus facturas, partidas y archivos se guardan en Supabase (nuestra base de datos y almacenamiento de archivos), y el acceso se limita a su cuenta mediante seguridad a nivel de fila. No hay un plazo de conservación ni nada caduca por sí solo: los conservamos hasta que usted los elimine. No incluimos el contenido de las facturas en nuestros registros."
     },
     "dont": {
       "title": "Lo que no hacemos",
-      "body": "Nunca vendemos su información. No la compartimos con nadie, salvo para enviar los archivos que usted sube a Anthropic, para que puedan ser leídos como se describe arriba."
+      "body": "Nunca vendemos su información. La compartimos solo con los servicios que la procesan por nosotros: Anthropic, que lee los archivos que usted sube como se describe arriba; Supabase, que guarda su cuenta, facturas y archivos; Google, que gestiona el inicio de sesión; y nuestro proveedor de alojamiento web, que sirve el sitio y ejecuta nuestro código de servidor."
     },
     "delete": {
       "title": "Eliminación de sus datos",
-      "body": "Desde Configuración puede hacer dos cosas. «Eliminar todas mis facturas» elimina de forma permanente cada factura que subió, las filas y los hallazgos que guardamos de ellas y sus archivos subidos del almacenamiento; su cuenta se mantiene. «Eliminar mi cuenta y mis datos» hace lo mismo y luego elimina su cuenta de acceso de nuestro sistema de autenticación y cierra su sesión, de modo que los datos asociados a su cuenta se eliminan de nuestra base de datos y del almacenamiento. También puede eliminar una sola factura desde su panel o desde su página de revisión. Eliminar no recupera las copias que Anthropic pueda conservar según su propia política de retención, y una carta en PDF que ya descargó permanece en su dispositivo."
+      "body": "Desde Configuración puede hacer dos cosas. «Eliminar todas mis facturas» elimina de forma permanente cada factura que subió, las filas y las líneas de EOB que guardamos de ellas y sus archivos subidos del almacenamiento; su cuenta se mantiene. «Eliminar mi cuenta y mis datos» hace lo mismo y luego elimina su cuenta de acceso de nuestro sistema de autenticación y cierra su sesión, de modo que los datos asociados a su cuenta se eliminan de nuestra base de datos y del almacenamiento. También puede eliminar una sola factura desde su panel o desde su página de revisión. Los hallazgos no se guardan: se calculan a partir de sus filas cada vez que abre un informe, así que no hay nada que eliminar de ellos. Eliminar una factura deja un solo rastro: un registro de que se intentó una lectura (su ID de usuario y una marca de tiempo, sin contenido de la factura), que conservamos hasta que usted elimine su cuenta y usamos para aplicar límites por hora. Eliminar no recupera las copias que Anthropic pueda conservar según su propia política de retención, y una carta en PDF que ya descargó permanece en su dispositivo."
     },
     "contact": {
       "title": "Contacto",
@@ -779,7 +779,7 @@
       "ncci": "las revisiones NCCI de procedimiento con procedimiento, que enumeran servicios que no deberían cobrarse juntos",
       "mue": "las revisiones de cantidades médicamente improbables, que limitan cuántas unidades de un servicio tienen sentido en una visita",
       "mpfs": "la Lista de Tarifas de Médicos de Medicare (Physician Fee Schedule), que fija lo que Medicare paga por cada servicio",
-      "explain": "Después de que las reglas producen sus hallazgos, la IA ayuda a redactar una explicación en lenguaje sencillo de cada uno. No puede agregar, quitar ni cambiar un hallazgo ni su monto.",
+      "explain": "La IA hace dos tareas pequeñas: lee su factura y la convierte en datos estructurados y, si toca «¿Qué es esto?» en una fila, define ese único código de facturación en términos generales. Código fijo decide cada hallazgo, y el texto de cada hallazgo sale de plantillas fijas. La IA no puede agregar, quitar ni cambiar un hallazgo ni su monto.",
       "diagramLabel": "Los cuatro pasos, en orden",
       "steps": {
         "upload": {
@@ -802,7 +802,7 @@
     },
     "checks": {
       "title": "Qué revisamos",
-      "intro": "Diez revisiones, explicadas con palabras sencillas. Nueve se aplican a cada factura. La décima es un paso opcional para personas sin seguro.",
+      "intro": "Diez revisiones: nueve reglas que examinan su factura, más una comparación opcional con la Estimación de Buena Fe para personas sin seguro. Siete se aplican a cada factura. Dos se aplican solo si sube la Explicación de Beneficios (EOB) de su aseguradora: «Negado y luego cobrado» (abajo) y una revisión de facturación de saldo que compara lo que la factura le pide pagar con lo que la EOB dice que usted debe.",
       "gfe": {
         "title": "Estimación de buena fe",
         "body": "Si no tiene seguro y le dieron una estimación antes de su atención, la comparamos con su factura y le decimos si la diferencia podría valer la pena disputarla."
@@ -919,7 +919,7 @@
     },
     "privacy": {
       "title": "Política de privacidad | Unbundle",
-      "description": "Qué recopila Unbundle de su factura, quién la procesa, cuánto tiempo se conserva y cómo eliminarla."
+      "description": "Qué recopila Unbundle de su factura, quién la procesa, cuánto tiempo se conserva (hasta que usted la elimine) y cómo eliminarla."
     },
     "terms": {
       "title": "Términos de uso | Unbundle",

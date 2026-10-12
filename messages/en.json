@@ -17,7 +17,7 @@
   },
   "Home": {
     "title": "Think your hospital bill is wrong? Check it in minutes.",
-    "subtitle": "Unbundle finds duplicate charges, unbundled procedures, and prices far above Medicare, then explains each one in plain language.",
+    "subtitle": "Unbundle finds duplicate charges, unbundled procedures, and prices far above Medicare, and tells you in plain language what is worth asking the billing office.",
     "signIn": "Sign in with Google",
     "trySample": "Try a sample bill",
     "trySamplePending": "Opening the sample…",
@@ -69,13 +69,13 @@
       },
       "denied": {
         "title": "Denied, then billed",
-        "body": "Insurance denied a service, but you were billed the full amount."
+        "body": "Insurance denied a service, but you were billed the full amount. Needs your insurer's EOB."
       }
     },
     "trust": {
       "title": "Findings come from public Medicare rules, not from AI guessing.",
       "subtitle": "AI only reads your bill.",
-      "body": "A fixed set of checks built on public Medicare rules decides what gets flagged. The AI never decides what is wrong. It turns your bill into text and, afterward, explains the findings in plain words.",
+      "body": "A fixed set of checks built on public Medicare rules decides what gets flagged, and the wording of each finding comes from fixed templates. The AI never decides what is wrong. It only turns your bill into structured data and, if you tap “What is this?” on a line, defines that one billing code.",
       "privacyTitle": "Our privacy promise",
       "privacy": {
         "training": "Anthropic's published terms say your bills aren't used to train its models by default.",
@@ -127,7 +127,7 @@
   },
   "Review": {
     "title": "Review your bill",
-    "subtitle": "Check what we read from your bill and fix anything that looks wrong. Rows we were less sure about are marked.",
+    "subtitle": "Check what we read from your bill and fix anything that looks wrong. Rows the AI marked as uncertain are flagged. If you added an EOB, its amounts are read too, but they are not shown here for editing.",
     "steps": {
       "label": "Your progress",
       "review": "Review",
@@ -166,7 +166,7 @@
       "lowConfidence": "Check this",
       "verified": "Verified"
     },
-    "lowConfidenceReason": "We were not sure we read this row correctly. Please compare it with your bill.",
+    "lowConfidenceReason": "The AI marked its own reading of this row as uncertain. That is its own estimate, not a measured accuracy. Please compare it with your bill.",
     "missing": {
       "date": "No date",
       "code": "No code on bill",
@@ -236,7 +236,7 @@
       "autosave": "Changes are saved automatically."
     },
     "rowsRead": "{count, plural, one {We read # row from your bill.} other {We read # rows from your bill.}}",
-    "lowConfidenceNote": "Parts of this bill were hard to read, so many rows are marked. That is normal for photos and scans. Please compare each marked row with your bill and correct anything that looks off before you continue."
+    "lowConfidenceNote": "The AI marked many rows as uncertain, which is normal for photos and scans. Those marks are its own self-assessment, not a measured accuracy. Please compare each marked row with your bill and correct anything that looks off before you continue."
   },
   "Report": {
     "title": "Your report",
@@ -248,7 +248,7 @@
     "listLabel": "Findings",
     "empty": {
       "title": "We did not find anything worth asking about",
-      "body": "Our checks ran on every line of your bill and none of them flagged a concern. That is a good sign. These checks cannot catch everything, so if something still looks wrong to you, it is fine to ask the billing office."
+      "body": "Every check that applied to your bill ran, and none of them flagged a concern. Some checks only cover services on the Medicare Physician Fee Schedule, so the price, quantity-limit and unbundling checks skipped any line that is not on it, such as hospital facility charges, lab tests and anesthesia. The two checks that need an EOB ran only if you uploaded one. These checks cannot catch everything, so if something still looks wrong to you, it is fine to ask the billing office."
     },
     "finding": {
       "atStake": "Amount at stake",
@@ -605,7 +605,7 @@
     "submitPending": "Starting…",
     "privacy": {
       "title": "Your files are private",
-      "body": "Only your account can open your files in Unbundle. Photos are resized in your browser before they upload. To read the text on your bill, we send your files to Anthropic's API. The only other thing we send is a single billing code, and only if you open “What is this?” on a line. Anthropic's published terms say your bills aren't used to train its models by default. You can delete a bill at any time, which removes its stored files and the data we read from them.",
+      "body": "Only your account can open your files in Unbundle. Our upload form resizes photos in your browser before they upload. To read the text on your bill, we send your files to Anthropic's API. The only other thing we send is a single billing code, and only if you open “What is this?” on a line. Anthropic's published terms say your bills aren't used to train its models by default. You can delete a bill at any time, which removes its stored files and the data we read from them.",
       "more": "Read the full privacy policy"
     },
     "progress": {
@@ -690,7 +690,7 @@
     "summary": {
       "title": "In short",
       "files": "Your files are stored in a private folder that only your account can read, write or delete.",
-      "browser": "Photos are resized in your browser before they are uploaded.",
+      "browser": "Our upload form resizes photos in your browser before they are uploaded.",
       "anthropic": "Your files are sent to Anthropic's API so your bill can be read. The only other thing sent is a single billing code, and only if you open “What is this?” on a line. Anthropic's published terms say that, by default, your bills aren't used to train its models and API data is deleted within 30 days. Those are Anthropic's terms, not ours.",
       "delete": "Deleting a bill removes the bill, its line items and the uploaded files from our storage.",
       "sell": "We never sell your information."
@@ -705,7 +705,7 @@
     "files": {
       "title": "What happens to your uploaded files",
       "private": "Files are stored in a private Supabase storage bucket, in a folder that only your account can read, write or delete.",
-      "resized": "Photos are resized and re-saved as JPEG in your browser before they are uploaded, so the copy we store is smaller than the original and no longer carries its camera metadata. PDFs are uploaded as they are; PDFs over 4 MB are turned away.",
+      "resized": "Our upload form resizes photos and re-saves them as JPEG in your browser before they are uploaded, so the copy we store is normally smaller than the original and no longer carries its camera metadata. PDFs are uploaded as they are, and our upload form turns away PDFs over 4 MB. These steps happen in your browser, so our server does not enforce them: it accepts files up to the limit below and does not re-save images itself.",
       "checked": "We check each file's actual type, size (10 MB) and, for PDFs, page count (6) before storing it. Only JPEG, PNG, WebP and PDF files are accepted.",
       "use": "We use your files only to read your bill. We do not use them to train models or for advertising."
     },
@@ -715,15 +715,15 @@
     },
     "kept": {
       "title": "Where it is kept",
-      "body": "Your bills, line items and files are stored in Supabase, and access is limited to your account by row-level security. We don't put bill contents in our logs."
+      "body": "Your bills, line items and files are stored in Supabase (our database and file storage), and access is limited to your account by row-level security. There is no retention period and nothing expires on its own: we keep them until you delete them. We don't put bill contents in our logs."
     },
     "dont": {
       "title": "What we don't do",
-      "body": "We never sell your information. We don't share it with anyone, except sending your uploaded files to Anthropic so they can be read as described above."
+      "body": "We never sell your information. We share it only with the services that process it for us: Anthropic, which reads your uploaded files as described above; Supabase, which stores your account, bills and files; Google, which handles sign-in; and our web hosting provider, which serves the site and runs our server code."
     },
     "delete": {
       "title": "Deleting your data",
-      "body": "From Settings you can do two things. “Delete all my bills” permanently removes every bill you uploaded, the line items and findings we stored for them, and your uploaded files from storage; your account stays. “Delete my account and data” does the same and then removes your sign-in account from our authentication system and signs you out, so the data tied to your account is removed from our database and storage. You can also delete a single bill from your dashboard or its review page. Deleting does not recall copies Anthropic may keep under its own retention policy, and a PDF letter you already downloaded stays on your device."
+      "body": "From Settings you can do two things. “Delete all my bills” permanently removes every bill you uploaded, the line items and EOB lines we stored for them, and your uploaded files from storage; your account stays. “Delete my account and data” does the same and then removes your sign-in account from our authentication system and signs you out, so the data tied to your account is removed from our database and storage. You can also delete a single bill from your dashboard or its review page. Findings are not stored: they are worked out from your line items each time you open a report, so there is nothing to delete for them. Deleting a bill leaves one thing behind: a record that a reading was attempted (your user ID and a timestamp, with no bill content), which we keep until you delete your account and use to apply hourly limits. Deleting does not recall copies Anthropic may keep under its own retention policy, and a PDF letter you already downloaded stays on your device."
     },
     "contact": {
       "title": "Contact",
@@ -779,7 +779,7 @@
       "ncci": "NCCI procedure-to-procedure edits, which list services that should not be billed together",
       "mue": "medically unlikely edits, which cap how many units of a service make sense in one visit",
       "mpfs": "the Medicare Physician Fee Schedule, which sets what Medicare pays for each service",
-      "explain": "After the rules have produced their findings, the AI helps write a plain-language explanation of each one. It cannot add, remove or change a finding or its amount.",
+      "explain": "The AI does two small jobs: it reads your bill into structured data, and if you tap “What is this?” on a line, it defines that single billing code in general terms. Fixed code decides every finding, and the wording of each finding comes from fixed templates. The AI cannot add, remove or change a finding or its amount.",
       "diagramLabel": "The four steps, in order",
       "steps": {
         "upload": {
@@ -802,7 +802,7 @@
     },
     "checks": {
       "title": "What we check",
-      "intro": "Ten checks, each in plain words. Nine run on every bill. The tenth is an optional step for people without insurance.",
+      "intro": "Ten checks: nine rules that look at your bill, plus an optional Good Faith Estimate comparison for people without insurance. Seven run on every bill. Two run only if you upload your insurer's Explanation of Benefits (EOB): Denied, then billed (below), and a balance billing check that compares what the bill asks you to pay with what the EOB says you owe.",
       "gfe": {
         "title": "Good Faith Estimate",
         "body": "If you are uninsured and were given an estimate before your care, we compare it with your bill and tell you whether the difference may be worth disputing."
@@ -919,7 +919,7 @@
     },
     "privacy": {
       "title": "Privacy Policy | Unbundle",
-      "description": "What Unbundle collects from your bill, who processes it, how long it is kept, and how to delete it."
+      "description": "What Unbundle collects from your bill, who processes it, how long it is kept (until you delete it), and how to delete it."
     },
     "terms": {
       "title": "Terms of Use | Unbundle",
