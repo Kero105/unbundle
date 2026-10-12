@@ -1,5 +1,3 @@
--- DRAFT: review before applying. Not applied by the app or by any script here.
---
 -- Plain-language code explanations ("What is this?").
 --
 --   1. code_explanations: a shared cache of model-written, general

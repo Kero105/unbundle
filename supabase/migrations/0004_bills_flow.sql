@@ -1,4 +1,4 @@
--- DRAFT, not applied. Upload + extraction flow.
+-- Upload + extraction flow.
 --
 -- What 0001 already gives us (verified, not repeated here):
 --   * RLS enabled on bills, bill_files, line_items, eob_lines (and the rest).
