@@ -12,7 +12,7 @@
 | `EXTRACTION_ENABLED` | Host env | Config | Kill switch. Unset = on. Anything other than `true`/`1`/`yes`/`on` disables extraction (503). |
 | `EXTRACTION_MODEL` | Host env | Config | Optional. Defaults to `claude-sonnet-5-5`. |
 | `ALLOW_MOCK_EXTRACTION_IN_PRODUCTION` | Host env | Config | Optional escape hatch for demos or `next start` on a laptop. Leave unset in real production. |
-| `SUPABASE_SERVICE_ROLE_KEY` | **Local `.env.local` only** | **Secret** | Used only by `scripts/` (reference-data import, accuracy run). Do not set it on the web host. |
+| `SUPABASE_SERVICE_ROLE_KEY` | Local `.env.local` (scripts) **and** production host env (one exception) | **Secret, mark Sensitive** | Locally: used by `scripts/` (reference-data import, accuracy run). In production: set it only on the production environment, marked Sensitive, because `src/lib/account/admin.ts` needs it to delete the sign-in account for "Delete my account"; without it that action fails. Only that module uses it. Never set it for preview or development environments. |
 
 Startup validation lives in `src/lib/env` and `src/instrumentation.ts`; errors name the variable and problem, never the value.
 
@@ -24,6 +24,7 @@ Apply in order with the Supabase CLI or SQL editor:
 2. `supabase/migrations/0002_storage.sql` (storage policies)
 3. `supabase/migrations/0003_reference.sql` (public reference tables, select-only RLS)
 4. `supabase/migrations/0004_bills_flow.sql` (extraction state, rate limit function, `bills` bucket)
+5. `supabase/migrations/0005_code_explanations.sql` (shared "What is this?" cache, combined hourly budget)
 
 Then load reference data locally with the service role key: `node scripts/import-reference.mjs` and `node scripts/import-poverty.mjs --confirm` (both print a dry run first). Confirm `poverty_guidelines` has the current year.
 
@@ -42,11 +43,11 @@ Then load reference data locally with the service role key: `node scripts/import
 
 ## Launch checklist
 
-- [ ] Migrations 0001-0004 applied to the production project; RLS shows enabled on every table.
+- [ ] Migrations 0001-0005 applied to the production project; RLS shows enabled on every table.
 - [ ] Reference data imported; row counts match the import script's report.
 - [ ] `EXTRACTION_MODE=anthropic` set on the host, with `ANTHROPIC_API_KEY`. (Flip from `mock`; the server will not start in production with mock.)
 - [ ] `EXTRACTION_ENABLED` unset or `true`; know how to set it `false` as a kill switch.
-- [ ] `SUPABASE_SERVICE_ROLE_KEY` is not set on the host.
+- [ ] `SUPABASE_SERVICE_ROLE_KEY` is set only in the production environment, marked Sensitive, and nowhere else (not preview, not `NEXT_PUBLIC_`). Without it, "Delete my account" fails.
 - [ ] Auth redirect URLs and Google OAuth settings match the production domain.
 - [ ] `npm run test`, `npm run lint`, `npx tsc --noEmit`, `npm run build` pass on the release commit.
 - [ ] `npm run check:contrast` passes; `npm run accuracy` and `npm run check:live` reviewed (need `.env.local`).

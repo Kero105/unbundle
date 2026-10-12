@@ -13,7 +13,7 @@ Record in a clean browser window at 1280×800, signed out, on the production or 
 | 1:50–2:05 | Click **Create a dispute letter**. Scroll the live preview. Click the **Español** letter toggle, then back. **Show Spanish here.** | "The letter asks only about what was flagged, in a polite tone. It is available in English and Spanish." |
 | 2:05–2:15 | Back to report, click **Check financial assistance**. Enter household size 3, income 30,000, choose "Yes, I have insurance", click **See my estimate**. | "An optional step estimates whether I may qualify for financial help at a California hospital." |
 | 2:15–2:25 | Click the **ES** language toggle in the header. **Show the interface in Spanish here.** Then go to **About** and show the accuracy table. | "The whole app works in Spanish." |
-| 2:25–2:40 | About page: the accuracy table, then "Scope and limits". | "I tested every rule against 14 synthetic bills, and all of them passed. But I wrote those tests myself, so this shows the rules work as designed, not that they catch every real error. It covers practitioner edits, Physician Fee Schedule services and Los Angeles prices only. Findings are things worth asking about, not certain mistakes. This is Unbundle." |
+| 2:25–2:40 | About page: the accuracy table, then "Scope and limits". | "I tested every rule against 16 synthetic bills, and all of them passed. But I wrote those tests myself, so this shows the rules work as designed, not that they catch every real error. It covers practitioner edits, Physician Fee Schedule services and Los Angeles prices only. Findings are things worth asking about, not certain mistakes. This is Unbundle." |
 
 ## Notes
 
