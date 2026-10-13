@@ -61,6 +61,7 @@ export function ReviewTable({
   billId,
   dashboardHref = "/dashboard",
   source = { kind: "unavailable" },
+  manual = false,
 }: {
   bill: ExtractedBill;
   reportHref: string;
@@ -71,6 +72,11 @@ export function ReviewTable({
   dashboardHref?: string;
   /** The original bill: a signed image/PDF, the synthetic demo page, or nothing. */
   source?: PanelSource;
+  /**
+   * The rows were typed in, not read: they carry no position on the bill, so
+   * "Show on bill" is hidden, and with no file there is no source panel at all.
+   */
+  manual?: boolean;
 }) {
   const t = useTranslations("Review");
   const locale = useLocale();
@@ -148,8 +154,11 @@ export function ReviewTable({
 
   const progressText = t("progress", { verified: verifiedCount, total: items.length });
 
+  const showSource = !(manual && source.kind === "unavailable");
+  const sourceDescription = manual ? t("manual.sourceDescription") : t("source.description");
+
   return (
-    <div className="grid gap-6 2xl:grid-cols-[minmax(0,1fr)_22rem]">
+    <div className={cn("grid gap-6", showSource && "2xl:grid-cols-[minmax(0,1fr)_22rem]")}>
       <div className="flex min-w-0 flex-col gap-6">
         <Card>
           <CardContent className="flex flex-col gap-6">
@@ -195,23 +204,26 @@ export function ReviewTable({
           </CardContent>
         </Card>
 
-        <details className="rounded-lg border bg-card 2xl:hidden">
-          <summary className="flex min-h-12 cursor-pointer items-center gap-2 px-4 font-medium">
-            <FileText aria-hidden="true" className="size-5 text-muted-foreground" />
-            {t("source.title")}
-          </summary>
-          <div className="px-4 pb-4">
-            <p className="mb-4 text-muted-foreground">{t("source.description")}</p>
-            <div className="mx-auto max-w-md">
-              <SourcePanel
-                source={source}
-                bill={bill}
-                selected={selectedRow}
-                idPrefix="source-inline"
-              />
+        {showSource ? (
+          <details className="rounded-lg border bg-card 2xl:hidden">
+            <summary className="flex min-h-12 cursor-pointer items-center gap-2 px-4 font-medium">
+              <FileText aria-hidden="true" className="size-5 text-muted-foreground" />
+              {t("source.title")}
+            </summary>
+            <div className="px-4 pb-4">
+              <p className="mb-4 text-muted-foreground">{sourceDescription}</p>
+              <div className="mx-auto max-w-md">
+                <SourcePanel
+                  source={source}
+                  bill={bill}
+                  selected={selectedRow}
+                  idPrefix="source-inline"
+                  manual={manual}
+                />
+              </div>
             </div>
-          </div>
-        </details>
+          </details>
+        ) : null}
 
         {items.length === 0 ? (
           <p className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
@@ -406,17 +418,19 @@ export function ReviewTable({
                             <span className="font-medium lg:sr-only">{t("verifyThisRow")}</span>
                           </label>
                           <span className="max-lg:hidden">{statusBadge}</span>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            aria-label={t("source.showOnBillRow", { row })}
-                            aria-pressed={item.id === selectedId}
-                            onClick={() => setSelectedId(item.id)}
-                          >
-                            <ScanSearch aria-hidden="true" />
-                            {t("source.showOnBill")}
-                          </Button>
+                          {manual ? null : (
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              aria-label={t("source.showOnBillRow", { row })}
+                              aria-pressed={item.id === selectedId}
+                              onClick={() => setSelectedId(item.id)}
+                            >
+                              <ScanSearch aria-hidden="true" />
+                              {t("source.showOnBill")}
+                            </Button>
+                          )}
                         </div>
                       </TableCell>
                     </TableRow>
@@ -456,22 +470,25 @@ export function ReviewTable({
         )}
       </div>
 
-      <aside className="hidden 2xl:block" aria-label={t("source.title")}>
-        <Card size="sm" className="sticky top-6">
-          <CardHeader>
-            <CardTitle>{t("source.title")}</CardTitle>
-            <CardDescription>{t("source.description")}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <SourcePanel
-              source={source}
-              bill={bill}
-              selected={selectedRow}
-              idPrefix="source-side"
-            />
-          </CardContent>
-        </Card>
-      </aside>
+      {showSource ? (
+        <aside className="hidden 2xl:block" aria-label={t("source.title")}>
+          <Card size="sm" className="sticky top-6">
+            <CardHeader>
+              <CardTitle>{t("source.title")}</CardTitle>
+              <CardDescription>{sourceDescription}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <SourcePanel
+                source={source}
+                bill={bill}
+                selected={selectedRow}
+                idPrefix="source-side"
+                manual={manual}
+              />
+            </CardContent>
+          </Card>
+        </aside>
+      ) : null}
 
       <section
         aria-label={t("actions.label")}

@@ -6,6 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { PrintButton } from "@/components/print-button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { loadFindings, stepHref, type BillSource } from "@/lib/bills/source";
+import { ManualEntryNote } from "./manual-note";
 import { formatCents } from "@/lib/money";
 import { buildReport } from "./report-model";
 
@@ -48,6 +49,8 @@ export async function ReportSummaryView({ source }: { source: BillSource }) {
         <p className="text-sm font-medium text-muted-foreground">{t("kicker")}</p>
         <h1 className="text-2xl font-semibold sm:text-3xl">{t("title")}</h1>
       </header>
+
+      <ManualEntryNote source={source} />
 
       <dl className="grid gap-3 sm:grid-cols-3">
         <div>

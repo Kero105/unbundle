@@ -227,7 +227,8 @@
         "columnService": "Servicio",
         "columnCharge": "Cargo",
         "watermark": "MUESTRA – FICTICIA"
-      }
+      },
+      "noBoxManual": "Usted escribió la fila {row}, así que no está vinculada a un lugar de su factura. Compárela por la descripción y el monto."
     },
     "empty": "No se encontraron partidas en esta factura.",
     "saveState": {
@@ -237,7 +238,14 @@
       "autosave": "Los cambios se guardan automáticamente."
     },
     "rowsRead": "{count, plural, one {Leímos # fila de su factura.} other {Leímos # filas de su factura.}}",
-    "lowConfidenceNote": "La IA marcó muchas filas como inciertas, algo normal con fotos y escaneos. Esas marcas son su propia autoevaluación, no una exactitud medida. Compare cada fila marcada con su factura y corrija lo que no se vea bien antes de continuar."
+    "lowConfidenceNote": "La IA marcó muchas filas como inciertas, algo normal con fotos y escaneos. Esas marcas son su propia autoevaluación, no una exactitud medida. Compare cada fila marcada con su factura y corrija lo que no se vea bien antes de continuar.",
+    "manual": {
+      "banner": "Usted escribió esta factura a mano, así que revise bien las cantidades y los códigos.",
+      "subtitle": "Revise las líneas que escribió y corrija cualquier cosa que no se vea bien.",
+      "rowsEntered": "{count, plural, one {Usted escribió # fila.} other {Usted escribió # filas.}}",
+      "editLines": "Editar las líneas que escribió",
+      "sourceDescription": "Este es el archivo que subió. Las filas que escribió no están vinculadas a un lugar del archivo, así que compárelas por la descripción y el monto."
+    }
   },
   "Report": {
     "title": "Su informe",
@@ -358,6 +366,9 @@
       },
       "difference": "Diferencia: {amount}",
       "note": "Una diferencia es un motivo para preguntar, no una prueba de error. Es posible que un pago o ajuste aún no haya llegado a la factura."
+    },
+    "manual": {
+      "note": "Usted escribió esta factura a mano. Estas revisiones usaron solo las líneas que escribió, así que no pueden detectar nada que esté en la factura pero falte en sus líneas. Las revisiones que necesitan lo que pagó su aseguradora no se pueden hacer con una factura escrita a mano."
     }
   },
   "Letter": {

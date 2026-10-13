@@ -9,6 +9,9 @@ import { BillSteps } from "@/components/bill-steps";
 import { DeleteBillButton } from "@/components/delete-bill-button";
 import { summarizeConfidence } from "@/lib/bills/extraction-confidence";
 import { getSourceFileForBill } from "@/lib/bills/source-file-server";
+import { readEntryMethod } from "@/lib/bills/entry-method";
+import { createClient } from "@/lib/supabase/server";
+import Link from "next/link";
 import { ReviewTable } from "./review-table";
 
 // The request locale is request-time data, so callers render this inside
@@ -21,6 +24,9 @@ export async function ReviewView({ source }: { source: BillSource }) {
   const persisted = source.kind === "bill" && z.uuid().safeParse(source.id).success;
 
   const [locale, t] = await Promise.all([getLocale(), getTranslations("Review")]);
+
+  // Typed-in bills have no reading to correct and no position on the file.
+  const manual = persisted && (await readEntryMethod(await createClient(), source.id)) === "manual";
 
   const confidence = summarizeConfidence(bill.lineItems);
 
@@ -42,10 +48,31 @@ export async function ReviewView({ source }: { source: BillSource }) {
           <BillSteps current="review" />
           <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-semibold sm:text-4xl">{t("title")}</h1>
-            <p className="max-w-2xl text-lg text-muted-foreground">{t("subtitle")}</p>
-            <p className="text-base font-medium">{t("rowsRead", { count: confidence.rowCount })}</p>
+            <p className="max-w-2xl text-lg text-muted-foreground">
+              {t(manual ? "manual.subtitle" : "subtitle")}
+            </p>
+            <p className="text-base font-medium">
+              {t(manual ? "manual.rowsEntered" : "rowsRead", { count: confidence.rowCount })}
+            </p>
           </div>
-          {confidence.low ? (
+          {manual && persisted ? (
+            <div
+              role="note"
+              className="flex max-w-2xl flex-col gap-3 rounded-lg border bg-muted p-4 text-base sm:flex-row sm:items-center sm:justify-between"
+            >
+              <p className="flex items-start gap-3">
+                <Info aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
+                {t("manual.banner")}
+              </p>
+              <Link
+                href={`/bills/${source.id}/enter`}
+                className="font-medium text-primary underline underline-offset-4 hover:no-underline"
+              >
+                {t("manual.editLines")}
+              </Link>
+            </div>
+          ) : null}
+          {confidence.low && !manual ? (
             <p
               role="note"
               className="flex max-w-2xl items-start gap-3 rounded-lg border bg-muted p-4 text-base"
@@ -61,6 +88,7 @@ export async function ReviewView({ source }: { source: BillSource }) {
           demo={source.kind === "demo"}
           billId={persisted ? source.id : undefined}
           source={panelSource}
+          manual={manual}
         />
         {persisted ? (
           <div className="flex">

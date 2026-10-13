@@ -72,11 +72,14 @@ export function SourcePanel({
   bill,
   selected,
   idPrefix,
+  manual = false,
 }: {
   source: PanelSource;
   bill: ExtractedBill;
   selected: SelectedRow | null;
   idPrefix: string;
+  /** Rows were typed in, so none has a position on the file. */
+  manual?: boolean;
 }) {
   const t = useTranslations("Review.source");
   const regionId = useId();
@@ -269,7 +272,7 @@ export function SourcePanel({
       ) : null}
       {noBox ? (
         <p role="note" className="rounded-lg border bg-muted p-3 text-sm">
-          {t("noBox", { row: selected.row })}
+          {t(manual ? "noBoxManual" : "noBox", { row: selected.row })}
         </p>
       ) : null}
       {source.kind === "demo" ? (

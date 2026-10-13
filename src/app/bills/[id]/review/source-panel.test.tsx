@@ -9,10 +9,10 @@ import { SourcePanel, type PanelSource, type SelectedRow } from "./source-panel"
 
 const bill = ExtractedBillSchema.parse(demoBill);
 
-function view(source: PanelSource, selected: SelectedRow | null) {
+function view(source: PanelSource, selected: SelectedRow | null, manual = false) {
   return render(
     <NextIntlClientProvider locale="en" messages={en}>
-      <SourcePanel source={source} bill={bill} selected={selected} idPrefix="t" />
+      <SourcePanel source={source} bill={bill} selected={selected} idPrefix="t" manual={manual} />
     </NextIntlClientProvider>,
   );
 }
@@ -44,6 +44,14 @@ describe("SourcePanel", () => {
     view({ kind: "image", url: "https://example.test/x" }, { ...row(0), sourceBox: null });
     expect(screen.queryByTestId("source-highlight")).toBeNull();
     expect(screen.getByRole("note").textContent).toContain("couldn’t pinpoint");
+  });
+
+  it("says a typed row has no spot on the bill, instead of claiming it could not be found", () => {
+    view({ kind: "image", url: "https://example.test/x" }, { ...row(0), sourceBox: null }, true);
+    expect(screen.queryByTestId("source-highlight")).toBeNull();
+    const note = screen.getByRole("note").textContent ?? "";
+    expect(note).toContain("You typed row 1");
+    expect(note).not.toContain("couldn’t pinpoint");
   });
 
   it("gives the image alt text and zooms with buttons and keys", () => {

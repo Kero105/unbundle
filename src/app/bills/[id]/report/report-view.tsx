@@ -15,6 +15,7 @@ import { formatCents } from "@/lib/money";
 import type { Confidence, Severity } from "@/lib/types";
 import { PrintButton } from "@/components/print-button";
 import { EobReconciliation } from "./eob-reconciliation-view";
+import { ManualEntryNote } from "./manual-note";
 import { NextSteps } from "./next-steps";
 import { buildReport, whyKey, type ReportFinding } from "./report-model";
 
@@ -132,6 +133,7 @@ export async function ReportView({ source }: { source: BillSource }) {
           <h1 className="text-3xl font-semibold sm:text-4xl">{t("title")}</h1>
           <p className="max-w-2xl text-lg text-muted-foreground">{t("subtitle")}</p>
         </div>
+        <ManualEntryNote source={source} />
       </header>
 
       {report.findings.length === 0 ? (
