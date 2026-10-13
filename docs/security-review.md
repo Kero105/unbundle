@@ -14,6 +14,20 @@ Reviewed 2026-10-10 by reading the code and migrations. No browser or live-datab
 | 6 | Extraction route limits | **Pass.** Request body is only `{billId}` (strict schema). Rate limit: 5 runs per user per rolling hour, enforced atomically in the database with an advisory lock; one concurrent run per bill. Kill switch `EXTRACTION_ENABLED` and fail-closed config. Upload route: 10 MB file cap (checked from content-length and again on bytes), magic-byte type check, 6-page PDF cap, 50 bills per user. Bucket also caps size and MIME types. |
 | 7 | File names in storage paths | **Pass.** Path is `{user_id}/{bill_id}/{random uuid}.{ext}` where the extension comes from detected magic bytes. The client file name is never read. |
 
+## Manual entry (migration 0006, draft, not yet applied)
+
+Reviewed 2026-10-13 by reading `0006_manual_entry.sql` and the code that calls it. The SQL has not been executed; `docs/manual-entry-test.md` is the checklist that does that.
+
+- **New write path.** `submit_manual_bill(bill_id, header, lines)` is the only way a client moves a bill to `needs_review` without the model. It is `security definer`, `search_path = ''`, executable by `authenticated` only, and uses no dynamic SQL. It checks `auth.uid()`, then ownership with a row lock, then validates every field (line count, dates, integer cents, code format, modifiers, text, unknown keys) before its first write, because it returns codes rather than raising and a return commits.
+- **INSERT gap closed.** 0004 locked the extraction status columns against UPDATE only. INSERT on `bills` was still table-wide, so a client could insert a bill that was already `needs_review`. 0006 revokes INSERT and grants back `(user_id)` only.
+- **No new model exposure.** Manual entry never calls Anthropic. Code explanations send only the billing code, not the line description (`explain-actions.ts` accepts `{ code, demo }` under a strict schema, and `explain/server.ts` passes only `code` and `language`). A `description` parameter still exists in `explain/service.ts` and `prompt.ts` but no caller sets it.
+- **Residual race, not fixed.**
+  - *What:* if an extraction run is still going when its bill passes the 5-minute stale threshold and the user then submits by hand, the late run can write over the typed data. `saveResult()` in `src/lib/extraction/supabase-store.ts` deletes and re-inserts `line_items` and updates the bill header before it calls `finish_extraction()`, and that call is what refuses (`not_extracting`) because the bill is no longer `extracting`.
+  - *Result:* the typed rows and header are replaced by the extracted ones while the bill stays `needs_review` with `entry_method = 'manual'`. No data leaves the user's own account, and the review screen still shows what is stored. The row confidences come from the model, so low-confidence rows ask for review as usual.
+  - *Likelihood:* very low. A run has `maxDuration = 120` seconds, well under the 5-minute stale window, so it only happens if that limit is raised or the host ignores it.
+  - *Fix when wanted:* have `saveResult()` confirm the bill is still `extracting` (or do the writes inside a database function that checks) before it deletes anything.
+- **Not verified.** The function's behaviour against a real database, including the INSERT revoke against the upload flow. Run the checklist before applying 0006 to production.
+
 ## Headers added
 
 `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(self), microphone=(), geolocation=()`, `X-Frame-Options: DENY` plus CSP `frame-ancestors 'none'`. Verified on a production build with `curl -I`.
