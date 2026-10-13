@@ -112,7 +112,8 @@
     "retry": "Try reading again",
     "retryPending": "Reading…",
     "loadError": "We couldn't load your bills. Please refresh.",
-    "requestItemized": "Request an itemized bill"
+    "requestItemized": "Request an itemized bill",
+    "enterByHand": "Type it in by hand"
   },
   "Error": {
     "title": "Something went wrong",
@@ -670,7 +671,11 @@
       "compressing": "Getting your photo ready…",
       "fixBill": "Fix the problem with your bill above to continue."
     },
-    "keptFiles": "Your files are still here:"
+    "keptFiles": "Your files are still here:",
+    "manual": {
+      "link": "No photo? Type in your bill instead.",
+      "afterError": "Or type in your bill by hand instead."
+    }
   },
   "DeleteBill": {
     "button": "Delete bill",

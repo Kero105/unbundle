@@ -86,6 +86,8 @@ export function UploadForm() {
   const [phase, setPhase] = useState<Phase>("form");
   const [step, setStep] = useState<Step>("creating");
   const [errorCode, setErrorCode] = useState<string>("unknown");
+  // The bill that exists when the error happened, so typing it in reuses it.
+  const [failedBillId, setFailedBillId] = useState<string | null>(null);
   // Survive retries: a retry resumes after the last step that succeeded.
   const progress = useRef<{ billId: string | null; bill: boolean; eob: boolean }>({
     billId: null,
@@ -209,6 +211,7 @@ export function UploadForm() {
         return;
       }
       setErrorCode(code);
+      setFailedBillId(state.billId);
       setPhase("error");
     }
   }
@@ -301,6 +304,14 @@ export function UploadForm() {
             {t("startOver")}
           </Button>
         </div>
+        <p>
+          <Link
+            href={failedBillId ? `/bills/${failedBillId}/enter` : "/bills/new/manual"}
+            className="font-medium text-primary underline underline-offset-4 hover:no-underline"
+          >
+            {t("manual.afterError")}
+          </Link>
+        </p>
       </div>
     );
   }
@@ -372,6 +383,14 @@ export function UploadForm() {
           </p>
         ) : null}
       </div>
+      <p>
+        <Link
+          href="/bills/new/manual"
+          className="font-medium text-primary underline underline-offset-4 hover:no-underline"
+        >
+          {t("manual.link")}
+        </Link>
+      </p>
     </form>
   );
 }

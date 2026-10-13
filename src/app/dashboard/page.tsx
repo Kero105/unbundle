@@ -152,6 +152,15 @@ async function Dashboard() {
                         {status === "failed" ? (
                           <RetryExtractionButton billId={bill.id} />
                         ) : null}
+                        {status === "failed" || status === "pending" ? (
+                          <PendingLink
+                            href={`/bills/${bill.id}/enter`}
+                            className={buttonVariants({ size: "sm", variant: "outline" })}
+                            pendingLabel={t("openPending")}
+                          >
+                            {t("enterByHand")}
+                          </PendingLink>
+                        ) : null}
                         <DeleteBillButton billId={bill.id} size="sm" />
                       </div>
                     </CardContent>

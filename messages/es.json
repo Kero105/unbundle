@@ -112,7 +112,8 @@
     "retry": "Intentar leer de nuevo",
     "retryPending": "Leyendo…",
     "loadError": "No pudimos cargar sus facturas. Actualice la página.",
-    "requestItemized": "Solicitar una factura detallada"
+    "requestItemized": "Solicitar una factura detallada",
+    "enterByHand": "Escribirla a mano"
   },
   "Error": {
     "title": "Algo salió mal",
@@ -670,7 +671,11 @@
       "compressing": "Preparando su foto…",
       "fixBill": "Corrija el problema con su factura, arriba, para continuar."
     },
-    "keptFiles": "Sus archivos siguen aquí:"
+    "keptFiles": "Sus archivos siguen aquí:",
+    "manual": {
+      "link": "¿No tiene una foto? Escriba su factura a mano.",
+      "afterError": "O escriba su factura a mano."
+    }
   },
   "DeleteBill": {
     "button": "Eliminar factura",
