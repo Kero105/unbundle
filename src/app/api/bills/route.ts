@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
+import { MAX_BILLS_PER_USER } from "@/lib/bills/limits";
 import { createClient } from "@/lib/supabase/server";
-
-const MAX_BILLS_PER_USER = 50;
 
 /** Creates an empty bill owned by the caller; files are added by the next request. */
 export async function POST() {
