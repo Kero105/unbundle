@@ -5,6 +5,7 @@ export type MetaKey =
   | "home"
   | "demo"
   | "upload"
+  | "manualEntry"
   | "dashboard"
   | "settings"
   | "review"

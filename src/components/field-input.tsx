@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import type { ParseResult } from "@/app/bills/[id]/review/fields";
 
 export type FieldInputProps<T> = {
@@ -17,6 +18,8 @@ export type FieldInputProps<T> = {
   inputMode?: "decimal" | "numeric";
   placeholder?: string;
   className?: string;
+  /** Keep the visible label at every width (the review table hides it on desktop). */
+  alwaysShowLabel?: boolean;
 };
 
 /**
@@ -35,6 +38,7 @@ export function FieldInput<T>({
   inputMode,
   placeholder,
   className,
+  alwaysShowLabel = false,
 }: FieldInputProps<T>) {
   const [draft, setDraft] = useState<string | null>(null);
   const [invalid, setInvalid] = useState(false);
@@ -62,7 +66,10 @@ export function FieldInput<T>({
     <div className="flex flex-col gap-1">
       <label
         htmlFor={inputId}
-        className="text-sm font-medium text-muted-foreground lg:sr-only"
+        className={cn(
+          "text-sm font-medium text-muted-foreground",
+          !alwaysShowLabel && "lg:sr-only",
+        )}
       >
         {visibleLabel}
       </label>

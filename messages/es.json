@@ -938,6 +938,10 @@
     "help": {
       "title": "Ayuda y preguntas frecuentes | Unbundle",
       "description": "Respuestas sencillas sobre lo que hace Unbundle, qué tan preciso es, cómo se maneja su información y qué hacer si no tiene seguro."
+    },
+    "manualEntry": {
+      "title": "Escriba su factura | Unbundle",
+      "description": "Escriba a mano las líneas de su factura médica para que Unbundle las revise."
     }
   },
   "Explain": {
@@ -1033,6 +1037,46 @@
         "q": "¿Qué hago si no tengo seguro?",
         "a": "Pida una factura detallada y la política de asistencia financiera del proveedor con su solicitud, ya que muchos hospitales reducen las facturas según los ingresos. Si le dieron una Estimación de Buena Fe antes de su atención, puede compararla con su factura en el paso de ayuda financiera. También puede preguntar por descuentos por pago rápido y planes de pago, y pedir que su cuenta no pase a cobranza mientras se revisa."
       }
+    }
+  },
+  "Manual": {
+    "title": "Escriba su factura",
+    "subtitle": "Copie cada línea de su factura. Hacemos las mismas revisiones que con una foto.",
+    "howTo": "Escriba cada línea tal como está impresa en su factura. Deje un campo en blanco si su factura no lo muestra.",
+    "billSection": "Sobre la factura",
+    "provider": "Proveedor u hospital",
+    "serviceStart": "Primera fecha de servicio",
+    "serviceEnd": "Última fecha de servicio",
+    "datesHint": "Opcional. Complete las dos fechas, o deje ambas en blanco.",
+    "linesSection": "Cargos",
+    "lineHeading": "Línea {row}",
+    "addLine": "Agregar una línea",
+    "remove": "Quitar",
+    "removeLine": "Quitar la línea {row}",
+    "lineLimit": "Puede agregar hasta {max} líneas.",
+    "total": "Total de las líneas que escribió: {amount}",
+    "submit": "Continuar a la revisión",
+    "submitPending": "Guardando…",
+    "cancel": "Volver al panel",
+    "busy": "Esta factura todavía se está leyendo. Espere un minuto y vuelva.",
+    "privacy": {
+      "title": "Lo que escriba es privado",
+      "body": "Lo que escriba se guarda solo en su cuenta, en el mismo lugar privado que una factura subida. No se envía a Anthropic. Lo único que enviamos es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Puede eliminar una factura cuando quiera.",
+      "more": "Lea la política de privacidad completa"
+    },
+    "errors": {
+      "summary": "Algunas líneas necesitan atención. Cada línea necesita una descripción y un cargo, y las fechas deben ser fechas reales.",
+      "provider": "Escriba el nombre del proveedor.",
+      "descriptionRequired": "Escriba una descripción.",
+      "chargeRequired": "Escriba el cargo. Use 0.00 si la factura no muestra ninguno.",
+      "code": "Use de 3 a 10 letras o números, como 99213.",
+      "invalid": "No pudimos aceptar esas líneas. Revise los valores e inténtelo de nuevo.",
+      "limit": "Llegó al límite de facturas guardadas. Elimine una para agregar otra.",
+      "busy": "Esta factura se está leyendo ahora. Espere un minuto e inténtelo de nuevo.",
+      "reviewed": "Esta factura ya se leyó a partir de su archivo, así que no se puede escribir a mano. Ábrala desde su panel para revisarla.",
+      "signedOut": "Su sesión terminó. Inicie sesión de nuevo.",
+      "notFound": "No pudimos encontrar esa factura.",
+      "failed": "No pudimos guardar su factura. Inténtelo de nuevo."
     }
   }
 }

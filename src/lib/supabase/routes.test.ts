@@ -21,6 +21,8 @@ describe("route access", () => {
     "/bills/abc/report",
     "/bills/abc/letter",
     "/bills/abc/assistance",
+    "/bills/abc/enter",
+    "/bills/new/manual",
     "/bills/demo/review",
   ])("%s is protected and not public", (path) => {
     expect(isProtectedPath(path)).toBe(true);

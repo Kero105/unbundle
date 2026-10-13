@@ -938,6 +938,10 @@
     "help": {
       "title": "Help and common questions | Unbundle",
       "description": "Plain answers about what Unbundle does, how accurate it is, how your information is handled, and what to do if you are uninsured."
+    },
+    "manualEntry": {
+      "title": "Type in your bill | Unbundle",
+      "description": "Type the lines of your medical bill in by hand so Unbundle can check them."
     }
   },
   "Explain": {
@@ -1033,6 +1037,46 @@
         "q": "What if I don't have insurance?",
         "a": "Ask for an itemized bill and for the provider's financial assistance policy and application, since many hospitals reduce bills based on income. If you were given a Good Faith Estimate before your care, you can compare it with your bill in the financial help step. You can also ask about prompt-pay discounts and payment plans, and ask that your account not go to collections while it is reviewed."
       }
+    }
+  },
+  "Manual": {
+    "title": "Type in your bill",
+    "subtitle": "Copy each line from your bill. We run the same checks as we do for a photo.",
+    "howTo": "Type each line as it is printed on your bill. Leave a field blank if your bill doesn't show it.",
+    "billSection": "About the bill",
+    "provider": "Provider or hospital",
+    "serviceStart": "First date of service",
+    "serviceEnd": "Last date of service",
+    "datesHint": "Optional. Fill in both dates, or leave both blank.",
+    "linesSection": "Charges",
+    "lineHeading": "Line {row}",
+    "addLine": "Add a line",
+    "remove": "Remove",
+    "removeLine": "Remove line {row}",
+    "lineLimit": "You can add up to {max} lines.",
+    "total": "Total of the lines you entered: {amount}",
+    "submit": "Continue to review",
+    "submitPending": "Saving…",
+    "cancel": "Back to dashboard",
+    "busy": "This bill is still being read. Give it a minute, then come back.",
+    "privacy": {
+      "title": "What you type stays private",
+      "body": "What you type is saved only in your account, in the same private place as an uploaded bill. It isn't sent to Anthropic. The only thing we ever send is a single billing code, and only if you open “What is this?” on a line. You can delete a bill at any time.",
+      "more": "Read the full privacy policy"
+    },
+    "errors": {
+      "summary": "Some lines need a closer look. Every line needs a description and a charge, and dates must be real dates.",
+      "provider": "Enter the provider's name.",
+      "descriptionRequired": "Enter a description.",
+      "chargeRequired": "Enter the charge. Use 0.00 if the bill shows none.",
+      "code": "Use 3 to 10 letters or numbers, like 99213.",
+      "invalid": "We couldn't accept those lines. Check the values and try again.",
+      "limit": "You've reached the limit of saved bills. Delete one to add another.",
+      "busy": "This bill is being read right now. Give it a minute and try again.",
+      "reviewed": "This bill was already read from your upload, so it can't be typed in. Open it from your dashboard to review it.",
+      "signedOut": "Your session has ended. Please sign in again.",
+      "notFound": "We couldn't find that bill.",
+      "failed": "We couldn't save your bill. Please try again."
     }
   }
 }
