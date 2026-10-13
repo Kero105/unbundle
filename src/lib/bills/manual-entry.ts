@@ -174,3 +174,42 @@ export function interpretManualSubmit(result: unknown): ManualRpcError | "save_f
   const known = MANUAL_RPC_ERRORS.find((code) => code === result);
   return known ?? "save_failed";
 }
+
+/** Keys under `Manual.errors` for a failed submit. Several codes share a message. */
+export type ManualErrorKey =
+  | "invalid"
+  | "limit"
+  | "busy"
+  | "reviewed"
+  | "signedOut"
+  | "notFound"
+  | "failed";
+
+export function manualErrorKey(code: ManualSubmitError): ManualErrorKey {
+  switch (code) {
+    case "invalid":
+    case "no_lines":
+    case "too_many_lines":
+    case "bad_payload":
+    case "bad_header":
+    case "bad_date":
+    case "bad_cents":
+    case "bad_units":
+    case "bad_code":
+    case "bad_modifier":
+    case "bad_description":
+      return "invalid";
+    case "too_many_bills":
+      return "limit";
+    case "busy":
+      return "busy";
+    case "already_done":
+      return "reviewed";
+    case "unauthenticated":
+      return "signedOut";
+    case "not_found":
+      return "notFound";
+    case "save_failed":
+      return "failed";
+  }
+}

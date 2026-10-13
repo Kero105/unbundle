@@ -20,6 +20,8 @@ import {
   parseManualBill,
   toExtractedBill,
   MANUAL_RPC_ERRORS,
+  manualErrorKey,
+  type ManualSubmitError,
 } from "./manual-entry";
 
 const TODAY = "2026-10-12";
@@ -372,6 +374,16 @@ describe("migration 0006 guards each hostile input before any write", () => {
     const lastReturn = sql.lastIndexOf("return 'bad_");
     expect(lastReturn).toBeGreaterThan(-1);
     expect(lastReturn).toBeLessThan(writeAt);
+  });
+});
+
+describe("manualErrorKey", () => {
+  it("maps every error code to a message key", () => {
+    const codes: ManualSubmitError[] = [...MANUAL_RPC_ERRORS, "invalid", "too_many_bills", "save_failed"];
+    for (const code of codes) expect(manualErrorKey(code)).toMatch(/^[a-zA-Z]+$/);
+    expect(manualErrorKey("bad_cents")).toBe("invalid");
+    expect(manualErrorKey("too_many_bills")).toBe("limit");
+    expect(manualErrorKey("already_done")).toBe("reviewed");
   });
 });
 
