@@ -617,7 +617,7 @@
     "submitPending": "Starting…",
     "privacy": {
       "title": "Your files are private",
-      "body": "Only your account can open your files in Unbundle. Our upload form resizes photos in your browser before they upload. To read the text on your bill, we send your files to Anthropic's API. The only other thing we send is a single billing code, and only if you open “What is this?” on a line. Anthropic's published terms say your bills aren't used to train its models by default. You can delete a bill at any time, which removes its stored files and the data we read from them.",
+      "body": "Only your account can open your files in Unbundle. Our upload form resizes photos in your browser before they upload. To read the text on your bill, we send your files to Anthropic's API. The only other thing we send is a single billing code, and only if you open “What is this?” on a line. If you type your bill in instead of uploading it, nothing you type is sent to Anthropic, apart from that same billing code. Anthropic's published terms say your bills aren't used to train its models by default. You can delete a bill at any time, which removes its stored files and the data we read from them.",
       "more": "Read the full privacy policy"
     },
     "progress": {
@@ -702,12 +702,12 @@
     "home": "← Home",
     "title": "Privacy Policy",
     "updatedLabel": "Last updated",
-    "updated": "October 10, 2026",
+    "updated": "October 13, 2026",
     "summary": {
       "title": "In short",
       "files": "Your files are stored in a private folder that only your account can read, write or delete.",
       "browser": "Our upload form resizes photos in your browser before they are uploaded.",
-      "anthropic": "Your files are sent to Anthropic's API so your bill can be read. The only other thing sent is a single billing code, and only if you open “What is this?” on a line. Anthropic's published terms say that, by default, your bills aren't used to train its models and API data is deleted within 30 days. Those are Anthropic's terms, not ours.",
+      "anthropic": "Your files are sent to Anthropic's API so your bill can be read. The only other thing sent is a single billing code, and only if you open “What is this?” on a line. If you type your bill in instead of uploading it, nothing you type is sent to Anthropic, apart from that same billing code. Anthropic's published terms say that, by default, your bills aren't used to train its models and API data is deleted within 30 days. Those are Anthropic's terms, not ours.",
       "delete": "Deleting a bill removes the bill, its line items and the uploaded files from our storage.",
       "sell": "We never sell your information."
     },
@@ -716,7 +716,7 @@
       "title": "What we collect",
       "email": "Your Google account email and name, so you can sign in.",
       "files": "The files you upload: a photo or PDF of your bill and, optionally, your insurer's Explanation of Benefits.",
-      "items": "The line items, dates, codes and amounts we read from those files, and any changes you make to them."
+      "items": "The line items, dates, codes and amounts we read from those files, or that you type in yourself, and any changes you make to them."
     },
     "files": {
       "title": "What happens to your uploaded files",
@@ -727,7 +727,7 @@
     },
     "anthropic": {
       "title": "How Anthropic is involved",
-      "body": "To read the text on your bill, our server sends your uploaded files to Claude, an AI model made by Anthropic, through Anthropic's API. Anthropic processes the images to read them and returns the line items. The model only reads what is printed; it does not decide whether a charge is wrong. Those checks are run by fixed rules in our own code. Anthropic's published commercial terms say it may not train its models on customer content sent through its services, and its API data policy says that, by default, it automatically deletes API inputs and outputs from its systems within 30 days, except where content is flagged for violating its usage policy or the law requires it to keep it longer. Those are Anthropic's terms, not ours, and they can change; see <link>Anthropic's retention policy</link>. If you open “What is this?” on a line, only that line's billing code (for example, 99213) is sent for a general explanation, never your name, dates, or amounts. Our API key is kept on the server and never sent to your browser."
+      "body": "To read the text on your bill, our server sends your uploaded files to Claude, an AI model made by Anthropic, through Anthropic's API. Anthropic processes the images to read them and returns the line items. The model only reads what is printed; it does not decide whether a charge is wrong. Those checks are run by fixed rules in our own code. Anthropic's published commercial terms say it may not train its models on customer content sent through its services, and its API data policy says that, by default, it automatically deletes API inputs and outputs from its systems within 30 days, except where content is flagged for violating its usage policy or the law requires it to keep it longer. Those are Anthropic's terms, not ours, and they can change; see <link>Anthropic's retention policy</link>. If you open “What is this?” on a line, only that line's billing code (for example, 99213) is sent for a general explanation, never your name, dates, or amounts. If you type your bill in instead of uploading it, what you type is not sent to Anthropic at all; it is saved to your account and checked by our own fixed rules. Our API key is kept on the server and never sent to your browser."
     },
     "kept": {
       "title": "Where it is kept",
@@ -1027,7 +1027,7 @@
       },
       "bills": {
         "q": "What kinds of bills does it work on?",
-        "a": "Itemized bills and statements from doctors' offices, clinics, and other providers, as a photo or a PDF. The price and quantity checks use Medicare's physician fee schedule for Los Angeles, so they fit services on that schedule best. Hospital facility charges, such as a room fee, are outside what the price checks cover. A bill with one lump sum and no line items can't be checked, so ask the billing office for an itemized bill first."
+        "a": "Itemized bills and statements from doctors' offices, clinics, and other providers, as a photo or a PDF, or typed in by hand if you have no photo. The price and quantity checks use Medicare's physician fee schedule for Los Angeles, so they fit services on that schedule best. Hospital facility charges, such as a room fee, are outside what the price checks cover. A bill with one lump sum and no line items can't be checked, so ask the billing office for an itemized bill first."
       },
       "accuracy": {
         "q": "How accurate is it?",
@@ -1035,7 +1035,7 @@
       },
       "privacy": {
         "q": "Is my information private?",
-        "a": "Your files are kept in a private folder that only your account can open. To read your bill, we send your files to Anthropic's API; Anthropic's published terms say that, by default, your bills aren't used to train its models. You can delete a bill, all your bills, or your whole account from Settings at any time."
+        "a": "Your files are kept in a private folder that only your account can open. To read your bill, we send your files to Anthropic's API; Anthropic's published terms say that, by default, your bills aren't used to train its models. If you type your bill in instead, nothing you type is sent to Anthropic. You can delete a bill, all your bills, or your whole account from Settings at any time."
       },
       "cost": {
         "q": "How much does it cost?",

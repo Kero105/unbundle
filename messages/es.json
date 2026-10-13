@@ -617,7 +617,7 @@
     "submitPending": "Comenzando…",
     "privacy": {
       "title": "Sus archivos son privados",
-      "body": "Solo su cuenta puede abrir sus archivos en Unbundle. Nuestro formulario de subida reduce el tamaño de las fotos en su navegador antes de subirse. Para leer el texto de su factura, enviamos sus archivos a la API de Anthropic. Lo único más que enviamos es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Puede eliminar una factura cuando quiera: se borran sus archivos guardados y los datos que leímos de ellos.",
+      "body": "Solo su cuenta puede abrir sus archivos en Unbundle. Nuestro formulario de subida reduce el tamaño de las fotos en su navegador antes de subirse. Para leer el texto de su factura, enviamos sus archivos a la API de Anthropic. Lo único más que enviamos es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Si escribe su factura en lugar de subirla, nada de lo que escriba se envía a Anthropic, aparte de ese mismo código de facturación. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Puede eliminar una factura cuando quiera: se borran sus archivos guardados y los datos que leímos de ellos.",
       "more": "Lea la política de privacidad completa"
     },
     "progress": {
@@ -702,12 +702,12 @@
     "home": "← Inicio",
     "title": "Política de privacidad",
     "updatedLabel": "Última actualización",
-    "updated": "10 de octubre de 2026",
+    "updated": "13 de octubre de 2026",
     "summary": {
       "title": "En resumen",
       "files": "Sus archivos se guardan en una carpeta privada que solo su cuenta puede leer, modificar o eliminar.",
       "browser": "Nuestro formulario de subida reduce el tamaño de las fotos en su navegador antes de subirlas.",
-      "anthropic": "Sus archivos se envían a la API de Anthropic para que se pueda leer su factura. Lo único más que se envía es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos y los datos de la API se eliminan en un plazo de 30 días. Esos son los términos de Anthropic, no los nuestros.",
+      "anthropic": "Sus archivos se envían a la API de Anthropic para que se pueda leer su factura. Lo único más que se envía es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Si escribe su factura en lugar de subirla, nada de lo que escriba se envía a Anthropic, aparte de ese mismo código de facturación. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos y los datos de la API se eliminan en un plazo de 30 días. Esos son los términos de Anthropic, no los nuestros.",
       "delete": "Al eliminar una factura, se borran de nuestro almacenamiento la factura, sus partidas y los archivos subidos.",
       "sell": "Nunca vendemos su información."
     },
@@ -716,7 +716,7 @@
       "title": "Qué recopilamos",
       "email": "El correo electrónico y el nombre de su cuenta de Google, para que pueda iniciar sesión.",
       "files": "Los archivos que sube: una foto o un PDF de su factura y, si lo desea, la Explicación de Beneficios de su aseguradora.",
-      "items": "Las partidas, fechas, códigos y montos que leemos de esos archivos, y los cambios que usted les haga."
+      "items": "Las partidas, fechas, códigos y montos que leemos de esos archivos, o que usted escribe a mano, y los cambios que usted les haga."
     },
     "files": {
       "title": "Qué pasa con los archivos que sube",
@@ -727,7 +727,7 @@
     },
     "anthropic": {
       "title": "Cómo participa Anthropic",
-      "body": "Para leer el texto de su factura, nuestro servidor envía los archivos que usted sube a Claude, un modelo de IA creado por Anthropic, a través de la API de Anthropic. Anthropic procesa las imágenes para leerlas y devuelve las partidas. El modelo solo lee lo que está impreso; no decide si un cobro es incorrecto. Esas revisiones las hacen reglas fijas de nuestro propio código. Los términos comerciales publicados por Anthropic indican que la empresa no puede entrenar sus modelos con el contenido de clientes enviado a través de sus servicios, y su política de datos de la API indica que, de forma predeterminada, elimina automáticamente de sus sistemas las entradas y salidas de la API en un plazo de 30 días, salvo cuando el contenido se marca por infringir su política de uso o cuando la ley le exige conservarlo por más tiempo. Esos son los términos de Anthropic, no los nuestros, y pueden cambiar; consulte la <link>política de retención de Anthropic</link>. Si abre «¿Qué es esto?» en una fila, solo se envía el código de facturación de esa fila (por ejemplo, 99213) para obtener una explicación general, nunca su nombre, fechas ni montos. Nuestra clave de API se mantiene en el servidor y nunca se envía a su navegador."
+      "body": "Para leer el texto de su factura, nuestro servidor envía los archivos que usted sube a Claude, un modelo de IA creado por Anthropic, a través de la API de Anthropic. Anthropic procesa las imágenes para leerlas y devuelve las partidas. El modelo solo lee lo que está impreso; no decide si un cobro es incorrecto. Esas revisiones las hacen reglas fijas de nuestro propio código. Los términos comerciales publicados por Anthropic indican que la empresa no puede entrenar sus modelos con el contenido de clientes enviado a través de sus servicios, y su política de datos de la API indica que, de forma predeterminada, elimina automáticamente de sus sistemas las entradas y salidas de la API en un plazo de 30 días, salvo cuando el contenido se marca por infringir su política de uso o cuando la ley le exige conservarlo por más tiempo. Esos son los términos de Anthropic, no los nuestros, y pueden cambiar; consulte la <link>política de retención de Anthropic</link>. Si abre «¿Qué es esto?» en una fila, solo se envía el código de facturación de esa fila (por ejemplo, 99213) para obtener una explicación general, nunca su nombre, fechas ni montos. Si escribe su factura en lugar de subirla, lo que escriba no se envía a Anthropic en absoluto; se guarda en su cuenta y lo revisan nuestras propias reglas fijas. Nuestra clave de API se mantiene en el servidor y nunca se envía a su navegador."
     },
     "kept": {
       "title": "Dónde se guarda",
@@ -1027,7 +1027,7 @@
       },
       "bills": {
         "q": "¿Con qué tipos de facturas funciona?",
-        "a": "Facturas detalladas y estados de cuenta de consultorios médicos, clínicas y otros proveedores, en foto o en PDF. Las revisiones de precios y cantidades usan la lista de tarifas de médicos de Medicare para Los Ángeles, así que se ajustan mejor a los servicios de esa lista. Los cargos de instalaciones de un hospital, como la habitación, quedan fuera de lo que cubren las revisiones de precios. Una factura con un solo monto total y sin filas no se puede revisar, así que pida primero una factura detallada a la oficina de facturación."
+        "a": "Facturas detalladas y estados de cuenta de consultorios médicos, clínicas y otros proveedores, en foto o en PDF, o escritas a mano si no tiene una foto. Las revisiones de precios y cantidades usan la lista de tarifas de médicos de Medicare para Los Ángeles, así que se ajustan mejor a los servicios de esa lista. Los cargos de instalaciones de un hospital, como la habitación, quedan fuera de lo que cubren las revisiones de precios. Una factura con un solo monto total y sin filas no se puede revisar, así que pida primero una factura detallada a la oficina de facturación."
       },
       "accuracy": {
         "q": "¿Qué tan preciso es?",
@@ -1035,7 +1035,7 @@
       },
       "privacy": {
         "q": "¿Mi información es privada?",
-        "a": "Sus archivos se guardan en una carpeta privada que solo su cuenta puede abrir. Para leer su factura, enviamos sus archivos a la API de Anthropic; según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Puede eliminar una factura, todas sus facturas o toda su cuenta desde Configuración en cualquier momento."
+        "a": "Sus archivos se guardan en una carpeta privada que solo su cuenta puede abrir. Para leer su factura, enviamos sus archivos a la API de Anthropic; según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Si escribe su factura a mano, nada de lo que escriba se envía a Anthropic. Puede eliminar una factura, todas sus facturas o toda su cuenta desde Configuración en cualquier momento."
       },
       "cost": {
         "q": "¿Cuánto cuesta?",
