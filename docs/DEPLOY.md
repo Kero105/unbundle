@@ -25,6 +25,7 @@ Apply in order with the Supabase CLI or SQL editor:
 3. `supabase/migrations/0003_reference.sql` (public reference tables, select-only RLS)
 4. `supabase/migrations/0004_bills_flow.sql` (extraction state, rate limit function, `bills` bucket)
 5. `supabase/migrations/0005_code_explanations.sql` (shared "What is this?" cache, combined hourly budget)
+6. `supabase/migrations/0006_manual_entry.sql` (**draft, not yet applied**: typed-in bills, `submit_manual_bill()`, and the `bills` INSERT lock). Run [docs/manual-entry-test.md](manual-entry-test.md) on staging first, and apply it before deploying the code that uses it.
 
 Then load reference data locally with the service role key: `node scripts/import-reference.mjs` and `node scripts/import-poverty.mjs --confirm` (both print a dry run first). Confirm `poverty_guidelines` has the current year.
 
@@ -44,6 +45,7 @@ Then load reference data locally with the service role key: `node scripts/import
 ## Launch checklist
 
 - [ ] Migrations 0001-0005 applied to the production project; RLS shows enabled on every table.
+- [ ] Manual entry: `docs/manual-entry-test.md` passed on staging, then `0006` applied (and its `DRAFT` header removed) before deploying. Until then the "type it in by hand" screens cannot save.
 - [ ] Reference data imported; row counts match the import script's report.
 - [ ] `EXTRACTION_MODE=anthropic` set on the host, with `ANTHROPIC_API_KEY`. (Flip from `mock`; the server will not start in production with mock.)
 - [ ] `EXTRACTION_ENABLED` unset or `true`; know how to set it `false` as a kill switch.

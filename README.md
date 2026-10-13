@@ -118,7 +118,7 @@ npm run dev
 ```
 
 - With `EXTRACTION_MODE` unset the app uses a mock extractor, so the sample bill and the whole flow work without an Anthropic key. Set `EXTRACTION_MODE=anthropic` with `ANTHROPIC_API_KEY` for real extraction.
-- Apply `supabase/migrations/0001` to `0005` in order, then import reference data with `node scripts/import-reference.mjs` and `node scripts/import-poverty.mjs --confirm` (needs the service role key locally). In production the service role key is set in exactly one place, for account deletion (`src/lib/account/admin.ts`); see [docs/DEPLOY.md](docs/DEPLOY.md).
+- Apply `supabase/migrations/0001` to `0005` in order (`0006`, typed-in bills, is a draft until [docs/manual-entry-test.md](docs/manual-entry-test.md) has been run), then import reference data with `node scripts/import-reference.mjs` and `node scripts/import-poverty.mjs --confirm` (needs the service role key locally). In production the service role key is set in exactly one place, for account deletion (`src/lib/account/admin.ts`); see [docs/DEPLOY.md](docs/DEPLOY.md).
 - Deployment, Auth and Google OAuth setup: [docs/DEPLOY.md](docs/DEPLOY.md).
 
 Useful commands:
