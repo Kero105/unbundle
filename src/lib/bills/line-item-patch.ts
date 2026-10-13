@@ -1,23 +1,12 @@
 import { z } from "zod";
-import { ModifierSchema } from "@/lib/types";
-
-const cents = z.number().int().min(-1e12).max(1e12);
+import { lineItemFields } from "./line-item-fields";
 
 /**
  * The fields a user may change on a line item from the review screen. Strict:
  * anything else (bill_id, user_id, confidence, ...) is rejected, not ignored.
  */
 export const LineItemPatchSchema = z
-  .object({
-    dateOfService: z.iso.date().nullable(),
-    code: z.string().trim().min(1).max(32).nullable(),
-    descriptionRaw: z.string().trim().min(1).max(500),
-    modifiers: z.array(ModifierSchema).max(8),
-    units: z.number().int().positive().max(100000),
-    unitPriceCents: cents.nullable(),
-    chargeCents: cents,
-    userVerified: z.boolean(),
-  })
+  .object(lineItemFields)
   .partial()
   .strict()
   .refine((patch) => Object.keys(patch).length > 0, { message: "empty" });
