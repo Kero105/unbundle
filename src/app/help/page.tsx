@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 import accuracy from "@/lib/accuracy/accuracy.json";
 import { BackLink } from "@/components/back-link";
+import { Reminders } from "@/components/reminders";
 import { Skeleton } from "@/components/ui/skeleton";
 import { routeMetadata } from "@/lib/metadata";
 
@@ -70,6 +71,8 @@ async function Help() {
           );
         })}
       </ul>
+
+      <Reminders mode="followUp" />
     </main>
   );
 }

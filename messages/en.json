@@ -1284,5 +1284,26 @@
       }
     },
     "back": "Back to home"
+  },
+  "Reminders": {
+    "title": "Calendar reminders",
+    "privacy": "The file is made in your browser and downloaded. Nothing you pick is sent or saved.",
+    "contents": "The file holds only a date, a short title and a short note. It has no names, amounts, billing codes or bill details.",
+    "followUp": {
+      "heading": "Remind me to follow up",
+      "dateLabel": "Follow-up date",
+      "download": "Download reminder (.ics)",
+      "summary": "Unbundle: follow up on your medical bill",
+      "description": "Call the billing office to follow up on your bill. Have your itemized bill and your notes ready."
+    },
+    "gfe": {
+      "heading": "Remind me of the 120-day window",
+      "dateLabel": "Date on the bill",
+      "download": "Download reminder (.ics)",
+      "summary": "Unbundle: last day of the 120-day Good Faith Estimate dispute window",
+      "description": "120 calendar days after the bill date end on this day, as we count them. Start sooner if you can. See the CMS page cms.gov/medical-bill-rights/help/dispute-a-bill",
+      "note": "We count 120 calendar days from the bill date you enter. CMS counts from the initial bill, so check the date with them."
+    },
+    "invalidDate": "Enter a real date."
   }
 }

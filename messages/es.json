@@ -1284,5 +1284,26 @@
       }
     },
     "back": "Volver al inicio"
+  },
+  "Reminders": {
+    "title": "Recordatorios de calendario",
+    "privacy": "El archivo se crea en su navegador y se descarga. Nada de lo que elija se envía ni se guarda.",
+    "contents": "El archivo solo tiene una fecha, un título corto y una nota corta. No tiene nombres, montos, códigos de facturación ni detalles de la factura.",
+    "followUp": {
+      "heading": "Recuérdeme dar seguimiento",
+      "dateLabel": "Fecha de seguimiento",
+      "download": "Descargar recordatorio (.ics)",
+      "summary": "Unbundle: dar seguimiento a su factura médica",
+      "description": "Llame a la oficina de facturación para dar seguimiento a su factura. Tenga a mano su factura detallada y sus notas."
+    },
+    "gfe": {
+      "heading": "Recuérdeme el plazo de 120 días",
+      "dateLabel": "Fecha de la factura",
+      "download": "Descargar recordatorio (.ics)",
+      "summary": "Unbundle: último día del plazo de 120 días para disputar frente al Estimación de Buena Fe",
+      "description": "Los 120 días calendario después de la fecha de la factura terminan este día, según nuestra cuenta. Empiece antes si puede. Vea la página de CMS cms.gov/medical-bill-rights/help/dispute-a-bill",
+      "note": "Contamos 120 días calendario desde la fecha de la factura que usted escribe. CMS cuenta desde la factura inicial, así que confirme la fecha con ellos."
+    },
+    "invalidDate": "Escriba una fecha real."
   }
 }

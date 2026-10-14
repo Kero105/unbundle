@@ -16,6 +16,7 @@ import type { Confidence, Severity } from "@/lib/types";
 import { PrintButton } from "@/components/print-button";
 import { EobReconciliation } from "./eob-reconciliation-view";
 import { ManualEntryNote } from "./manual-note";
+import { Reminders } from "@/components/reminders";
 import { NextSteps } from "./next-steps";
 import { buildReport, whyKey, type ReportFinding } from "./report-model";
 
@@ -173,6 +174,8 @@ export async function ReportView({ source }: { source: BillSource }) {
       <EobReconciliation bill={bill} />
 
       <NextSteps letterHref={stepHref(source, "letter", { type: "itemized" })} />
+
+      <Reminders mode="followUp" />
 
       <p className="text-sm text-muted-foreground">{t("disclaimer")}</p>
 
