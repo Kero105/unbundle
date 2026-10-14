@@ -27,7 +27,8 @@
     "footerTools": "Herramientas",
     "backHome": "Volver al inicio",
     "footerChecklist": "Lista de verificación",
-    "footerFaq": "Preguntas frecuentes"
+    "footerFaq": "Preguntas frecuentes",
+    "footerShare": "Compartir"
   },
   "Home": {
     "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
@@ -1056,6 +1057,10 @@
     "faq": {
       "title": "Preguntas frecuentes | Unbundle",
       "description": "Respuestas sobre facturas detalladas, EOB, Estimaciones de Buena Fe, la asistencia financiera de hospitales de California y cómo funcionan las revisiones de Unbundle, cada una con su fuente."
+    },
+    "share": {
+      "title": "Compartir Unbundle | Unbundle",
+      "description": "Copie el enlace, compártalo o imprima un código QR que abre Unbundle."
     }
   },
   "Explain": {
@@ -1615,5 +1620,21 @@
         "q": "¿Qué pasa con mi factura?"
       }
     }
+  },
+  "Share": {
+    "title": "Compartir Unbundle",
+    "subtitle": "Copie el enlace, envíelo con el menú de compartir de su teléfono, o imprima la tarjeta de abajo para que alguien la escanee.",
+    "blockTitle": "Revise una factura médica con Unbundle",
+    "blockLine": "Pruebe primero con una factura de ejemplo. Aquí no se guarda nada.",
+    "qrLabel": "Código QR que abre {url}",
+    "qrNote": "Apunte la cámara de un teléfono al código para abrir el enlace.",
+    "linkTitle": "El enlace",
+    "copy": "Copiar enlace",
+    "copied": "Enlace copiado.",
+    "copyFailed": "No se pudo copiar. Seleccione el enlace y cópielo.",
+    "shareButton": "Compartir…",
+    "shareTitle": "Unbundle",
+    "print": "Imprimir esta tarjeta",
+    "notConfigured": "La dirección del sitio aún no está configurada, así que no hay un enlace ni un código QR que mostrar. Cuando se configure, aparecerán aquí."
   }
 }

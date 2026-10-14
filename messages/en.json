@@ -27,7 +27,8 @@
     "footerTools": "Tools",
     "backHome": "Back to home",
     "footerChecklist": "Checklist",
-    "footerFaq": "FAQ"
+    "footerFaq": "FAQ",
+    "footerShare": "Share"
   },
   "Home": {
     "title": "Think your hospital bill is wrong? Check it in minutes.",
@@ -1056,6 +1057,10 @@
     "faq": {
       "title": "Frequently asked questions | Unbundle",
       "description": "Answers about itemized bills, EOBs, Good Faith Estimates, California hospital financial assistance and how Unbundle's checks work, each with its source."
+    },
+    "share": {
+      "title": "Share Unbundle | Unbundle",
+      "description": "Copy the link, share it, or print a QR code that opens Unbundle."
     }
   },
   "Explain": {
@@ -1615,5 +1620,21 @@
         "q": "What happens to my bill?"
       }
     }
+  },
+  "Share": {
+    "title": "Share Unbundle",
+    "subtitle": "Copy the link, send it with your phone's share menu, or print the card below so someone can scan it.",
+    "blockTitle": "Check a medical bill with Unbundle",
+    "blockLine": "Try a sample bill first. Nothing here is saved.",
+    "qrLabel": "QR code that opens {url}",
+    "qrNote": "Point a phone camera at the code to open the link.",
+    "linkTitle": "The link",
+    "copy": "Copy link",
+    "copied": "Link copied.",
+    "copyFailed": "Could not copy. Select the link and copy it.",
+    "shareButton": "Share…",
+    "shareTitle": "Unbundle",
+    "print": "Print this card",
+    "notConfigured": "The site address is not set up yet, so there is no link or QR code to show. Once it is set, they appear here."
   }
 }

@@ -29,5 +29,7 @@ export default defineConfig({
     url: baseURL,
     reuseExistingServer: true,
     timeout: 120_000,
+    // /share needs a configured site address; this is the local one, nothing real.
+    env: { NEXT_PUBLIC_SITE_URL: baseURL },
   },
 });

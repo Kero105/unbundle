@@ -6,6 +6,7 @@ import { expect, test } from "@playwright/test";
 // dark screen can never leak onto paper. Synthetic demo data only.
 const PAGES = [
   "/checklist",
+  "/share",
   "/demo/report",
   "/demo/report?scenario=er-visit",
   "/demo/report/summary",

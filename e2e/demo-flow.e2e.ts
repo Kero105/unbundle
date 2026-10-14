@@ -92,7 +92,7 @@ test("standalone checker works signed out and sends nothing", async ({ page }) =
 // Header and footer are the same on every page, fit a phone, and every page has a way back.
 test("nav and footer are consistent and fit a phone", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
-  for (const path of ["/", "/about", "/help", "/methodology", "/rights", "/rights/check", "/glossary", "/checklist", "/faq", "/privacy", "/terms"]) {
+  for (const path of ["/", "/about", "/help", "/methodology", "/rights", "/rights/check", "/glossary", "/checklist", "/faq", "/share", "/privacy", "/terms"]) {
     await page.goto(path);
     const nav = page.getByRole("navigation", { name: "Main" });
     await expect(nav).toBeVisible();
@@ -102,7 +102,7 @@ test("nav and footer are consistent and fit a phone", async ({ page }) => {
     await expect(nav.getByRole("button", { name: "Sign in" })).toBeVisible();
 
     const footer = page.getByRole("navigation", { name: "Footer" });
-    for (const name of ["Glossary", "Check an estimate", "Checklist", "FAQ", "About", "Privacy", "Terms", "Help"]) {
+    for (const name of ["Glossary", "Check an estimate", "Checklist", "FAQ", "Share", "About", "Privacy", "Terms", "Help"]) {
       await expect(footer.getByRole("link", { name })).toBeVisible();
     }
 
@@ -247,4 +247,97 @@ test("faq answers carry sources, a date and the not-legal-advice note", async ({
   // Reachable from Help.
   await page.getByRole("link", { name: "More answers, each with its source" }).click();
   await expect(page).toHaveURL(/\/faq$/);
+});
+
+// /share: one configured address feeds the link, the buttons and the QR code.
+test("share page shows the configured link, a labelled QR code and working buttons", async ({
+  page,
+  context,
+  baseURL,
+}) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: baseURL! });
+  // Stand in for a phone's share sheet, so the button shows and we see what it is given.
+  await page.addInitScript(() => {
+    (window as unknown as { __shared: unknown[] }).__shared = [];
+    Object.defineProperty(navigator, "share", {
+      configurable: true,
+      value: async (data: unknown) => {
+        (window as unknown as { __shared: unknown[] }).__shared.push(data);
+      },
+    });
+  });
+  await page.goto("/share");
+  const origin = new URL(baseURL!).origin;
+
+  const qr = page.getByRole("img", { name: `QR code that opens ${origin}` });
+  await expect(qr).toBeVisible();
+  await expect(qr.locator("svg")).toHaveCount(1);
+  await expect(page.getByText(origin, { exact: true }).first()).toBeVisible();
+
+  await page.getByRole("button", { name: "Copy link" }).click();
+  await expect(page.getByRole("status").filter({ hasText: "Link copied." })).toBeVisible();
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(origin);
+
+  await page.getByRole("button", { name: "Share…" }).click();
+  expect(await page.evaluate(() => (window as unknown as { __shared: unknown[] }).__shared)).toEqual([
+    { title: "Unbundle", url: origin },
+  ]);
+
+  // No tracking parameters anywhere on the page.
+  const html = await page.content();
+  expect(html).not.toMatch(/utm_|fbclid|gclid/);
+});
+
+test("share page has no share button without navigator.share, and the QR stays black on white", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "share", { configurable: true, value: undefined });
+  });
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/share");
+  await expect(page.getByRole("button", { name: "Copy link" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Share…" })).toHaveCount(0);
+
+  const qr = page.getByRole("img", { name: /QR code that opens/ });
+  const colors = await qr.evaluate((el) => {
+    const svg = el.querySelector("svg")!;
+    return {
+      wrapper: getComputedStyle(el).backgroundColor,
+      fills: [...svg.querySelectorAll("[fill]")].map((n) => n.getAttribute("fill")),
+    };
+  });
+  expect(colors.wrapper).toBe("rgb(255, 255, 255)");
+  expect(new Set(colors.fills)).toEqual(new Set(["#ffffff", "#000000"]));
+});
+
+test("share card prints on its own, in light colors", async ({ page }) => {
+  await page.goto("/share");
+  await page.emulateMedia({ media: "print", colorScheme: "dark" });
+  await expect(page.getByRole("heading", { name: "Check a medical bill with Unbundle" })).toBeVisible();
+  await expect(page.getByRole("img", { name: /QR code that opens/ })).toBeVisible();
+  await expect(page.getByRole("button")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "The link" })).toBeHidden();
+  await expect(page.getByRole("heading", { level: 1 })).toBeHidden();
+});
+
+// Decode the code itself where the browser can, so "encodes exactly the URL" is
+// checked on the pixels, not just on the markup.
+test("QR code decodes to exactly the shown link", async ({ page, baseURL }) => {
+  await page.goto("/share");
+  const result = await page.evaluate(async () => {
+    const Detector = (window as unknown as { BarcodeDetector?: new (o: object) => { detect(i: ImageBitmap): Promise<{ rawValue: string }[]> } }).BarcodeDetector;
+    if (!Detector) return { supported: false as const };
+    const svg = document.querySelector('[role="img"] svg')!.outerHTML;
+    const img = new Image();
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg.replace("<svg ", '<svg width="330" height="330" '));
+    await img.decode();
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 330;
+    canvas.getContext("2d")!.drawImage(img, 0, 0);
+    const found = await new Detector({ formats: ["qr_code"] }).detect(await createImageBitmap(canvas));
+    return { supported: true as const, values: found.map((f) => f.rawValue) };
+  });
+  test.skip(!result.supported, "This browser has no BarcodeDetector, so the pixels cannot be decoded here.");
+  expect(result).toEqual({ supported: true, values: [new URL(baseURL!).origin] });
 });

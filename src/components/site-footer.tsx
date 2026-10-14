@@ -11,6 +11,7 @@ const GROUPS = [
       { href: "/rights", key: "navRights" },
       { href: "/glossary", key: "footerGlossary" },
       { href: "/faq", key: "footerFaq" },
+      { href: "/share", key: "footerShare" },
     ],
   },
   {
