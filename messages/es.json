@@ -1197,7 +1197,7 @@
   "Methodology": {
     "title": "Cómo funcionan las revisiones",
     "subtitle": "Nueve revisiones fijas, cada una escrita en código. Esta página explica qué hace cada una, cuándo no dice nada y qué datos usa.",
-    "intro": "Cada hallazgo viene de una de estas revisiones. El modelo de IA lee su factura y la convierte en filas, y explica los hallazgos en palabras sencillas; nunca decide si algo es un problema.",
+    "intro": "Cada hallazgo viene de una de estas revisiones. La IA solo lee su factura y la convierte en datos estructurados; reglas fijas y probadas deciden cada hallazgo. Por separado, puede dar una definición general de un código de facturación cuando usted lo pide. Nunca decide si algo es un problema.",
     "rulesTitle": "Las nueve revisiones",
     "whatLabel": "Qué revisa",
     "skipsLabel": "Cuándo no dice nada",

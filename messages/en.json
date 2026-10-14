@@ -1197,7 +1197,7 @@
   "Methodology": {
     "title": "How the checks work",
     "subtitle": "Nine fixed checks, each written in code. This page says what each one does, when it stays quiet, and what data it uses.",
-    "intro": "Every finding comes from one of these checks. The AI model reads your bill into rows and explains findings in plain words; it never decides whether something is a problem.",
+    "intro": "Every finding comes from one of these checks. The AI only reads your bill into structured data; fixed, tested rules decide every finding. Separately, it can give a general definition of a billing code when you ask. It never decides whether something is a problem.",
     "rulesTitle": "The nine checks",
     "whatLabel": "What it checks",
     "skipsLabel": "When it stays quiet",

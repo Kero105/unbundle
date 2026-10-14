@@ -39,3 +39,18 @@ describe("methodology", () => {
     }
   });
 });
+
+describe("how the AI's role is described", () => {
+  it("matches About: reads the bill into data; fixed rules decide; no explaining of findings", () => {
+    expect(en.Methodology.intro).toMatch(/only reads your bill into structured data/);
+    expect(en.Methodology.intro).toMatch(/fixed, tested rules decide every finding/);
+    expect(es.Methodology.intro).toMatch(/solo lee su factura/);
+    expect(es.Methodology.intro).toMatch(/reglas fijas y probadas deciden cada hallazgo/);
+  });
+
+  it("never says the AI explains each finding, anywhere in the messages", () => {
+    const wording = /explains? (each|every|your|the)? ?findings?|explica (cada|los|sus) hallazgos?(?! ni)/i;
+    expect(JSON.stringify(en)).not.toMatch(wording);
+    expect(JSON.stringify(es)).not.toMatch(wording);
+  });
+});
