@@ -838,7 +838,7 @@
     },
     "checks": {
       "title": "What we check",
-      "intro": "Ten checks: nine rules that look at your bill, plus an optional Good Faith Estimate comparison for people without insurance. Seven run on every bill. Two run only if you upload your insurer's Explanation of Benefits (EOB): Denied, then billed (below), and a balance billing check that compares what the bill asks you to pay with what the EOB says you owe.",
+      "intro": "Ten checks: nine rules that look at your bill, plus an optional Good Faith Estimate comparison for people without insurance. Seven run on every bill. Two run only if you upload your insurer's Explanation of Benefits (EOB): Denied, then billed and Balance billing. Balance billing compares what the bill asks you to pay with what the EOB says you owe.",
       "gfe": {
         "title": "Good Faith Estimate",
         "body": "If you are uninsured and were given an estimate before your care, we compare it with your bill and tell you whether the difference may be worth disputing."

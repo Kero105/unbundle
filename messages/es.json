@@ -838,7 +838,7 @@
     },
     "checks": {
       "title": "Qué revisamos",
-      "intro": "Diez revisiones: nueve reglas que examinan su factura, más una comparación opcional con la Estimación de Buena Fe para personas sin seguro. Siete se aplican a cada factura. Dos se aplican solo si sube la Explicación de Beneficios (EOB) de su aseguradora: «Negado y luego cobrado» (abajo) y una revisión de facturación de saldo que compara lo que la factura le pide pagar con lo que la EOB dice que usted debe.",
+      "intro": "Diez revisiones: nueve reglas que examinan su factura, más una comparación opcional con la Estimación de Buena Fe para personas sin seguro. Siete se aplican a cada factura. Dos se aplican solo si sube la Explicación de Beneficios (EOB) de su aseguradora: «Negado y luego cobrado» y «Facturación de saldo». La facturación de saldo compara lo que la factura le pide pagar con lo que la EOB dice que usted debe.",
       "gfe": {
         "title": "Estimación de buena fe",
         "body": "Si no tiene seguro y le dieron una estimación antes de su atención, la comparamos con su factura y le decimos si la diferencia podría valer la pena disputarla."
