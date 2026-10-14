@@ -788,7 +788,8 @@
       "browser": "Nuestro formulario de subida reduce el tamaño de las fotos en su navegador antes de subirlas.",
       "anthropic": "Sus archivos se envían a la API de Anthropic para que se pueda leer su factura. Lo único más que se envía es un código de facturación, y solo si abre «¿Qué es esto?» en una fila. Si escribe su factura en lugar de subirla, nada de lo que escriba se envía a Anthropic, aparte de ese mismo código de facturación. Según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos y los datos de la API se eliminan en un plazo de 30 días. Esos son los términos de Anthropic, no los nuestros.",
       "delete": "Al eliminar una factura, se borran de nuestro almacenamiento la factura, sus partidas y los archivos subidos.",
-      "sell": "Nunca vendemos su información."
+      "sell": "Nunca vendemos su información.",
+      "storage": "Usamos una cookie de idioma solo si usted elige un idioma, cookies de sesión cuando inicia sesión y su elección de modo claro u oscuro en el almacenamiento local de su navegador. No usamos cookies de análisis, publicidad ni seguimiento."
     },
     "intro": "Unbundle es un proyecto estudiantil creado para el Congressional App Challenge. Ayuda a las personas a revisar sus facturas médicas. Esta página explica qué información recopilamos y qué hacemos con ella.",
     "collect": {
@@ -811,6 +812,13 @@
     "kept": {
       "title": "Dónde se guarda",
       "body": "Sus facturas, partidas y archivos se guardan en Supabase (nuestra base de datos y almacenamiento de archivos), y el acceso se limita a su cuenta mediante seguridad a nivel de fila. No hay un plazo de conservación ni nada caduca por sí solo: los conservamos hasta que usted los elimine. No incluimos el contenido de las facturas en nuestros registros."
+    },
+    "cookies": {
+      "title": "Cookies y almacenamiento del navegador",
+      "language": "Idioma: si usted elige un idioma con el selector EN | ES, guardamos esa elección en una cookie llamada NEXT_LOCALE. Solo contiene «en» o «es» y dura un año. Si nunca elige, no se establece ninguna cookie de idioma y las páginas siguen la configuración de idioma de su navegador.",
+      "signin": "Inicio de sesión: cuando inicia sesión, nuestro proveedor de inicio de sesión, Supabase, establece cookies de sesión en este sitio para mantenerlo conectado. Duran hasta 400 días, y al cerrar sesión se eliminan. Navegar sin iniciar sesión no establece ninguna cookie de sesión.",
+      "theme": "Apariencia: si elige Claro u Oscuro, guardamos esa elección en el almacenamiento local de su navegador con el nombre unbundle-theme. Al elegir Sistema, se elimina. Permanece en su navegador.",
+      "none": "No usamos cookies de análisis, publicidad ni seguimiento."
     },
     "dont": {
       "title": "Lo que no hacemos",

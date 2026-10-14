@@ -95,4 +95,4 @@ export const FAQ_GROUPS: readonly FaqGroup[] = [
 ];
 
 /** Keys of Privacy.summary used verbatim for the privacy answer, in order. */
-export const FAQ_PRIVACY_KEYS = ["files", "anthropic", "delete", "sell"] as const;
+export const FAQ_PRIVACY_KEYS = ["files", "anthropic", "delete", "sell", "storage"] as const;

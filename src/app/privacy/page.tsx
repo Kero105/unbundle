@@ -21,7 +21,7 @@ async function Privacy() {
       updatedLabel={t("updatedLabel")}
       updated={t("updated")}
       summaryTitle={t("summary.title")}
-      summary={(["files", "browser", "anthropic", "delete", "sell"] as const).map((k) =>
+      summary={(["files", "browser", "anthropic", "delete", "sell", "storage"] as const).map((k) =>
         t(`summary.${k}`),
       )}
     >
@@ -63,6 +63,15 @@ async function Privacy() {
 
       <LegalSection title={t("kept.title")}>
         <p>{t("kept.body")}</p>
+      </LegalSection>
+
+      <LegalSection title={t("cookies.title")}>
+        <ul className="list-disc space-y-1 pl-6">
+          <li>{t("cookies.language")}</li>
+          <li>{t("cookies.signin")}</li>
+          <li>{t("cookies.theme")}</li>
+          <li>{t("cookies.none")}</li>
+        </ul>
       </LegalSection>
 
       <LegalSection title={t("dont.title")}>

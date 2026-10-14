@@ -101,6 +101,7 @@ This summary matches the in-app `/privacy` page.
 - Deleting a bill removes the bill, its line items and the uploaded files from our storage. A record that a reading was attempted (user id and timestamp, no bill content) is kept until you delete your account.
 - There is no retention period: bills and files are kept until you delete them.
 - We never sell your information. Data is processed by Anthropic (reading the bill), Supabase (database and storage), Google (sign-in) and the web host.
+- Cookies and browser storage: a language cookie (`NEXT_LOCALE`, "en" or "es", one year) only if you choose a language; session cookies from Supabase when you sign in; and your Light or Dark choice in `localStorage` under `unbundle-theme`. There are no analytics, advertising or tracking cookies.
 - The sample bill is made up. No real bills are in this repository, and bill contents are never logged.
 
 ## Tech stack

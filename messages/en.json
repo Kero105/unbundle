@@ -788,7 +788,8 @@
       "browser": "Our upload form resizes photos in your browser before they are uploaded.",
       "anthropic": "Your files are sent to Anthropic's API so your bill can be read. The only other thing sent is a single billing code, and only if you open “What is this?” on a line. If you type your bill in instead of uploading it, nothing you type is sent to Anthropic, apart from that same billing code. Anthropic's published terms say that, by default, your bills aren't used to train its models and API data is deleted within 30 days. Those are Anthropic's terms, not ours.",
       "delete": "Deleting a bill removes the bill, its line items and the uploaded files from our storage.",
-      "sell": "We never sell your information."
+      "sell": "We never sell your information.",
+      "storage": "We use a language cookie only if you choose a language, session cookies when you sign in, and your light or dark choice in your browser's local storage. We do not use analytics, advertising or tracking cookies."
     },
     "intro": "Unbundle is a student project built for the Congressional App Challenge. It helps people check their medical bills. This page explains what information we collect and what we do with it.",
     "collect": {
@@ -811,6 +812,13 @@
     "kept": {
       "title": "Where it is kept",
       "body": "Your bills, line items and files are stored in Supabase (our database and file storage), and access is limited to your account by row-level security. There is no retention period and nothing expires on its own: we keep them until you delete them. We don't put bill contents in our logs."
+    },
+    "cookies": {
+      "title": "Cookies and browser storage",
+      "language": "Language: if you choose a language with the EN | ES switch, we save that choice in a cookie named NEXT_LOCALE. It holds only “en” or “es” and lasts one year. If you never choose, no language cookie is set and pages follow your browser's language setting.",
+      "signin": "Signing in: when you sign in, our sign-in provider, Supabase, sets session cookies on this site to keep you signed in. They last up to 400 days, and signing out removes them. Browsing without signing in sets no session cookies.",
+      "theme": "Appearance: if you choose Light or Dark, we save that choice in your browser's local storage under the name unbundle-theme. Choosing System removes it. It stays in your browser.",
+      "none": "We do not use analytics, advertising or tracking cookies."
     },
     "dont": {
       "title": "What we don't do",

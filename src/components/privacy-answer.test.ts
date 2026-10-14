@@ -15,11 +15,11 @@ describe("privacy answer", () => {
     const component = read("src/components/privacy-answer.tsx");
     expect(component).toContain('getTranslations("Privacy.summary")');
     expect(component).toContain("FAQ_PRIVACY_KEYS");
-    expect([...FAQ_PRIVACY_KEYS]).toEqual(["files", "anthropic", "delete", "sell"]);
+    expect([...FAQ_PRIVACY_KEYS]).toEqual(["files", "anthropic", "delete", "sell", "storage"]);
 
     // /privacy renders its summary in this same key order.
     const privacyPage = read("src/app/privacy/page.tsx");
-    expect(privacyPage).toContain('["files", "browser", "anthropic", "delete", "sell"]');
+    expect(privacyPage).toContain('["files", "browser", "anthropic", "delete", "sell", "storage"]');
   });
 
   it("is the only privacy answer on the Help page and the FAQ", () => {
