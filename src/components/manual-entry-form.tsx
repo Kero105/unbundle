@@ -159,7 +159,9 @@ export function ManualEntryForm({ billId, draft }: { billId?: string; draft?: Ma
   }
 
   return (
-    <form className="flex flex-col gap-6" onSubmit={(e) => void submit(e)} noValidate>
+    // method="dialog": a native submit (before hydration, or by Enter) does
+    // nothing, so typed bill details can never reach the address bar.
+    <form method="dialog" className="flex flex-col gap-6" onSubmit={(e) => void submit(e)} noValidate>
       <p className="text-muted-foreground">{t("howTo")}</p>
 
       <fieldset className="flex flex-col gap-4 rounded-lg border p-4">

@@ -38,6 +38,9 @@ interface Outcome {
   dateProblem: GfeDateProblem | null;
 }
 
+/** An id that no element has: an input with this `form` has no form owner and is never submitted. */
+const NOT_SUBMITTED = "assistance-values-are-never-submitted";
+
 const DATE_ERROR_KEYS: Record<GfeDateProblem, string> = {
   missing: "errors.datesMissing",
   estimate_after_bill: "errors.estimateAfterBill",
@@ -227,7 +230,11 @@ export function AssistanceForm({
         </div>
       </section>
 
+      {/* method="dialog" makes a native submit (before hydration, or by Enter) do
+          nothing: no navigation and no query string. Without it a form with no
+          action is a GET to this page carrying every named field. */}
       <form
+        method="dialog"
         onSubmit={onSubmit}
         noValidate
         className="flex flex-col gap-5 rounded-xl border bg-card p-6"
@@ -277,6 +284,9 @@ export function AssistanceForm({
                 type="radio"
                 id={`insurance-${value}`}
                 name="insurance"
+                // Names the group for the keyboard but points at no form, so the
+                // browser never serializes it even if something submits natively.
+                form={NOT_SUBMITTED}
                 value={value}
                 checked={insurance === value}
                 onChange={() => setInsurance(value)}

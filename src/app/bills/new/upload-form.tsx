@@ -328,6 +328,8 @@ export function UploadForm() {
 
   return (
     <form
+      // A native submit (before hydration, or by Enter) must do nothing.
+      method="dialog"
       className="flex flex-col gap-6"
       onSubmit={(e) => {
         e.preventDefault();
