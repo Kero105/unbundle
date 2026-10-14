@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const linkClass = "font-medium underline underline-offset-4 hover:no-underline";
 
@@ -57,6 +58,13 @@ export async function SiteFooter() {
             ))}
           </div>
         </nav>
+        <div className="flex flex-col gap-2">
+          <p className="text-sm font-semibold text-muted-foreground">{t("themeLabel")}</p>
+          <ThemeToggle
+            groupLabel={t("themeLabel")}
+            labels={{ system: t("themeSystem"), light: t("themeLight"), dark: t("themeDark") }}
+          />
+        </div>
         <p className="max-w-2xl text-muted-foreground">{t("promise")}</p>
         <p className="text-muted-foreground">
           <span className="font-semibold text-foreground">Unbundle</span> · {t("notAdvice")}

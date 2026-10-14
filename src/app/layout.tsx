@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Fraunces, Public_Sans } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SkipLink } from "@/components/skip-link";
+import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import { SiteHeader, SiteHeaderFallback } from "@/components/site-header";
 import "./globals.css";
 
@@ -41,10 +42,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
+    // suppressHydrationWarning: the theme script sets data-theme on <html> before
+    // React hydrates, which is the one attribute React is not told about.
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${publicSans.variable} ${fraunces.variable} h-full`}
     >
+      <head>
+        {/* Applies a saved theme before first paint, so there is no flash. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body className="flex min-h-full flex-col">
         {/* Locale and session are request-time data: the header and footer
             stream in behind Suspense while the page shell stays static. */}

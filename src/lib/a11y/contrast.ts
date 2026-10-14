@@ -38,7 +38,16 @@ export const PAIRS: readonly Pair[] = [
   { fg: "foreground", bg: "warning-surface", min: BODY, note: "body on warning surface" },
   { fg: "foreground", bg: "success-surface", min: BODY, note: "body on success surface" },
   { fg: "foreground", bg: "destructive-surface", min: BODY, note: "body on error surface" },
+  { fg: "foreground", bg: "muted", min: BODY, note: "text on hover and muted surfaces" },
+  { fg: "foreground", bg: "secondary", min: BODY, note: "text on secondary surfaces (demo tips)" },
+  { fg: "muted-foreground", bg: "secondary", min: BODY, note: "muted text on secondary (tip step counter)" },
+  { fg: "primary", bg: "secondary", min: BODY, note: "links and icons on secondary" },
+  { fg: "primary", bg: "muted", min: BODY, note: "links on muted" },
+  { fg: "destructive", bg: "muted", min: BODY, note: "error text on muted" },
   { fg: "ring", bg: "background", min: UI, note: "focus ring" },
+  { fg: "ring", bg: "secondary", min: UI, note: "focus ring on secondary" },
+  { fg: "input", bg: "muted", min: UI, note: "control border on muted" },
+  { fg: "input", bg: "secondary", min: UI, note: "control border on secondary" },
   { fg: "ring", bg: "card", min: UI, note: "focus ring on card" },
   { fg: "input", bg: "background", min: UI, note: "input border" },
   { fg: "input", bg: "card", min: UI, note: "input border on card" },
@@ -46,21 +55,46 @@ export const PAIRS: readonly Pair[] = [
   { fg: "success-border", bg: "success-surface", min: UI, note: "success border" },
 ];
 
-/** Token name to hex for one theme. Dark overrides are layered over :root. */
-export function parseTokens(css: string): Record<Theme, Record<string, string>> {
-  const decl = /--([a-z-]+):\s*(#[0-9a-fA-F]{6})\s*;/g;
-  const grab = (block: string) => {
-    const out: Record<string, string> = {};
-    for (const m of block.matchAll(decl)) out[m[1]] = m[2].toLowerCase();
-    return out;
-  };
+/** The text between the braces of the first block whose selector line starts with `selector`. */
+function blockBody(css: string, selector: string, from = 0): string {
+  const start = css.indexOf(selector, from);
+  if (start === -1) throw new Error(`block not found: ${selector}`);
+  const open = css.indexOf("{", start);
+  let depth = 0;
+  for (let i = open; i < css.length; i++) {
+    if (css[i] === "{") depth++;
+    if (css[i] === "}" && --depth === 0) return css.slice(open + 1, i);
+  }
+  throw new Error(`unbalanced braces: ${selector}`);
+}
 
-  const darkStart = css.indexOf("@media (prefers-color-scheme: dark) {\n  :root");
-  if (darkStart === -1) throw new Error("dark block not found");
-  const rootStart = css.indexOf(":root {");
-  const light = grab(css.slice(rootStart, darkStart));
-  const dark = { ...light, ...grab(css.slice(darkStart)) };
+function declarations(block: string): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const m of block.matchAll(/--([a-z-]+):\s*(#[0-9a-fA-F]{6})\s*;/g)) out[m[1]] = m[2].toLowerCase();
+  return out;
+}
+
+/**
+ * Token name to hex for one theme, each read from its own block: `:root` for
+ * light, and the explicit `:root[data-theme="dark"]` block for dark, layered
+ * over light. The system-dark media block repeats the dark one (a test keeps
+ * them equal), and the print block is a third palette that is never read here.
+ */
+export function parseTokens(css: string): Record<Theme, Record<string, string>> {
+  const light = declarations(blockBody(css, "\n:root {"));
+  const dark = { ...light, ...declarations(blockBody(css, '\n:root[data-theme="dark"] {\n  --')) };
   return { light, dark };
+}
+
+/** The dark declarations inside `@media (prefers-color-scheme: dark)`, for the equality check. */
+export function systemDarkTokens(css: string): Record<string, string> {
+  return declarations(blockBody(css, '\n@media (prefers-color-scheme: dark) {\n  :root:not([data-theme="light"])'));
+}
+
+/** The palette used when printing, which must stay light. */
+export function printTokens(css: string): Record<string, string> {
+  const media = blockBody(css, "\n@media print {");
+  return declarations(media);
 }
 
 function channel(v: number): number {

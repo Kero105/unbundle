@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { LOCALE_COOKIE, resolveLocale } from "@/i18n/locale";
 import en from "../../messages/en.json";
 import es from "../../messages/es.json";
+import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
 const MESSAGES = {
@@ -39,7 +40,10 @@ export default function GlobalRootError({
   const t = MESSAGES[locale];
 
   return (
-    <html lang={locale} className="h-full">
+    <html lang={locale} className="h-full" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body className="flex min-h-full flex-col font-sans">
         <a
           href="#content"

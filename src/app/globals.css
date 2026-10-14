@@ -2,8 +2,18 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* Dark mode follows the system setting; there is no manual toggle. */
-@custom-variant dark (@media (prefers-color-scheme: dark));
+/* Dark mode: an explicit choice (data-theme on <html>, set before first paint by
+   the theme script) wins; with no choice it follows the system setting. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
 
 @theme inline {
   --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
@@ -89,8 +99,10 @@
   --radius: 12px;
 }
 
+/* Dark palette. The same declarations appear twice, once for "no choice and the
+   system is dark" and once for an explicit choice; a unit test keeps them equal. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --background: #0f1a1f;
     --foreground: #ece7dd;
     --card: #162329;
@@ -108,7 +120,7 @@
     --accent-foreground: #cfe9e8;
 
     --border: #2c3f47;
-    --input: #5d737c;
+    --input: #66808a;
     --ring: #63c3c6;
 
     --warning: #e0a030;
@@ -124,6 +136,48 @@
     --success-surface: #12301c;
     --success-border: #3fa862;
   }
+}
+
+:root[data-theme="dark"] {
+  --background: #0f1a1f;
+  --foreground: #ece7dd;
+  --card: #162329;
+  --card-foreground: #ece7dd;
+  --popover: #162329;
+  --popover-foreground: #ece7dd;
+
+  --primary: #63c3c6;
+  --primary-foreground: #06201f;
+  --secondary: #1d3338;
+  --secondary-foreground: #cfe9e8;
+  --muted: #1b2b32;
+  --muted-foreground: #a4b4ba;
+  --accent: #1d3338;
+  --accent-foreground: #cfe9e8;
+
+  --border: #2c3f47;
+  --input: #66808a;
+  --ring: #63c3c6;
+
+  --warning: #e0a030;
+  --warning-foreground: #f5c463;
+  --warning-surface: #35280d;
+  --warning-border: #d9962b;
+
+  --destructive: #ff8f84;
+  --destructive-surface: #3b1714;
+
+  --success: #6fd08c;
+  --success-foreground: #8fe0a6;
+  --success-surface: #12301c;
+  --success-border: #3fa862;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 @layer base {
@@ -244,7 +298,9 @@ html[data-locale-pending] #content {
 
   /* Always the light palette on paper, even when the screen is dark. These
      repeat the light values from :root so the dark overrides cannot reach print. */
-  :root {
+  :root:root,
+  :root[data-theme="light"],
+  :root[data-theme="dark"] {
     color-scheme: light;
     --background: #ffffff;
     --foreground: #1b2a33;

@@ -28,7 +28,11 @@
     "backHome": "Back to home",
     "footerChecklist": "Checklist",
     "footerFaq": "FAQ",
-    "footerShare": "Share"
+    "footerShare": "Share",
+    "themeLabel": "Appearance",
+    "themeSystem": "System",
+    "themeLight": "Light",
+    "themeDark": "Dark"
   },
   "Home": {
     "title": "Think your hospital bill is wrong? Check it in minutes.",

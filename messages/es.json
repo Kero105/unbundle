@@ -28,7 +28,11 @@
     "backHome": "Volver al inicio",
     "footerChecklist": "Lista de verificación",
     "footerFaq": "Preguntas frecuentes",
-    "footerShare": "Compartir"
+    "footerShare": "Compartir",
+    "themeLabel": "Apariencia",
+    "themeSystem": "Sistema",
+    "themeLight": "Claro",
+    "themeDark": "Oscuro"
   },
   "Home": {
     "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
