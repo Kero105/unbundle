@@ -19,7 +19,6 @@ import { ManualEntryNote } from "./manual-note";
 import { CallScript } from "@/components/call-script";
 import { Reminders } from "@/components/reminders";
 import { buildLetterModel } from "../letter/letter-model";
-import { NextSteps } from "./next-steps";
 import { Timeline } from "./timeline";
 import { buildReport, whyKey, type ReportFinding } from "./report-model";
 
@@ -185,8 +184,6 @@ export async function ReportView({ source }: { source: BillSource }) {
           letter: stepHref(source, "letter"),
         }}
       />
-
-      <NextSteps letterHref={stepHref(source, "letter", { type: "itemized" })} />
 
       <CallScript items={buildLetterModel(bill, findings).items} />
       <Reminders mode="followUp" />

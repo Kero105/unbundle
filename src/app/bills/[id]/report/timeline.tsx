@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { TIMELINE_STEPS, timelineLinks, type TimelineHrefs } from "./timeline-steps";
+import { ALSO_ASK, TIMELINE_STEPS, timelineLinks, type TimelineHrefs } from "./timeline-steps";
 
 /**
- * Four plain steps in the order people usually take them. Static copy: no
- * dates or deadlines appear because none is tied to a source here.
+ * One section for what to do after reading the report: four plain steps in the
+ * order people usually take them, then a few things worth asking along the
+ * way. Static copy: no dates or deadlines appear because none is tied to a
+ * source here.
  */
 export async function Timeline({
   hrefs,
@@ -54,6 +56,15 @@ export async function Timeline({
           );
         })}
       </ol>
+
+      <div className="flex flex-col gap-2 border-t pt-4">
+        <h3 className="text-lg font-semibold">{t("alsoTitle")}</h3>
+        <ul className="list-disc space-y-2 pl-6">
+          {ALSO_ASK.map((key) => (
+            <li key={key}>{t(`also.${key}`)}</li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

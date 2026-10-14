@@ -333,19 +333,6 @@
     "disclaimer": "Este informe señala cargos sobre los que puede valer la pena preguntar. No es asesoría legal ni médica y no puede confirmar que un cargo sea incorrecto. Consulte con la oficina de facturación antes de apoyarse en él.",
     "print": "Imprimir o guardar como PDF",
     "openSummary": "Abrir resumen de una página",
-    "nextSteps": {
-      "title": "Qué hacer ahora",
-      "intro": "No tiene que hacerlo todo de una vez. Ir paso a paso está bien.",
-      "items": {
-        "call": "Llame a la oficina de facturación. Anote la fecha, la hora y el nombre de la persona con quien habló.",
-        "itemized": "Pida una factura totalmente detallada que muestre un código de facturación para cada cargo.",
-        "assistance": "Pida la política de asistencia financiera del hospital y la solicitud, aunque no esté seguro de si califica.",
-        "collections": "Pida que su cuenta no se envíe a cobranza mientras se revisa la factura, y pida que lo anoten en su cuenta.",
-        "writing": "Envíe su solicitud por escrito y guarde una copia para sus registros.",
-        "insurer": "Si tiene seguro, también puede pedirle a su aseguradora que revise el reclamo. El número de teléfono está en su tarjeta del seguro."
-      },
-      "letterLink": "Redactar la carta"
-    },
     "summary": {
       "kicker": "Resumen del informe de Unbundle",
       "title": "Resumen de la revisión de la factura",
@@ -397,11 +384,11 @@
     },
     "timeline": {
       "title": "Qué sigue",
-      "intro": "Cuatro pasos, en el orden en que la gente suele darlos. Hágalos a su propio ritmo.",
+      "intro": "Cuatro pasos, en el orden en que la gente suele darlos. No tiene que hacerlo todo de una vez; ir paso a paso está bien.",
       "steps": {
         "itemized": {
           "title": "Pida una factura detallada",
-          "body": "Pida que cada cargo aparezca con su código de facturación, para tener algo que revisar línea por línea.",
+          "body": "Pida una factura totalmente detallada que muestre un código de facturación para cada cargo, para tener algo que revisar línea por línea.",
           "link": "Vea la carta para pedir la factura detallada"
         },
         "review": {
@@ -411,15 +398,21 @@
         },
         "dispute": {
           "title": "Envíe su disputa",
-          "body": "Envíe a la oficina de facturación una carta que enumere lo que usted pregunta, y guarde una copia.",
+          "body": "Envíe su solicitud a la oficina de facturación por escrito, con una carta que enumere lo que usted pregunta, y guarde una copia para sus registros.",
           "link": "Abra la carta de disputa",
           "linkNoFindings": "Lea lo que puede pedir"
         },
         "followUp": {
           "title": "Dé seguimiento",
-          "body": "Anote cada llamada y pregunte cuándo puede esperar una respuesta.",
+          "body": "Llame a la oficina de facturación. Anote la fecha, la hora y el nombre de la persona con quien habló, y pregunte cuándo puede esperar una respuesta.",
           "link": "Use la lista y la página de notas"
         }
+      },
+      "alsoTitle": "También puede pedir",
+      "also": {
+        "assistance": "Pida la política de asistencia financiera del hospital y la solicitud, aunque no esté seguro de si califica.",
+        "collections": "Pida que su cuenta no se envíe a cobranza mientras se revisa la factura, y pida que lo anoten en su cuenta.",
+        "insurer": "Si tiene seguro, también puede pedirle a su aseguradora que revise el reclamo. El número de teléfono está en su tarjeta del seguro."
       }
     }
   },

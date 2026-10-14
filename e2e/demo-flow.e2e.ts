@@ -139,7 +139,15 @@ test("report timeline has four linked steps", async ({ page }) => {
   await page.goto("/demo/report");
   const timeline = page.getByRole("region", { name: "What happens next" });
   await expect(timeline).toBeVisible();
-  await expect(timeline.getByRole("listitem")).toHaveCount(4);
+  // One section: four steps, then the things worth asking along the way.
+  await expect(timeline.locator("ol > li")).toHaveCount(4);
+  await expect(timeline.getByRole("heading", { name: "You can also ask" })).toBeVisible();
+  await expect(timeline.locator("ul > li")).toHaveCount(3);
+  await expect(timeline).toContainText("Write down the date, the time, and the name of the person you spoke with");
+  await expect(timeline).toContainText("financial assistance policy and the application");
+  // The older, overlapping section is gone.
+  await expect(page.getByRole("heading", { name: "What to do next" })).toHaveCount(0);
+  await expect(page.getByRole("heading", { level: 2, name: "What happens next" })).toHaveCount(1);
   await expect(timeline.getByRole("link", { name: "See the itemized-bill request letter" })).toHaveAttribute(
     "href",
     "/demo/letter?type=itemized",

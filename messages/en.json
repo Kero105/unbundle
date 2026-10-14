@@ -333,19 +333,6 @@
     "disclaimer": "This report points out charges that may be worth asking about. It is not legal or medical advice, and it cannot confirm that any charge is wrong. Please check with the billing office before relying on it.",
     "print": "Print or save as PDF",
     "openSummary": "Open one-page summary",
-    "nextSteps": {
-      "title": "What to do next",
-      "intro": "You do not have to do all of this at once. Taking it one step at a time is fine.",
-      "items": {
-        "call": "Call the billing office. Write down the date, the time, and the name of the person you spoke with.",
-        "itemized": "Ask for a fully itemized bill that shows a billing code for every charge.",
-        "assistance": "Ask for the hospital's financial assistance policy and the application, even if you are not sure you qualify.",
-        "collections": "Ask that your account not be sent to collections while the bill is being reviewed, and ask them to note that on your account.",
-        "writing": "Send your request in writing and keep a copy for your records.",
-        "insurer": "If you have insurance, you can also ask your insurer to review the claim. The phone number is on your insurance card."
-      },
-      "letterLink": "Write the letter"
-    },
     "summary": {
       "kicker": "Unbundle report summary",
       "title": "Bill review summary",
@@ -397,11 +384,11 @@
     },
     "timeline": {
       "title": "What happens next",
-      "intro": "Four steps, in the order people usually take them. Do them at your own pace.",
+      "intro": "Four steps, in the order people usually take them. You do not have to do all of this at once; taking it one step at a time is fine.",
       "steps": {
         "itemized": {
           "title": "Ask for an itemized bill",
-          "body": "Get every charge listed with its billing code, so there is something to check line by line.",
+          "body": "Ask for a fully itemized bill that shows a billing code for every charge, so there is something to check line by line.",
           "link": "See the itemized-bill request letter"
         },
         "review": {
@@ -411,15 +398,21 @@
         },
         "dispute": {
           "title": "Send your dispute",
-          "body": "Send the billing office a letter that lists what you are asking about, and keep a copy.",
+          "body": "Send your request to the billing office in writing, with a letter that lists what you are asking about, and keep a copy for your records.",
           "link": "Open the dispute letter",
           "linkNoFindings": "Read what you can ask for"
         },
         "followUp": {
           "title": "Follow up",
-          "body": "Keep notes of each call and ask when you can expect an answer.",
+          "body": "Call the billing office. Write down the date, the time, and the name of the person you spoke with, and ask when you can expect an answer.",
           "link": "Use the checklist and notes page"
         }
+      },
+      "alsoTitle": "You can also ask",
+      "also": {
+        "assistance": "Ask for the hospital's financial assistance policy and the application, even if you are not sure you qualify.",
+        "collections": "Ask that your account not be sent to collections while the bill is being reviewed, and ask them to note that on your account.",
+        "insurer": "If you have insurance, you can also ask your insurer to review the claim. The phone number is on your insurance card."
       }
     }
   },

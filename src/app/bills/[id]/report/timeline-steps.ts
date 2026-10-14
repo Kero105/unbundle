@@ -1,6 +1,9 @@
 export const TIMELINE_STEPS = ["itemized", "review", "dispute", "followUp"] as const;
 export type TimelineStep = (typeof TIMELINE_STEPS)[number];
 
+/** Things worth asking along the way, from the older "What to do next" list. */
+export const ALSO_ASK = ["assistance", "collections", "insurer"] as const;
+
 export interface TimelineHrefs {
   /** The itemized-bill request letter. */
   itemized: string;
