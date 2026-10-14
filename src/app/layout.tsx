@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Fraunces, Public_Sans } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
+import { SkipLink } from "@/components/skip-link";
 import { SiteHeader, SiteHeaderFallback } from "@/components/site-header";
 import "./globals.css";
 
@@ -47,6 +48,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col">
         {/* Locale and session are request-time data: the header and footer
             stream in behind Suspense while the page shell stays static. */}
+        <Suspense fallback={null}>
+          <SkipLink />
+        </Suspense>
         <Suspense fallback={<SiteHeaderFallback />}>
           <SiteHeader />
         </Suspense>

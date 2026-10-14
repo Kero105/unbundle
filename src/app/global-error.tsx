@@ -8,7 +8,10 @@ import en from "../../messages/en.json";
 import es from "../../messages/es.json";
 import "./globals.css";
 
-const MESSAGES = { en: en.Error, es: es.Error };
+const MESSAGES = {
+  en: { ...en.Error, skip: en.Shell.skipToContent },
+  es: { ...es.Error, skip: es.Shell.skipToContent },
+};
 
 function readLocale() {
   const cookie = document.cookie
@@ -38,19 +41,27 @@ export default function GlobalRootError({
   return (
     <html lang={locale} className="h-full">
       <body className="flex min-h-full flex-col font-sans">
-        <ErrorState title={t.title} body={t.body}>
-          <Button type="button" size="lg" onClick={() => retry()}>
-            {t.retry}
-          </Button>
-          {/* A plain anchor on purpose: a full reload clears whatever broke the layout. */}
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a
-            href="/"
-            className="inline-flex h-11 items-center justify-center rounded-lg border border-input bg-background px-6 text-base font-medium hover:bg-muted"
-          >
-            {t.home}
-          </a>
-        </ErrorState>
+        <a
+          href="#content"
+          className="sr-only rounded-lg bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50"
+        >
+          {t.skip}
+        </a>
+        <div id="content" tabIndex={-1} className="flex flex-1 flex-col outline-none">
+          <ErrorState title={t.title} body={t.body}>
+            <Button type="button" size="lg" onClick={() => retry()}>
+              {t.retry}
+            </Button>
+            {/* A plain anchor on purpose: a full reload clears whatever broke the layout. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a
+              href="/"
+              className="inline-flex h-11 items-center justify-center rounded-lg border border-input bg-background px-6 text-base font-medium hover:bg-muted"
+            >
+              {t.home}
+            </a>
+          </ErrorState>
+        </div>
       </body>
     </html>
   );
