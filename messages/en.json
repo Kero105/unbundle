@@ -972,6 +972,14 @@
       "title": "How the checks work | Unbundle",
       "description": "Each of the nine checks in plain language, with an example, the data it uses, and the release versions."
     },
+    "rights": {
+      "title": "Know your rights | Unbundle",
+      "description": "Plain guides to financial assistance, the Good Faith Estimate dispute process, and asking for an itemized bill, with official sources."
+    },
+    "rightsCheck": {
+      "title": "Check an estimate | Unbundle",
+      "description": "Estimate where your income falls against the federal poverty level, or compare a Good Faith Estimate with a bill. Nothing you type is saved or sent."
+    },
     "glossary": {
       "title": "Glossary | Unbundle",
       "description": "Plain definitions of billing words such as CPT, EOB, NCCI, MUE, modifier and balance billing."
@@ -1285,6 +1293,13 @@
     },
     "back": "Back to home"
   },
+  "RightsCheck": {
+    "title": "Check an estimate",
+    "subtitle": "See roughly where your income falls against the federal poverty level, or compare a Good Faith Estimate with a bill. You do not need a bill uploaded.",
+    "privacy": "Nothing you type on this page is sent or saved. The numbers are worked out in your browser.",
+    "back": "Back to your rights",
+    "unavailable": "We could not load the poverty guidelines right now."
+  },
   "CallScript": {
     "title": "Phone script",
     "intro": "Read this when you call the billing office. It is made from your findings on this page and is not saved.",
@@ -1340,5 +1355,68 @@
       "note": "We count 120 calendar days from the bill date you enter. CMS counts from the initial bill, so check the date with them."
     },
     "invalidDate": "Enter a real date."
+  },
+  "Rights": {
+    "title": "Know your rights",
+    "subtitle": "Three things you can ask for when a medical bill looks wrong or too high, with the official pages behind each one.",
+    "notAdvice": "This is general information, not legal advice. Laws change, and what applies depends on your situation. For advice about your case, talk to a lawyer or a patient advocate.",
+    "checkedLabel": "Sources last checked",
+    "sourcesTitle": "Sources",
+    "stepsTitle": "What you can do",
+    "checkLink": "Check an estimate (nothing is saved)",
+    "back": "Back to home",
+    "guides": {
+      "assistance": {
+        "title": "Financial assistance at a California hospital",
+        "checked": "October 10, 2026",
+        "what": "California hospitals have programs that reduce or remove a bill for patients who cannot pay in full. A California law, AB 1020, raised the income level the law covers from 350% to 400% of the federal poverty level, starting January 1, 2024.",
+        "who": "Whether you qualify, and whether your care is free or discounted, is decided by each hospital's own policy. Ask the hospital for it.",
+        "gap": "We could not confirm from the official pages who qualifies or the exact free-care and discount levels, so we do not state them here.",
+        "steps": {
+          "ask": "Ask the billing office for the hospital's financial assistance policy and the application, even if you are not sure you qualify.",
+          "apply": "Fill in the application and keep a copy of everything you send.",
+          "hold": "Ask that the bill not be sent to collections while your application is being reviewed, and ask them to note that on your account.",
+          "estimate": "Use the estimate tool to see roughly where your income falls against the federal poverty level."
+        },
+        "sources": {
+          "hcaiProgram": "California HCAI: Hospital Fair Billing Program",
+          "hcaiLaws": "California HCAI: Hospital Fair Billing Program, laws and regulations"
+        }
+      },
+      "gfe": {
+        "title": "The Good Faith Estimate and the federal dispute process",
+        "checked": "October 10, 2026",
+        "what": "A Good Faith Estimate is a written estimate of what care is expected to cost, given before the care. It is meant for people who are uninsured or paying themselves.",
+        "who": "The federal patient-provider dispute resolution process is for uninsured or self-pay people who received a Good Faith Estimate and told the provider they were uninsured or not using insurance. It looks at bills that are at least $400 more than the estimate. You must start within 120 calendar days of the date of the initial bill, and there is a $25 non-refundable administrative fee.",
+        "gap": "CMS decides whether a dispute qualifies. Our tool only compares your numbers with the $400 and 120-day figures CMS publishes.",
+        "steps": {
+          "compare": "Find your Good Faith Estimate and your bill and compare the totals.",
+          "date": "Check the date of the bill and count 120 calendar days from it.",
+          "tool": "Use the estimate tool to compare the two totals and see whether you are inside the window.",
+          "start": "If it applies, start the dispute on the CMS page below."
+        },
+        "sources": {
+          "cmsDispute": "CMS: Dispute a bill",
+          "cmsCosts": "CMS: Understanding costs in advance"
+        }
+      },
+      "itemized": {
+        "title": "Asking for an itemized bill",
+        "checked": "October 13, 2026",
+        "what": "An itemized bill lists every service and supply with its billing code, date, units and charge. It is what you need to check a bill line by line.",
+        "medicare": "If you have Medicare: federal law lets you send a written request to a physician, provider or supplier for an itemized statement of the Medicare items and services you received. The statute says it must be furnished within 30 days of your request, and sets a civil money penalty of up to $100 for each knowing failure to do so.",
+        "other": "If you do not have Medicare: we did not find an official page we could cite that sets a right to an itemized bill for private-insurance or self-pay patients, so we do not claim one. You can still ask. Contact your provider or your insurer and ask for an itemized bill with a billing code for every charge.",
+        "steps": {
+          "writing": "Ask in writing if you can, and keep a copy.",
+          "detail": "Say what you want: every service and supply, with its billing code, date, units and charge.",
+          "notes": "If you call, write down the date, the time and the name of the person you spoke with.",
+          "letter": "See what an itemized-bill letter looks like."
+        },
+        "sources": {
+          "statute": "42 U.S. Code § 1395b-7, Explanation of Medicare benefits (subsection (b), itemized statement)"
+        }
+      }
+    },
+    "remindersTitle": "Add a reminder"
   }
 }

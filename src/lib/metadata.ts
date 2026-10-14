@@ -18,6 +18,8 @@ export type MetaKey =
   | "about"
   | "help"
   | "methodology"
+  | "rights"
+  | "rightsCheck"
   | "glossary";
 
 /** Title and description for a route, in the request locale. */

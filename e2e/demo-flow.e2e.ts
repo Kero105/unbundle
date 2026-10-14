@@ -57,6 +57,38 @@ test("skip link is reachable by keyboard and works", async ({ page }) => {
   }
 });
 
+// The standalone checker needs no bill and no sign-in, and nothing typed there
+// leaves the page: no request carries the values and nothing lands in storage.
+test("standalone checker works signed out and sends nothing", async ({ page }) => {
+  const requests: string[] = [];
+  page.on("request", (r) => {
+    if (r.method() !== "GET" || r.url().includes("?")) requests.push(`${r.method()} ${r.url()}`);
+  });
+
+  await page.goto("/rights/check");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Check an estimate");
+  await expect(page.getByText("Nothing you type on this page is sent or saved.")).toBeVisible();
+  await page.waitForLoadState("networkidle");
+  requests.length = 0;
+
+  await page.getByLabel("People in your household").fill("3");
+  await page.getByLabel("Yearly household income (before taxes)").fill("31337");
+  await page.getByLabel("No, I am uninsured or paying myself").check();
+  await page.getByLabel("Total on the estimate").fill("1000");
+  await page.getByLabel("Total on the bill").fill("1500");
+  await page.getByRole("button", { name: "See my estimate" }).click();
+  await expect(page.getByRole("heading", { name: "Your estimate" })).toBeVisible();
+
+  expect(requests).toEqual([]);
+  expect(page.url()).not.toContain("31337");
+  const stored = await page.evaluate(() => ({
+    local: Object.keys(localStorage).length,
+    session: Object.keys(sessionStorage).length,
+    cookies: document.cookie.includes("31337"),
+  }));
+  expect(stored).toEqual({ local: 0, session: 0, cookies: false });
+});
+
 // The accuracy table is stacked cards at phone width: nothing wider than the
 // screen, and all nine rules plus the total are readable without sideways scroll.
 test("about accuracy table is readable at 320px", async ({ page }) => {

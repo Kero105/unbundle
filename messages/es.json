@@ -972,6 +972,14 @@
       "title": "Cómo funcionan las revisiones | Unbundle",
       "description": "Cada una de las nueve revisiones en lenguaje sencillo, con un ejemplo, los datos que usa y las versiones de los lanzamientos."
     },
+    "rights": {
+      "title": "Conozca sus derechos | Unbundle",
+      "description": "Guías sencillas sobre asistencia financiera, el proceso de disputa del Estimación de Buena Fe y cómo pedir una factura detallada, con fuentes oficiales."
+    },
+    "rightsCheck": {
+      "title": "Revise un estimado | Unbundle",
+      "description": "Calcule dónde queda su ingreso frente al nivel federal de pobreza, o compare un Estimación de Buena Fe con una factura. Nada de lo que escriba se guarda ni se envía."
+    },
     "glossary": {
       "title": "Glosario | Unbundle",
       "description": "Definiciones sencillas de términos de facturación como CPT, EOB, NCCI, MUE, modificador y facturación del saldo."
@@ -1285,6 +1293,13 @@
     },
     "back": "Volver al inicio"
   },
+  "RightsCheck": {
+    "title": "Revise un estimado",
+    "subtitle": "Vea más o menos dónde queda su ingreso frente al nivel federal de pobreza, o compare un Estimación de Buena Fe con una factura. No necesita subir una factura.",
+    "privacy": "Nada de lo que escriba en esta página se envía ni se guarda. Los números se calculan en su navegador.",
+    "back": "Volver a sus derechos",
+    "unavailable": "No pudimos cargar las pautas de pobreza en este momento."
+  },
   "CallScript": {
     "title": "Guion para la llamada",
     "intro": "Léalo cuando llame a la oficina de facturación. Se arma con sus hallazgos de esta página y no se guarda.",
@@ -1340,5 +1355,68 @@
       "note": "Contamos 120 días calendario desde la fecha de la factura que usted escribe. CMS cuenta desde la factura inicial, así que confirme la fecha con ellos."
     },
     "invalidDate": "Escriba una fecha real."
+  },
+  "Rights": {
+    "title": "Conozca sus derechos",
+    "subtitle": "Tres cosas que puede pedir cuando una factura médica se ve mal o demasiado alta, con las páginas oficiales detrás de cada una.",
+    "notAdvice": "Esta es información general, no asesoría legal. Las leyes cambian y lo que aplica depende de su situación. Para recibir asesoría sobre su caso, hable con un abogado o con un defensor del paciente.",
+    "checkedLabel": "Fuentes revisadas por última vez",
+    "sourcesTitle": "Fuentes",
+    "stepsTitle": "Lo que puede hacer",
+    "checkLink": "Revise un estimado (no se guarda nada)",
+    "back": "Volver al inicio",
+    "guides": {
+      "assistance": {
+        "title": "Asistencia financiera en un hospital de California",
+        "checked": "10 de octubre de 2026",
+        "what": "Los hospitales de California tienen programas que reducen o eliminan una factura para pacientes que no pueden pagarla completa. Una ley de California, la AB 1020, subió el nivel de ingreso que cubre la ley de 350% a 400% del nivel federal de pobreza, a partir del 1 de enero de 2024.",
+        "who": "Si usted califica, y si su atención es gratuita o con descuento, lo decide la política de cada hospital. Pídasela al hospital.",
+        "gap": "No pudimos confirmar en las páginas oficiales quién califica ni los niveles exactos de atención gratuita y de descuento, así que no los indicamos aquí.",
+        "steps": {
+          "ask": "Pida a la oficina de facturación la política de asistencia financiera del hospital y la solicitud, aunque no esté seguro de calificar.",
+          "apply": "Llene la solicitud y guarde una copia de todo lo que envíe.",
+          "hold": "Pida que la factura no se envíe a cobranza mientras se revisa su solicitud, y pida que lo anoten en su cuenta.",
+          "estimate": "Use la herramienta de estimado para ver más o menos dónde queda su ingreso frente al nivel federal de pobreza."
+        },
+        "sources": {
+          "hcaiProgram": "HCAI de California: Programa de Facturación Justa de Hospitales",
+          "hcaiLaws": "HCAI de California: Programa de Facturación Justa de Hospitales, leyes y reglamentos"
+        }
+      },
+      "gfe": {
+        "title": "La Estimación de Buena Fe y el proceso federal de disputa",
+        "checked": "10 de octubre de 2026",
+        "what": "Una Estimación de Buena Fe es un cálculo por escrito de lo que se espera que cueste la atención, entregado antes de recibirla. Es para personas sin seguro o que pagan por su cuenta.",
+        "who": "El proceso federal de resolución de disputas entre paciente y proveedor es para personas sin seguro o que pagan por su cuenta, que recibieron una Estimación de Buena Fe y le dijeron al proveedor que no tenían seguro o que no usarían su seguro. Considera facturas que superan la estimación por $400 o más. Debe empezar dentro de los 120 días calendario siguientes a la fecha de la factura inicial, y hay una tarifa administrativa de $25 no reembolsable.",
+        "gap": "CMS decide si una disputa califica. Nuestra herramienta solo compara sus números con las cifras de $400 y 120 días que publica CMS.",
+        "steps": {
+          "compare": "Busque su Estimación de Buena Fe y su factura y compare los totales.",
+          "date": "Revise la fecha de la factura y cuente 120 días calendario a partir de ella.",
+          "tool": "Use la herramienta de estimado para comparar los dos totales y ver si está dentro del plazo.",
+          "start": "Si aplica, inicie la disputa en la página de CMS que aparece abajo."
+        },
+        "sources": {
+          "cmsDispute": "CMS: Disputar una factura (Dispute a bill)",
+          "cmsCosts": "CMS: Conocer los costos por adelantado (Understanding costs in advance)"
+        }
+      },
+      "itemized": {
+        "title": "Cómo pedir una factura detallada",
+        "checked": "13 de octubre de 2026",
+        "what": "Una factura detallada enumera cada servicio y suministro con su código de facturación, fecha, unidades y cargo. Es lo que necesita para revisar una factura línea por línea.",
+        "medicare": "Si tiene Medicare: la ley federal le permite enviar una solicitud por escrito a un médico, proveedor o suministrador para pedir un estado detallado de los artículos y servicios de Medicare que recibió. La ley dice que debe entregarse dentro de 30 días de su solicitud, y establece una multa civil de hasta $100 por cada incumplimiento a sabiendas.",
+        "other": "Si no tiene Medicare: no encontramos una página oficial que podamos citar que establezca un derecho a una factura detallada para pacientes con seguro privado o que pagan por su cuenta, así que no afirmamos que exista. Aun así, puede pedirla. Comuníquese con su proveedor o con su aseguradora y pida una factura detallada con un código de facturación para cada cargo.",
+        "steps": {
+          "writing": "Pídala por escrito si puede, y guarde una copia.",
+          "detail": "Diga lo que quiere: cada servicio y suministro, con su código de facturación, fecha, unidades y cargo.",
+          "notes": "Si llama, anote la fecha, la hora y el nombre de la persona con quien habló.",
+          "letter": "Vea cómo es una carta para pedir una factura detallada."
+        },
+        "sources": {
+          "statute": "42 U.S. Code § 1395b-7, Explicación de beneficios de Medicare (inciso (b), estado detallado)"
+        }
+      }
+    },
+    "remindersTitle": "Agregue un recordatorio"
   }
 }

@@ -15,6 +15,8 @@ const STATIC_PAGES = [
   "/terms",
   "/help",
   "/methodology",
+  "/rights",
+  "/rights/check",
   "/glossary",
 ];
 const DEMO_STEPS = ["review", "report", "report/summary", "letter", "assistance"];
