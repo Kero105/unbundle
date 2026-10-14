@@ -6,6 +6,7 @@ import { LogOut, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HtmlLangSync } from "@/components/html-lang-sync";
 import { LanguageToggle } from "@/components/language-toggle";
+import { SignInButton } from "@/components/sign-in-button";
 import { createClient } from "@/lib/supabase/server";
 import type { Locale } from "@/i18n/locale";
 
@@ -28,6 +29,15 @@ async function isSignedIn() {
   }
 }
 
+const NAV = [
+  { href: "/methodology", key: "navMethodology" },
+  { href: "/rights", key: "navRights" },
+  { href: "/demo", key: "navTrySample" },
+] as const;
+
+const navLinkClass =
+  "inline-flex min-h-10 items-center text-[0.9375rem] font-medium underline-offset-4 hover:underline";
+
 export function Wordmark() {
   return (
     <span className="font-heading text-2xl font-semibold tracking-tight text-primary">
@@ -43,6 +53,8 @@ export function SiteHeaderFallback() {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center px-4 sm:px-6">
         <Wordmark />
       </div>
+      {/* Reserves the nav row so the page doesn't jump when the header streams in. */}
+      <div aria-hidden="true" className="h-12 border-t" />
     </header>
   );
 }
@@ -100,6 +112,29 @@ export async function SiteHeader() {
           ) : null}
         </div>
       </div>
+      <nav aria-label={t("navLabel")} className="border-t">
+        {/* Wraps instead of scrolling, so four links fit a 320px screen. */}
+        <ul className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-5 gap-y-1 px-4 py-1 sm:px-6">
+          {NAV.map(({ href, key }) => (
+            <li key={href}>
+              <Link href={href} className={navLinkClass}>
+                {t(key)}
+              </Link>
+            </li>
+          ))}
+          <li>
+            {signedIn ? (
+              <Link href="/dashboard" className={navLinkClass}>
+                {t("navDashboard")}
+              </Link>
+            ) : (
+              <SignInButton size="sm" variant="ghost">
+                {t("navSignIn")}
+              </SignInButton>
+            )}
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }

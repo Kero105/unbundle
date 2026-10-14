@@ -89,6 +89,30 @@ test("standalone checker works signed out and sends nothing", async ({ page }) =
   expect(stored).toEqual({ local: 0, session: 0, cookies: false });
 });
 
+// Header and footer are the same on every page, fit a phone, and every page has a way back.
+test("nav and footer are consistent and fit a phone", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 700 });
+  for (const path of ["/", "/about", "/help", "/methodology", "/rights", "/rights/check", "/glossary", "/privacy", "/terms"]) {
+    await page.goto(path);
+    const nav = page.getByRole("navigation", { name: "Main" });
+    await expect(nav).toBeVisible();
+    for (const name of ["How it works", "Know your rights", "Try a sample"]) {
+      await expect(nav.getByRole("link", { name })).toBeVisible();
+    }
+    await expect(nav.getByRole("button", { name: "Sign in" })).toBeVisible();
+
+    const footer = page.getByRole("navigation", { name: "Footer" });
+    for (const name of ["Glossary", "Check an estimate", "About", "Privacy", "Terms", "Help"]) {
+      await expect(footer.getByRole("link", { name })).toBeVisible();
+    }
+
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    );
+    expect(overflow, path).toBe(false);
+  }
+});
+
 // The accuracy table is stacked cards at phone width: nothing wider than the
 // screen, and all nine rules plus the total are readable without sideways scroll.
 test("about accuracy table is readable at 320px", async ({ page }) => {

@@ -14,6 +14,17 @@
     "about": "Acerca de",
     "settings": "Configuración",
     "help": "Ayuda",
+    "navLabel": "Principal",
+    "navMethodology": "Cómo funciona",
+    "navRights": "Conozca sus derechos",
+    "navTrySample": "Pruebe un ejemplo",
+    "navDashboard": "Panel",
+    "navSignIn": "Iniciar sesión",
+    "footerLearn": "Aprenda",
+    "footerCheck": "Revise un estimado",
+    "footerGlossary": "Glosario",
+    "footerAbout": "Sobre Unbundle",
+    "footerTools": "Herramientas",
     "backHome": "Volver al inicio"
   },
   "Home": {

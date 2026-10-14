@@ -14,6 +14,17 @@
     "about": "About",
     "settings": "Settings",
     "help": "Help",
+    "navLabel": "Main",
+    "navMethodology": "How it works",
+    "navRights": "Know your rights",
+    "navTrySample": "Try a sample",
+    "navDashboard": "Dashboard",
+    "navSignIn": "Sign in",
+    "footerLearn": "Learn",
+    "footerCheck": "Check an estimate",
+    "footerGlossary": "Glossary",
+    "footerAbout": "About Unbundle",
+    "footerTools": "Tools",
     "backHome": "Back to home"
   },
   "Home": {
