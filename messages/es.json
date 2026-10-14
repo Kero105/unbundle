@@ -967,6 +967,10 @@
     "manualEntry": {
       "title": "Escriba su factura | Unbundle",
       "description": "Escriba a mano las líneas de su factura médica para que Unbundle las revise."
+    },
+    "glossary": {
+      "title": "Glosario | Unbundle",
+      "description": "Definiciones sencillas de términos de facturación como CPT, EOB, NCCI, MUE, modificador y facturación del saldo."
     }
   },
   "Explain": {
@@ -1103,5 +1107,82 @@
       "notFound": "No pudimos encontrar esa factura.",
       "failed": "No pudimos guardar su factura. Inténtelo de nuevo."
     }
+  },
+  "Glossary": {
+    "title": "Glosario",
+    "subtitle": "Palabras sencillas para los términos que verá en facturas e informes.",
+    "attribution": "CPT® es una marca registrada de la Asociación Médica Estadounidense (American Medical Association). Las explicaciones de esta página son descripciones propias en lenguaje sencillo.",
+    "termsLabel": "Términos",
+    "terms": {
+      "allowedAmount": {
+        "term": "Monto permitido",
+        "definition": "Lo máximo que su plan o Medicare reconoce por un servicio. Puede ser menos de lo que cobró el proveedor."
+      },
+      "balanceBilling": {
+        "term": "Facturación del saldo",
+        "definition": "Cuando un proveedor le cobra la diferencia entre su cargo y lo que su aseguradora permitió o pagó. Si esto está permitido depende del plan, del contrato y de la ley. Unbundle solo compara lo que la factura le pide pagar con lo que su EOB dice que usted debe."
+      },
+      "cpt": {
+        "term": "Código CPT",
+        "definition": "Un código de cinco caracteres que nombra un servicio o procedimiento médico, como una consulta, un examen o un tratamiento. La Asociación Médica Estadounidense mantiene el CPT."
+      },
+      "eob": {
+        "term": "EOB (explicación de beneficios)",
+        "definition": "Un estado de su aseguradora que muestra lo que le cobraron, lo que permitió y pagó, lo que negó y lo que usted podría deber. No es una factura."
+      },
+      "financialAssistance": {
+        "term": "Asistencia financiera",
+        "definition": "Un programa del hospital que reduce o elimina una factura para quienes no pueden pagarla completa. También se llama atención de beneficencia. Cada hospital tiene su propia política."
+      },
+      "fpl": {
+        "term": "Nivel federal de pobreza (FPL)",
+        "definition": "Cifras anuales de ingreso que publica el gobierno federal según el tamaño del hogar. Los programas de asistencia financiera suelen usar un porcentaje de ese nivel."
+      },
+      "gfe": {
+        "term": "Estimación de Buena Fe (Good Faith Estimate)",
+        "definition": "Un cálculo por escrito de lo que se espera que cueste la atención, entregado antes de recibirla. Es para personas sin seguro o que pagan por su cuenta."
+      },
+      "gpci": {
+        "term": "GPCI (índice geográfico de costo de práctica)",
+        "definition": "Un número que ajusta el precio de Medicare para un servicio a los costos locales. Unbundle usa el de Los Ángeles."
+      },
+      "hcpcs": {
+        "term": "Código HCPCS",
+        "definition": "El conjunto más amplio de códigos de facturación que se usa con Medicare. Incluye los códigos CPT y también códigos, por lo general una letra y cuatro dígitos, para suministros, equipo y otros servicios."
+      },
+      "itemizedBill": {
+        "term": "Factura detallada",
+        "definition": "Una factura que enumera cada servicio y suministro en su propia línea, con su código de facturación, fecha, unidades y cargo."
+      },
+      "modifier": {
+        "term": "Modificador",
+        "definition": "Un complemento de dos caracteres para un código de facturación que da más detalle, por ejemplo 25, 26, 59 o TC. Algunos modificadores indican que dos servicios fueron realmente distintos."
+      },
+      "mpfs": {
+        "term": "Lista de Tarifas de Médicos de Medicare",
+        "definition": "La lista de lo que Medicare paga por servicios de médicos y otros profesionales. Unbundle la usa como referencia de precios."
+      },
+      "mue": {
+        "term": "MUE (revisión de improbabilidad médica)",
+        "definition": "El máximo de unidades de un servicio que Medicare esperaría normalmente para un paciente en un día."
+      },
+      "ncci": {
+        "term": "NCCI (Iniciativa Nacional de Codificación Correcta)",
+        "definition": "Reglas de codificación de Medicare que evitan que ciertos códigos se paguen juntos o en cantidades grandes."
+      },
+      "patientResponsibility": {
+        "term": "Responsabilidad del paciente",
+        "definition": "La parte de una reclamación que su aseguradora dice que le corresponde pagar a usted, como un deducible, un copago o un coseguro."
+      },
+      "ptp": {
+        "term": "Regla PTP (procedimiento con procedimiento)",
+        "definition": "Una regla NCCI que dice que dos códigos normalmente no deben facturarse juntos el mismo día, porque uno está incluido en el otro. Algunas permiten un modificador para mostrar que los servicios fueron distintos."
+      },
+      "unbundling": {
+        "term": "Desglose indebido (unbundling)",
+        "definition": "Facturar por separado servicios que deberían facturarse juntos como uno solo."
+      }
+    },
+    "back": "Volver al inicio"
   }
 }

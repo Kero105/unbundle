@@ -1,0 +1,20 @@
+/** Message keys under Glossary.terms. The page sorts them by their displayed term. */
+export const GLOSSARY_TERM_KEYS = [
+  "allowedAmount",
+  "balanceBilling",
+  "cpt",
+  "eob",
+  "financialAssistance",
+  "fpl",
+  "gfe",
+  "gpci",
+  "hcpcs",
+  "itemizedBill",
+  "modifier",
+  "mpfs",
+  "mue",
+  "ncci",
+  "patientResponsibility",
+  "ptp",
+  "unbundling",
+] as const;

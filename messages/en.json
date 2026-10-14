@@ -967,6 +967,10 @@
     "manualEntry": {
       "title": "Type in your bill | Unbundle",
       "description": "Type the lines of your medical bill in by hand so Unbundle can check them."
+    },
+    "glossary": {
+      "title": "Glossary | Unbundle",
+      "description": "Plain definitions of billing words such as CPT, EOB, NCCI, MUE, modifier and balance billing."
     }
   },
   "Explain": {
@@ -1103,5 +1107,82 @@
       "notFound": "We couldn't find that bill.",
       "failed": "We couldn't save your bill. Please try again."
     }
+  },
+  "Glossary": {
+    "title": "Glossary",
+    "subtitle": "Plain words for the terms you will see on bills and reports.",
+    "attribution": "CPT® is a registered trademark of the American Medical Association. The explanations on this page are our own plain-language descriptions.",
+    "termsLabel": "Terms",
+    "terms": {
+      "allowedAmount": {
+        "term": "Allowed amount",
+        "definition": "The most your plan or Medicare will count for a service. It can be lower than what the provider charged."
+      },
+      "balanceBilling": {
+        "term": "Balance billing",
+        "definition": "When a provider bills you for the difference between its charge and what your insurer allowed or paid. Whether that is permitted depends on the plan, the contract and the law. Unbundle only compares what the bill asks you to pay with what your EOB says you owe."
+      },
+      "cpt": {
+        "term": "CPT code",
+        "definition": "A five-character code that names a medical service or procedure, such as a visit, a test or a treatment. CPT is maintained by the American Medical Association."
+      },
+      "eob": {
+        "term": "EOB (explanation of benefits)",
+        "definition": "A statement from your insurer that shows what it was charged, what it allowed and paid, what it denied, and what you may owe. It is not a bill."
+      },
+      "financialAssistance": {
+        "term": "Financial assistance",
+        "definition": "A hospital program that reduces or removes a bill for people who cannot pay in full. It is also called charity care. Each hospital has its own policy."
+      },
+      "fpl": {
+        "term": "Federal poverty level (FPL)",
+        "definition": "Yearly income figures published by the federal government by household size. Financial assistance programs often use a percentage of it."
+      },
+      "gfe": {
+        "term": "Good Faith Estimate",
+        "definition": "A written estimate of what care is expected to cost, given before the care. It is meant for people who are uninsured or paying themselves."
+      },
+      "gpci": {
+        "term": "GPCI (geographic practice cost index)",
+        "definition": "A number that adjusts Medicare's price for a service to local costs. Unbundle uses the one for Los Angeles."
+      },
+      "hcpcs": {
+        "term": "HCPCS code",
+        "definition": "The wider set of billing codes used with Medicare. It includes CPT codes and also codes, usually a letter and four digits, for supplies, equipment and other services."
+      },
+      "itemizedBill": {
+        "term": "Itemized bill",
+        "definition": "A bill that lists every service and supply on its own line, with its billing code, date, units and charge."
+      },
+      "modifier": {
+        "term": "Modifier",
+        "definition": "A two-character add-on to a billing code that gives more detail, for example 25, 26, 59 or TC. Some modifiers show that two services were truly separate."
+      },
+      "mpfs": {
+        "term": "Medicare Physician Fee Schedule",
+        "definition": "The list of what Medicare pays for services by doctors and other practitioners. Unbundle uses it as a price benchmark."
+      },
+      "mue": {
+        "term": "MUE (medically unlikely edit)",
+        "definition": "The most units of a service that Medicare would normally expect for one patient on one day."
+      },
+      "ncci": {
+        "term": "NCCI (National Correct Coding Initiative)",
+        "definition": "Medicare coding edits that keep some codes from being paid together or in large quantities."
+      },
+      "patientResponsibility": {
+        "term": "Patient responsibility",
+        "definition": "The part of a claim your insurer says is yours to pay, such as a deductible, a copay or coinsurance."
+      },
+      "ptp": {
+        "term": "PTP edit (procedure-to-procedure)",
+        "definition": "An NCCI rule that says two codes should not normally be billed together on the same day, because one is included in the other. Some allow a modifier to show the services were separate."
+      },
+      "unbundling": {
+        "term": "Unbundling",
+        "definition": "Billing separately for services that should be billed together as one."
+      }
+    },
+    "back": "Back to home"
   }
 }

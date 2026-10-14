@@ -7,7 +7,15 @@ import { expect, test } from "@playwright/test";
 // Output names rule, impact, page and a CSS selector only; never element text.
 
 const SCENARIOS = ["standard", "er-visit", "clean"] as const;
-const STATIC_PAGES = ["/", "/demo", "/about", "/privacy", "/terms", "/help"];
+const STATIC_PAGES = [
+  "/",
+  "/demo",
+  "/about",
+  "/privacy",
+  "/terms",
+  "/help",
+  "/glossary",
+];
 const DEMO_STEPS = ["review", "report", "report/summary", "letter", "assistance"];
 
 const PAGES = [
