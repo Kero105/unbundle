@@ -56,3 +56,4 @@ Run lint, type check, and tests before committing.
 - Demo mode uses precomputed JSON snapshots; never loosen RLS or use the service role key on user-facing paths.
 - Privacy copy on the upload card, the footer and /privacy must always say the same true things; make no claims about Anthropic training or retention that are not confirmed from Anthropic's published terms.
 - EXTRACTION_MODE defaults to mock and must be set to anthropic in production; EXTRACTION_ENABLED is the kill switch.
+- Any server component that reads the Supabase session or the clock must call `await connection()` first, inside a Suspense boundary (Next 16 Cache Components).
