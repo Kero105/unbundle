@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import accuracy from "@/lib/accuracy/accuracy.json";
 import { BackLink } from "@/components/back-link";
 import { CallScript } from "@/components/call-script";
+import { PrivacyAnswer } from "@/components/privacy-answer";
 import { Reminders } from "@/components/reminders";
 import { Skeleton } from "@/components/ui/skeleton";
 import { routeMetadata } from "@/lib/metadata";
@@ -50,12 +51,17 @@ async function Help() {
                   {t(`faqs.${id}.q`)}
                 </summary>
                 <div className="flex flex-col gap-3 pb-4 text-lg leading-8">
-                  <p>
-                    {t(`faqs.${id}.a`, {
-                      fixtures: accuracy.fixtureCount,
-                      traps: accuracy.trapFixtureCount,
-                    })}
-                  </p>
+                  {id === "privacy" ? (
+                    // Same strings as /privacy and the FAQ, never a copy.
+                    <PrivacyAnswer />
+                  ) : (
+                    <p>
+                      {t(`faqs.${id}.a`, {
+                        fixtures: accuracy.fixtureCount,
+                        traps: accuracy.trapFixtureCount,
+                      })}
+                    </p>
+                  )}
                   {link ? (
                     <p>
                       <Link

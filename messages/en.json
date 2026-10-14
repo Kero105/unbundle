@@ -1132,8 +1132,7 @@
         "a": "We ran the checks against {fixtures} made-up test bills, including {traps} designed to catch false alarms, and they behaved as designed. Real bills are messier, so some problems will be missed and some flags will turn out to be fine. That is why every finding says what to ask rather than what is wrong."
       },
       "privacy": {
-        "q": "Is my information private?",
-        "a": "Your files are kept in a private folder that only your account can open. To read your bill, we send your files to Anthropic's API; Anthropic's published terms say that, by default, your bills aren't used to train its models. If you type your bill in instead, nothing you type is sent to Anthropic. You can delete a bill, all your bills, or your whole account from Settings at any time."
+        "q": "Is my information private?"
       },
       "cost": {
         "q": "How much does it cost?",

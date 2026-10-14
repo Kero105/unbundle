@@ -2,11 +2,11 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 import { BackLink } from "@/components/back-link";
+import { PrivacyAnswer } from "@/components/privacy-answer";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   FAQ_CHECKED,
   FAQ_GROUPS,
-  FAQ_PRIVACY_KEYS,
   FAQ_RELATED,
   FAQ_SOURCES,
 } from "@/lib/content/faq";
@@ -17,11 +17,7 @@ export const generateMetadata = () => routeMetadata("faq");
 const linkClass = "font-medium text-primary underline underline-offset-4 hover:no-underline";
 
 async function Faq() {
-  const [locale, t, privacy] = await Promise.all([
-    getLocale(),
-    getTranslations("FAQ"),
-    getTranslations("Privacy.summary"),
-  ]);
+  const [locale, t] = await Promise.all([getLocale(), getTranslations("FAQ")]);
   // A fixed ISO date formatted in UTC: nothing here reads the clock.
   const checked = new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" }).format(
     new Date(`${FAQ_CHECKED}T00:00:00Z`),
@@ -52,7 +48,7 @@ async function Faq() {
                   </summary>
                   <div className="flex flex-col gap-3 pb-4 text-lg leading-8">
                     {item.fromPrivacyPage
-                      ? FAQ_PRIVACY_KEYS.map((key) => <p key={key}>{privacy(key)}</p>)
+                      ? <PrivacyAnswer />
                       : Array.from({ length: item.paragraphs }, (_, i) => (
                           <p key={i}>
                             {t(`items.${item.id}.p${i + 1}` as "items.itemized.p1")}

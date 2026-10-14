@@ -1132,8 +1132,7 @@
         "a": "Ejecutamos las revisiones con {fixtures} facturas de prueba inventadas, {traps} de ellas diseñadas para detectar falsas alarmas, y se comportaron como se diseñaron. Las facturas reales son más desordenadas, así que algunos problemas se pasarán por alto y algunas señales resultarán estar bien. Por eso cada hallazgo dice qué preguntar y no qué está mal."
       },
       "privacy": {
-        "q": "¿Mi información es privada?",
-        "a": "Sus archivos se guardan en una carpeta privada que solo su cuenta puede abrir. Para leer su factura, enviamos sus archivos a la API de Anthropic; según los términos publicados de Anthropic, por defecto sus facturas no se usan para entrenar sus modelos. Si escribe su factura a mano, nada de lo que escriba se envía a Anthropic. Puede eliminar una factura, todas sus facturas o toda su cuenta desde Configuración en cualquier momento."
+        "q": "¿Mi información es privada?"
       },
       "cost": {
         "q": "¿Cuánto cuesta?",

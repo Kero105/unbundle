@@ -182,8 +182,8 @@ describe("privacy answer", () => {
     const privacy = items.find((i) => i.id === "privacy")!;
     expect(privacy.fromPrivacyPage).toBe(true);
     expect(privacy.paragraphs).toBe(0);
-    const page = read("src/app/faq/page.tsx");
-    expect(page).toContain('getTranslations("Privacy.summary")');
+    expect(read("src/app/faq/page.tsx")).toContain("<PrivacyAnswer />");
+    expect(read("src/components/privacy-answer.tsx")).toContain('getTranslations("Privacy.summary")');
     for (const key of FAQ_PRIVACY_KEYS) {
       expect(en.Privacy.summary[key].length).toBeGreaterThan(0);
       expect(es.Privacy.summary[key].length).toBeGreaterThan(0);

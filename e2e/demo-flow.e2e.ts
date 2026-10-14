@@ -237,8 +237,14 @@ test("faq answers carry sources, a date and the not-legal-advice note", async ({
   await expect(page.locator("details#privacy")).toContainText("We never sell your information.");
   await expect(page.locator("details#privacy")).toContainText("Those are Anthropic's terms, not ours.");
 
-  // Reachable from Help.
+  // Help shows the same privacy wording, including the billing-code exception.
   await page.goto("/help");
+  await page.getByText("Is my information private?").click();
+  const helpPrivacy = page.locator("details", { hasText: "Is my information private?" });
+  await expect(helpPrivacy).toContainText("The only other thing sent is a single billing code");
+  await expect(helpPrivacy).toContainText("We never sell your information.");
+
+  // Reachable from Help.
   await page.getByRole("link", { name: "More answers, each with its source" }).click();
   await expect(page).toHaveURL(/\/faq$/);
 });
