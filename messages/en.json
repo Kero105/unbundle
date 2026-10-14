@@ -25,7 +25,8 @@
     "footerGlossary": "Glossary",
     "footerAbout": "About Unbundle",
     "footerTools": "Tools",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "footerChecklist": "Checklist"
   },
   "Home": {
     "title": "Think your hospital bill is wrong? Check it in minutes.",
@@ -994,6 +995,10 @@
     "glossary": {
       "title": "Glossary | Unbundle",
       "description": "Plain definitions of billing words such as CPT, EOB, NCCI, MUE, modifier and balance billing."
+    },
+    "checklist": {
+      "title": "Checklist before you dispute a bill | Unbundle",
+      "description": "What to gather before you call or write about a medical bill, with space for call notes. Printable. Nothing is saved."
     }
   },
   "Explain": {
@@ -1429,5 +1434,41 @@
       }
     },
     "remindersTitle": "Add a reminder"
+  },
+  "Checklist": {
+    "title": "Checklist before you dispute a bill",
+    "subtitle": "Have these in front of you before you call or write to the billing office. It makes the call shorter and your notes easier to keep.",
+    "nothingSaved": "This page has no form and keeps nothing. Print it or keep it open while you gather things.",
+    "gatherTitle": "What to gather",
+    "items": {
+      "itemized": {
+        "title": "The itemized bill",
+        "body": "A bill that lists each charge with its billing code, date, units and amount. If all you have is a statement with one total, ask the billing office for an itemized bill."
+      },
+      "eob": {
+        "title": "Your insurer's explanation of benefits (EOB)",
+        "body": "If you have insurance, the EOB for the same visit. It shows what the insurer was charged, what it allowed and paid, what it denied, and what you may owe."
+      },
+      "dates": {
+        "title": "The dates of service",
+        "body": "Each date you were seen, and the date printed on the statement."
+      },
+      "account": {
+        "title": "Your account number",
+        "body": "Usually printed on the bill. The billing office may ask for it when you call."
+      },
+      "member": {
+        "title": "Your insurer member ID",
+        "body": "On your insurance card, if you have insurance."
+      }
+    },
+    "notesTitle": "Space for call notes",
+    "notesBody": "For each call, write down the date, the time, the name of the person you spoke with, and what they said they would do.",
+    "nextTitle": "Next",
+    "letterBody": "When you are ready to ask in writing, see what an itemized-bill request letter looks like.",
+    "letterLink": "See a sample itemized-bill request letter",
+    "rightsLink": "Read about what you can ask for",
+    "print": "Print this checklist",
+    "notAdvice": "This checklist is general information, not legal advice."
   }
 }

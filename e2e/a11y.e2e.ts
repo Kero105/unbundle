@@ -18,6 +18,7 @@ const STATIC_PAGES = [
   "/rights",
   "/rights/check",
   "/glossary",
+  "/checklist",
 ];
 const DEMO_STEPS = ["review", "report", "report/summary", "letter", "assistance"];
 

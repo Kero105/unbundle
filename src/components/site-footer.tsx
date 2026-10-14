@@ -16,6 +16,7 @@ const GROUPS = [
     heading: "footerTools",
     links: [
       { href: "/rights/check", key: "footerCheck" },
+      { href: "/checklist", key: "footerChecklist" },
       { href: "/demo", key: "navTrySample" },
       { href: "/help", key: "help" },
     ],

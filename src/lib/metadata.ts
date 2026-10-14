@@ -20,7 +20,8 @@ export type MetaKey =
   | "methodology"
   | "rights"
   | "rightsCheck"
-  | "glossary";
+  | "glossary"
+  | "checklist";
 
 /** Title and description for a route, in the request locale. */
 export async function routeMetadata(key: MetaKey): Promise<Metadata> {

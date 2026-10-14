@@ -92,7 +92,7 @@ test("standalone checker works signed out and sends nothing", async ({ page }) =
 // Header and footer are the same on every page, fit a phone, and every page has a way back.
 test("nav and footer are consistent and fit a phone", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
-  for (const path of ["/", "/about", "/help", "/methodology", "/rights", "/rights/check", "/glossary", "/privacy", "/terms"]) {
+  for (const path of ["/", "/about", "/help", "/methodology", "/rights", "/rights/check", "/glossary", "/checklist", "/privacy", "/terms"]) {
     await page.goto(path);
     const nav = page.getByRole("navigation", { name: "Main" });
     await expect(nav).toBeVisible();
@@ -102,7 +102,7 @@ test("nav and footer are consistent and fit a phone", async ({ page }) => {
     await expect(nav.getByRole("button", { name: "Sign in" })).toBeVisible();
 
     const footer = page.getByRole("navigation", { name: "Footer" });
-    for (const name of ["Glossary", "Check an estimate", "About", "Privacy", "Terms", "Help"]) {
+    for (const name of ["Glossary", "Check an estimate", "Checklist", "About", "Privacy", "Terms", "Help"]) {
       await expect(footer.getByRole("link", { name })).toBeVisible();
     }
 

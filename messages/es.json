@@ -25,7 +25,8 @@
     "footerGlossary": "Glosario",
     "footerAbout": "Sobre Unbundle",
     "footerTools": "Herramientas",
-    "backHome": "Volver al inicio"
+    "backHome": "Volver al inicio",
+    "footerChecklist": "Lista de verificación"
   },
   "Home": {
     "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
@@ -994,6 +995,10 @@
     "glossary": {
       "title": "Glosario | Unbundle",
       "description": "Definiciones sencillas de términos de facturación como CPT, EOB, NCCI, MUE, modificador y facturación del saldo."
+    },
+    "checklist": {
+      "title": "Lista para antes de disputar una factura | Unbundle",
+      "description": "Qué reunir antes de llamar o escribir sobre una factura médica, con espacio para notas de la llamada. Se puede imprimir. No se guarda nada."
     }
   },
   "Explain": {
@@ -1429,5 +1434,41 @@
       }
     },
     "remindersTitle": "Agregue un recordatorio"
+  },
+  "Checklist": {
+    "title": "Lista para antes de disputar una factura",
+    "subtitle": "Tenga esto a la mano antes de llamar o escribir a la oficina de facturación. La llamada será más corta y sus notas serán más fáciles de llevar.",
+    "nothingSaved": "Esta página no tiene formulario y no guarda nada. Imprímala o déjela abierta mientras reúne sus documentos.",
+    "gatherTitle": "Qué reunir",
+    "items": {
+      "itemized": {
+        "title": "La factura detallada",
+        "body": "Una factura que enumera cada cargo con su código de facturación, fecha, unidades y monto. Si solo tiene un estado de cuenta con un total, pida a la oficina de facturación una factura detallada."
+      },
+      "eob": {
+        "title": "La explicación de beneficios (EOB) de su aseguradora",
+        "body": "Si tiene seguro, la EOB de la misma visita. Muestra lo que le cobraron a la aseguradora, lo que permitió y pagó, lo que negó y lo que usted podría deber."
+      },
+      "dates": {
+        "title": "Las fechas de servicio",
+        "body": "Cada fecha en que fue atendido y la fecha impresa en el estado de cuenta."
+      },
+      "account": {
+        "title": "Su número de cuenta",
+        "body": "Por lo general está impreso en la factura. La oficina de facturación puede pedírselo cuando llame."
+      },
+      "member": {
+        "title": "Su número de miembro del seguro",
+        "body": "Está en su tarjeta del seguro, si tiene seguro."
+      }
+    },
+    "notesTitle": "Espacio para notas de la llamada",
+    "notesBody": "En cada llamada, anote la fecha, la hora, el nombre de la persona con quien habló y lo que dijo que haría.",
+    "nextTitle": "Después",
+    "letterBody": "Cuando esté listo para pedirlo por escrito, vea cómo es una carta para pedir una factura detallada.",
+    "letterLink": "Vea una carta de ejemplo para pedir una factura detallada",
+    "rightsLink": "Lea sobre lo que puede pedir",
+    "print": "Imprimir esta lista",
+    "notAdvice": "Esta lista es información general, no asesoría legal."
   }
 }
