@@ -73,6 +73,15 @@ async function Help() {
         })}
       </ul>
 
+      <p className="text-lg">
+        <Link
+          href="/faq"
+          className="font-medium text-primary underline underline-offset-4 hover:no-underline"
+        >
+          {t("faqLink")}
+        </Link>
+      </p>
+
       <CallScript items={[]} generic />
       <Reminders mode="followUp" />
     </main>

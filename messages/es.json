@@ -26,7 +26,8 @@
     "footerAbout": "Sobre Unbundle",
     "footerTools": "Herramientas",
     "backHome": "Volver al inicio",
-    "footerChecklist": "Lista de verificación"
+    "footerChecklist": "Lista de verificación",
+    "footerFaq": "Preguntas frecuentes"
   },
   "Home": {
     "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
@@ -1051,6 +1052,10 @@
     "checklist": {
       "title": "Lista para antes de disputar una factura | Unbundle",
       "description": "Qué reunir antes de llamar o escribir sobre una factura médica, con espacio para notas de la llamada. Se puede imprimir. No se guarda nada."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes | Unbundle",
+      "description": "Respuestas sobre facturas detalladas, EOB, Estimaciones de Buena Fe, la asistencia financiera de hospitales de California y cómo funcionan las revisiones de Unbundle, cada una con su fuente."
     }
   },
   "Explain": {
@@ -1146,7 +1151,8 @@
         "q": "¿Qué hago si no tengo seguro?",
         "a": "Pida una factura detallada y la política de asistencia financiera del proveedor con su solicitud, ya que muchos hospitales reducen las facturas según los ingresos. Si le dieron una Estimación de Buena Fe antes de su atención, puede compararla con su factura en el paso de ayuda financiera. También puede preguntar por descuentos por pago rápido y planes de pago, y pedir que su cuenta no pase a cobranza mientras se revisa."
       }
-    }
+    },
+    "faqLink": "Más respuestas, cada una con su fuente"
   },
   "Manual": {
     "title": "Escriba su factura",
@@ -1522,5 +1528,93 @@
     "rightsLink": "Lea sobre lo que puede pedir",
     "print": "Imprimir esta lista",
     "notAdvice": "Esta lista es información general, no asesoría legal."
+  },
+  "FAQ": {
+    "title": "Preguntas frecuentes",
+    "subtitle": "Cada respuesta indica de dónde viene. Donde no encontramos una fuente oficial, lo decimos en lugar de adivinar.",
+    "notAdvice": "Información general, no asesoría legal.",
+    "sourcesLabel": "Fuentes",
+    "relatedLabel": "Relacionado",
+    "checkedLabel": "Última revisión",
+    "groups": {
+      "bill": "Su factura",
+      "noInsurance": "Si no tiene seguro",
+      "california": "Facturas de hospitales de California",
+      "unbundle": "Cómo funciona Unbundle"
+    },
+    "sources": {
+      "statute": "42 U.S. Code § 1395b-7, Explicación de beneficios de Medicare (en inglés)",
+      "cmsBasics": "CMS: Conceptos básicos del seguro médico (Health Insurance Basics, PDF en inglés)",
+      "cmsNoInsurance": "CMS: Conozca sus derechos de facturación médica cuando no usa seguro (en inglés)",
+      "cmsDispute": "CMS: Disputar una factura médica (Dispute a medical bill, en inglés)",
+      "hcaiLaws": "HCAI de California: Programa de Facturación Justa de Hospitales, leyes y reglamentos (en inglés)",
+      "cmsMue": "CMS: Revisiones NCCI de improbabilidad médica de Medicare, MUE (en inglés)",
+      "cmsPtp": "CMS: Revisiones NCCI de procedimiento con procedimiento de Medicare, PTP (en inglés)",
+      "methodology": "Unbundle: Cómo funcionan las revisiones",
+      "about": "Unbundle: Acerca de",
+      "privacy": "Unbundle: Política de privacidad"
+    },
+    "related": {
+      "checker": "Revise un estimado (no se guarda nada)"
+    },
+    "items": {
+      "itemized": {
+        "q": "¿Qué es una factura detallada y puedo pedirla?",
+        "p1": "Una factura detallada enumera cada servicio y suministro en su propia línea, con su código de facturación, fecha, unidades y cargo.",
+        "p2": "Si tiene Medicare, la ley federal le permite enviar una solicitud por escrito a un médico, proveedor o suministrador para pedir un estado detallado de los artículos y servicios de Medicare que recibió. La ley dice que debe entregarse dentro de 30 días de su solicitud, y establece una multa civil de hasta $100 por cada incumplimiento a sabiendas.",
+        "p3": "Si no tiene Medicare, no encontramos una página oficial que podamos citar que establezca este derecho, así que no afirmamos que exista. Aun así, puede pedir una factura detallada a su proveedor o a su aseguradora."
+      },
+      "eob": {
+        "q": "¿Qué es una EOB y es una factura?",
+        "p1": "Una explicación de beneficios (EOB) es un resumen que su plan de salud puede enviarle después de que recibe atención. CMS dice claramente que no es una factura.",
+        "p2": "Muestra lo que su proveedor le está cobrando al plan y el monto que el plan cubrirá. Si el plan no cubre todo el costo, el proveedor puede enviarle una factura aparte, a menos que la ley lo prohíba."
+      },
+      "allowed": {
+        "q": "¿Qué significa «monto permitido»?",
+        "p1": "El monto permitido es lo máximo que su plan pagará por un artículo o servicio cubierto. Por lo general es la base para calcular su parte del costo.",
+        "p2": "Los ejemplos de CMS muestran que puede ser menor que lo que el proveedor le facturó al plan."
+      },
+      "balanceBill": {
+        "q": "¿Qué es la facturación del saldo (balance bill)?",
+        "p1": "Si tiene cobertura y recibe atención de un proveedor fuera de la red, es posible que su plan no cubra todo el costo. Entonces el proveedor podría pedirle que pague la diferencia entre su cargo y lo que cubre su plan. CMS lo llama «balance bill» o factura sorpresa.",
+        "p2": "CMS dice que la ley federal No Surprises Act (Ley de No Sorpresas) prohíbe las facturas sorpresa en algunas circunstancias. La página que citamos no las enumera, así que no intentamos decir cuáles son."
+      },
+      "gfe": {
+        "q": "¿Qué es una Estimación de Buena Fe?",
+        "p1": "Una Estimación de Buena Fe es una lista de cargos previstos, que se entrega antes de recibir la atención.",
+        "p2": "CMS dice que, en la mayoría de los casos, los proveedores y centros deben entregársela cuando usted programa la atención con al menos 3 días hábiles de anticipación, o si la pide. Está pensada para personas que no tienen seguro médico o que no lo están usando."
+      },
+      "gfeDispute": {
+        "q": "¿Puedo disputar una factura mucho más alta que mi estimación?",
+        "p1": "CMS describe un proceso federal de disputa para personas que no tenían seguro o no lo usaron y que se lo dijeron al proveedor antes de recibir la atención. Se aplica cuando un proveedor cobró al menos $400 más que su Estimación de Buena Fe.",
+        "p2": "Necesita una factura inicial con fecha dentro de los últimos 120 días calendario, y hay una tarifa administrativa de $25 no reembolsable.",
+        "p3": "CMS redacta el plazo de forma ligeramente distinta en páginas distintas, así que confirme su fecha con CMS antes de confiar en ella. Puede comparar sus propios números en nuestra herramienta de estimado."
+      },
+      "californiaAid": {
+        "q": "¿Hay ayuda para pagar la factura de un hospital de California?",
+        "p1": "El Programa de Facturación Justa de Hospitales de California lo administra HCAI. Su página dice que la AB 1020 subió el nivel de ingreso para la asistencia financiera de 350 por ciento a 400 por ciento del nivel federal de pobreza.",
+        "p2": "Si usted califica, y si la atención es gratuita o con descuento, depende de la política de asistencia financiera del propio hospital, que puede pedir a la oficina de facturación. No pudimos confirmar más detalles en las páginas oficiales, así que no indicamos ninguno."
+      },
+      "mue": {
+        "q": "¿Qué es una revisión de improbabilidad médica (MUE)?",
+        "p1": "CMS define una MUE como el máximo de unidades de servicio reportadas para un código en la gran mayoría de las reclamaciones reportadas correctamente, por el mismo proveedor para el mismo paciente en la misma fecha de servicio.",
+        "p2": "No todos los códigos tienen una, y CMS mantiene confidenciales algunos valores. Cuando las unidades de una factura superan un valor publicado, Unbundle lo muestra como una pregunta que hacer, no como prueba de un error."
+      },
+      "ptp": {
+        "q": "¿Qué es una revisión de procedimiento con procedimiento (PTP) y qué es «posible desglose indebido»?",
+        "p1": "Una regla PTP es un par de códigos que, según CMS, no deben reportarse juntos. Para el mismo paciente en la misma fecha, CMS dice que el primer código del par (Columna Uno) es elegible para pago y el segundo (Columna Dos) se niega, a menos que se reporte un modificador clínicamente apropiado.",
+        "p2": "«Posible desglose indebido» es nuestro nombre para dos líneas de su factura que coinciden con una de estas reglas. No es un término de CMS.",
+        "p3": "Es una pregunta para hacer a la oficina de facturación, no la conclusión de que alguien hizo algo mal."
+      },
+      "decides": {
+        "q": "¿Unbundle decide que un cargo está mal?",
+        "p1": "No. La IA lee su factura y la convierte en datos estructurados. Reglas fijas y probadas deciden cada hallazgo, con datos públicos de Medicare, y la IA no puede agregar, quitar ni cambiar un hallazgo ni su monto.",
+        "p2": "Por separado, si abre «¿Qué es esto?» en una fila, la IA da una definición general de ese código de facturación. No explica ni decide sus hallazgos.",
+        "p3": "Los hallazgos son cosas que vale la pena preguntar, no errores seguros. Una revisión compara precios con Medicare, y el umbral de 5 veces que usa es una elección propia, no un estándar legal."
+      },
+      "privacy": {
+        "q": "¿Qué pasa con mi factura?"
+      }
+    }
   }
 }

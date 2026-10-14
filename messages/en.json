@@ -26,7 +26,8 @@
     "footerAbout": "About Unbundle",
     "footerTools": "Tools",
     "backHome": "Back to home",
-    "footerChecklist": "Checklist"
+    "footerChecklist": "Checklist",
+    "footerFaq": "FAQ"
   },
   "Home": {
     "title": "Think your hospital bill is wrong? Check it in minutes.",
@@ -1051,6 +1052,10 @@
     "checklist": {
       "title": "Checklist before you dispute a bill | Unbundle",
       "description": "What to gather before you call or write about a medical bill, with space for call notes. Printable. Nothing is saved."
+    },
+    "faq": {
+      "title": "Frequently asked questions | Unbundle",
+      "description": "Answers about itemized bills, EOBs, Good Faith Estimates, California hospital financial assistance and how Unbundle's checks work, each with its source."
     }
   },
   "Explain": {
@@ -1146,7 +1151,8 @@
         "q": "What if I don't have insurance?",
         "a": "Ask for an itemized bill and for the provider's financial assistance policy and application, since many hospitals reduce bills based on income. If you were given a Good Faith Estimate before your care, you can compare it with your bill in the financial help step. You can also ask about prompt-pay discounts and payment plans, and ask that your account not go to collections while it is reviewed."
       }
-    }
+    },
+    "faqLink": "More answers, each with its source"
   },
   "Manual": {
     "title": "Type in your bill",
@@ -1522,5 +1528,93 @@
     "rightsLink": "Read about what you can ask for",
     "print": "Print this checklist",
     "notAdvice": "This checklist is general information, not legal advice."
+  },
+  "FAQ": {
+    "title": "Frequently asked questions",
+    "subtitle": "Each answer names where it comes from. Where we could not find an official source, we say so instead of guessing.",
+    "notAdvice": "General information, not legal advice.",
+    "sourcesLabel": "Sources",
+    "relatedLabel": "Related",
+    "checkedLabel": "Last checked",
+    "groups": {
+      "bill": "Your bill",
+      "noInsurance": "If you do not have insurance",
+      "california": "California hospital bills",
+      "unbundle": "How Unbundle works"
+    },
+    "sources": {
+      "statute": "42 U.S. Code § 1395b-7, Explanation of Medicare benefits",
+      "cmsBasics": "CMS: Health Insurance Basics (PDF)",
+      "cmsNoInsurance": "CMS: Know your medical bill rights when not using insurance",
+      "cmsDispute": "CMS: Dispute a medical bill",
+      "hcaiLaws": "California HCAI: Hospital Fair Billing Program, laws and regulations",
+      "cmsMue": "CMS: Medicare NCCI Medically Unlikely Edits (MUEs)",
+      "cmsPtp": "CMS: Medicare NCCI Procedure to Procedure (PTP) Edits",
+      "methodology": "Unbundle: How the checks work",
+      "about": "Unbundle: About",
+      "privacy": "Unbundle: Privacy Policy"
+    },
+    "related": {
+      "checker": "Check an estimate (nothing is saved)"
+    },
+    "items": {
+      "itemized": {
+        "q": "What is an itemized bill, and can I ask for one?",
+        "p1": "An itemized bill lists each service and supply on its own line, with its billing code, date, units and charge.",
+        "p2": "If you have Medicare, federal law lets you send a written request to a physician, provider or supplier for an itemized statement of the Medicare items and services you received. It says the statement must be furnished within 30 days of your request, and sets a civil money penalty of up to $100 for each knowing failure to do so.",
+        "p3": "If you do not have Medicare, we did not find an official page we could cite that sets this right, so we do not claim one. You can still ask your provider or insurer for an itemized bill."
+      },
+      "eob": {
+        "q": "What is an EOB, and is it a bill?",
+        "p1": "An explanation of benefits (EOB) is a summary that your health plan may send after you get care. CMS says plainly that it is not a bill.",
+        "p2": "It shows what your provider is charging the plan and the amount the plan will cover. If the plan does not cover the whole cost, the provider may send you a separate bill, unless the law prohibits it."
+      },
+      "allowed": {
+        "q": "What does “allowed amount” mean?",
+        "p1": "The allowed amount is the most your plan will pay for a covered item or service. It is generally the basis for working out your share of the cost.",
+        "p2": "CMS's examples show it can be lower than what the provider billed the plan."
+      },
+      "balanceBill": {
+        "q": "What is a balance bill?",
+        "p1": "If you have coverage and get care from an out-of-network provider, your plan might not cover the whole cost. The provider could then ask you to pay the difference between its charge and what your plan covers. CMS calls this a balance bill or a surprise bill.",
+        "p2": "CMS says the federal No Surprises Act prohibits surprise billing in some circumstances. The page we cite does not list them, so we do not try to say which ones."
+      },
+      "gfe": {
+        "q": "What is a Good Faith Estimate?",
+        "p1": "A Good Faith Estimate is a list of expected charges, given before you get care.",
+        "p2": "CMS says that in most cases providers and facilities must give you one when you schedule care at least 3 business days ahead, or if you ask for one. It is meant for people who do not have or are not using health insurance."
+      },
+      "gfeDispute": {
+        "q": "Can I dispute a bill that is much higher than my estimate?",
+        "p1": "CMS describes a federal dispute process for people who did not have or did not use insurance and told the provider so before getting care. It applies when a provider charged at least $400 more than its Good Faith Estimate.",
+        "p2": "You need an initial bill dated within the last 120 calendar days, and there is a $25 non-refundable administrative fee.",
+        "p3": "CMS words the time limit slightly differently on different pages, so confirm your date with CMS before you rely on it. You can compare your own numbers on our estimate tool."
+      },
+      "californiaAid": {
+        "q": "Is there help paying a California hospital bill?",
+        "p1": "California's Hospital Fair Billing Program is run by HCAI. Its page says that AB 1020 raised the income level for financial assistance from 350 percent to 400 percent of the federal poverty level.",
+        "p2": "Whether you qualify, and whether care is free or discounted, depends on the hospital's own financial assistance policy, which you can ask the billing office for. We could not confirm more detail from the official pages, so we do not state any."
+      },
+      "mue": {
+        "q": "What is a medically unlikely edit (MUE)?",
+        "p1": "CMS defines an MUE as the maximum units of service reported for a code on the vast majority of appropriately reported claims, by the same provider for the same patient on the same date of service.",
+        "p2": "Not every code has one, and CMS keeps some values confidential. When the units on a bill are above a published value, Unbundle shows it as a question to ask, not as proof of an error."
+      },
+      "ptp": {
+        "q": "What is a procedure-to-procedure (PTP) edit, and what is “possible unbundling”?",
+        "p1": "A PTP edit is a pair of codes that CMS says should not be reported together. For the same patient on the same date, CMS says the first code of the pair (Column One) is eligible for payment and the second (Column Two) is denied, unless a clinically appropriate modifier is reported.",
+        "p2": "“Possible unbundling” is our name for two lines on your bill that match one of these edits. It is not a CMS term.",
+        "p3": "It is a question to ask the billing office, not a finding that anyone did something wrong."
+      },
+      "decides": {
+        "q": "Does Unbundle decide that a charge is wrong?",
+        "p1": "No. The AI reads your bill into structured data. Fixed, tested rules decide every finding, using public Medicare data, and the AI cannot add, remove or change a finding or its amount.",
+        "p2": "Separately, if you open “What is this?” on a line, the AI gives a general definition of that billing code. It does not explain or decide your findings.",
+        "p3": "Findings are things worth asking about, not certain mistakes. One check compares prices with Medicare, and the 5 times threshold it uses is our own choice, not a legal standard."
+      },
+      "privacy": {
+        "q": "What happens to my bill?"
+      }
+    }
   }
 }

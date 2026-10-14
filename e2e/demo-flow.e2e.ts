@@ -92,7 +92,7 @@ test("standalone checker works signed out and sends nothing", async ({ page }) =
 // Header and footer are the same on every page, fit a phone, and every page has a way back.
 test("nav and footer are consistent and fit a phone", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
-  for (const path of ["/", "/about", "/help", "/methodology", "/rights", "/rights/check", "/glossary", "/checklist", "/privacy", "/terms"]) {
+  for (const path of ["/", "/about", "/help", "/methodology", "/rights", "/rights/check", "/glossary", "/checklist", "/faq", "/privacy", "/terms"]) {
     await page.goto(path);
     const nav = page.getByRole("navigation", { name: "Main" });
     await expect(nav).toBeVisible();
@@ -102,7 +102,7 @@ test("nav and footer are consistent and fit a phone", async ({ page }) => {
     await expect(nav.getByRole("button", { name: "Sign in" })).toBeVisible();
 
     const footer = page.getByRole("navigation", { name: "Footer" });
-    for (const name of ["Glossary", "Check an estimate", "Checklist", "About", "Privacy", "Terms", "Help"]) {
+    for (const name of ["Glossary", "Check an estimate", "Checklist", "FAQ", "About", "Privacy", "Terms", "Help"]) {
       await expect(footer.getByRole("link", { name })).toBeVisible();
     }
 
@@ -216,4 +216,29 @@ test("demo walk-through skips finding tips when nothing is flagged, and has Span
   await expect(tip.getByText("Consejo 1 de 4")).toBeVisible();
   await expect(tip.getByRole("button", { name: "Muéstrame" })).toBeVisible();
   await expect(tip.getByRole("button", { name: "Descartar este consejo" })).toBeVisible();
+});
+
+// The FAQ: eleven questions, each with a source link, a date and the advice note.
+test("faq answers carry sources, a date and the not-legal-advice note", async ({ page }) => {
+  await page.goto("/faq");
+  const questions = page.locator("main details");
+  await expect(questions).toHaveCount(11);
+
+  const dispute = page.locator("details#gfeDispute");
+  await dispute.locator("summary").click();
+  await expect(dispute.getByRole("link", { name: "CMS: Dispute a medical bill" })).toHaveAttribute(
+    "href",
+    "https://www.cms.gov/medical-bill-rights/help/dispute-a-bill",
+  );
+  await expect(dispute.getByText(/Last checked: .*2026.*General information, not legal advice\./)).toBeVisible();
+
+  // The privacy answer is the Privacy page's own summary.
+  await page.locator("details#privacy summary").click();
+  await expect(page.locator("details#privacy")).toContainText("We never sell your information.");
+  await expect(page.locator("details#privacy")).toContainText("Those are Anthropic's terms, not ours.");
+
+  // Reachable from Help.
+  await page.goto("/help");
+  await page.getByRole("link", { name: "More answers, each with its source" }).click();
+  await expect(page).toHaveURL(/\/faq$/);
 });
