@@ -121,7 +121,7 @@ export function LetterEditor({
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 print:hidden">
         <h1 className="text-3xl font-semibold sm:text-4xl">
           {kind === "itemized" ? label("itemizedTitle") : label("title")}
         </h1>
@@ -133,7 +133,7 @@ export function LetterEditor({
       <div
         role="group"
         aria-label={label("types.group")}
-        className="inline-flex w-fit flex-wrap items-center gap-1 rounded-lg border border-input bg-card p-0.5"
+        className="inline-flex w-fit flex-wrap items-center gap-1 rounded-lg border border-input bg-card p-0.5 print:hidden"
       >
         {kinds.map((option) => (
           <button
@@ -154,13 +154,13 @@ export function LetterEditor({
         ))}
       </div>
       {!disputeAvailable ? (
-        <p role="note" className="max-w-2xl text-muted-foreground">
+        <p role="note" className="max-w-2xl text-muted-foreground print:hidden">
           {label("types.noDispute")}
         </p>
       ) : null}
 
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
-      <section aria-labelledby="letter-details" className="flex flex-col gap-4">
+    <div className="grid gap-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] print:block">
+      <section aria-labelledby="letter-details" className="flex flex-col gap-4 print:hidden">
         <div className="flex flex-col gap-1">
           <h2 id="letter-details" className="text-xl font-semibold">
             {label("detailsTitle")}
@@ -255,7 +255,7 @@ export function LetterEditor({
       </section>
 
       <section aria-labelledby="letter-preview" className="flex min-w-0 flex-col gap-4">
-        <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 print:hidden">
           <h2 id="letter-preview" className="text-xl font-semibold">
             {label("previewTitle")}
           </h2>
@@ -273,7 +273,7 @@ export function LetterEditor({
             </span>
           </Button>
         </div>
-        <p className="text-muted-foreground">{label("reviewReminder")}</p>
+        <p className="text-muted-foreground print:hidden">{label("reviewReminder")}</p>
         {status === "error" ? (
           <p role="alert" className="font-medium text-destructive">
             {label("downloadError")}
@@ -283,7 +283,7 @@ export function LetterEditor({
         <article
           lang={letterLocale}
           aria-label={label("previewLabel")}
-          className="flex flex-col gap-4 rounded-xl border bg-white p-6 text-sm leading-relaxed text-neutral-900 shadow-sm sm:p-10"
+          className="flex flex-col gap-4 rounded-xl border bg-white p-6 text-sm leading-relaxed text-neutral-900 shadow-sm sm:p-10 print:rounded-none print:border-0 print:p-0"
         >
           <div>
             {content.sender.map((line, i) => (
@@ -333,12 +333,15 @@ export function LetterEditor({
             ))}
           </ol>
           <p>{content.response}</p>
-          <p>{content.closing}</p>
-          <div>
-            <p>{content.sincerely}</p>
-            <p>{content.signature}</p>
+          {/* Kept together so a signature never lands alone on the next page. */}
+          <div className="flex flex-col gap-4 break-inside-avoid">
+            <p>{content.closing}</p>
+            <div>
+              <p>{content.sincerely}</p>
+              <p>{content.signature}</p>
+            </div>
+            <p className="border-t pt-3 text-xs text-neutral-600">{content.footer}</p>
           </div>
-          <p className="border-t pt-3 text-xs text-neutral-600">{content.footer}</p>
         </article>
       </section>
     </div>

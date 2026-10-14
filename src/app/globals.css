@@ -234,6 +234,40 @@ html[data-locale-pending] #content {
     size: letter;
     margin: 0.6in;
   }
+
+  /* Always the light palette on paper, even when the screen is dark. These
+     repeat the light values from :root so the dark overrides cannot reach print. */
+  :root {
+    color-scheme: light;
+    --background: #ffffff;
+    --foreground: #1b2a33;
+    --card: #ffffff;
+    --card-foreground: #1b2a33;
+    --popover: #ffffff;
+    --popover-foreground: #1b2a33;
+    --primary: #0f5257;
+    --primary-foreground: #ffffff;
+    --secondary: #e4efee;
+    --secondary-foreground: #0b3d41;
+    --muted: #f0eadf;
+    --muted-foreground: #56646c;
+    --accent: #e4efee;
+    --accent-foreground: #0b3d41;
+    --border: #ddd5c7;
+    --input: #857b69;
+    --ring: #0e7c86;
+    --warning: #c47a00;
+    --warning-foreground: #7a4400;
+    --warning-surface: #fdf1d6;
+    --warning-border: #c47a00;
+    --destructive: #b42318;
+    --destructive-surface: #fdecea;
+    --success: #1a6b35;
+    --success-foreground: #14552a;
+    --success-surface: #e5f3e8;
+    --success-border: #2f8a4c;
+  }
+
   html,
   body {
     background: #fff !important;
@@ -242,7 +276,34 @@ html[data-locale-pending] #content {
   * {
     box-shadow: none !important;
   }
+
+  /* Navigation and controls mean nothing on paper. */
+  nav,
+  button,
+  [role="button"],
+  a[class*="group/button"],
+  .locale-progress {
+    display: none !important;
+  }
+
+  /* Links stay legible and underlined, since colour may not print. */
   a {
     color: inherit;
+    text-decoration: underline;
+  }
+
+  /* Keep each finding, step and table row on one page, and keep a heading
+     with the content that follows it. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+  }
+  li,
+  tr,
+  dt,
+  dd {
+    break-inside: avoid;
   }
 }

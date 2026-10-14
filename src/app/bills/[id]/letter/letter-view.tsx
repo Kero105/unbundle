@@ -36,7 +36,7 @@ export async function LetterView({
       lang={locale}
       className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-4 py-8 sm:px-6 sm:py-10"
     >
-      <header className="flex flex-col gap-4">
+      <header className="flex flex-col gap-4 print:hidden">
         <BillSteps current="letter" />
       </header>
 
@@ -49,7 +49,7 @@ export async function LetterView({
         initialKind={initialKind}
       />
 
-      <div>
+      <div className="print:hidden">
         <Link
           href={stepHref(source, "report")}
           className={buttonVariants({ variant: "outline" })}
