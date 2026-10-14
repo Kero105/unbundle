@@ -16,7 +16,9 @@ import type { Confidence, Severity } from "@/lib/types";
 import { PrintButton } from "@/components/print-button";
 import { EobReconciliation } from "./eob-reconciliation-view";
 import { ManualEntryNote } from "./manual-note";
+import { CallScript } from "@/components/call-script";
 import { Reminders } from "@/components/reminders";
+import { buildLetterModel } from "../letter/letter-model";
 import { NextSteps } from "./next-steps";
 import { buildReport, whyKey, type ReportFinding } from "./report-model";
 
@@ -175,6 +177,7 @@ export async function ReportView({ source }: { source: BillSource }) {
 
       <NextSteps letterHref={stepHref(source, "letter", { type: "itemized" })} />
 
+      <CallScript items={buildLetterModel(bill, findings).items} />
       <Reminders mode="followUp" />
 
       <p className="text-sm text-muted-foreground">{t("disclaimer")}</p>

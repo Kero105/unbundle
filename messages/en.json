@@ -1285,6 +1285,41 @@
     },
     "back": "Back to home"
   },
+  "CallScript": {
+    "title": "Phone script",
+    "intro": "Read this when you call the billing office. It is made from your findings on this page and is not saved.",
+    "genericIntro": "A script you can adapt. When you have a report, it fills in your own findings.",
+    "copy": "Copy script",
+    "copied": "Copied",
+    "copyFailed": "Could not copy. Select the text and copy it.",
+    "textLabel": "Script text",
+    "opening": "Hello. I'm calling about my bill. I'd like to ask about some charges. Please write down the date and your name, and I'll note mine.",
+    "generic": "1. Ask for an itemized bill that shows a billing code for every charge.\n2. Ask them to explain any charge you don't understand.\n3. Ask for the financial assistance policy and application.\n4. Ask that the account not go to collections while the bill is reviewed.",
+    "closing": "Before we hang up: please tell me when I can expect an answer, and who I should ask for when I call back.",
+    "line": "{code}: {description} ({date}), {charge}",
+    "noCode": "no code",
+    "noDate": "no date",
+    "item": "{number}. About {amount}:",
+    "lead": {
+      "firm": "Please correct or explain:",
+      "soft": "I'd like to understand:"
+    },
+    "ask": {
+      "duplicateCharge": "Why does this appear more than once with the same date, units and price?",
+      "mathError": "The charge is more than the units times the unit price. How was it worked out?",
+      "dateMismatch": "This is dated outside the service dates on the statement. Which visit does it belong to?",
+      "ncciNever": "Medicare coding rules say these two services shouldn't be billed together. Why were both billed?",
+      "ncciModifier": "Medicare coding rules say these two are normally billed together. What shows they were separate services?",
+      "mueLine": "The units on this line are above Medicare's limit for one line. Can you confirm the units?",
+      "mueDayPolicy": "The units for this day are above Medicare's firm limit. Can you confirm the units?",
+      "mueDayClinical": "The units for this day are above Medicare's usual limit. Is there documentation for the extra units?",
+      "priceOutlier": "This price is far above what Medicare pays for the same service. How is it set, and is a lower rate available?",
+      "vagueCharge": "I can't tell what this charge is for. What service or supply is it, and what is its billing code?",
+      "deniedBilled": "My insurer denied this service, but I'm being charged for it. Why am I being billed?",
+      "balanceBilling": "My insurer's statement says I owe less than this bill shows. Can you reconcile the two?",
+      "fallback": "Can you explain this charge?"
+    }
+  },
   "Reminders": {
     "title": "Calendar reminders",
     "privacy": "The file is made in your browser and downloaded. Nothing you pick is sent or saved.",

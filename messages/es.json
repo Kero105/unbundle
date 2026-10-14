@@ -1285,6 +1285,41 @@
     },
     "back": "Volver al inicio"
   },
+  "CallScript": {
+    "title": "Guion para la llamada",
+    "intro": "Léalo cuando llame a la oficina de facturación. Se arma con sus hallazgos de esta página y no se guarda.",
+    "genericIntro": "Un guion que puede adaptar. Cuando tenga un informe, se llena con sus propios hallazgos.",
+    "copy": "Copiar guion",
+    "copied": "Copiado",
+    "copyFailed": "No se pudo copiar. Seleccione el texto y cópielo.",
+    "textLabel": "Texto del guion",
+    "opening": "Buenos días. Llamo por mi factura. Quisiera preguntar sobre algunos cargos. Por favor anote la fecha y su nombre, y yo anotaré el mío.",
+    "generic": "1. Pida una factura detallada que muestre un código de facturación para cada cargo.\n2. Pida que le expliquen cualquier cargo que no entienda.\n3. Pida la política de asistencia financiera y la solicitud.\n4. Pida que la cuenta no pase a cobranza mientras se revisa la factura.",
+    "closing": "Antes de colgar: por favor dígame cuándo puedo esperar una respuesta y por quién debo preguntar cuando vuelva a llamar.",
+    "line": "{code}: {description} ({date}), {charge}",
+    "noCode": "sin código",
+    "noDate": "sin fecha",
+    "item": "{number}. Sobre {amount}:",
+    "lead": {
+      "firm": "Por favor corrija o explique:",
+      "soft": "Quisiera entender:"
+    },
+    "ask": {
+      "duplicateCharge": "¿Por qué aparece más de una vez con la misma fecha, unidades y precio?",
+      "mathError": "El cargo es mayor que las unidades por el precio por unidad. ¿Cómo se calculó?",
+      "dateMismatch": "Esto tiene una fecha fuera de las fechas de servicio del estado de cuenta. ¿A qué visita corresponde?",
+      "ncciNever": "Las reglas de codificación de Medicare dicen que estos dos servicios no deben facturarse juntos. ¿Por qué se facturaron ambos?",
+      "ncciModifier": "Las reglas de codificación de Medicare dicen que estos dos normalmente se facturan juntos. ¿Qué muestra que fueron servicios distintos?",
+      "mueLine": "Las unidades de esta línea superan el límite de Medicare para una línea. ¿Puede confirmar las unidades?",
+      "mueDayPolicy": "Las unidades de este día superan el límite firme de Medicare. ¿Puede confirmar las unidades?",
+      "mueDayClinical": "Las unidades de este día superan el límite habitual de Medicare. ¿Hay documentación para las unidades adicionales?",
+      "priceOutlier": "Este precio está muy por encima de lo que Medicare paga por el mismo servicio. ¿Cómo se fija, y hay una tarifa más baja disponible?",
+      "vagueCharge": "No puedo saber para qué es este cargo. ¿Qué servicio o suministro es, y cuál es su código de facturación?",
+      "deniedBilled": "Mi aseguradora negó este servicio, pero me lo están cobrando. ¿Por qué me lo facturan?",
+      "balanceBilling": "El estado de mi aseguradora dice que debo menos de lo que muestra esta factura. ¿Puede conciliar ambos?",
+      "fallback": "¿Puede explicarme este cargo?"
+    }
+  },
   "Reminders": {
     "title": "Recordatorios de calendario",
     "privacy": "El archivo se crea en su navegador y se descarga. Nada de lo que elija se envía ni se guarda.",
