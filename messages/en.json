@@ -19,6 +19,8 @@
     "title": "Think your hospital bill is wrong? Check it in minutes.",
     "subtitle": "Unbundle finds duplicate charges, unbundled procedures, and prices far above Medicare, and tells you in plain language what is worth asking the billing office.",
     "signIn": "Sign in with Google",
+    "openDashboard": "Go to your bills",
+    "openDashboardPending": "Opening…",
     "trySample": "Try a sample bill",
     "trySamplePending": "Opening the sample…",
     "how": {
@@ -574,7 +576,9 @@
       "label": "Sample bill notice",
       "message": "You are viewing a sample bill. Nothing here is saved.",
       "signIn": "Sign in with Google to use your own bill",
-      "signInPending": "Opening Google…"
+      "signInPending": "Opening Google…",
+      "upload": "Upload your own bill",
+      "uploadPending": "Opening…"
     },
     "intro": {
       "title": "Try Unbundle with a sample bill",

@@ -19,6 +19,8 @@
     "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
     "subtitle": "Unbundle encuentra cobros duplicados, procedimientos facturados por separado y precios muy por encima de Medicare, y le dice en palabras sencillas qué vale la pena preguntar a la oficina de facturación.",
     "signIn": "Iniciar sesión con Google",
+    "openDashboard": "Ir a sus facturas",
+    "openDashboardPending": "Abriendo…",
     "trySample": "Probar con una factura de ejemplo",
     "trySamplePending": "Abriendo el ejemplo…",
     "how": {
@@ -574,7 +576,9 @@
       "label": "Aviso de factura de ejemplo",
       "message": "Está viendo una factura de ejemplo. Nada de lo que hace aquí se guarda.",
       "signIn": "Inicie sesión con Google para usar su propia factura",
-      "signInPending": "Abriendo Google…"
+      "signInPending": "Abriendo Google…",
+      "upload": "Subir su propia factura",
+      "uploadPending": "Abriendo…"
     },
     "intro": {
       "title": "Pruebe Unbundle con una factura de ejemplo",

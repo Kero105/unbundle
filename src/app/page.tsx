@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import { connection } from "next/server";
 import { getLocale, getTranslations } from "next-intl/server";
 import {
   Ban,
@@ -17,6 +18,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { PendingLink } from "@/components/pending-link";
 import { buttonVariants } from "@/components/ui/button";
 import { routeMetadata } from "@/lib/metadata";
+import { isSignedIn } from "@/lib/supabase/signed-in";
 
 const CHECKS = [
   { key: "duplicates", Icon: Copy },
@@ -31,6 +33,50 @@ const CHECKS = [
 
 const STEPS = ["upload", "review", "letter"] as const;
 
+const HERO_BUTTONS = "mt-10 flex flex-col gap-3 sm:flex-row";
+
+/**
+ * The hero buttons depend on the session, which is request-time data, so they
+ * stream in behind their own Suspense and the rest of the page is untouched.
+ */
+async function HeroActions() {
+  await connection();
+  const [t, signedIn] = await Promise.all([getTranslations("Home"), isSignedIn()]);
+
+  return (
+    <div className={HERO_BUTTONS}>
+      {signedIn ? (
+        <PendingLink
+          href="/dashboard"
+          className={buttonVariants({ size: "lg" })}
+          pendingLabel={t("openDashboardPending")}
+        >
+          {t("openDashboard")}
+        </PendingLink>
+      ) : (
+        <SignInButton>{t("signIn")}</SignInButton>
+      )}
+      <PendingLink
+        href="/demo"
+        className={buttonVariants({ variant: "outline", size: "lg" })}
+        pendingLabel={t("trySamplePending")}
+      >
+        {t("trySample")}
+      </PendingLink>
+    </div>
+  );
+}
+
+/** Neutral placeholders: never a sign-in button before the session is known. */
+function HeroActionsSkeleton() {
+  return (
+    <div aria-hidden="true" className={HERO_BUTTONS}>
+      <Skeleton className="h-12 w-full sm:w-48" />
+      <Skeleton className="h-12 w-full sm:w-48" />
+    </div>
+  );
+}
+
 async function Landing() {
   const [locale, t] = await Promise.all([getLocale(), getTranslations("Home")]);
 
@@ -44,16 +90,9 @@ async function Landing() {
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl sm:leading-9">
             {t("subtitle")}
           </p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <SignInButton>{t("signIn")}</SignInButton>
-            <PendingLink
-              href="/demo"
-              className={buttonVariants({ variant: "outline", size: "lg" })}
-              pendingLabel={t("trySamplePending")}
-            >
-              {t("trySample")}
-            </PendingLink>
-          </div>
+          <Suspense fallback={<HeroActionsSkeleton />}>
+            <HeroActions />
+          </Suspense>
         </div>
       </section>
 
