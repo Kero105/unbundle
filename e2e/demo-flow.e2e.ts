@@ -133,3 +133,21 @@ test("about accuracy table is readable at 320px", async ({ page }) => {
   });
   expect(wide).toBe(0);
 });
+
+// The report's "What happens next" timeline: four steps, each linking to a page that exists.
+test("report timeline has four linked steps", async ({ page }) => {
+  await page.goto("/demo/report");
+  const timeline = page.getByRole("region", { name: "What happens next" });
+  await expect(timeline).toBeVisible();
+  await expect(timeline.getByRole("listitem")).toHaveCount(4);
+  await expect(timeline.getByRole("link", { name: "See the itemized-bill request letter" })).toHaveAttribute(
+    "href",
+    "/demo/letter?type=itemized",
+  );
+  await expect(timeline.getByRole("link", { name: "Open the dispute letter" })).toHaveAttribute(
+    "href",
+    "/demo/letter",
+  );
+  await timeline.getByRole("link", { name: "Use the checklist and notes page" }).click();
+  await expect(page).toHaveURL(/\/checklist$/);
+});

@@ -388,6 +388,33 @@
     },
     "manual": {
       "note": "Usted escribió esta factura a mano. Estas revisiones usaron solo las líneas que escribió, así que no pueden detectar nada que esté en la factura pero falte en sus líneas. Las revisiones que necesitan lo que pagó su aseguradora no se pueden hacer con una factura escrita a mano."
+    },
+    "timeline": {
+      "title": "Qué sigue",
+      "intro": "Cuatro pasos, en el orden en que la gente suele darlos. Hágalos a su propio ritmo.",
+      "steps": {
+        "itemized": {
+          "title": "Pida una factura detallada",
+          "body": "Pida que cada cargo aparezca con su código de facturación, para tener algo que revisar línea por línea.",
+          "link": "Vea la carta para pedir la factura detallada"
+        },
+        "review": {
+          "title": "Revise los hallazgos",
+          "body": "Lea qué se señaló y por qué. Cada uno es una pregunta que hacer, no una prueba de un error.",
+          "link": "Abra el resumen de una página"
+        },
+        "dispute": {
+          "title": "Envíe su disputa",
+          "body": "Envíe a la oficina de facturación una carta que enumere lo que usted pregunta, y guarde una copia.",
+          "link": "Abra la carta de disputa",
+          "linkNoFindings": "Lea lo que puede pedir"
+        },
+        "followUp": {
+          "title": "Dé seguimiento",
+          "body": "Anote cada llamada y pregunte cuándo puede esperar una respuesta.",
+          "link": "Use la lista y la página de notas"
+        }
+      }
     }
   },
   "Letter": {

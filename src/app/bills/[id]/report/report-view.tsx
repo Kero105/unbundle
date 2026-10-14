@@ -20,6 +20,7 @@ import { CallScript } from "@/components/call-script";
 import { Reminders } from "@/components/reminders";
 import { buildLetterModel } from "../letter/letter-model";
 import { NextSteps } from "./next-steps";
+import { Timeline } from "./timeline";
 import { buildReport, whyKey, type ReportFinding } from "./report-model";
 
 type BadgeVariant = NonNullable<VariantProps<typeof badgeVariants>["variant"]>;
@@ -174,6 +175,15 @@ export async function ReportView({ source }: { source: BillSource }) {
       )}
 
       <EobReconciliation bill={bill} />
+
+      <Timeline
+        hasFindings={report.findings.length > 0}
+        hrefs={{
+          itemized: stepHref(source, "letter", { type: "itemized" }),
+          summary: stepHref(source, "summary"),
+          letter: stepHref(source, "letter"),
+        }}
+      />
 
       <NextSteps letterHref={stepHref(source, "letter", { type: "itemized" })} />
 

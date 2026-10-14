@@ -388,6 +388,33 @@
     },
     "manual": {
       "note": "You typed this bill in. These checks used only the lines you entered, so they can't catch anything that is on the bill but missing from your lines. Checks that need what your insurer paid can't run on a typed-in bill."
+    },
+    "timeline": {
+      "title": "What happens next",
+      "intro": "Four steps, in the order people usually take them. Do them at your own pace.",
+      "steps": {
+        "itemized": {
+          "title": "Ask for an itemized bill",
+          "body": "Get every charge listed with its billing code, so there is something to check line by line.",
+          "link": "See the itemized-bill request letter"
+        },
+        "review": {
+          "title": "Review the findings",
+          "body": "Read what was flagged and why. Each one is a question to ask, not proof of a mistake.",
+          "link": "Open the one-page summary"
+        },
+        "dispute": {
+          "title": "Send your dispute",
+          "body": "Send the billing office a letter that lists what you are asking about, and keep a copy.",
+          "link": "Open the dispute letter",
+          "linkNoFindings": "Read what you can ask for"
+        },
+        "followUp": {
+          "title": "Follow up",
+          "body": "Keep notes of each call and ask when you can expect an answer.",
+          "link": "Use the checklist and notes page"
+        }
+      }
     }
   },
   "Letter": {
