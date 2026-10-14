@@ -29,15 +29,25 @@ export type ExtractionErrorCode = (typeof EXTRACTION_ERROR_CODES)[number];
 
 export class ExtractionError extends Error {
   readonly code: ExtractionErrorCode;
+  /**
+   * Redacted provider detail. Only set when the extractor was created with
+   * diagnostics on (the eval script); the app's route reads `code` alone.
+   */
+  readonly diagnostic?: string;
 
-  constructor(code: ExtractionErrorCode) {
+  constructor(code: ExtractionErrorCode, diagnostic?: string) {
     // The message is the code, so an uncaught error can't leak anything else.
     super(code);
     this.name = "ExtractionError";
     this.code = code;
+    if (diagnostic) this.diagnostic = diagnostic;
   }
 }
 
 export function toErrorCode(error: unknown): ExtractionErrorCode {
   return error instanceof ExtractionError ? error.code : "provider_error";
+}
+
+export function toDiagnostic(error: unknown): string | undefined {
+  return error instanceof ExtractionError ? error.diagnostic : undefined;
 }

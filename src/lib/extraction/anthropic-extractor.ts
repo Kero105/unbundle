@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { ExtractedBill } from "@/lib/types";
+import { describeProviderError } from "./diagnostic";
 import { ExtractionError } from "./errors";
 import { MODEL_OUTPUT_JSON_SCHEMA, parseModelOutput } from "./model-schema";
 import { EXTRACTION_SYSTEM_PROMPT, EXTRACTION_USER_PROMPT } from "./prompt";
@@ -68,11 +69,13 @@ export class AnthropicExtractor implements BillExtractor {
   constructor(
     private readonly client: MessagesClient,
     private readonly model: string,
+    /** Debug only: attach a redacted status/type/message to provider errors. */
+    private readonly diagnostics = false,
   ) {}
 
-  static fromApiKey(apiKey: string, model: string): AnthropicExtractor {
+  static fromApiKey(apiKey: string, model: string, diagnostics = false): AnthropicExtractor {
     const client = new Anthropic({ apiKey, maxRetries: 0, timeout: EXTRACTION_TIMEOUT_MS });
-    return new AnthropicExtractor(client, model);
+    return new AnthropicExtractor(client, model, diagnostics);
   }
 
   async extractBill(files: ExtractionFile[]): Promise<ExtractedBill> {
@@ -113,12 +116,13 @@ export class AnthropicExtractor implements BillExtractor {
         maxRetries: 0,
       });
     } catch (error) {
-      if (error instanceof Anthropic.APIConnectionTimeoutError) throw new ExtractionError("timeout");
+      const detail = this.diagnostics ? describeProviderError(error) : undefined;
+      if (error instanceof Anthropic.APIConnectionTimeoutError) throw new ExtractionError("timeout", detail);
       // 429 (rate limited) and 529 (overloaded) are transient: tell the user to wait, not to retake the photo.
       if (error instanceof Anthropic.APIError && (error.status === 429 || error.status === 529)) {
-        throw new ExtractionError("provider_busy");
+        throw new ExtractionError("provider_busy", detail);
       }
-      throw new ExtractionError("provider_error");
+      throw new ExtractionError("provider_error", detail);
     }
 
     if (response.stop_reason === "refusal") throw new ExtractionError("refused");

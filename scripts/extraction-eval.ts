@@ -14,7 +14,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { detectFileType } from "../src/lib/bills/upload-validation";
 import { createExtractor, readExtractionConfig } from "../src/lib/extraction";
-import { toErrorCode } from "../src/lib/extraction/errors";
+import { toDiagnostic, toErrorCode } from "../src/lib/extraction/errors";
 import { compareLines, renderReport, type EvalLine, type ReportEntry } from "../src/lib/extraction/eval-compare";
 
 const MAX_CALLS_WITHOUT_YES = 30;
@@ -76,7 +76,7 @@ async function main() {
     process.exit(1);
   }
 
-  const extractor = createExtractor(config);
+  const extractor = createExtractor(config, { diagnostics: true });
   const results: ReportEntry[] = [];
   console.log(`Evaluating ${entries.length} images with model ${config.model}`);
 
@@ -103,7 +103,8 @@ async function main() {
       const errorCode = toErrorCode(error);
       // A failure counts as every expected row missing, so it can't inflate accuracy.
       results.push({ ...base, comparison: compareLines(entry.expected.lineItems, []), errorCode });
-      console.log(`${entry.file}: failed (${errorCode})`);
+      const detail = toDiagnostic(error);
+      console.log(`${entry.file}: failed (${errorCode})${detail ? ` ${detail}` : ""}`);
     }
   }
 
