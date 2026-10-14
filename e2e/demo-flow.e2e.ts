@@ -56,3 +56,24 @@ test("skip link is reachable by keyboard and works", async ({ page }) => {
     await expect(page.locator("#content")).toBeFocused();
   }
 });
+
+// The accuracy table is stacked cards at phone width: nothing wider than the
+// screen, and all nine rules plus the total are readable without sideways scroll.
+test("about accuracy table is readable at 320px", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 700 });
+  await page.goto("/about");
+  const list = page.getByRole("list", { name: /accuracy/i });
+  await expect(list).toBeVisible();
+  await expect(list.getByRole("listitem")).toHaveCount(10);
+  // The sideways-scrolling table region is only for wider screens.
+  await expect(page.locator('[role="region"][tabindex="0"]')).toBeHidden();
+
+  const wide = await page.evaluate(() => {
+    const w = document.documentElement.clientWidth;
+    return [...document.querySelectorAll("body *")].filter((e) => {
+      const r = e.getBoundingClientRect();
+      return r.width > 0 && r.right > w + 1;
+    }).length;
+  });
+  expect(wide).toBe(0);
+});

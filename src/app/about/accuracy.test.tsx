@@ -123,3 +123,45 @@ describe("accuracy caveat", () => {
     expect(accuracy.trapFixtureCount).toBe(6);
   });
 });
+
+describe("AccuracyTable at phone width", () => {
+  it.each([
+    ["en", "en-US", en.About],
+    ["es", "es-US", es.About],
+  ] as const)("also renders one stacked card per rule plus the total in %s", (_n, locale, about) => {
+    const { container } = render(
+      <AccuracyTable data={accuracy} labels={labelsFor(about)} locale={locale} />,
+    );
+    const list = container.querySelector("ul") as HTMLElement;
+    expect(list.getAttribute("aria-label")).toBe(about.accuracy.tableLabel);
+    // The list is for phone widths only; the table and its scroll region for wider ones.
+    expect(list.className).toContain("sm:hidden");
+    const regionClass = container.querySelector('[role="region"]')?.className ?? "";
+    expect(regionClass).toMatch(/\bhidden\b/);
+    expect(regionClass).toContain("sm:block");
+
+    const cards = within(list).getAllByRole("listitem");
+    expect(cards).toHaveLength(accuracy.rules.length + 1);
+    accuracy.rules.forEach((rule, i) => {
+      const values = [...cards[i].querySelectorAll("dd")].map((d) => d.textContent);
+      expect(values).toEqual([
+        String(rule.tp),
+        String(rule.fp),
+        String(rule.fn),
+        formatRatio(rule.precision, locale, about.accuracy.na),
+        formatRatio(rule.recall, locale, about.accuracy.na),
+      ]);
+      expect(cards[i].textContent).toContain(about.accuracy.rules[rule.ruleId as keyof typeof about.accuracy.rules]);
+    });
+    expect(cards.at(-1)?.textContent).toContain(about.accuracy.overall);
+  });
+
+  it("keeps the table's keyboard-focusable scroll region for wider screens", () => {
+    const { container } = render(
+      <AccuracyTable data={accuracy} labels={labelsFor(en.About)} locale="en-US" />,
+    );
+    const region = container.querySelector('[role="region"]') as HTMLElement;
+    expect(region.tabIndex).toBe(0);
+    expect(region.getAttribute("aria-label")).toBe(en.About.accuracy.tableLabel);
+  });
+});
