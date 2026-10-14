@@ -117,6 +117,82 @@ describe("MODEL_OUTPUT_JSON_SCHEMA", () => {
   });
 });
 
+function countUnions(node: unknown): number {
+  if (Array.isArray(node)) return node.reduce((n: number, v) => n + countUnions(v), 0);
+  if (node === null || typeof node !== "object") return 0;
+  const o = node as Record<string, unknown>;
+  const own = Array.isArray(o.anyOf) || Array.isArray(o.type) ? 1 : 0;
+  return own + Object.values(o).reduce((n: number, v) => n + countUnions(v), 0);
+}
+
+describe("sentinel mapping", () => {
+  const ZERO_BOX = { x: 0, y: 0, width: 0, height: 0 };
+
+  it("maps every sentinel field to null", () => {
+    const raw = clone();
+    Object.assign(raw, { serviceStart: "", serviceEnd: "", insuranceStatus: "" });
+    Object.assign(raw.lineItems[0], { dateOfService: "", code: "", codeType: "UNKNOWN", sourceBox: ZERO_BOX });
+    Object.assign(raw.eobLines[0], { dateOfService: "", code: "", denialReason: "" });
+    const bill = parseModelOutput(raw);
+    expect(bill.serviceStart).toBeNull();
+    expect(bill.serviceEnd).toBeNull();
+    expect(bill.insuranceStatus).toBeNull();
+    const li = bill.lineItems[0];
+    expect([li.dateOfService, li.code, li.codeType, li.sourceBox]).toEqual([null, null, null, null]);
+    const eob = bill.eobLines[0];
+    expect([eob.dateOfService, eob.code, eob.denialReason]).toEqual([null, null, null]);
+  });
+
+  it("treats whitespace-only text as unknown", () => {
+    const raw = clone();
+    raw.lineItems[0].code = "   ";
+    expect(parseModelOutput(raw).lineItems[0].code).toBeNull();
+  });
+
+  it("keeps real values, including a real box and a real code type", () => {
+    const bill = parseModelOutput(good);
+    expect(bill.lineItems[0].code).toBe(good.lineItems[0].code);
+    expect(bill.lineItems[0].codeType).toBe("CPT");
+    expect(bill.lineItems[0].dateOfService).toBe(good.lineItems[0].dateOfService);
+    expect(bill.lineItems[0].sourceBox).toEqual(good.lineItems[0].sourceBox);
+  });
+
+  it("never turns an invalid value into null", () => {
+    const raw = clone();
+    raw.lineItems[0].dateOfService = "09/12/2026";
+    expect(code(raw)).toBe("invalid_output");
+  });
+
+  it("preserves real zero values", () => {
+    const raw = clone();
+    Object.assign(raw.lineItems[0], {
+      chargeCents: 0,
+      unitPriceCents: 0,
+      insurancePaidCents: 0,
+      patientOwesCents: 0,
+    });
+    Object.assign(raw.eobLines[0], { billedCents: 0, allowedCents: 0, planPaidCents: 0, patientResponsibilityCents: 0 });
+    const bill = parseModelOutput(raw);
+    const li = bill.lineItems[0];
+    expect([li.chargeCents, li.unitPriceCents, li.insurancePaidCents, li.patientOwesCents]).toEqual([0, 0, 0, 0]);
+    const eob = bill.eobLines[0];
+    expect([eob.billedCents, eob.allowedCents, eob.planPaidCents, eob.patientResponsibilityCents]).toEqual([0, 0, 0, 0]);
+  });
+
+  it("preserves a real $0.00 bill total and keeps null amounts null", () => {
+    const raw = clone();
+    raw.totalBilledCents = 0;
+    expect(parseModelOutput(raw).totalBilledCents).toBe(0);
+    expect(parseModelOutput(good).lineItems[0].insurancePaidCents).toBeNull();
+  });
+
+  it("does not coerce zero units to 1 or null (still invalid)", () => {
+    const raw = clone();
+    raw.lineItems[0].units = 0;
+    expect(code(raw)).toBe("invalid_output");
+  });
+});
+
 describe("MODEL_OUTPUT_JSON_SCHEMA", () => {
   function typeArrays(node: unknown, path = "$"): string[] {
     if (Array.isArray(node)) return node.flatMap((v, i) => typeArrays(v, `${path}[${i}]`));
@@ -132,8 +208,12 @@ describe("MODEL_OUTPUT_JSON_SCHEMA", () => {
 
   it("expresses nullable fields as anyOf", () => {
     const props = (MODEL_OUTPUT_JSON_SCHEMA.properties as Record<string, unknown>);
-    expect(props.serviceStart).toEqual({ anyOf: [{ type: "string" }, { type: "null" }] });
+    expect(props.serviceStart).toEqual({ type: "string" });
     expect(props.totalBilledCents).toEqual({ anyOf: [{ type: "number" }, { type: "null" }] });
+  });
+
+  it("stays at or under 15 union-typed parameters (API limit is 16)", () => {
+    expect(countUnions(MODEL_OUTPUT_JSON_SCHEMA)).toBeLessThanOrEqual(15);
   });
 
   it("converts nested type arrays and leaves other nodes alone", () => {

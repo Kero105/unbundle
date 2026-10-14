@@ -7,11 +7,22 @@ import { ExtractionError } from "./errors";
  * assign ourselves, using only plain JSON-schema types so it can be passed as
  * the structured-output schema. Strict validation happens afterwards, against
  * ExtractedBillSchema, so this schema is deliberately permissive in shape.
+ *
+ * The API caps union-typed (nullable) parameters at 16 per schema, so only the
+ * money fields, where $0.00 is a real value and no sentinel is safe, stay
+ * nullable. Text, enum and box fields use sentinels instead: "" for unknown
+ * text or date, "UNKNOWN" for codeType, and an all-zero box for no position.
+ * toNull() turns them back into null before strict validation.
  */
+export const MODEL_SENTINEL = {
+  text: "",
+  codeType: "UNKNOWN",
+} as const;
+
 const ModelLineItemSchema = z.object({
-  dateOfService: z.string().nullable(),
-  code: z.string().nullable(),
-  codeType: z.enum(["CPT", "HCPCS", "REVENUE", "DRG", "OTHER"]).nullable(),
+  dateOfService: z.string(),
+  code: z.string(),
+  codeType: z.enum(["CPT", "HCPCS", "REVENUE", "DRG", "OTHER", "UNKNOWN"]),
   descriptionRaw: z.string(),
   modifiers: z.array(z.string()),
   units: z.number(),
@@ -20,28 +31,26 @@ const ModelLineItemSchema = z.object({
   insurancePaidCents: z.number().nullable(),
   patientOwesCents: z.number().nullable(),
   sourcePage: z.number(),
-  sourceBox: z
-    .object({ x: z.number(), y: z.number(), width: z.number(), height: z.number() })
-    .nullable(),
+  sourceBox: z.object({ x: z.number(), y: z.number(), width: z.number(), height: z.number() }),
   confidence: z.enum(["high", "medium", "low"]),
 });
 
 const ModelEobLineSchema = z.object({
-  dateOfService: z.string().nullable(),
-  code: z.string().nullable(),
+  dateOfService: z.string(),
+  code: z.string(),
   billedCents: z.number(),
   allowedCents: z.number().nullable(),
   planPaidCents: z.number().nullable(),
   patientResponsibilityCents: z.number().nullable(),
-  denialReason: z.string().nullable(),
+  denialReason: z.string(),
 });
 
 export const ModelOutputSchema = z.object({
   providerName: z.string(),
-  serviceStart: z.string().nullable(),
-  serviceEnd: z.string().nullable(),
+  serviceStart: z.string(),
+  serviceEnd: z.string(),
   totalBilledCents: z.number().nullable(),
-  insuranceStatus: z.string().nullable(),
+  insuranceStatus: z.string(),
   lineItems: z.array(ModelLineItemSchema),
   eobLines: z.array(ModelEobLineSchema),
 });
@@ -68,6 +77,16 @@ export const MODEL_OUTPUT_JSON_SCHEMA: Record<string, unknown> = (() => {
   return nullableToAnyOf(schema) as Record<string, unknown>;
 })();
 
+/** Sentinel "" (or whitespace only) means the bill did not show the value. */
+function textOrNull(value: string): string | null {
+  return value.trim() === MODEL_SENTINEL.text ? null : value;
+}
+
+/** A zero-area box is the "could not place it" sentinel; real boxes have area. */
+function boxOrNull(box: ModelOutput["lineItems"][number]["sourceBox"]) {
+  return box.width === 0 && box.height === 0 ? null : box;
+}
+
 /**
  * Validates raw model JSON and turns it into an ExtractedBill. Any failure is
  * the opaque "invalid_output" code: issues are dropped because they can echo
@@ -83,8 +102,25 @@ export function parseModelOutput(raw: unknown): ExtractedBill {
 
   const strict = ExtractedBillSchema.safeParse({
     ...out,
-    lineItems: out.lineItems.map((item, i) => ({ ...item, id: `li-${i + 1}`, userVerified: false })),
-    eobLines: out.eobLines.map((line, i) => ({ ...line, id: `eob-${i + 1}` })),
+    serviceStart: textOrNull(out.serviceStart),
+    serviceEnd: textOrNull(out.serviceEnd),
+    insuranceStatus: textOrNull(out.insuranceStatus),
+    lineItems: out.lineItems.map((item, i) => ({
+      ...item,
+      id: `li-${i + 1}`,
+      userVerified: false,
+      dateOfService: textOrNull(item.dateOfService),
+      code: textOrNull(item.code),
+      codeType: item.codeType === MODEL_SENTINEL.codeType ? null : item.codeType,
+      sourceBox: boxOrNull(item.sourceBox),
+    })),
+    eobLines: out.eobLines.map((line, i) => ({
+      ...line,
+      id: `eob-${i + 1}`,
+      dateOfService: textOrNull(line.dateOfService),
+      code: textOrNull(line.code),
+      denialReason: textOrNull(line.denialReason),
+    })),
   });
   if (!strict.success) throw new ExtractionError("invalid_output");
   return strict.data;

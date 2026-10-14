@@ -108,9 +108,9 @@
       "confidence": "high"
     },
     {
-      "dateOfService": null,
-      "code": null,
-      "codeType": null,
+      "dateOfService": "",
+      "code": "",
+      "codeType": "UNKNOWN",
       "descriptionRaw": "SUPPLIES / MISC",
       "modifiers": [],
       "units": 1,
@@ -156,7 +156,7 @@
       "allowedCents": 9000,
       "planPaidCents": 7000,
       "patientResponsibilityCents": 2000,
-      "denialReason": null
+      "denialReason": ""
     }
   ]
 }
