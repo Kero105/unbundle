@@ -72,6 +72,10 @@
       "denied": {
         "title": "Denied, then billed",
         "body": "Insurance denied a service, but you were billed the full amount. Needs your insurer's EOB."
+      },
+      "balance": {
+        "title": "Balance billing",
+        "body": "The bill asks you to pay more than your insurer's EOB says you owe. Needs your insurer's EOB."
       }
     },
     "trust": {

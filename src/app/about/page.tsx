@@ -22,6 +22,7 @@ const CHECKS = [
   "outliers",
   "vague",
   "denied",
+  "balance",
 ] as const;
 const SCOPE = ["ncci", "prices", "la", "findings", "advice"] as const;
 const SOURCES = [

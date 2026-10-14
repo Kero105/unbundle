@@ -72,6 +72,10 @@
       "denied": {
         "title": "Negado y luego cobrado",
         "body": "El seguro negó un servicio, pero a usted se lo cobraron completo. Requiere la EOB de su aseguradora."
+      },
+      "balance": {
+        "title": "Facturación de saldo",
+        "body": "La factura le pide pagar más de lo que dice la EOB de su aseguradora. Requiere la EOB de su aseguradora."
       }
     },
     "trust": {

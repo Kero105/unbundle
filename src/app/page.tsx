@@ -10,6 +10,7 @@ import {
   Layers,
   Calculator,
   Gauge,
+  Scale,
   TrendingUp,
   type LucideIcon,
 } from "lucide-react";
@@ -29,6 +30,7 @@ const CHECKS = [
   { key: "outliers", Icon: TrendingUp },
   { key: "vague", Icon: CircleHelp },
   { key: "denied", Icon: Ban },
+  { key: "balance", Icon: Scale },
 ] as const satisfies readonly { key: string; Icon: LucideIcon }[];
 
 const STEPS = ["upload", "review", "letter"] as const;
