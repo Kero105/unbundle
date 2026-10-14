@@ -4,6 +4,7 @@ import { routeMetadata } from "@/lib/metadata";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import accuracy from "@/lib/accuracy/accuracy.json";
+import { BackLink } from "@/components/back-link";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AccuracyTable, type AccuracyLabels } from "./accuracy-table";
 
@@ -89,6 +90,7 @@ async function About() {
       lang={locale}
       className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-14 px-4 py-12 sm:px-6 sm:py-16"
     >
+      <BackLink />
       <header>
         <h1 className="text-4xl leading-[1.1] font-semibold text-balance sm:text-5xl">
           {t("title")}
