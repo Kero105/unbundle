@@ -968,6 +968,10 @@
       "title": "Escriba su factura | Unbundle",
       "description": "Escriba a mano las líneas de su factura médica para que Unbundle las revise."
     },
+    "methodology": {
+      "title": "Cómo funcionan las revisiones | Unbundle",
+      "description": "Cada una de las nueve revisiones en lenguaje sencillo, con un ejemplo, los datos que usa y las versiones de los lanzamientos."
+    },
     "glossary": {
       "title": "Glosario | Unbundle",
       "description": "Definiciones sencillas de términos de facturación como CPT, EOB, NCCI, MUE, modificador y facturación del saldo."
@@ -1106,6 +1110,102 @@
       "signedOut": "Su sesión terminó. Inicie sesión de nuevo.",
       "notFound": "No pudimos encontrar esa factura.",
       "failed": "No pudimos guardar su factura. Inténtelo de nuevo."
+    }
+  },
+  "Methodology": {
+    "title": "Cómo funcionan las revisiones",
+    "subtitle": "Nueve revisiones fijas, cada una escrita en código. Esta página explica qué hace cada una, cuándo no dice nada y qué datos usa.",
+    "intro": "Cada hallazgo viene de una de estas revisiones. El modelo de IA lee su factura y la convierte en filas, y explica los hallazgos en palabras sencillas; nunca decide si algo es un problema.",
+    "rulesTitle": "Las nueve revisiones",
+    "whatLabel": "Qué revisa",
+    "skipsLabel": "Cuándo no dice nada",
+    "confidenceLabel": "Qué tan segura es",
+    "exampleLabel": "Ejemplo inventado",
+    "rules": {
+      "duplicate_charge": {
+        "name": "Cargo duplicado",
+        "what": "Dos o más líneas con el mismo código, fecha de servicio, modificadores, unidades, precio por unidad y cargo.",
+        "skips": "Nunca se comparan las líneas sin código, sin fecha o con un cargo de cero o menos.",
+        "confidence": "Media. Algunos servicios sí se hacen dos veces.",
+        "example": "El código 80053 aparece dos veces el 2 de marzo, 1 unidad, $40.00 cada uno. Una copia extra: $40.00 en cuestión."
+      },
+      "math_error": {
+        "name": "Error de cálculo",
+        "what": "Una línea cuyo cargo es mayor que sus unidades multiplicadas por su precio por unidad.",
+        "skips": "Las líneas sin precio por unidad o con uno negativo. Un cargo menor que unidades por precio no se marca.",
+        "confidence": "Alta. Es aritmética.",
+        "example": "2 unidades a $50.00 deberían ser $100.00, pero el cargo es $130.00. $30.00 en cuestión."
+      },
+      "date_mismatch": {
+        "name": "Fecha fuera del período de servicio",
+        "what": "Una línea con fecha anterior al inicio o posterior al final de las fechas de servicio impresas en el estado de cuenta.",
+        "skips": "No se revisa si el estado de cuenta no tiene fechas, o si su fecha de inicio es posterior a la de fin.",
+        "confidence": "Alta.",
+        "example": "El estado de cuenta cubre del 1 al 3 de marzo, pero una línea tiene fecha del 9 de marzo. El cargo completo de esa línea queda en cuestión."
+      },
+      "ncci_unbundling": {
+        "name": "Posible desglose indebido",
+        "what": "Dos líneas en la misma fecha que una revisión NCCI de procedimiento con procedimiento de Medicare dice que no deben facturarse juntas, porque una normalmente está incluida en la otra.",
+        "skips": "Cuando la revisión permite un modificador y la línea incluida lleva 59, XE, XP, XS o XU, o el modificador 25 en un código de evaluación y manejo (E/M) (99202 a 99499). No se revisan las reglas de hospital (instalación).",
+        "confidence": "Alta cuando la regla no permite ningún modificador. Media cuando se pudo haber usado un modificador.",
+        "example": "Una regla indica que el código A es el servicio principal y el código B está incluido en él. Ambos se facturan el mismo día y B no tiene modificador. El cargo de B queda en cuestión."
+      },
+      "mue_exceeded": {
+        "name": "Más unidades de las que Medicare espera",
+        "what": "Las unidades facturadas de un código en una fecha, sumadas en todas las líneas, superan el límite de Medicare para ese código (MUE, o revisión de improbabilidad médica).",
+        "skips": "Un total igual al límite. Los códigos sin MUE. Las líneas sin código o sin fecha.",
+        "confidence": "Alta para las reglas por fecha de servicio. Media cuando la regla se aplica por línea de reclamación, porque sumar líneas es menos seguro.",
+        "example": "Un código tiene un límite de 1 unidad por día y se factura con 3 unidades. Las 2 unidades de más, a su precio por unidad, quedan en cuestión."
+      },
+      "price_outlier": {
+        "name": "Precio muy por encima de Medicare",
+        "what": "Un cargo por unidad de un código CPT o HCPCS que es más de 5 veces el precio de la Lista de Tarifas de Médicos de Medicare para Los Ángeles (localidad 18), en consultorio.",
+        "skips": "Exactamente 5 veces no se marca. Los códigos sin precio de Medicare, los servicios que no están en la lista y las líneas sin código.",
+        "confidence": "Media. Medicare es una referencia, no lo que su proveedor acordó con su plan. El límite de 5 veces es nuestra propia elección, no un límite legal.",
+        "example": "El precio de Medicare para un servicio es $20.00 y la factura cobra $150.00. Eso supera $100.00 (5 veces), así que la diferencia de $130.00 queda en cuestión."
+      },
+      "vague_charge": {
+        "name": "Cargo vago",
+        "what": "Una línea sin código cuya descripción es una palabra genérica (misc, miscellaneous, other, supplies, services, pharmacy, general), o una línea sin código de más de $100.00.",
+        "skips": "Cualquier línea que tenga código. Las líneas con un cargo de cero o menos.",
+        "confidence": "Media.",
+        "example": "Una línea dice «Misc supplies», sin código y con un cargo de $45.00. Los $45.00 completos quedan en cuestión."
+      },
+      "denied_billed_in_full": {
+        "name": "Negado por el seguro pero cobrado a usted",
+        "what": "La explicación de beneficios (EOB) de su aseguradora muestra un motivo de negación para un servicio, y la factura aún le pide pagar el mismo código y fecha.",
+        "skips": "Requiere la EOB. Las líneas de la EOB sin código o sin fecha no se comparan. Una línea en la que usted no debe nada.",
+        "confidence": "Alta. Una negación puede ser correcta, así que lea el motivo de la negación en su EOB.",
+        "example": "La EOB niega un código del 5 de abril y la factura aún muestra $75.00 a su cargo. $75.00 en cuestión."
+      },
+      "balance_billing": {
+        "name": "La factura pide más de lo que dice la EOB",
+        "what": "El monto a cargo del paciente en la factura para un servicio es mayor que la responsabilidad del paciente en la EOB para el mismo código y fecha.",
+        "skips": "Requiere la EOB. Solo cuando coinciden exactamente una línea de la factura y una de la EOB. Las líneas negadas (es otra revisión). Las líneas en que un monto es desconocido.",
+        "confidence": "Media. La factura y la EOB se hacen en momentos distintos, así que la diferencia puede ser un pago que aún no aparece.",
+        "example": "La factura dice que usted debe $120.00 y la EOB dice que su parte es $50.00. La diferencia de $70.00 queda en cuestión."
+      }
+    },
+    "dataTitle": "Datos y versiones",
+    "dataIntro": "Todo son datos públicos de CMS.",
+    "data": {
+      "ncciPtp": "Reglas NCCI de procedimiento con procedimiento: solo las de profesionales (conjunto 1), versión 2026 T4.",
+      "ncciMue": "Reglas NCCI de improbabilidad médica: tabla de servicios de profesionales, versión 2026 T4.",
+      "mpfs": "Unidades de valor relativo de la Lista de Tarifas de Médicos de Medicare: RVU26A.",
+      "locality": "Localidad: Los Ángeles, contratista administrativo de Medicare 01182, localidad 18. No se cubren otros lugares.",
+      "conversion": "Factor de conversión: el estándar, no el de participantes calificados en modelos alternativos de pago.",
+      "setting": "Entorno: precios de consultorio (sin instalación), con las filas de los modificadores 26 y TC donde existen."
+    },
+    "limitsTitle": "Lo que no hace",
+    "limits": {
+      "scope": "Las revisiones de precio y cantidad solo cubren servicios que están en la Lista de Tarifas de Médicos de Medicare. Los cargos de instalación del hospital, como la habitación, quedan fuera.",
+      "test": "Probamos las revisiones con facturas inventadas, escritas junto con las reglas, así que los resultados muestran concordancia con nuestras propias expectativas, no precisión en el mundo real.",
+      "advice": "Un hallazgo es una razón para hacer una pregunta, no una prueba de un error, y no es asesoría legal."
+    },
+    "links": {
+      "about": "Lea sobre las pruebas de precisión y la privacidad",
+      "glossary": "Busque una palabra de facturación",
+      "rights": "Conozca sus derechos"
     }
   },
   "Glossary": {

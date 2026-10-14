@@ -968,6 +968,10 @@
       "title": "Type in your bill | Unbundle",
       "description": "Type the lines of your medical bill in by hand so Unbundle can check them."
     },
+    "methodology": {
+      "title": "How the checks work | Unbundle",
+      "description": "Each of the nine checks in plain language, with an example, the data it uses, and the release versions."
+    },
     "glossary": {
       "title": "Glossary | Unbundle",
       "description": "Plain definitions of billing words such as CPT, EOB, NCCI, MUE, modifier and balance billing."
@@ -1106,6 +1110,102 @@
       "signedOut": "Your session has ended. Please sign in again.",
       "notFound": "We couldn't find that bill.",
       "failed": "We couldn't save your bill. Please try again."
+    }
+  },
+  "Methodology": {
+    "title": "How the checks work",
+    "subtitle": "Nine fixed checks, each written in code. This page says what each one does, when it stays quiet, and what data it uses.",
+    "intro": "Every finding comes from one of these checks. The AI model reads your bill into rows and explains findings in plain words; it never decides whether something is a problem.",
+    "rulesTitle": "The nine checks",
+    "whatLabel": "What it checks",
+    "skipsLabel": "When it stays quiet",
+    "confidenceLabel": "How sure it is",
+    "exampleLabel": "Made-up example",
+    "rules": {
+      "duplicate_charge": {
+        "name": "Duplicate charge",
+        "what": "Two or more lines with the same code, date of service, modifiers, units, unit price and charge.",
+        "skips": "Lines with no code, no date, or a charge of zero or less are never compared.",
+        "confidence": "Medium. Some services really are done twice.",
+        "example": "Code 80053 appears twice on March 2, 1 unit, $40.00 each. One extra copy: $40.00 in question."
+      },
+      "math_error": {
+        "name": "Math error",
+        "what": "A line whose charge is more than its units multiplied by its unit price.",
+        "skips": "Lines with no unit price or a negative one. A charge below units times price is not flagged.",
+        "confidence": "High. It is arithmetic.",
+        "example": "2 units at $50.00 should be $100.00, but the charge is $130.00. $30.00 in question."
+      },
+      "date_mismatch": {
+        "name": "Date outside the service range",
+        "what": "A line dated before the start or after the end of the service dates printed on the statement.",
+        "skips": "No check if the statement has no dates, or if its start date is after its end date.",
+        "confidence": "High.",
+        "example": "The statement covers March 1 to March 3, but one line is dated March 9. That line's full charge is in question."
+      },
+      "ncci_unbundling": {
+        "name": "Possible unbundling",
+        "what": "Two lines on the same date that a Medicare NCCI procedure-to-procedure edit says should not be billed together, because one is normally included in the other.",
+        "skips": "When the edit allows a modifier and the bundled line carries one of 59, XE, XP, XS or XU, or modifier 25 on an evaluation and management (E/M) code (99202 to 99499). No check for hospital (facility) edits.",
+        "confidence": "High when the edit allows no modifier at all. Medium when a modifier could have been used.",
+        "example": "An edit lists code A as the main service and code B as included in it. Both are billed on the same day, and B has no modifier. B's charge is in question."
+      },
+      "mue_exceeded": {
+        "name": "More units than Medicare expects",
+        "what": "The units billed for one code on one date, added across all lines, are above Medicare's medically unlikely edit (MUE) for that code.",
+        "skips": "A total equal to the limit. Codes with no MUE. Lines with no code or date.",
+        "confidence": "High for date-of-service edits. Medium when the edit applies per claim line, since adding lines is less certain.",
+        "example": "A code has a limit of 1 unit per day and is billed at 3 units. The 2 extra units at their unit price are in question."
+      },
+      "price_outlier": {
+        "name": "Price far above Medicare",
+        "what": "A unit charge for a CPT or HCPCS code that is more than 5 times the Medicare Physician Fee Schedule price for Los Angeles (locality 18), office setting.",
+        "skips": "Exactly 5 times does not fire. Codes with no Medicare price, services not on the schedule, and lines with no code.",
+        "confidence": "Medium. Medicare is a benchmark, not what your provider agreed to with your plan. The 5-times line is our own choice, not a legal limit.",
+        "example": "Medicare's price for a service is $20.00 and the bill charges $150.00. That is over $100.00 (5 times), so the $130.00 difference is in question."
+      },
+      "vague_charge": {
+        "name": "Vague charge",
+        "what": "A line with no code whose description is a generic word (misc, miscellaneous, other, supplies, services, pharmacy, general), or an uncoded line over $100.00.",
+        "skips": "Any line that has a code. Lines with a charge of zero or less.",
+        "confidence": "Medium.",
+        "example": "A line reads 'Misc supplies' with no code and a charge of $45.00. The full $45.00 is in question."
+      },
+      "denied_billed_in_full": {
+        "name": "Denied by insurance but billed to you",
+        "what": "Your insurer's explanation of benefits (EOB) shows a denial reason for a service, and the bill still asks you to pay for the same code and date.",
+        "skips": "Needs an EOB. EOB lines without a code or date are not matched. A line where you owe nothing.",
+        "confidence": "High. A denial can be correct, so read the denial reason on your EOB.",
+        "example": "The EOB denies a code on April 5 and the bill still shows $75.00 owed by you. $75.00 is in question."
+      },
+      "balance_billing": {
+        "name": "Bill asks for more than the EOB says you owe",
+        "what": "The bill's patient amount for a service is higher than the patient responsibility on the EOB for the same code and date.",
+        "skips": "Needs an EOB. Only when exactly one bill line and one EOB line match. Denied lines (a separate check). Lines where either amount is unknown.",
+        "confidence": "Medium. The bill and the EOB are made at different times, so the gap may be a payment not yet shown.",
+        "example": "The bill says you owe $120.00 and the EOB says your share is $50.00. The $70.00 difference is in question."
+      }
+    },
+    "dataTitle": "Data and versions",
+    "dataIntro": "All of it is public CMS data.",
+    "data": {
+      "ncciPtp": "NCCI procedure-to-procedure edits: practitioner edits only (edit set 1), 2026 Q4 release.",
+      "ncciMue": "NCCI medically unlikely edits: practitioner services table, 2026 Q4 release.",
+      "mpfs": "Medicare Physician Fee Schedule relative value units: RVU26A.",
+      "locality": "Locality: Los Angeles, Medicare administrative contractor 01182, locality 18. Other places are not covered.",
+      "conversion": "Conversion factor: the standard one, not the one for qualifying alternative payment model participants.",
+      "setting": "Setting: office (non-facility) prices, with the 26 and TC modifier rows where they exist."
+    },
+    "limitsTitle": "What it does not do",
+    "limits": {
+      "scope": "Price and quantity checks only cover services that are on the Medicare Physician Fee Schedule. Hospital facility charges, such as a room fee, are outside them.",
+      "test": "We tested the checks on made-up bills written alongside the rules, so the results show agreement with our own expectations, not real-world accuracy.",
+      "advice": "A finding is a reason to ask a question, not proof of a mistake, and not legal advice."
+    },
+    "links": {
+      "about": "Read about the accuracy tests and privacy",
+      "glossary": "Look up a billing word",
+      "rights": "Know your rights"
     }
   },
   "Glossary": {
