@@ -37,14 +37,15 @@ const CONFIDENCE_BADGE: Record<Confidence, { variant: BadgeVariant; Icon: Lucide
   low: { variant: "outline", Icon: CircleHelp },
 };
 
-async function FindingCard({ item }: { item: ReportFinding }) {
+async function FindingCard({ item, first = false }: { item: ReportFinding; first?: boolean }) {
   const t = await getTranslations("Report");
   const { finding, lineItems } = item;
   const severity = SEVERITY_BADGE[finding.severity];
   const confidence = CONFIDENCE_BADGE[finding.confidence];
 
   return (
-    <li>
+    // The demo walk-through points at the first card.
+    <li data-walkthrough={first ? "finding" : undefined} tabIndex={first ? -1 : undefined}>
       <Card className="break-inside-avoid">
         <CardHeader className="gap-3">
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -166,8 +167,8 @@ export async function ReportView({ source }: { source: BillSource }) {
               {t("listLabel")}
             </h2>
             <ol className="flex flex-col gap-4">
-              {report.findings.map((item) => (
-                <FindingCard key={item.finding.id} item={item} />
+              {report.findings.map((item, index) => (
+                <FindingCard key={item.finding.id} item={item} first={index === 0} />
               ))}
             </ol>
           </section>
@@ -209,6 +210,7 @@ export async function ReportView({ source }: { source: BillSource }) {
         {report.findings.length > 0 ? (
           <PendingLink
             href={stepHref(source, "letter")}
+            data-walkthrough="letter"
             className={buttonVariants()}
             pendingLabel={t("makeLetterPending")}
           >

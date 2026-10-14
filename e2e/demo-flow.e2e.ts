@@ -151,3 +151,69 @@ test("report timeline has four linked steps", async ({ page }) => {
   await timeline.getByRole("link", { name: "Use the checklist and notes page" }).click();
   await expect(page).toHaveURL(/\/checklist$/);
 });
+
+// The sample walk-through: dismissible tips, keyboard reachable, in memory only.
+test("demo walk-through tips point at the source, a finding and the letter", async ({ page }) => {
+  const tip = page.getByRole("complementary", { name: "Sample walk-through tip" });
+
+  // 1. Source, on the review page. "Show me" highlights it and says so.
+  await page.goto("/demo/review");
+  await expect(tip).toBeVisible();
+  await expect(tip.getByText("Tip 1 of 4")).toBeVisible();
+  await tip.getByRole("button", { name: "Show me" }).focus();
+  await page.keyboard.press("Enter");
+  await expect(tip.getByRole("status")).toHaveText("The highlighted item is now in view.");
+  const source = page.locator("[data-walkthrough='source']:visible");
+  await expect(source).toBeFocused();
+  await expect(source).toHaveCSS("outline-style", "solid");
+
+  // Dismissed with the button; focus lands on the page content, not on nothing.
+  await tip.getByRole("button", { name: "Dismiss this tip" }).click();
+  await expect(tip).toHaveCount(0);
+  await expect(page.locator("#content")).toBeFocused();
+
+  // Nothing is stored: a reload brings the tip back.
+  expect(await page.evaluate(() => Object.keys(localStorage).length + Object.keys(sessionStorage).length)).toBe(0);
+  await page.reload();
+  await expect(tip.getByText("Tip 1 of 4")).toBeVisible();
+
+  // 2 and 3. Finding, then the letter button, on the report. Escape dismisses.
+  await page.goto("/demo/report");
+  await expect(tip.getByText("Tip 2 of 4")).toBeVisible();
+  await tip.getByRole("button", { name: "Show me" }).click();
+  await expect(page.locator("[data-walkthrough='finding']")).toBeFocused();
+  await tip.getByRole("button", { name: "Show me" }).focus();
+  await page.keyboard.press("Escape");
+  await expect(tip.getByText("Tip 3 of 4")).toBeVisible();
+  await expect(tip.getByRole("heading", { name: "Turn the findings into a letter" })).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(tip).toHaveCount(0);
+
+  // 4. Letter. Dismissals survive client-side navigation within the demo.
+  await page.getByRole("link", { name: "Open the dispute letter" }).click();
+  await expect(page).toHaveURL(/\/demo\/letter$/);
+  await expect(tip.getByText("Tip 4 of 4")).toBeVisible();
+  // "Show me" waits for the streamed page, so it works even if clicked early.
+  await tip.getByRole("button", { name: "Show me" }).click();
+  await expect(page.locator("[data-walkthrough='preview']")).toBeFocused();
+  await page.getByRole("link", { name: "Back to report" }).click();
+  await expect(page).toHaveURL(/\/demo\/report$/);
+  await expect(tip).toHaveCount(0);
+});
+
+test("demo walk-through skips finding tips when nothing is flagged, and has Spanish", async ({
+  page,
+  context,
+  baseURL,
+}) => {
+  await page.goto("/demo/report?scenario=clean");
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Sample walk-through tip" })).toHaveCount(0);
+
+  await context.addCookies([{ name: "NEXT_LOCALE", value: "es", url: baseURL! }]);
+  await page.goto("/demo/review");
+  const tip = page.getByRole("complementary", { name: "Consejo de la guía del ejemplo" });
+  await expect(tip.getByText("Consejo 1 de 4")).toBeVisible();
+  await expect(tip.getByRole("button", { name: "Muéstrame" })).toBeVisible();
+  await expect(tip.getByRole("button", { name: "Descartar este consejo" })).toBeVisible();
+});

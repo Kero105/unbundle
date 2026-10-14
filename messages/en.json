@@ -651,6 +651,31 @@
           }
         }
       }
+    },
+    "walkthrough": {
+      "label": "Sample walk-through tip",
+      "step": "Tip {number} of {total}",
+      "show": "Show me",
+      "dismiss": "Dismiss this tip",
+      "pointed": "The highlighted item is now in view.",
+      "tips": {
+        "source": {
+          "title": "Check the rows against the bill",
+          "body": "The original bill is shown next to the rows, or in an expandable section on a small screen. Select a row and the matching spot on the bill is highlighted, so you can confirm what we read."
+        },
+        "finding": {
+          "title": "A finding is a question, not a verdict",
+          "body": "Each card names the check that flagged it, the charge involved and why. Open “Why we flagged this” to read the reason in plain words."
+        },
+        "letterLink": {
+          "title": "Turn the findings into a letter",
+          "body": "This button makes a letter that lists these items. You can edit the details before you use it."
+        },
+        "preview": {
+          "title": "Read the letter before you use it",
+          "body": "The letter is built only from the findings above. Check each line and add your details. Nothing here is saved."
+        }
+      }
     }
   },
   "Upload": {

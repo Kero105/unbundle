@@ -189,6 +189,13 @@
   }
 }
 
+/* The demo walk-through highlights whatever a tip points at: "Show me" focuses it. */
+[data-walkthrough]:focus {
+  outline: 3px solid var(--ring);
+  outline-offset: 4px;
+  border-radius: var(--radius);
+}
+
 /* Language switch in flight: dim the page and run a thin bar along the top. */
 #content {
   transition: opacity 150ms ease;

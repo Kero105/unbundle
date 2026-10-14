@@ -205,7 +205,7 @@ export function ReviewTable({
         </Card>
 
         {showSource ? (
-          <details className="rounded-lg border bg-card 2xl:hidden">
+          <details data-walkthrough="source" tabIndex={-1} className="rounded-lg border bg-card 2xl:hidden">
             <summary className="flex min-h-12 cursor-pointer items-center gap-2 px-4 font-medium">
               <FileText aria-hidden="true" className="size-5 text-muted-foreground" />
               {t("source.title")}
@@ -472,7 +472,7 @@ export function ReviewTable({
 
       {showSource ? (
         <aside className="hidden 2xl:block" aria-label={t("source.title")}>
-          <Card size="sm" className="sticky top-6">
+          <Card size="sm" data-walkthrough="source" tabIndex={-1} className="sticky top-6">
             <CardHeader>
               <CardTitle>{t("source.title")}</CardTitle>
               <CardDescription>{sourceDescription}</CardDescription>

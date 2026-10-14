@@ -282,6 +282,8 @@ export function LetterEditor({
 
         <article
           lang={letterLocale}
+          data-walkthrough="preview"
+          tabIndex={-1}
           aria-label={label("previewLabel")}
           className="flex flex-col gap-4 rounded-xl border bg-white p-6 text-sm leading-relaxed text-neutral-900 shadow-sm sm:p-10 print:rounded-none print:border-0 print:p-0"
         >

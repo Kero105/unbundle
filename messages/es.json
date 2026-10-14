@@ -651,6 +651,31 @@
           }
         }
       }
+    },
+    "walkthrough": {
+      "label": "Consejo de la guía del ejemplo",
+      "step": "Consejo {number} de {total}",
+      "show": "Muéstrame",
+      "dismiss": "Descartar este consejo",
+      "pointed": "El elemento resaltado ya está a la vista.",
+      "tips": {
+        "source": {
+          "title": "Compare las filas con la factura",
+          "body": "La factura original aparece junto a las filas, o en una sección que se expande en una pantalla pequeña. Seleccione una fila y se resalta el lugar correspondiente de la factura, para que confirme lo que leímos."
+        },
+        "finding": {
+          "title": "Un hallazgo es una pregunta, no un veredicto",
+          "body": "Cada tarjeta nombra la revisión que lo señaló, el cargo involucrado y el motivo. Abra «Por qué lo señalamos» para leer la razón en palabras sencillas."
+        },
+        "letterLink": {
+          "title": "Convierta los hallazgos en una carta",
+          "body": "Este botón crea una carta que enumera estos puntos. Puede editar los datos antes de usarla."
+        },
+        "preview": {
+          "title": "Lea la carta antes de usarla",
+          "body": "La carta se arma solo con los hallazgos de arriba. Revise cada línea y agregue sus datos. Aquí no se guarda nada."
+        }
+      }
     }
   },
   "Upload": {
