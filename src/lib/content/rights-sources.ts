@@ -15,8 +15,10 @@ export const RIGHTS_SOURCES = {
   gfe: [
     { key: "cmsDispute", href: "https://www.cms.gov/medical-bill-rights/help/dispute-a-bill" },
     {
+      // The old "Understanding costs in advance" URL now redirects here (checked
+      // 2026-10-13), so the link is titled for the page it really opens.
       key: "cmsCosts",
-      href: "https://www.cms.gov/nosurprises/consumers/understanding-costs-in-advance",
+      href: "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights",
     },
   ],
   itemized: [{ key: "statute", href: "https://www.law.cornell.edu/uscode/text/42/1395b-7" }],

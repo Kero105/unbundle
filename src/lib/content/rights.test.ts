@@ -45,6 +45,18 @@ describe("rights", () => {
     }
   });
 
+  it("titles the general CMS link for the page it opens, not a page that redirects", () => {
+    const link = RIGHTS_SOURCES.gfe.find((s) => s.key === "cmsCosts");
+    expect(link?.href).toBe("https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights");
+    expect(en.Rights.guides.gfe.sources.cmsCosts).toContain("Medical bill rights");
+    expect(es.Rights.guides.gfe.sources.cmsCosts).toContain("Medical bill rights");
+    for (const guide of ["assistance", "gfe", "itemized"] as const) {
+      for (const { href } of RIGHTS_SOURCES[guide]) {
+        expect(href).not.toContain("understanding-costs-in-advance");
+      }
+    }
+  });
+
   it("says in both languages that the page is not legal advice", () => {
     expect(en.Rights.notAdvice).toMatch(/not legal advice/i);
     expect(es.Rights.notAdvice).toMatch(/no asesoría legal/i);
