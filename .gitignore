@@ -46,3 +46,6 @@ data/
 # playwright
 /test-results/
 /playwright-report/
+
+# mobile review screenshots
+/screenshots/
