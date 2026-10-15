@@ -63,7 +63,7 @@ export function FieldInput<T>({
   }
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex min-w-0 flex-col gap-1">
       <label
         htmlFor={inputId}
         className={cn(

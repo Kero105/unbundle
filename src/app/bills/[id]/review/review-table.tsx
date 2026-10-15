@@ -319,7 +319,7 @@ export function ReviewTable({
                       data-selected={item.id === selectedId}
                       onFocusCapture={() => setSelectedId(item.id)}
                       className={cn(
-                        "align-top lg:[&>td]:py-1.5 max-lg:grid max-lg:grid-cols-2 max-lg:gap-4 max-lg:rounded-surface max-lg:border max-lg:p-4",
+                        "align-top lg:[&>td]:py-1.5 max-lg:grid max-lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] max-lg:gap-x-3 max-lg:gap-y-4 max-lg:[&>td]:min-w-0 max-lg:rounded-surface max-lg:border max-lg:p-4",
                         rowTone,
                       )}
                     >
@@ -364,6 +364,7 @@ export function ReviewTable({
                           visibleLabel={t("columns.date")}
                           error={t("errors.date")}
                           placeholder={t("placeholders.date")}
+                          className="max-lg:px-1.5"
                         />
                       </TableCell>
                       <TableCell className="max-lg:p-0">
@@ -434,7 +435,7 @@ export function ReviewTable({
                           visibleLabel={t("columns.unitPrice")}
                           error={t("errors.money")}
                           inputMode="decimal"
-                          className="text-right tabular-nums"
+                          className="text-right tabular-nums max-lg:px-2"
                         />
                       </TableCell>
                       <TableCell className="max-lg:p-0">
@@ -447,7 +448,7 @@ export function ReviewTable({
                           visibleLabel={t("columns.charge")}
                           error={t("errors.money")}
                           inputMode="decimal"
-                          className="text-right tabular-nums"
+                          className="text-right tabular-nums max-lg:px-2"
                         />
                       </TableCell>
                       <TableCell className="max-lg:p-0">
