@@ -27,6 +27,12 @@ describe("site navigation", () => {
   });
 
   it("links the standalone checker and the glossary from the footer", () => {
-    expect(hrefs(footer)).toEqual(expect.arrayContaining(["/rights/check", "/glossary", "/methodology", "/rights"]));
+    expect(hrefs(footer)).toEqual(expect.arrayContaining(["/rights/check", "/glossary"]));
+  });
+
+  it("does not repeat the header links in the footer", () => {
+    for (const href of ["/methodology", "/rights", "/demo"]) {
+      expect(hrefs(footer)).not.toContain(href);
+    }
   });
 });

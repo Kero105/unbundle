@@ -52,7 +52,7 @@ export function LanguageToggle({ locale, groupLabel, options }: LanguageTogglePr
       role="group"
       aria-label={groupLabel}
       aria-busy={pending}
-      className="inline-flex items-center rounded-lg border border-input bg-card p-0.5"
+      className="inline-flex items-center rounded-control border border-input bg-card p-0.5"
     >
       {options.map((option) => {
         const active = option.value === shown;
@@ -65,7 +65,7 @@ export function LanguageToggle({ locale, groupLabel, options }: LanguageTogglePr
             aria-pressed={active}
             onClick={() => choose(option.value)}
             className={cn(
-              "inline-flex h-10 min-w-11 items-center justify-center rounded-md px-3 text-sm font-semibold tracking-wide transition-colors focus-visible:outline-offset-0",
+              "inline-flex h-11 min-w-11 items-center justify-center rounded-sm px-3 text-sm font-semibold tracking-wide transition-colors focus-visible:outline-offset-0",
               active
                 ? "bg-primary text-primary-foreground"
                 : "text-foreground hover:bg-muted active:bg-muted/60",

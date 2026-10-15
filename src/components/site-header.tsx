@@ -25,7 +25,7 @@ const NAV = [
 ] as const;
 
 const navLinkClass =
-  "inline-flex min-h-10 items-center text-[0.9375rem] font-medium underline-offset-4 hover:underline";
+  "inline-flex min-h-11 items-center text-[0.9375rem] font-medium underline-offset-4 hover:underline";
 
 export function Wordmark() {
   return (
@@ -42,8 +42,8 @@ export function SiteHeaderFallback() {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center px-4 sm:px-6">
         <Wordmark />
       </div>
-      {/* Reserves the nav row so the page doesn't jump when the header streams in. */}
-      <div aria-hidden="true" className="h-12 border-t" />
+      {/* Reserves the nav row (below lg) so the page doesn't jump when the header streams in. */}
+      <div aria-hidden="true" className="h-12 lg:hidden" />
     </header>
   );
 }
@@ -59,15 +59,45 @@ export async function SiteHeader() {
   return (
     <header lang={locale} className="border-b bg-background print:hidden">
       <HtmlLangSync locale={locale} />
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
+      {/* One row from lg up (wordmark, links, sign in, language). Below lg the
+          links drop to a second row that wraps instead of scrolling, so every
+          link stays visible down to 320px. */}
+      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-6 px-4 sm:px-6 lg:flex-nowrap">
         <Link
           href="/"
           aria-label={t("homeLabel")}
-          className="rounded-md focus-visible:outline-offset-4"
+          className="order-1 flex min-h-16 items-center rounded-md focus-visible:outline-offset-4"
         >
           <Wordmark />
         </Link>
-        <div className="flex items-center gap-2 sm:gap-3">
+        <nav
+          aria-label={t("navLabel")}
+          className="order-3 w-full pb-1 lg:order-2 lg:w-auto lg:flex-1 lg:pb-0"
+        >
+          <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:flex-nowrap">
+            {NAV.map(({ href, key }) => (
+              <li key={href}>
+                <Link href={href} className={navLinkClass}>
+                  {t(key)}
+                </Link>
+              </li>
+            ))}
+            {signedIn ? (
+              <li>
+                <Link href="/dashboard" className={navLinkClass}>
+                  {t("navDashboard")}
+                </Link>
+              </li>
+            ) : (
+              <li className="lg:ml-auto">
+                <SignInButton size="sm" variant="secondary">
+                  {t("navSignIn")}
+                </SignInButton>
+              </li>
+            )}
+          </ul>
+        </nav>
+        <div className="order-2 ml-auto flex items-center gap-2 lg:order-3 lg:ml-0">
           <LanguageToggle
             locale={locale}
             groupLabel={t("languageLabel")}
@@ -79,45 +109,28 @@ export async function SiteHeader() {
           {signedIn ? (
             <Link
               href="/settings"
-              className="inline-flex h-10 items-center gap-2 rounded-lg border border-input bg-background px-3 text-sm font-medium hover:bg-muted"
+              title={t("settings")}
+              className="inline-flex h-11 items-center gap-2 rounded-control border border-input bg-card px-3 text-sm font-medium hover:bg-muted max-xl:w-11 max-xl:justify-center max-xl:px-0"
             >
               <Settings aria-hidden="true" className="size-4" />
-              <span className="max-sm:sr-only">{t("settings")}</span>
+              <span className="max-xl:sr-only">{t("settings")}</span>
             </Link>
           ) : null}
           {signedIn ? (
             <form action={signOut}>
-              <Button type="submit" variant="outline">
+              <Button
+                type="submit"
+                variant="secondary"
+                title={t("signOut")}
+                className="max-xl:w-11 max-xl:px-0"
+              >
                 <LogOut aria-hidden="true" />
-                <span className="max-sm:sr-only">{t("signOut")}</span>
+                <span className="max-xl:sr-only">{t("signOut")}</span>
               </Button>
             </form>
           ) : null}
         </div>
       </div>
-      <nav aria-label={t("navLabel")} className="border-t">
-        {/* Wraps instead of scrolling, so four links fit a 320px screen. */}
-        <ul className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-5 gap-y-1 px-4 py-1 sm:px-6">
-          {NAV.map(({ href, key }) => (
-            <li key={href}>
-              <Link href={href} className={navLinkClass}>
-                {t(key)}
-              </Link>
-            </li>
-          ))}
-          <li>
-            {signedIn ? (
-              <Link href="/dashboard" className={navLinkClass}>
-                {t("navDashboard")}
-              </Link>
-            ) : (
-              <SignInButton size="sm" variant="ghost">
-                {t("navSignIn")}
-              </SignInButton>
-            )}
-          </li>
-        </ul>
-      </nav>
     </header>
   );
 }
