@@ -84,32 +84,32 @@ export function DemoWalkthroughClient({ labels }: { labels: WalkthroughLabels })
       onKeyDown={(e) => {
         if (e.key === "Escape") dismiss();
       }}
-      className="border-b bg-card print:hidden"
+      className="border-b border-l-4 border-l-primary bg-secondary/40 print:hidden"
     >
-      <div className="mx-auto w-full max-w-[96rem] px-4 py-3 sm:px-6">
-        <div className="flex items-start gap-3 rounded-lg border-l-4 border-primary bg-secondary/50 p-3 sm:p-4">
-          <Lightbulb aria-hidden="true" className="mt-1 size-5 shrink-0 text-primary" />
-          <div className="flex min-w-0 flex-1 flex-col gap-2">
-            <p className="text-sm font-medium text-muted-foreground">
+      <div className="mx-auto flex w-full max-w-[96rem] items-start gap-3 px-4 py-3 sm:px-6">
+        <Lightbulb aria-hidden="true" className="mt-1 size-5 shrink-0 text-primary" />
+        <div className="flex min-w-0 flex-1 flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-start">
+          <div className="flex min-w-0 flex-1 flex-col gap-1">
+            <p className="text-meta font-medium text-muted-foreground">
               {labels.step.replace("{number}", String(number)).replace("{total}", String(total))}
             </p>
-            <h2 ref={heading} tabIndex={-1} className="text-lg font-semibold outline-none">
+            <h2 ref={heading} tabIndex={-1} className="text-body font-semibold outline-none">
               {copy.title}
             </h2>
-            <p className="text-base leading-7">{copy.body}</p>
-            <div className="flex flex-wrap items-center gap-3">
-              <Button type="button" variant="outline" onClick={show}>
-                {labels.show}
-              </Button>
-              <span role="status" className="text-sm text-muted-foreground">
-                {pointed ? labels.pointed : ""}
-              </span>
-            </div>
+            <p>{copy.body}</p>
           </div>
-          <Button type="button" variant="ghost" size="icon-sm" onClick={dismiss} aria-label={labels.dismiss}>
-            <X aria-hidden="true" />
-          </Button>
+          <div className="flex flex-wrap items-center gap-3 sm:shrink-0">
+            <Button type="button" variant="secondary" onClick={show}>
+              {labels.show}
+            </Button>
+            <span role="status" className="text-meta text-muted-foreground">
+              {pointed ? labels.pointed : ""}
+            </span>
+          </div>
         </div>
+        <Button type="button" variant="ghost" size="icon-sm" onClick={dismiss} aria-label={labels.dismiss}>
+          <X aria-hidden="true" />
+        </Button>
       </div>
     </aside>
   );
