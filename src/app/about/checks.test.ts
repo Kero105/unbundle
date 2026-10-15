@@ -47,7 +47,7 @@ describe("check cards", () => {
   });
 
   it("renders the card on both the landing page and /about", () => {
-    expect(read("src/app/page.tsx")).toContain('key: "balance"');
+    expect(read("src/app/page.tsx")).toContain('"balance"');
     expect(read("src/app/about/page.tsx")).toContain('"balance"');
   });
 

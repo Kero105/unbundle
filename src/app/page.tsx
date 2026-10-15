@@ -2,18 +2,6 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { connection } from "next/server";
 import { getLocale, getTranslations } from "next-intl/server";
-import {
-  Ban,
-  CalendarX,
-  CircleHelp,
-  Copy,
-  Layers,
-  Calculator,
-  Gauge,
-  Scale,
-  TrendingUp,
-  type LucideIcon,
-} from "lucide-react";
 import { SignInButton } from "@/components/sign-in-button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PendingLink } from "@/components/pending-link";
@@ -22,20 +10,20 @@ import { routeMetadata } from "@/lib/metadata";
 import { isSignedIn } from "@/lib/supabase/signed-in";
 
 const CHECKS = [
-  { key: "duplicates", Icon: Copy },
-  { key: "math", Icon: Calculator },
-  { key: "dates", Icon: CalendarX },
-  { key: "unbundling", Icon: Layers },
-  { key: "quantity", Icon: Gauge },
-  { key: "outliers", Icon: TrendingUp },
-  { key: "vague", Icon: CircleHelp },
-  { key: "denied", Icon: Ban },
-  { key: "balance", Icon: Scale },
-] as const satisfies readonly { key: string; Icon: LucideIcon }[];
+  "duplicates",
+  "math",
+  "dates",
+  "unbundling",
+  "quantity",
+  "outliers",
+  "vague",
+  "denied",
+  "balance",
+] as const;
 
 const STEPS = ["upload", "review", "letter"] as const;
 
-const HERO_BUTTONS = "mt-10 flex flex-col gap-3 sm:flex-row";
+const HERO_BUTTONS = "mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5";
 
 /**
  * The hero buttons depend on the session, which is request-time data, so they
@@ -60,7 +48,7 @@ async function HeroActions() {
       )}
       <PendingLink
         href="/demo"
-        className={buttonVariants({ variant: "outline", size: "lg" })}
+        className={buttonVariants({ variant: "quiet", size: "lg" })}
         pendingLabel={t("trySamplePending")}
       >
         {t("trySample")}
@@ -74,7 +62,7 @@ function HeroActionsSkeleton() {
   return (
     <div aria-hidden="true" className={HERO_BUTTONS}>
       <Skeleton className="h-12 w-full sm:w-48" />
-      <Skeleton className="h-12 w-full sm:w-48" />
+      <Skeleton className="h-12 w-full sm:w-36" />
     </div>
   );
 }
@@ -85,11 +73,11 @@ async function Landing() {
   return (
     <main lang={locale} className="flex flex-col">
       <section className="border-b">
-        <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-          <h1 className="max-w-3xl text-4xl leading-[1.1] font-semibold text-balance sm:text-5xl lg:text-6xl">
+        <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+          <h1 className="max-w-3xl text-title leading-[1.15] font-semibold text-balance sm:text-display">
             {t("title")}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl sm:leading-9">
+          <p className="mt-5 max-w-2xl text-lead text-muted-foreground">
             {t("subtitle")}
           </p>
           <Suspense fallback={<HeroActionsSkeleton />}>
@@ -99,16 +87,13 @@ async function Landing() {
       </section>
 
       <section aria-labelledby="how-title" className="border-b">
-        <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
-          <h2 id="how-title" className="text-3xl font-semibold">
+        <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
+          <h2 id="how-title" className="text-title font-semibold">
             {t("how.title")}
           </h2>
-          <ol className="mt-8 grid gap-4 md:grid-cols-3">
+          <ol className="mt-6 grid gap-6 md:grid-cols-3 md:gap-8">
             {STEPS.map((step, index) => (
-              <li
-                key={step}
-                className="flex gap-4 rounded-lg border bg-card p-6"
-              >
+              <li key={step} className="flex gap-4">
                 <span
                   aria-hidden="true"
                   className="flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary font-heading text-xl font-semibold text-secondary-foreground"
@@ -116,8 +101,8 @@ async function Landing() {
                   {index + 1}
                 </span>
                 <div>
-                  <h3 className="text-xl font-semibold">{t(`how.${step}.title`)}</h3>
-                  <p className="mt-2 text-muted-foreground">{t(`how.${step}.body`)}</p>
+                  <h3 className="text-lead font-semibold">{t(`how.${step}.title`)}</h3>
+                  <p className="mt-1 text-muted-foreground">{t(`how.${step}.body`)}</p>
                 </div>
               </li>
             ))}
@@ -126,21 +111,16 @@ async function Landing() {
       </section>
 
       <section aria-labelledby="checks-title" className="border-b">
-        <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
-          <h2 id="checks-title" className="text-3xl font-semibold">
+        <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
+          <h2 id="checks-title" className="text-title font-semibold">
             {t("checks.title")}
           </h2>
-          <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-            {t("checks.intro")}
-          </p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {CHECKS.map(({ key, Icon }) => (
-              <li key={key} className="rounded-lg border bg-card p-6">
-                <Icon aria-hidden="true" className="size-6 text-primary" />
-                <h3 className="mt-4 text-lg font-semibold">{t(`checks.${key}.title`)}</h3>
-                <p className="mt-2 text-[0.9375rem] text-muted-foreground">
-                  {t(`checks.${key}.body`)}
-                </p>
+          <p className="mt-2 max-w-2xl text-muted-foreground">{t("checks.intro")}</p>
+          <ul className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+            {CHECKS.map((key) => (
+              <li key={key} className="border-t pt-3">
+                <h3 className="font-semibold">{t(`checks.${key}.title`)}</h3>
+                <p className="mt-1 text-meta text-muted-foreground">{t(`checks.${key}.body`)}</p>
               </li>
             ))}
           </ul>
@@ -148,22 +128,22 @@ async function Landing() {
       </section>
 
       <section aria-labelledby="trust-title" className="bg-primary text-primary-foreground">
-        <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[3fr_2fr]">
+        <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[3fr_2fr] lg:gap-10">
           <div>
-            <h2 id="trust-title" className="text-3xl leading-tight font-semibold text-balance sm:text-4xl">
+            <h2 id="trust-title" className="text-title leading-tight font-semibold text-balance sm:text-3xl">
               {t("trust.title")}
             </h2>
-            <p className="mt-4 text-xl font-medium">{t("trust.subtitle")}</p>
-            <p className="mt-4 max-w-xl text-lg opacity-90">{t("trust.body")}</p>
-            <p className="mt-6 text-lg">
-              <Link href="/about" className="font-medium underline underline-offset-4 hover:no-underline">
+            <p className="mt-4 text-lead font-medium">{t("trust.subtitle")}</p>
+            <p className="mt-3 max-w-xl opacity-90">{t("trust.body")}</p>
+            <p className="mt-5 min-h-11">
+              <Link href="/about" className="inline-flex min-h-11 items-center font-medium underline underline-offset-4 hover:no-underline">
                 {t("trust.aboutLink")}
               </Link>
             </p>
           </div>
-          <div className="rounded-lg border border-primary-foreground/30 p-6">
-            <h3 className="text-xl font-semibold">{t("trust.privacyTitle")}</h3>
-            <ul className="mt-4 flex flex-col gap-3 text-lg">
+          <div className="rounded-surface border border-primary-foreground/30 p-5">
+            <h3 className="text-lead font-semibold">{t("trust.privacyTitle")}</h3>
+            <ul className="mt-3 flex flex-col gap-2">
               <li>{t("trust.privacy.training")}</li>
               <li>{t("trust.privacy.delete")}</li>
               <li>{t("trust.privacy.sell")}</li>
@@ -177,7 +157,7 @@ async function Landing() {
 
 function LandingSkeleton() {
   return (
-    <main aria-busy="true" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+    <main aria-busy="true" className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <Skeleton className="h-14 w-full max-w-3xl" />
       <Skeleton className="mt-6 h-8 w-full max-w-2xl" />
       <div className="mt-10 flex gap-3">
