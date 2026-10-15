@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { readExplainConfig } from "./config";
+import { DEFAULT_EXTRACTION_MODEL } from "@/lib/extraction/config";
+import { DEFAULT_EXPLAIN_MODEL, readExplainConfig } from "./config";
 
 describe("readExplainConfig", () => {
   it("defaults to mock", () => {
@@ -11,6 +12,17 @@ describe("readExplainConfig", () => {
       mode: "anthropic",
       apiKey: "k",
       model: "m",
+    });
+  });
+
+  it("falls back to the Haiku explain default, not the extraction model", () => {
+    const env = { EXPLAIN_MODE: "anthropic", ANTHROPIC_API_KEY: "k" };
+    expect(DEFAULT_EXPLAIN_MODEL).toBe("claude-haiku-5-5");
+    expect(readExplainConfig(env)).toMatchObject({ model: "claude-haiku-5-5" });
+    expect(readExplainConfig(env)).not.toMatchObject({ model: DEFAULT_EXTRACTION_MODEL });
+    // A blank EXPLAIN_MODEL counts as unset; EXTRACTION_MODEL is never consulted.
+    expect(readExplainConfig({ ...env, EXPLAIN_MODEL: "  ", EXTRACTION_MODEL: "claude-sonnet-5-5" })).toMatchObject({
+      model: "claude-haiku-5-5",
     });
   });
 

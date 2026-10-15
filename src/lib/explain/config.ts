@@ -1,5 +1,12 @@
-import { DEFAULT_EXTRACTION_MODEL } from "@/lib/extraction/config";
 import { ExplainError } from "./types";
+
+/**
+ * Fallback for live "What is this?" explanations when EXPLAIN_MODEL is unset.
+ * Deliberately its own constant, not the extraction default: explanations are
+ * short, cached and high-volume, so they run on the cheaper model. Changing the
+ * extraction model must never change explanation spend.
+ */
+export const DEFAULT_EXPLAIN_MODEL = "claude-haiku-5-5";
 
 export type ExplainConfig =
   | { mode: "mock" }
@@ -10,7 +17,8 @@ type Env = Record<string, string | undefined>;
 const ON = new Set(["true", "1", "yes", "on"]);
 
 /**
- * EXPLAIN_MODE=mock|anthropic, default mock. Fails closed like extraction:
+ * EXPLAIN_MODE=mock|anthropic, default mock. EXPLAIN_MODEL overrides the model;
+ * unset, it is DEFAULT_EXPLAIN_MODEL. Fails closed like extraction:
  * the EXTRACTION_ENABLED kill switch also turns explanations off, an unknown
  * mode throws, and anthropic mode needs ANTHROPIC_API_KEY.
  */
@@ -27,6 +35,6 @@ export function readExplainConfig(env: Env = process.env): ExplainConfig {
   return {
     mode: "anthropic",
     apiKey,
-    model: env.EXPLAIN_MODEL?.trim() || DEFAULT_EXTRACTION_MODEL,
+    model: env.EXPLAIN_MODEL?.trim() || DEFAULT_EXPLAIN_MODEL,
   };
 }

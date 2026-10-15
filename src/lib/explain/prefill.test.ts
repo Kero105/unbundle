@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { parsePrefillList } from "./prefill";
+import { parsePrefillList, resolvePrefillModel } from "./prefill";
 
 describe("parsePrefillList", () => {
   it("normalizes codes and drops duplicates", () => {
@@ -31,5 +31,23 @@ describe("parsePrefillList", () => {
     const byCode = new Map<string, Set<string>>();
     for (const e of list) byCode.set(e.code, (byCode.get(e.code) ?? new Set()).add(e.language));
     for (const langs of byCode.values()) expect([...langs].sort()).toEqual(["en", "es"]);
+  });
+});
+
+describe("resolvePrefillModel", () => {
+  it("has no default: neither flag nor env means no model", () => {
+    expect(resolvePrefillModel([], {})).toBeNull();
+    expect(resolvePrefillModel([], { EXPLAIN_MODEL: "  " })).toBeNull();
+  });
+
+  it("reads --model, which wins over EXPLAIN_MODEL", () => {
+    expect(resolvePrefillModel(["--model", "claude-haiku-5-5"], {})).toBe("claude-haiku-5-5");
+    expect(resolvePrefillModel(["--model", "a"], { EXPLAIN_MODEL: "b" })).toBe("a");
+    expect(resolvePrefillModel([], { EXPLAIN_MODEL: " b " })).toBe("b");
+  });
+
+  it("treats a --model with no value as missing rather than falling back", () => {
+    expect(resolvePrefillModel(["--model"], { EXPLAIN_MODEL: "b" })).toBeNull();
+    expect(resolvePrefillModel(["--model", "--yes"], { EXPLAIN_MODEL: "b" })).toBeNull();
   });
 });

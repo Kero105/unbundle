@@ -25,3 +25,17 @@ export function parsePrefillList(input: unknown): PrefillEntry[] {
   }
   return out;
 }
+
+/**
+ * The model for `npm run explain:prefill`. There is no default: the model is
+ * `--model <id>` or EXPLAIN_MODEL, so a bulk run never picks up a model by
+ * accident. The flag wins over the env var. Returns null when neither is set.
+ */
+export function resolvePrefillModel(argv: string[], env: Record<string, string | undefined>): string | null {
+  const i = argv.indexOf("--model");
+  if (i !== -1) {
+    const value = argv[i + 1]?.trim();
+    return value && !value.startsWith("--") ? value : null;
+  }
+  return env.EXPLAIN_MODEL?.trim() || null;
+}

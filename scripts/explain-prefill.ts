@@ -9,20 +9,23 @@
  * the same output validation as live requests. Output is counts only.
  * Existing rows are never overwritten.
  *
- *   npm run explain:prefill [-- --yes] [--limit N]
+ *   npm run explain:prefill -- --model <model-id> [--yes] [--limit N]
  *
- * Needs ANTHROPIC_API_KEY in .env.local. More than 30 model calls need --yes.
+ * Needs ANTHROPIC_API_KEY in .env.local. There is no default model: pass
+ * --model or set EXPLAIN_MODEL. The script prints the model and the number of
+ * calls, then asks before making any; --yes skips the question (and is
+ * required when there is no terminal).
  */
 import fs from "node:fs";
 import path from "node:path";
+import readline from "node:readline/promises";
 import { AnthropicExplainer } from "../src/lib/explain/anthropic-explainer";
 import { readExplainConfig } from "../src/lib/explain/config";
-import { parsePrefillList } from "../src/lib/explain/prefill";
+import { parsePrefillList, resolvePrefillModel } from "../src/lib/explain/prefill";
 import { toExplainErrorCode } from "../src/lib/explain/types";
 import { ExplanationTextSchema } from "../src/lib/explain/validate";
 import { serviceClient } from "./lib/env.mjs";
 
-const MAX_CALLS_WITHOUT_YES = 30;
 const root = path.resolve(__dirname, "..");
 
 function loadEnvLocal() {
@@ -41,8 +44,14 @@ async function main() {
   }
   loadEnvLocal();
 
+  const model = resolvePrefillModel(process.argv, process.env);
+  if (!model) {
+    console.error("No model given. Pass --model <model-id> or set EXPLAIN_MODEL; there is no default for this script.");
+    process.exit(1);
+  }
+
   // Same fail-closed config as the app, but this script always wants the model.
-  const config = readExplainConfig({ ...process.env, EXPLAIN_MODE: "anthropic" });
+  const config = readExplainConfig({ ...process.env, EXPLAIN_MODE: "anthropic", EXPLAIN_MODEL: model });
   if (config.mode !== "anthropic") process.exit(1);
 
   const list = parsePrefillList(
@@ -58,11 +67,21 @@ async function main() {
   const limit = Number(process.argv[process.argv.indexOf("--limit") + 1]);
   if (process.argv.includes("--limit") && Number.isInteger(limit) && limit > 0) todo = todo.slice(0, limit);
 
-  if (todo.length > MAX_CALLS_WITHOUT_YES && !process.argv.includes("--yes")) {
-    console.error(
-      `This would make ${todo.length} model calls (limit ${MAX_CALLS_WITHOUT_YES} without --yes). Re-run with --yes or --limit N.`,
-    );
-    process.exit(1);
+  console.log(`model: ${config.model}`);
+  console.log(`estimated model calls: ${todo.length} (${list.length - todo.length} already cached)`);
+  if (todo.length === 0) return;
+  if (!process.argv.includes("--yes")) {
+    if (!process.stdin.isTTY) {
+      console.error("No terminal to confirm on. Re-run with --yes to proceed.");
+      process.exit(1);
+    }
+    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+    const answer = (await rl.question(`Make ${todo.length} calls to ${config.model}? [y/N] `)).trim().toLowerCase();
+    rl.close();
+    if (answer !== "y" && answer !== "yes") {
+      console.log("Cancelled; no calls made.");
+      return;
+    }
   }
 
   const explainer = AnthropicExplainer.fromApiKey(config.apiKey, config.model);
