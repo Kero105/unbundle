@@ -21,10 +21,10 @@ export async function Timeline({
   return (
     <section
       aria-labelledby="timeline-title"
-      className="flex flex-col gap-4 rounded-xl border bg-card p-6 break-inside-avoid"
+      className="flex flex-col gap-4 border-t pt-8 break-inside-avoid"
     >
       <div className="flex flex-col gap-1">
-        <h2 id="timeline-title" className="text-xl font-semibold">
+        <h2 id="timeline-title" className="text-lead font-semibold">
           {t("title")}
         </h2>
         <p className="text-muted-foreground">{t("intro")}</p>
@@ -41,12 +41,12 @@ export async function Timeline({
                 {index + 1}
               </span>
               <div className="flex flex-col gap-1">
-                <h3 className="text-lg font-semibold">{t(`steps.${step}.title`)}</h3>
+                <h3 className="text-body font-semibold">{t(`steps.${step}.title`)}</h3>
                 <p>{t(`steps.${step}.body`)}</p>
                 <p className="print:hidden">
                   <Link
                     href={href}
-                    className="font-medium text-primary underline underline-offset-4 hover:no-underline"
+                    className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4 hover:no-underline"
                   >
                     {t(`steps.${step}.${linkKey}` as "steps.dispute.link")}
                   </Link>
@@ -58,7 +58,7 @@ export async function Timeline({
       </ol>
 
       <div className="flex flex-col gap-2 border-t pt-4">
-        <h3 className="text-lg font-semibold">{t("alsoTitle")}</h3>
+        <h3 className="text-body font-semibold">{t("alsoTitle")}</h3>
         <ul className="list-disc space-y-2 pl-6">
           {ALSO_ASK.map((key) => (
             <li key={key}>{t(`also.${key}`)}</li>

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { getLocale, getTranslations } from "next-intl/server";
 import type { VariantProps } from "class-variance-authority";
-import { CircleCheck, CircleHelp, Info, OctagonAlert, TriangleAlert, type LucideIcon } from "lucide-react";
+import { ChevronDown, CircleCheck, CircleHelp, Info, OctagonAlert, TriangleAlert, type LucideIcon } from "lucide-react";
 import { BillSteps } from "@/components/bill-steps";
 import { Badge, badgeVariants } from "@/components/ui/badge";
 import { PendingLink } from "@/components/pending-link";
@@ -48,7 +48,7 @@ async function FindingCard({ item, first = false }: { item: ReportFinding; first
       <Card className="break-inside-avoid">
         <CardHeader className="gap-3">
           <div className="flex flex-wrap items-start justify-between gap-3">
-            <CardTitle className="text-xl">
+            <CardTitle className="text-lead">
               <h3>{t(`rules.${finding.ruleId}`)}</h3>
             </CardTitle>
             <div className="text-right">
@@ -81,11 +81,11 @@ async function FindingCard({ item, first = false }: { item: ReportFinding; first
             <h4 className="mb-2 text-sm font-medium text-muted-foreground">
               {t("finding.affectedItems")}
             </h4>
-            <ul aria-label={t("finding.itemsLabel")} className="divide-y rounded-lg border">
+            <ul aria-label={t("finding.itemsLabel")} className="divide-y border-y">
               {lineItems.map((li) => (
                 <li
                   key={li.id}
-                  className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-3 py-2"
+                  className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-2"
                 >
                   <span className="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-3">
                     <span className="sr-only">{t("finding.columns.code")}: </span>
@@ -102,11 +102,15 @@ async function FindingCard({ item, first = false }: { item: ReportFinding; first
             </ul>
           </div>
 
-          <details className="group rounded-lg border px-3 py-2">
-            <summary className="cursor-pointer font-medium focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring">
+          <details className="group">
+            <summary className="inline-flex min-h-11 cursor-pointer items-center font-medium text-primary underline underline-offset-4 hover:no-underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring">
               {t("finding.whySummary")}
+              <ChevronDown
+                aria-hidden="true"
+                className="ml-1 size-4 shrink-0 transition-transform group-open:rotate-180 motion-reduce:transition-none"
+              />
             </summary>
-            <p className="mt-2 text-muted-foreground">{t(`why.${whyKey(finding.citation)}`)}</p>
+            <p className="mt-1 text-muted-foreground">{t(`why.${whyKey(finding.citation)}`)}</p>
           </details>
         </CardContent>
       </Card>
@@ -127,21 +131,21 @@ export async function ReportView({ source }: { source: BillSource }) {
   return (
     <main
       lang={locale}
-      className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 px-4 py-8 sm:px-6 sm:py-10"
+      className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-8 px-4 py-8 sm:px-6 sm:py-10"
     >
       <header className="flex flex-col gap-4">
         <div className="print:hidden">
           <BillSteps current="findings" />
         </div>
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-semibold sm:text-4xl">{t("title")}</h1>
-          <p className="max-w-2xl text-lg text-muted-foreground">{t("subtitle")}</p>
+          <h1 className="text-title font-semibold">{t("title")}</h1>
+          <p className="max-w-2xl text-muted-foreground">{t("subtitle")}</p>
         </div>
         <ManualEntryNote source={source} />
       </header>
 
       {report.findings.length === 0 ? (
-        <section className="flex flex-col gap-3 rounded-xl border border-success-border/50 bg-success-surface p-6 text-success-foreground">
+        <section className="flex flex-col gap-3 rounded-surface border border-success-border/50 bg-success-surface p-6 text-success-foreground">
           <h2 className="flex items-center gap-2 text-xl font-semibold">
             <CircleCheck aria-hidden="true" className="size-6 shrink-0" />
             {t("empty.title")}
@@ -150,9 +154,9 @@ export async function ReportView({ source }: { source: BillSource }) {
         </section>
       ) : (
         <>
-          <section className="flex flex-col gap-2 rounded-xl border bg-card p-6">
+          <section className="flex flex-col gap-2 rounded-surface border bg-card p-6">
             <p className="text-sm font-medium text-muted-foreground">{t("totalLabel")}</p>
-            <p className="text-4xl font-semibold tabular-nums">
+            <p className="text-display font-semibold tabular-nums">
               {formatCents(report.totalAtStakeCents)}
             </p>
             <p className="text-muted-foreground">
@@ -185,49 +189,42 @@ export async function ReportView({ source }: { source: BillSource }) {
         }}
       />
 
-      <CallScript items={buildLetterModel(bill, findings).items} />
+      <CallScript items={buildLetterModel(bill, findings).items} collapsible />
       <Reminders mode="followUp" />
 
       <p className="text-sm text-muted-foreground">{t("disclaimer")}</p>
 
-      <div className="flex flex-wrap gap-3 print:hidden">
-        <PrintButton label={t("print")} variant="outline" />
-        <Link
-          href={stepHref(source, "summary")}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          {t("openSummary")}
-        </Link>
-        <Link
-          href={stepHref(source, "review")}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          {t("backToReview")}
-        </Link>
-        {report.findings.length > 0 ? (
-          <PendingLink
-            href={stepHref(source, "letter")}
-            data-walkthrough="letter"
-            className={buttonVariants()}
-            pendingLabel={t("makeLetterPending")}
+      {/* One primary action, one secondary, then quiet links. The summary and
+          the itemized-bill letter are linked from "What happens next" above. */}
+      <div className="flex flex-col gap-4 print:hidden">
+        <div className="flex flex-wrap items-center gap-3">
+          {report.findings.length > 0 ? (
+            <PendingLink
+              href={stepHref(source, "letter")}
+              data-walkthrough="letter"
+              className={buttonVariants()}
+              pendingLabel={t("makeLetterPending")}
+            >
+              {t("makeLetter")}
+            </PendingLink>
+          ) : null}
+          <PrintButton label={t("print")} variant="secondary" />
+        </div>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+          <Link
+            href={stepHref(source, "review")}
+            className={buttonVariants({ variant: "quiet", className: "pl-0" })}
           >
-            {t("makeLetter")}
+            {t("backToReview")}
+          </Link>
+          <PendingLink
+            href={stepHref(source, "assistance")}
+            className={buttonVariants({ variant: "quiet", className: "pl-0" })}
+            pendingLabel={t("assistancePending")}
+          >
+            {t("assistance")}
           </PendingLink>
-        ) : null}
-        <PendingLink
-          href={stepHref(source, "letter", { type: "itemized" })}
-          className={buttonVariants({ variant: "outline" })}
-          pendingLabel={t("makeLetterPending")}
-        >
-          {t("requestItemized")}
-        </PendingLink>
-        <PendingLink
-          href={stepHref(source, "assistance")}
-          className={buttonVariants({ variant: "outline" })}
-          pendingLabel={t("assistancePending")}
-        >
-          {t("assistance")}
-        </PendingLink>
+        </div>
       </div>
     </main>
   );
@@ -237,7 +234,7 @@ export function ReportSkeleton() {
   return (
     <main
       aria-busy="true"
-      className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 px-4 py-8 sm:px-6 sm:py-10"
+      className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-8 px-4 py-8 sm:px-6 sm:py-10"
     >
       <Skeleton className="h-8 w-64" />
       <Skeleton className="h-10 w-full max-w-md" />

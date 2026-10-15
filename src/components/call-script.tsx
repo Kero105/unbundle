@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { CopyScript } from "@/components/copy-script";
 import type { LetterItem } from "@/app/bills/[id]/letter/letter-model";
@@ -11,9 +12,12 @@ import { formatCents } from "@/lib/money";
 export async function CallScript({
   items,
   generic = false,
+  collapsible = false,
 }: {
   items: readonly LetterItem[];
   generic?: boolean;
+  /** Start closed behind its heading, so a long page stays short. */
+  collapsible?: boolean;
 }) {
   const t = await getTranslations("CallScript");
   const script = buildCallScript(
@@ -32,6 +36,43 @@ export async function CallScript({
     formatCents,
   );
 
+  const intro = <p className="text-muted-foreground">{generic ? t("genericIntro") : t("intro")}</p>;
+  const copy = (
+    <CopyScript
+      text={script}
+      labels={{
+        copy: t("copy"),
+        copied: t("copied"),
+        failed: t("copyFailed"),
+        textLabel: t("textLabel"),
+      }}
+    />
+  );
+
+  if (collapsible) {
+    // The heading sits inside the summary, so the region keeps its name and the
+    // whole title is the control. Closed by default; print hides it either way.
+    return (
+      <section aria-labelledby="call-script-title" className="print:hidden">
+        <details className="group border-t pt-4">
+          <summary className="flex min-h-11 cursor-pointer items-center focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring">
+            <h2 id="call-script-title" className="text-lead font-semibold">
+              {t("title")}
+            </h2>
+            <ChevronDown
+              aria-hidden="true"
+              className="ml-2 size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180 motion-reduce:transition-none"
+            />
+          </summary>
+          <div className="mt-2 flex flex-col gap-3">
+            {intro}
+            {copy}
+          </div>
+        </details>
+      </section>
+    );
+  }
+
   return (
     <section
       aria-labelledby="call-script-title"
@@ -41,17 +82,9 @@ export async function CallScript({
         <h2 id="call-script-title" className="text-xl font-semibold">
           {t("title")}
         </h2>
-        <p className="text-muted-foreground">{generic ? t("genericIntro") : t("intro")}</p>
+        {intro}
       </div>
-      <CopyScript
-        text={script}
-        labels={{
-          copy: t("copy"),
-          copied: t("copied"),
-          failed: t("copyFailed"),
-          textLabel: t("textLabel"),
-        }}
-      />
+      {copy}
     </section>
   );
 }

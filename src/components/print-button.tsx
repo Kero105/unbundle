@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
  * opened for the print and put back afterwards. This covers Ctrl/Cmd+P too.
  * Nothing leaves the browser.
  */
-export function PrintButton({ label, variant = "default" }: { label: string; variant?: "default" | "outline" }) {
+export function PrintButton({ label, variant = "default" }: { label: string; variant?: "default" | "outline" | "secondary" }) {
   useEffect(() => {
     const closed = new Set<HTMLDetailsElement>();
     const open = () => {

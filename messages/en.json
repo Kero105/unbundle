@@ -327,10 +327,8 @@
     "makeLetterPending": "Opening letter…",
     "assistance": "Check financial assistance",
     "assistancePending": "Opening…",
-    "requestItemized": "Request an itemized bill",
     "disclaimer": "This report points out charges that may be worth asking about. It is not legal or medical advice, and it cannot confirm that any charge is wrong. Please check with the billing office before relying on it.",
     "print": "Print or save as PDF",
-    "openSummary": "Open one-page summary",
     "summary": {
       "kicker": "Unbundle report summary",
       "title": "Bill review summary",

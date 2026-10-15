@@ -327,10 +327,8 @@
     "makeLetterPending": "Abriendo la carta…",
     "assistance": "Revisar ayuda financiera",
     "assistancePending": "Abriendo…",
-    "requestItemized": "Solicitar una factura detallada",
     "disclaimer": "Este informe señala cargos sobre los que puede valer la pena preguntar. No es asesoría legal ni médica y no puede confirmar que un cargo sea incorrecto. Consulte con la oficina de facturación antes de apoyarse en él.",
     "print": "Imprimir o guardar como PDF",
-    "openSummary": "Abrir resumen de una página",
     "summary": {
       "kicker": "Resumen del informe de Unbundle",
       "title": "Resumen de la revisión de la factura",
