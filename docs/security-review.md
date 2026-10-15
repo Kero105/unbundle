@@ -32,7 +32,7 @@ Reviewed 2026-10-13 by reading `0006_manual_entry.sql` and the code that calls i
 
 `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(self), microphone=(), geolocation=()`, `X-Frame-Options: DENY` plus CSP `frame-ancestors 'none'`. Verified on a production build with `curl -I`.
 
-CSP: same-origin by default; `connect-src` adds the Supabase origin (https and wss) read from `NEXT_PUBLIC_SUPABASE_URL` at build time; `img-src` allows `blob:`/`data:` for upload previews; `worker-src blob:`. `script-src` and `style-src` include `'unsafe-inline'` because the app uses Partial Prerendering, which Next documents as incompatible with nonce-based CSP.
+CSP: same-origin by default; `connect-src` adds the Supabase origin (https and wss) read from `NEXT_PUBLIC_SUPABASE_URL` at build time; `img-src` allows `blob:`/`data:` for upload previews; `worker-src blob:`. `script-src` also includes `'wasm-unsafe-eval'` (WebAssembly compilation was blocked in a production build; this does not permit JS `eval`). `script-src` and `style-src` include `'unsafe-inline'` because the app uses Partial Prerendering, which Next documents as incompatible with nonce-based CSP.
 
 ## Needs your decision / not verified
 

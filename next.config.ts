@@ -18,7 +18,8 @@ const supabaseWs = supabaseOrigin.replace(/^https:/, "wss:");
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  // 'wasm-unsafe-eval' lets WebAssembly compile without allowing JS eval().
+  `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   // The review screen shows the user's own bill from a short-lived signed
   // Supabase Storage URL.
