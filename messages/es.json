@@ -253,7 +253,8 @@
         "columnCharge": "Cargo",
         "watermark": "MUESTRA – FICTICIA"
       },
-      "noBoxManual": "Usted escribió la fila {row}, así que no está vinculada a un lugar de su factura. Compárela por la descripción y el monto."
+      "noBoxManual": "Usted escribió la fila {row}, así que no está vinculada a un lugar de su factura. Compárela por la descripción y el monto.",
+      "noHighlight": "No podemos marcar la fila {row} en su factura aquí, así que no se resalta nada. Compárela con su factura por la descripción y el monto."
     },
     "empty": "No se encontraron partidas en esta factura.",
     "saveState": {

@@ -68,4 +68,52 @@ describe("SourcePanel", () => {
     const link = screen.getByRole("link", { name: /Open your original PDF/ });
     expect(link.getAttribute("rel")).toContain("noopener");
   });
+
+  it("puts the row message above the image", () => {
+    view({ kind: "image", url: "https://example.test/x" }, { ...row(0), sourceBox: null });
+    const note = screen.getByRole("note");
+    const img = screen.getByAltText("The bill you uploaded");
+    expect(note.compareDocumentPosition(img) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it("does not lazy-load the image and re-scrolls to the highlight when it loads", () => {
+    view({ kind: "image", url: "https://example.test/x" }, row(1));
+    const img = screen.getByAltText("The bill you uploaded");
+    expect(img.getAttribute("loading")).toBeNull();
+    const region = screen.getByRole("region");
+    const mark = screen.getByTestId("source-highlight");
+    // jsdom has no layout: give the highlight a position that only exists once the image has loaded.
+    Object.defineProperty(mark, "offsetTop", { value: 900, configurable: true });
+    Object.defineProperty(mark, "offsetHeight", { value: 20, configurable: true });
+    Object.defineProperty(region, "clientHeight", { value: 400, configurable: true });
+    region.scrollTop = 0;
+    fireEvent.load(img);
+    expect(region.scrollTop).toBe(900 - 200 + 10);
+  });
+
+  it("names the row on the PDF branch, even when the row has a box", () => {
+    view({ kind: "pdf", url: "https://example.test/x.pdf" }, row(1));
+    expect(screen.getByRole("note").textContent).toContain("row 2");
+    expect(screen.queryByTestId("source-highlight")).toBeNull();
+  });
+
+  it("names the row when the bill file is unavailable, above the generic message", () => {
+    view({ kind: "unavailable" }, row(0));
+    const notes = screen.getAllByRole("note");
+    expect(notes).toHaveLength(2);
+    expect(notes[0].textContent).toContain("row 1");
+    expect(notes[1].textContent).toContain("couldn’t load your original bill");
+  });
+
+  it("names the row when the image fails to load", () => {
+    view({ kind: "image", url: "https://example.test/x" }, row(0));
+    fireEvent.error(screen.getByAltText("The bill you uploaded"));
+    expect(screen.getAllByRole("note")[0].textContent).toContain("row 1");
+  });
+
+  it("says nothing about a row when none is selected", () => {
+    view({ kind: "pdf", url: "https://example.test/x.pdf" }, null);
+    expect(screen.queryByRole("note")).toBeNull();
+    expect(screen.queryByRole("status")).toBeNull();
+  });
 });

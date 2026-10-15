@@ -87,6 +87,9 @@ export function SourcePanel({
   const [page, setPage] = useState(1);
   const [lastSelectedId, setLastSelectedId] = useState<string | null>(null);
   const [imageFailed, setImageFailed] = useState(false);
+  // Counts image loads. The image arrives after the click when the panel was
+  // closed, so the scroll to the highlight has to run again once it has a height.
+  const [imageLoads, setImageLoads] = useState(0);
   const scroller = useRef<HTMLDivElement>(null);
   const highlight = useRef<HTMLDivElement>(null);
 
@@ -105,7 +108,25 @@ export function SourcePanel({
 
   const css =
     selected && boxAppliesToPage(selected.sourcePage, page) ? boxToCss(selected.sourceBox) : null;
-  const noBox = selected !== null && css === null;
+  // Whether the original can be drawn here at all. A PDF opens in its own tab
+  // and a missing or broken image has nothing to draw on, so nothing is
+  // highlighted for any row, even one that has a box.
+  const canHighlight =
+    source.kind === "demo" || (source.kind === "image" && !imageFailed);
+  const shown = canHighlight && css !== null;
+  const noteKey = manual ? "noBoxManual" : canHighlight ? "noBox" : "noHighlight";
+  // The row-specific message goes first, above the image, so it is seen even
+  // when the highlight is below the fold of the scroll area.
+  const rowMessage =
+    selected === null ? null : shown ? (
+      <p role="status" className="text-sm font-medium">
+        {t("showingRow", { row: selected.row })}
+      </p>
+    ) : (
+      <p role="note" className="rounded-lg border bg-muted p-3 text-sm">
+        {t(noteKey, { row: selected.row })}
+      </p>
+    );
 
   useEffect(() => {
     const box = scroller.current;
@@ -113,11 +134,12 @@ export function SourcePanel({
     if (!box || !mark) return;
     // Scroll only the panel, not the page, and without animation.
     box.scrollTop = Math.max(0, mark.offsetTop - box.clientHeight / 2 + mark.offsetHeight / 2);
-  }, [selected?.id, page, zoom, css?.top]);
+  }, [selected?.id, page, zoom, css?.top, imageLoads]);
 
   if (source.kind === "pdf") {
     return (
       <div className="flex flex-col gap-4">
+        {rowMessage}
         <p className="text-muted-foreground">{t("pdfNote")}</p>
         <a
           href={source.url}
@@ -135,12 +157,15 @@ export function SourcePanel({
 
   if (source.kind === "unavailable" || (source.kind === "image" && imageFailed)) {
     return (
-      <div
-        role="note"
-        className={`flex ${PAGE_ASPECT} flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed bg-muted/40 p-6 text-center text-muted-foreground`}
-      >
-        <FileText aria-hidden="true" className="size-8" />
-        <p>{t("unavailable")}</p>
+      <div className="flex flex-col gap-3">
+        {rowMessage}
+        <div
+          role="note"
+          className={`flex ${PAGE_ASPECT} flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed bg-muted/40 p-6 text-center text-muted-foreground`}
+        >
+          <FileText aria-hidden="true" className="size-8" />
+          <p>{t("unavailable")}</p>
+        </div>
       </div>
     );
   }
@@ -162,6 +187,7 @@ export function SourcePanel({
 
   return (
     <div className="flex flex-col gap-3">
+      {rowMessage}
       <div className="flex flex-wrap items-center gap-2">
         <Button
           type="button"
@@ -243,9 +269,9 @@ export function SourcePanel({
             <img
               src={source.url}
               alt={t("imageAlt")}
-              loading="lazy"
               decoding="async"
               referrerPolicy="no-referrer"
+              onLoad={() => setImageLoads((n) => n + 1)}
               onError={() => setImageFailed(true)}
               className="block h-auto w-full select-none"
             />
@@ -265,16 +291,6 @@ export function SourcePanel({
       <p id={`${idPrefix}-hint`} className="text-sm text-muted-foreground">
         {t("keyboardHint")}
       </p>
-      {selected && css ? (
-        <p role="status" className="text-sm font-medium">
-          {t("showingRow", { row: selected.row })}
-        </p>
-      ) : null}
-      {noBox ? (
-        <p role="note" className="rounded-lg border bg-muted p-3 text-sm">
-          {t(manual ? "noBoxManual" : "noBox", { row: selected.row })}
-        </p>
-      ) : null}
       {source.kind === "demo" ? (
         <p className="text-sm text-muted-foreground">{t("demoNote")}</p>
       ) : null}

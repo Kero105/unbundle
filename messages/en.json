@@ -253,7 +253,8 @@
         "columnCharge": "Charge",
         "watermark": "SAMPLE – FICTIONAL"
       },
-      "noBoxManual": "You typed row {row}, so it isn't linked to a spot on your bill. Compare it by description and amount."
+      "noBoxManual": "You typed row {row}, so it isn't linked to a spot on your bill. Compare it by description and amount.",
+      "noHighlight": "We can’t draw row {row} on your bill here, so nothing is highlighted. Compare it with your bill by description and amount."
     },
     "empty": "No line items were found on this bill.",
     "saveState": {
