@@ -146,7 +146,23 @@ export type ReportEntry = {
   comparison: FixtureComparison | null;
   /** Opaque error code when the extractor failed, never a message. */
   errorCode?: string;
+  /** Source-box counts for the rows the extractor returned. Absent when it failed. */
+  boxes?: BoxCoverage;
 };
+
+export type BoxCoverage = { rows: number; withBox: number };
+
+/** Counts rows that came back with a position on the page. Coverage, not accuracy. */
+export function boxCoverage(items: readonly { sourceBox: unknown }[]): BoxCoverage {
+  return { rows: items.length, withBox: items.filter((i) => i.sourceBox !== null && i.sourceBox !== undefined).length };
+}
+
+function sumCoverage(entries: readonly ReportEntry[]): BoxCoverage {
+  return entries.reduce(
+    (acc, e) => ({ rows: acc.rows + (e.boxes?.rows ?? 0), withBox: acc.withBox + (e.boxes?.withBox ?? 0) }),
+    { rows: 0, withBox: 0 },
+  );
+}
 
 /** Markdown for docs/extraction-eval.md. Contains ids, counts and field names only. */
 export function renderReport(entries: readonly ReportEntry[], meta: { model: string; date: string }): string {
@@ -184,6 +200,29 @@ export function renderReport(entries: readonly ReportEntry[], meta: { model: str
       lines.push(
         `| ${v} | ${group.length} | ${EVAL_FIELDS.map((f) => pct(s.perField[f].accuracy)).join(" | ")} |`,
       );
+    }
+  }
+
+  const measured = entries.filter((e) => e.boxes !== undefined);
+  if (measured.length > 0) {
+    const share = (c: BoxCoverage) => pct(c.rows === 0 ? null : c.withBox / c.rows);
+    const total = sumCoverage(measured);
+    lines.push(
+      "",
+      "## Source box coverage",
+      "",
+      "Share of returned rows that came back with a non-null sourceBox (a position on the page).",
+      "This measures presence only: the fixtures have no ground-truth boxes, so placement is not scored.",
+      "",
+      `Overall: ${total.withBox} of ${total.rows} rows (${share(total)}).`,
+    );
+    const boxVariants = [...new Set(measured.map((e) => e.variant))].sort();
+    if (boxVariants.length > 1) {
+      lines.push("", "| Variant | Rows | With box | Coverage |", "|---|---:|---:|---:|");
+      for (const v of boxVariants) {
+        const c = sumCoverage(measured.filter((e) => e.variant === v));
+        lines.push(`| ${v} | ${c.rows} | ${c.withBox} | ${share(c)} |`);
+      }
     }
   }
 

@@ -1,6 +1,7 @@
 /**
  * Runs the REAL extractor on the synthetic bill images and compares line items
- * to fixtures/images/manifest.json (code, date, units, charge cents). Writes
+ * to fixtures/images/manifest.json (code, date, units, charge cents), and counts
+ * how many rows came back with a source box. Writes
  * docs/extraction-eval.md with per-field accuracy and mismatches listed by
  * fixture id, row number and field name only: no bill text or values.
  *
@@ -15,7 +16,7 @@ import path from "node:path";
 import { detectFileType } from "../src/lib/bills/upload-validation";
 import { createExtractor, readExtractionConfig } from "../src/lib/extraction";
 import { toDiagnostic, toErrorCode } from "../src/lib/extraction/errors";
-import { compareLines, renderReport, type EvalLine, type ReportEntry } from "../src/lib/extraction/eval-compare";
+import { boxCoverage, compareLines, renderReport, type EvalLine, type ReportEntry } from "../src/lib/extraction/eval-compare";
 
 const MAX_CALLS_WITHOUT_YES = 30;
 const root = path.resolve(__dirname, "..");
@@ -97,7 +98,7 @@ async function main() {
         chargeCents: i.chargeCents,
       }));
       const comparison = compareLines(entry.expected.lineItems, got);
-      results.push({ ...base, comparison });
+      results.push({ ...base, comparison, boxes: boxCoverage(bill.lineItems) });
       console.log(`${entry.file}: ${comparison.mismatches.length} row mismatches`);
     } catch (error) {
       const errorCode = toErrorCode(error);

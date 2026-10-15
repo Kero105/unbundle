@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { compareLines, EVAL_FIELDS, renderReport, summarize, type EvalLine } from "./eval-compare";
+import { boxCoverage, compareLines, EVAL_FIELDS, renderReport, summarize, type EvalLine } from "./eval-compare";
 
 const line = (code: string | null, date: string | null, units: number, chargeCents: number): EvalLine => ({
   code,
@@ -181,5 +181,34 @@ describe("scoring the real manifest", () => {
       );
       expect(md).not.toContain("## Mismatches\n\nNone.");
     }
+  });
+
+  it("counts rows with a source box", () => {
+    expect(boxCoverage([])).toEqual({ rows: 0, withBox: 0 });
+    const box = { x: 0.1, y: 0.2, width: 0.8, height: 0.05 };
+    expect(boxCoverage([{ sourceBox: box }, { sourceBox: null }, { sourceBox: box }])).toEqual({ rows: 3, withBox: 2 });
+  });
+
+  it("reports box coverage overall and by variant, and leaves failures out", () => {
+    const perfect = compareLines(expected, expected);
+    const md = renderReport(
+      [
+        { fixtureId: "a", file: "a.png", variant: "clean", comparison: perfect, boxes: { rows: 4, withBox: 4 } },
+        { fixtureId: "b", file: "b.png", variant: "rotated", comparison: perfect, boxes: { rows: 4, withBox: 1 } },
+        { fixtureId: "c", file: "c.png", variant: "clean", comparison: compareLines(expected, []), errorCode: "timeout" },
+      ],
+      { model: "m", date: "2026-10-10" },
+    );
+    expect(md).toContain("## Source box coverage");
+    expect(md).toContain("Overall: 5 of 8 rows (62.5%).");
+    expect(md).toContain("| rotated | 4 | 1 | 25.0% |");
+  });
+
+  it("omits the box section when no entry measured boxes", () => {
+    const md = renderReport(
+      [{ fixtureId: "a", file: "a.png", variant: "clean", comparison: compareLines(expected, expected) }],
+      { model: "m", date: "2026-10-10" },
+    );
+    expect(md).not.toContain("Source box coverage");
   });
 });
