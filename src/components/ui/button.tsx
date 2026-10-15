@@ -3,15 +3,20 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-transparent text-base font-medium whitespace-nowrap transition-colors outline-none select-none focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background not-motion-reduce:active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60 aria-disabled:cursor-not-allowed aria-disabled:opacity-60 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-5",
+  "group/button inline-flex shrink-0 items-center justify-center gap-2 rounded-control border border-transparent text-base font-medium whitespace-nowrap transition-colors outline-none select-none focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background not-motion-reduce:active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60 aria-disabled:cursor-not-allowed aria-disabled:opacity-60 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-5",
   {
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/85 active:bg-primary/70",
+        // Hierarchy: default is the one primary action on a screen, secondary is
+        // an outlined alternative, quiet is a text link for navigation. outline is
+        // the older name for secondary and renders the same.
+        secondary:
+          "border-input bg-card text-foreground hover:bg-muted active:bg-muted/60 aria-expanded:bg-muted",
         outline:
           "border-input bg-card text-foreground hover:bg-muted active:bg-muted/60 aria-expanded:bg-muted",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/70 active:bg-secondary/50",
+        quiet:
+          "px-1 text-primary underline underline-offset-4 hover:no-underline active:opacity-70",
         ghost: "text-foreground hover:bg-muted active:bg-muted/60 aria-expanded:bg-muted",
         destructive:
           "bg-destructive-surface text-destructive border-destructive/30 hover:bg-destructive-surface/70 active:bg-destructive-surface/50",
