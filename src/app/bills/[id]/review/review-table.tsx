@@ -601,52 +601,86 @@ export function ReviewTable({
 
       <section
         aria-label={t("actions.label")}
-        className="sticky bottom-0 z-10 -mx-4 border-t bg-background/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur sm:-mx-6 sm:px-6 2xl:col-span-2"
+        className="sticky bottom-0 z-10 -mx-4 border-t bg-background/95 px-4 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] backdrop-blur sm:-mx-6 sm:px-6 sm:pt-3 sm:pb-[calc(0.75rem+env(safe-area-inset-bottom))] 2xl:col-span-2"
       >
-        <div className="mx-auto flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p
-            id={helperId}
-            aria-live="polite"
-            className={cn(
-              "flex items-center gap-2",
-              attentionCount > 0 ? "text-warning-foreground" : "text-success-foreground",
-            )}
-          >
+        <div className="mx-auto flex w-full flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+          {/* One status line: what blocks continuing, then the autosave note in
+              smaller text. */}
+          <p className="flex items-start gap-2 text-sm sm:text-base">
             {attentionCount > 0 ? (
-              <TriangleAlert aria-hidden="true" className="size-5 shrink-0" />
+              <TriangleAlert aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-warning-foreground sm:size-5" />
             ) : (
-              <CircleCheck aria-hidden="true" className="size-5 shrink-0" />
+              <CircleCheck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-success-foreground sm:size-5" />
             )}
-            {attentionCount > 0
-              ? t("actions.blocked", { count: attentionCount })
-              : t("actions.ready")}
-          </p>
-          {billId ? (
-            <p
-              role="status"
-              aria-live="polite"
-              className={cn(
-                "flex items-center gap-2 text-sm",
-                saveState === "failed" ? "text-destructive" : "text-muted-foreground",
-              )}
-            >
-              {saveState === "saving" ? (
-                <Loader2 aria-hidden="true" className="size-4 animate-spin motion-reduce:animate-none" />
-              ) : saveState === "saved" ? (
-                <Check aria-hidden="true" className="size-4" />
+            <span>
+              <span
+                id={helperId}
+                aria-live="polite"
+                className={cn(
+                  "font-medium",
+                  attentionCount > 0 ? "text-warning-foreground" : "text-success-foreground",
+                )}
+              >
+                {attentionCount > 0
+                  ? t("actions.blocked", { count: attentionCount })
+                  : t("actions.ready")}
+              </span>
+              {billId ? (
+                <>
+                  {" "}
+                  <span
+                    role="status"
+                    aria-live="polite"
+                    className={cn(
+                      "inline-flex items-center gap-1 text-xs sm:text-sm",
+                      saveState === "failed" ? "text-destructive" : "text-muted-foreground",
+                    )}
+                  >
+                    {saveState === "saving" ? (
+                      <Loader2 aria-hidden="true" className="size-3.5 animate-spin motion-reduce:animate-none" />
+                    ) : saveState === "saved" ? (
+                      <Check aria-hidden="true" className="size-3.5" />
+                    ) : null}
+                    {saveState === "saving"
+                      ? t("saveState.saving")
+                      : saveState === "saved"
+                        ? t("saveState.saved")
+                        : saveState === "failed"
+                          ? t("saveState.failed")
+                          : t("saveState.autosave")}
+                  </span>
+                </>
               ) : null}
-              {saveState === "saving"
-                ? t("saveState.saving")
-                : saveState === "saved"
-                  ? t("saveState.saved")
-                  : saveState === "failed"
-                    ? t("saveState.failed")
-                    : t("saveState.autosave")}
-            </p>
-          ) : null}
-          <div className="flex flex-col-reverse gap-3 sm:flex-row">
+            </span>
+          </p>
+          <div className="flex items-center gap-2 sm:gap-3">
+            {attentionCount > 0 ? (
+              <Button
+                type="button"
+                disabled
+                focusableWhenDisabled
+                aria-describedby={helperId}
+                className="h-11 min-w-0 flex-1 sm:flex-none"
+              >
+                {t("actions.continue")}
+              </Button>
+            ) : (
+              <PendingLink
+                href={reportHref}
+                aria-describedby={helperId}
+                className={cn(buttonVariants(), "h-11 min-w-0 flex-1 sm:flex-none")}
+                pendingLabel={t("actions.continuePending")}
+              >
+                {t("actions.continue")}
+              </PendingLink>
+            )}
             {demo ? (
-              <Button type="button" variant="outline" onClick={reset}>
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={reset}
+                className="shrink-0 max-sm:px-2 sm:order-first sm:border sm:border-input"
+              >
                 <RotateCcw aria-hidden="true" />
                 {t("actions.reset")}
               </Button>
@@ -654,24 +688,13 @@ export function ReviewTable({
               // Edits are already saved; this just leaves the bill in the dashboard.
               <PendingLink
                 href={dashboardHref}
-                className={buttonVariants({ variant: "outline" })}
+                className={cn(
+                  buttonVariants({ variant: "ghost" }),
+                  "shrink-0 max-sm:px-2 sm:order-first sm:border sm:border-input",
+                )}
                 pendingLabel={t("actions.savePending")}
               >
                 {t("actions.save")}
-              </PendingLink>
-            )}
-            {attentionCount > 0 ? (
-              <Button type="button" disabled focusableWhenDisabled aria-describedby={helperId}>
-                {t("actions.continue")}
-              </Button>
-            ) : (
-              <PendingLink
-                href={reportHref}
-                aria-describedby={helperId}
-                className={buttonVariants()}
-                pendingLabel={t("actions.continuePending")}
-              >
-                {t("actions.continue")}
               </PendingLink>
             )}
           </div>
