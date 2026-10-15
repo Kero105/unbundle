@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useId, useRef, useState } from "react";
+import { Fragment, useEffect, useId, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Check, FileText, Loader2, RotateCcw, ScanSearch, TriangleAlert, CircleCheck } from "lucide-react";
 import { updateLineItemAction } from "@/app/bills/actions";
@@ -83,6 +83,12 @@ export function ReviewTable({
   const [items, setItems] = useState<LineItem[]>(bill.lineItems);
   const helperId = useId();
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  // Below 2xl the original bill lives in a collapsible panel above the table.
+  // "Show on bill" opens it and brings it into view; the counter makes a repeat
+  // click on the same row scroll again.
+  const [sourceOpen, setSourceOpen] = useState(false);
+  const [showRequest, setShowRequest] = useState(0);
+  const sourceDetails = useRef<HTMLDetailsElement>(null);
   const selectedIndex = items.findIndex((item) => item.id === selectedId);
   const selectedItem = selectedIndex >= 0 ? items[selectedIndex] : null;
   const selectedRow = selectedItem
@@ -95,6 +101,20 @@ export function ReviewTable({
     : null;
   // Remounts the field inputs so half-typed drafts disappear on reset.
   const [resetCount, setResetCount] = useState(0);
+
+  function showOnBill(id: string) {
+    setSelectedId(id);
+    setSourceOpen(true);
+    setShowRequest((n) => n + 1);
+  }
+
+  useEffect(() => {
+    const el = sourceDetails.current;
+    // offsetParent is null while the panel is display:none (2xl and wider,
+    // where the side panel is shown instead).
+    if (showRequest === 0 || !el || el.offsetParent === null) return;
+    el.scrollIntoView({ block: "nearest" });
+  }, [showRequest]);
 
   function reset() {
     setItems(bill.lineItems);
@@ -205,7 +225,14 @@ export function ReviewTable({
         </Card>
 
         {showSource ? (
-          <details data-walkthrough="source" tabIndex={-1} className="rounded-lg border bg-card 2xl:hidden">
+          <details
+            ref={sourceDetails}
+            open={sourceOpen}
+            onToggle={(event) => setSourceOpen(event.currentTarget.open)}
+            data-walkthrough="source"
+            tabIndex={-1}
+            className="rounded-lg border bg-card 2xl:hidden"
+          >
             <summary className="flex min-h-12 cursor-pointer items-center gap-2 px-4 font-medium">
               <FileText aria-hidden="true" className="size-5 text-muted-foreground" />
               {t("source.title")}
@@ -425,7 +452,7 @@ export function ReviewTable({
                               size="sm"
                               aria-label={t("source.showOnBillRow", { row })}
                               aria-pressed={item.id === selectedId}
-                              onClick={() => setSelectedId(item.id)}
+                              onClick={() => showOnBill(item.id)}
                             >
                               <ScanSearch aria-hidden="true" />
                               {t("source.showOnBill")}
