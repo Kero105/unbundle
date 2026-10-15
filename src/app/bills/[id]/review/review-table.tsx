@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useId, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Check, CircleHelp, FileText, Loader2, RotateCcw, ScanSearch, TriangleAlert, CircleCheck } from "lucide-react";
+import { Check, ChevronDown, CircleHelp, FileText, Loader2, RotateCcw, ScanSearch, TriangleAlert, CircleCheck } from "lucide-react";
 import { updateLineItemAction } from "@/app/bills/actions";
 import { Badge } from "@/components/ui/badge";
 import { PendingLink } from "@/components/pending-link";
@@ -105,6 +105,17 @@ export function ReviewTable({
   // opened (its panel stays mounted, hidden), so reopening does not ask again.
   const [explain, setExplain] = useState<Record<string, boolean>>({});
   const toggleExplain = (id: string) => setExplain((prev) => ({ ...prev, [id]: !prev[id] }));
+  // Phones show each row as a compact summary. Rows the AI was unsure about
+  // start open; the rest start closed. From lg up the table shows every field,
+  // so this only drives the stacked layout.
+  const initialOpen = () => new Set(bill.lineItems.filter(needsAttention).map((i) => i.id));
+  const [open, setOpen] = useState<Set<string>>(initialOpen);
+  const toggleOpen = (id: string) =>
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (!next.delete(id)) next.add(id);
+      return next;
+    });
   // Remounts the field inputs so half-typed drafts disappear on reset.
   const [resetCount, setResetCount] = useState(0);
 
@@ -125,6 +136,7 @@ export function ReviewTable({
   function reset() {
     setItems(bill.lineItems);
     setExplain({});
+    setOpen(initialOpen());
     setResetCount((n) => n + 1);
   }
 
@@ -290,6 +302,10 @@ export function ReviewTable({
                 const row = index + 1;
                 const field = (name: string) => t("rowField", { field: name, row });
                 const attention = needsAttention(item);
+                const isOpen = open.has(item.id);
+                // Phones only: a closed row hides its fields (display:none, so
+                // they leave the tab order too); lg and up always show them.
+                const fieldCell = isOpen ? "" : "max-lg:hidden";
                 // On desktop the first visible cell is the second <td>: the first
                 // is the phone-only summary and is hidden at lg. A flagged row
                 // gets a thin amber marker, a verified one a green marker; the
@@ -319,41 +335,82 @@ export function ReviewTable({
                       data-selected={item.id === selectedId}
                       onFocusCapture={() => setSelectedId(item.id)}
                       className={cn(
-                        "align-top lg:[&>td]:py-1.5 max-lg:grid max-lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] max-lg:gap-x-3 max-lg:gap-y-4 max-lg:[&>td]:min-w-0 max-lg:rounded-surface max-lg:border max-lg:p-4",
+                        "align-top lg:[&>td]:py-1.5 max-lg:grid max-lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] max-lg:gap-x-3 max-lg:gap-y-4 max-lg:[&>td]:min-w-0 max-lg:rounded-surface max-lg:border max-lg:p-3",
                         rowTone,
                       )}
                     >
-                      {/* Stacked-card summary: phones and tablets only. */}
-                      <TableCell className="col-span-2 flex flex-col gap-2 lg:hidden">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-sm font-medium text-muted-foreground">
-                            {t("rowHeading", { row })}
-                          </span>
-                          {statusBadge}
+                      {/* Compact summary: phones and tablets only. The invisible
+                          button covers the summary and toggles the fields; the
+                          "Show on bill" button sits above it. */}
+                      <TableCell className="col-span-2 p-0 lg:hidden">
+                        <div className="relative flex items-start gap-2">
+                          <div className="flex min-w-0 flex-1 flex-col gap-1 py-1">
+                            <p className="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+                              <span className="font-medium">{t("rowHeading", { row })}</span>
+                              <span aria-hidden="true">·</span>
+                              <span>
+                                {item.dateOfService ? (
+                                  formatDay(item.dateOfService)
+                                ) : (
+                                  <Missing>{t("missing.date")}</Missing>
+                                )}
+                                {" · "}
+                                {item.code ?? <Missing>{t("missing.code")}</Missing>}
+                              </span>
+                            </p>
+                            <p className="line-clamp-2 font-semibold break-words">
+                              {item.descriptionRaw}
+                            </p>
+                            <p className="flex flex-wrap items-center gap-x-3 gap-y-1 tabular-nums">
+                              <span className="font-semibold">{formatCents(item.chargeCents)}</span>
+                              {statusBadge}
+                            </p>
+                            {isOpen ? (
+                              <p className="text-sm text-muted-foreground tabular-nums">
+                                {t("equation", {
+                                  units: item.units,
+                                  price:
+                                    item.unitPriceCents === null
+                                      ? t("missing.price")
+                                      : formatCents(item.unitPriceCents),
+                                  charge: formatCents(item.chargeCents),
+                                })}
+                              </p>
+                            ) : null}
+                          </div>
+                          <button
+                            type="button"
+                            aria-expanded={isOpen}
+                            aria-label={t("rowToggle", { row })}
+                            onClick={() => toggleOpen(item.id)}
+                            className="absolute inset-0 rounded-surface outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
+                          />
+                          <div className="flex shrink-0 flex-col items-center">
+                            <span
+                              aria-hidden="true"
+                              className="flex size-11 items-center justify-center text-muted-foreground"
+                            >
+                              <ChevronDown
+                                className={cn("size-5 transition-transform", isOpen && "rotate-180")}
+                              />
+                            </span>
+                            {manual ? null : (
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                aria-label={t("source.showOnBillRow", { row })}
+                                aria-pressed={item.id === selectedId}
+                                onClick={() => showOnBill(item.id)}
+                                className="relative z-10 size-11 px-0"
+                              >
+                                <ScanSearch aria-hidden="true" />
+                              </Button>
+                            )}
+                          </div>
                         </div>
-                        <p className="text-sm text-muted-foreground">
-                          {item.dateOfService ? (
-                            formatDay(item.dateOfService)
-                          ) : (
-                            <Missing>{t("missing.date")}</Missing>
-                          )}
-                          {" · "}
-                          {item.code ?? <Missing>{t("missing.code")}</Missing>}
-                        </p>
-                        <p className="text-lg font-semibold break-words">{item.descriptionRaw}</p>
-                        <p className="tabular-nums">
-                          {t("equation", {
-                            units: item.units,
-                            price:
-                              item.unitPriceCents === null
-                                ? t("missing.price")
-                                : formatCents(item.unitPriceCents),
-                            charge: formatCents(item.chargeCents),
-                          })}
-                        </p>
                       </TableCell>
 
-                      <TableCell className="max-lg:p-0">
+                      <TableCell className={cn("max-lg:p-0", fieldCell)}>
                         <FieldInput
                           type="date"
                           value={item.dateOfService}
@@ -367,7 +424,7 @@ export function ReviewTable({
                           className="max-lg:px-1.5"
                         />
                       </TableCell>
-                      <TableCell className="max-lg:p-0">
+                      <TableCell className={cn("max-lg:p-0", fieldCell)}>
                         <FieldInput
                           value={item.code}
                           format={(v) => v ?? ""}
@@ -379,7 +436,7 @@ export function ReviewTable({
                           placeholder={t("placeholders.code")}
                         />
                       </TableCell>
-                      <TableCell className="max-lg:col-span-2 max-lg:p-0">
+                      <TableCell className={cn("max-lg:col-span-2 max-lg:p-0", fieldCell)}>
                         <div className="flex flex-col gap-1 lg:flex-row lg:items-start lg:gap-1">
                           <div className="min-w-0 lg:flex-1">
                             <FieldInput
@@ -413,7 +470,7 @@ export function ReviewTable({
                           )}
                         </div>
                       </TableCell>
-                      <TableCell className="max-lg:p-0">
+                      <TableCell className={cn("max-lg:p-0", fieldCell)}>
                         <FieldInput
                           value={item.units}
                           format={String}
@@ -425,7 +482,7 @@ export function ReviewTable({
                           inputMode="numeric"
                         />
                       </TableCell>
-                      <TableCell className="max-lg:p-0">
+                      <TableCell className={cn("max-lg:p-0", fieldCell)}>
                         <FieldInput
                           value={item.unitPriceCents}
                           format={(v) => (v === null ? "" : formatCents(v))}
@@ -438,7 +495,7 @@ export function ReviewTable({
                           className="text-right tabular-nums max-lg:px-2"
                         />
                       </TableCell>
-                      <TableCell className="max-lg:p-0">
+                      <TableCell className={cn("max-lg:p-0", fieldCell)}>
                         <FieldInput
                           value={item.chargeCents}
                           format={formatCents}
@@ -451,7 +508,7 @@ export function ReviewTable({
                           className="text-right tabular-nums max-lg:px-2"
                         />
                       </TableCell>
-                      <TableCell className="max-lg:p-0">
+                      <TableCell className={cn("max-lg:p-0", fieldCell)}>
                         <FieldInput
                           value={item.modifiers}
                           format={(v) => v.join(", ")}
@@ -463,7 +520,7 @@ export function ReviewTable({
                           placeholder={t("placeholders.modifiers")}
                         />
                       </TableCell>
-                      <TableCell className="max-lg:col-span-2 max-lg:p-0">
+                      <TableCell className={cn("max-lg:col-span-2 max-lg:p-0", fieldCell)}>
                         <div className="flex items-center gap-3">
                           <label className="flex min-h-11 items-center gap-3">
                             <Checkbox
@@ -477,7 +534,7 @@ export function ReviewTable({
                           </label>
                           <span className="max-lg:hidden">{statusBadge}</span>
                           {manual ? null : (
-                            <span className="ml-auto">
+                            <span className="ml-auto max-lg:hidden">
                               <IconTip label={t("source.showOnBill")} align="end">
                                 <Button
                                   type="button"
@@ -500,7 +557,9 @@ export function ReviewTable({
                       <TableRow
                         className={cn(
                           "bg-card hover:bg-card",
-                          explain[item.id] ? "max-lg:block max-lg:border-0" : "hidden",
+                          explain[item.id]
+                            ? cn("max-lg:border-0", isOpen ? "max-lg:block" : "max-lg:hidden")
+                            : "hidden",
                         )}
                       >
                         <TableCell colSpan={COLUMN_COUNT} className="pt-0 pb-3 max-lg:p-0 max-lg:pb-2">

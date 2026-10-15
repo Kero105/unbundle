@@ -187,6 +187,7 @@
     },
     "rowField": "{field}, fila {row}",
     "rowHeading": "Fila {row}",
+    "rowToggle": "Detalles de la fila {row}",
     "markVerified": "Marcar la fila {row} como verificada",
     "verifyThisRow": "Marcar como verificada",
     "equation": "{units} × {price} = {charge}",

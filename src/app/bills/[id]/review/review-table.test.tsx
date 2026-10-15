@@ -103,3 +103,34 @@ describe("What is this? and the uncertainty notice", () => {
     expect(screen.queryByText(/marked its own reading/)).toBeNull();
   });
 });
+
+describe("row summaries on phones", () => {
+  afterEach(cleanup);
+
+  it("starts flagged rows open and the rest closed, and toggles with aria-expanded", () => {
+    const flagged = {
+      ...typed,
+      lineItems: typed.lineItems.map((l, i) => ({
+        ...l,
+        confidence: i === 0 ? ("low" as const) : ("high" as const),
+        userVerified: i !== 0,
+      })),
+    };
+    view({ bill: flagged });
+    const first = screen.getByRole("button", { name: "Details for row 1" });
+    const second = screen.getByRole("button", { name: "Details for row 2" });
+    expect(first.getAttribute("aria-expanded")).toBe("true");
+    expect(second.getAttribute("aria-expanded")).toBe("false");
+    fireEvent.click(second);
+    expect(second.getAttribute("aria-expanded")).toBe("true");
+    fireEvent.click(first);
+    expect(first.getAttribute("aria-expanded")).toBe("false");
+  });
+
+  it("keeps every field labelled for each row", () => {
+    view({});
+    for (const name of ["Date", "Code", "Description", "Units", "Unit price", "Charge", "Modifiers"]) {
+      expect(screen.getByLabelText(`${name}, row 1`)).toBeTruthy();
+    }
+  });
+});

@@ -187,6 +187,7 @@
     },
     "rowField": "{field}, row {row}",
     "rowHeading": "Row {row}",
+    "rowToggle": "Details for row {row}",
     "markVerified": "Mark row {row} as verified",
     "verifyThisRow": "Mark as verified",
     "equation": "{units} × {price} = {charge}",
