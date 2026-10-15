@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { connection } from "next/server";
 import { getLocale, getTranslations } from "next-intl/server";
+import { SampleFinding } from "@/components/sample-finding";
 import { SignInButton } from "@/components/sign-in-button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PendingLink } from "@/components/pending-link";
@@ -72,22 +73,25 @@ async function Landing() {
 
   return (
     <main lang={locale} className="flex flex-col">
-      <section className="border-b">
-        <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-          <h1 className="max-w-3xl text-title leading-[1.15] font-semibold text-balance sm:text-display">
-            {t("title")}
-          </h1>
-          <p className="mt-5 max-w-2xl text-lead text-muted-foreground">
-            {t("subtitle")}
-          </p>
-          <Suspense fallback={<HeroActionsSkeleton />}>
-            <HeroActions />
-          </Suspense>
+      <section className="border-b bg-secondary/40">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-14 lg:py-20">
+          <div>
+            <h1 className="max-w-3xl text-title leading-[1.15] font-semibold text-balance sm:text-display">
+              {t("title")}
+            </h1>
+            <p className="mt-5 max-w-2xl text-lead text-muted-foreground">{t("subtitle")}</p>
+            <Suspense fallback={<HeroActionsSkeleton />}>
+              <HeroActions />
+            </Suspense>
+          </div>
+          <div className="mx-auto w-full max-w-md lg:max-w-none">
+            <SampleFinding />
+          </div>
         </div>
       </section>
 
-      <section aria-labelledby="how-title" className="border-b">
-        <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
+      <section aria-labelledby="how-title">
+        <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
           <h2 id="how-title" className="text-title font-semibold">
             {t("how.title")}
           </h2>
@@ -110,8 +114,8 @@ async function Landing() {
         </div>
       </section>
 
-      <section aria-labelledby="checks-title" className="border-b">
-        <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
+      <section aria-labelledby="checks-title" className="border-y bg-card">
+        <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
           <h2 id="checks-title" className="text-title font-semibold">
             {t("checks.title")}
           </h2>

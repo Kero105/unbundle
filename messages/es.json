@@ -32,6 +32,11 @@
     "themeDark": "Oscuro"
   },
   "Home": {
+    "sample": {
+      "label": "Factura de ejemplo, no son datos reales",
+      "billed": "Facturado",
+      "medicare": "Precio de referencia de Medicare"
+    },
     "title": "¿Cree que su factura del hospital tiene errores? Revísela en minutos.",
     "subtitle": "Unbundle encuentra cobros duplicados, procedimientos facturados por separado y precios muy por encima de Medicare, y le dice en palabras sencillas qué vale la pena preguntar a la oficina de facturación.",
     "signIn": "Iniciar sesión con Google",
