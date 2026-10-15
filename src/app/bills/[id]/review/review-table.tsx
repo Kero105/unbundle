@@ -197,7 +197,7 @@ export function ReviewTable({
   const sourceDescription = manual ? t("manual.sourceDescription") : t("source.description");
 
   return (
-    <div className={cn("grid gap-6", showSource && "2xl:grid-cols-[minmax(0,1fr)_22rem]")}>
+    <div className={cn("grid grid-cols-1 gap-6", showSource && "2xl:grid-cols-[minmax(0,1fr)_22rem]")}>
       <div className="flex min-w-0 flex-col gap-6">
         <Card>
           <CardContent className="flex flex-col gap-4">
@@ -660,7 +660,7 @@ export function ReviewTable({
                 disabled
                 focusableWhenDisabled
                 aria-describedby={helperId}
-                className="h-11 min-w-0 flex-1 sm:flex-none"
+                className="h-auto min-h-11 min-w-0 flex-1 py-1 leading-tight whitespace-normal max-sm:text-sm sm:flex-none"
               >
                 {t("actions.continue")}
               </Button>
@@ -668,7 +668,7 @@ export function ReviewTable({
               <PendingLink
                 href={reportHref}
                 aria-describedby={helperId}
-                className={cn(buttonVariants(), "h-11 min-w-0 flex-1 sm:flex-none")}
+                className={cn(buttonVariants(), "h-auto min-h-11 min-w-0 flex-1 py-1 leading-tight whitespace-normal max-sm:text-sm sm:flex-none")}
                 pendingLabel={t("actions.continuePending")}
               >
                 {t("actions.continue")}
@@ -679,7 +679,7 @@ export function ReviewTable({
                 type="button"
                 variant="ghost"
                 onClick={reset}
-                className="shrink-0 max-sm:px-2 sm:order-first sm:border sm:border-input"
+                className="h-auto min-h-11 max-w-[45%] shrink-0 px-2 py-1 leading-tight whitespace-normal max-sm:text-sm sm:order-first sm:max-w-none sm:px-3 sm:whitespace-nowrap sm:border sm:border-input"
               >
                 <RotateCcw aria-hidden="true" />
                 {t("actions.reset")}
@@ -690,7 +690,7 @@ export function ReviewTable({
                 href={dashboardHref}
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
-                  "shrink-0 max-sm:px-2 sm:order-first sm:border sm:border-input",
+                  "h-auto min-h-11 max-w-[45%] shrink-0 px-2 py-1 leading-tight whitespace-normal max-sm:text-sm sm:order-first sm:max-w-none sm:px-3 sm:whitespace-nowrap sm:border sm:border-input",
                 )}
                 pendingLabel={t("actions.savePending")}
               >
