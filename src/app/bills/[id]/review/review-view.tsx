@@ -17,26 +17,29 @@ import { ReviewTable } from "./review-table";
 // The request locale is request-time data, so callers render this inside
 // Suspense and the page shell stays static.
 export async function ReviewView({ source }: { source: BillSource }) {
-  const bill = await loadBill(source);
-  if (!bill) notFound();
-
   // The bundled fixture served at /bills/demo has no rows to save to.
   const persisted = source.kind === "bill" && z.uuid().safeParse(source.id).success;
 
-  const [locale, t] = await Promise.all([getLocale(), getTranslations("Review")]);
-
-  // Typed-in bills have no reading to correct and no position on the file.
-  const manual = persisted && (await readEntryMethod(await createClient(), source.id)) === "manual";
-
-  const confidence = summarizeConfidence(bill.lineItems);
-
-  // Signed per request with the user-scoped client; never cached or stored.
-  const panelSource =
+  // Independent reads run together: the rows, the entry method (typed-in bills
+  // have no reading to correct and no position on the file), and the original
+  // file's signed URL (signed per request with the user-scoped client; never
+  // cached or stored). Each is scoped to the caller by RLS and an explicit
+  // user check, so a bill that is not theirs still ends in notFound().
+  const [bill, locale, t, entryMethod, panelSource] = await Promise.all([
+    loadBill(source),
+    getLocale(),
+    getTranslations("Review"),
+    persisted ? readEntryMethod(await createClient(), source.id) : null,
     source.kind === "demo"
       ? ({ kind: "demo" } as const)
       : persisted
-        ? await getSourceFileForBill(source.id)
-        : ({ kind: "unavailable" } as const);
+        ? getSourceFileForBill(source.id)
+        : ({ kind: "unavailable" } as const),
+  ]);
+  if (!bill) notFound();
+
+  const manual = entryMethod === "manual";
+  const confidence = summarizeConfidence(bill.lineItems);
 
   return (
     <NextIntlClientProvider>
