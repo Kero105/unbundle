@@ -43,7 +43,9 @@ export const metadata: Metadata = {
 };
 
 // viewport-fit=cover makes env(safe-area-inset-*) available; the fixed bars and
-// the body use it so nothing sits under a notch or home indicator.
+// the body use it so nothing sits under a notch or home indicator. In an
+// installed (standalone) app the page also draws under the status bar, so a
+// fixed strip of the page background covers the top inset while content scrolls.
 export const viewport: Viewport = {
   viewportFit: "cover",
   themeColor: [
@@ -65,7 +67,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* Applies a saved theme before first paint, so there is no flash. */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body className="flex min-h-full flex-col pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)]">
+      <body className="flex min-h-full flex-col pt-[env(safe-area-inset-top)] pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)]">
+        {/* Zero height in a normal browser tab; covers the status bar area in the installed app. */}
+        <div
+          aria-hidden="true"
+          data-testid="top-safe-area"
+          className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[env(safe-area-inset-top)] bg-background print:hidden"
+        />
         {/* Locale and session are request-time data: the header and footer
             stream in behind Suspense while the page shell stays static. */}
         <Suspense fallback={null}>
