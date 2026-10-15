@@ -189,7 +189,7 @@
       "lowConfidence": "Check this",
       "verified": "Verified"
     },
-    "lowConfidenceReason": "The AI marked its own reading of this row as uncertain. That is its own estimate, not a measured accuracy. Please compare it with your bill.",
+    "lowConfidenceSummary": "The AI marked its own reading of the rows labeled “Check this” as uncertain. That is its own estimate, not a measured accuracy. Please compare each one with your bill.",
     "missing": {
       "date": "No date",
       "code": "No code on bill",

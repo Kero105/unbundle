@@ -1,10 +1,11 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
 import en from "../../../../../messages/en.json";
 import demoBill from "../../../../../fixtures/review/demo-bill.json";
 import { ExtractedBillSchema } from "@/lib/types";
+import { explainCodeAction } from "@/app/bills/explain-actions";
 import { ReviewTable } from "./review-table";
 
 vi.mock("@/app/bills/actions", () => ({ updateLineItemAction: vi.fn() }));
@@ -15,6 +16,7 @@ vi.mock("@/components/pending-link", () => ({
   ),
 }));
 
+const explainMock = vi.mocked(explainCodeAction);
 const bill = ExtractedBillSchema.parse(demoBill);
 const typed = {
   ...bill,
@@ -57,5 +59,47 @@ describe("ReviewTable for a typed-in bill", () => {
     expect(screen.queryByRole("button", { name: /on the original bill/ })).toBeNull();
     expect(screen.getAllByText("Original bill").length).toBeGreaterThan(0);
     expect(screen.getAllByText(/aren't linked to a spot on it/).length).toBeGreaterThan(0);
+  });
+});
+
+describe("What is this? and the uncertainty notice", () => {
+  afterEach(() => {
+    cleanup();
+    explainMock.mockReset();
+  });
+
+  it("asks only when opened, keeps the answer, and does not ask again on reopen", async () => {
+    explainMock.mockResolvedValue({ ok: true, text: "A general explanation." });
+    view({});
+    const button = screen.getAllByRole("button", { name: "What is this? Row 1" })[0];
+    expect(button.getAttribute("aria-expanded")).toBe("false");
+    expect(explainMock).not.toHaveBeenCalled();
+
+    fireEvent.click(button);
+    expect(button.getAttribute("aria-expanded")).toBe("true");
+    await waitFor(() => expect(screen.getByText("A general explanation.")).toBeTruthy());
+    expect(explainMock).toHaveBeenCalledTimes(1);
+
+    fireEvent.click(button);
+    expect(button.getAttribute("aria-expanded")).toBe("false");
+    fireEvent.click(button);
+    expect(screen.getByText("A general explanation.")).toBeTruthy();
+    expect(explainMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("says the AI-uncertainty caveat once, only while rows are flagged", () => {
+    const flagged = {
+      ...typed,
+      lineItems: typed.lineItems.map((l, i) => ({
+        ...l,
+        confidence: i < 2 ? ("low" as const) : ("high" as const),
+        userVerified: false,
+      })),
+    };
+    view({ bill: flagged });
+    expect(screen.getAllByText(/marked its own reading of the rows labeled/)).toHaveLength(1);
+    cleanup();
+    view({});
+    expect(screen.queryByText(/marked its own reading/)).toBeNull();
   });
 });

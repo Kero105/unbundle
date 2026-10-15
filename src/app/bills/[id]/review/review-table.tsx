@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useId, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Check, FileText, Loader2, RotateCcw, ScanSearch, TriangleAlert, CircleCheck } from "lucide-react";
+import { Check, CircleHelp, FileText, Loader2, RotateCcw, ScanSearch, TriangleAlert, CircleCheck } from "lucide-react";
 import { updateLineItemAction } from "@/app/bills/actions";
 import { Badge } from "@/components/ui/badge";
 import { PendingLink } from "@/components/pending-link";
@@ -38,7 +38,8 @@ import {
   parseUnits,
 } from "./fields";
 import { isExplainableCode } from "@/lib/explain/validate";
-import { ExplainDisclosure } from "./explain-disclosure";
+import { ExplainPanel } from "./explain-disclosure";
+import { IconTip } from "@/components/icon-tip";
 import { SourcePanel, type PanelSource } from "./source-panel";
 import { FieldInput } from "@/components/field-input";
 
@@ -79,6 +80,7 @@ export function ReviewTable({
   manual?: boolean;
 }) {
   const t = useTranslations("Review");
+  const tExplain = useTranslations("Explain");
   const locale = useLocale();
   const [items, setItems] = useState<LineItem[]>(bill.lineItems);
   const helperId = useId();
@@ -99,6 +101,10 @@ export function ReviewTable({
         sourceBox: selectedItem.sourceBox,
       }
     : null;
+  // "What is this?": rows whose answer is open. A row stays in the map once
+  // opened (its panel stays mounted, hidden), so reopening does not ask again.
+  const [explain, setExplain] = useState<Record<string, boolean>>({});
+  const toggleExplain = (id: string) => setExplain((prev) => ({ ...prev, [id]: !prev[id] }));
   // Remounts the field inputs so half-typed drafts disappear on reset.
   const [resetCount, setResetCount] = useState(0);
 
@@ -118,6 +124,7 @@ export function ReviewTable({
 
   function reset() {
     setItems(bill.lineItems);
+    setExplain({});
     setResetCount((n) => n + 1);
   }
 
@@ -181,19 +188,19 @@ export function ReviewTable({
     <div className={cn("grid gap-6", showSource && "2xl:grid-cols-[minmax(0,1fr)_22rem]")}>
       <div className="flex min-w-0 flex-col gap-6">
         <Card>
-          <CardContent className="flex flex-col gap-6">
-            <dl className="grid gap-6 sm:grid-cols-3">
+          <CardContent className="flex flex-col gap-4">
+            <dl className="grid gap-4 sm:grid-cols-3">
               <div>
                 <dt className="text-sm font-medium text-muted-foreground">{t("provider")}</dt>
-                <dd className="mt-1 text-lg font-semibold">{bill.providerName}</dd>
+                <dd className="mt-1 font-semibold">{bill.providerName}</dd>
               </div>
               <div>
                 <dt className="text-sm font-medium text-muted-foreground">{t("serviceDates")}</dt>
-                <dd className="mt-1 text-lg font-semibold">{serviceDates}</dd>
+                <dd className="mt-1 font-semibold">{serviceDates}</dd>
               </div>
               <div>
                 <dt className="text-sm font-medium text-muted-foreground">{t("totalBilled")}</dt>
-                <dd className="mt-1 text-2xl font-semibold tabular-nums">
+                <dd className="mt-1 text-lead font-semibold tabular-nums">
                   {formatCents(bill.totalBilledCents)}
                 </dd>
               </div>
@@ -220,6 +227,13 @@ export function ReviewTable({
                   </span>
                 )}
               </p>
+              {/* Said once here instead of under every flagged row. */}
+              {attentionCount > 0 ? (
+                <p className="flex items-start gap-2 text-warning-foreground">
+                  <TriangleAlert aria-hidden="true" className="mt-1 size-4 shrink-0" />
+                  {t("lowConfidenceSummary")}
+                </p>
+              ) : null}
             </div>
           </CardContent>
         </Card>
@@ -231,7 +245,7 @@ export function ReviewTable({
             onToggle={(event) => setSourceOpen(event.currentTarget.open)}
             data-walkthrough="source"
             tabIndex={-1}
-            className="rounded-lg border bg-card 2xl:hidden"
+            className="rounded-surface border bg-card 2xl:hidden"
           >
             <summary className="flex min-h-12 cursor-pointer items-center gap-2 px-4 font-medium">
               <FileText aria-hidden="true" className="size-5 text-muted-foreground" />
@@ -253,7 +267,7 @@ export function ReviewTable({
         ) : null}
 
         {items.length === 0 ? (
-          <p className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
+          <p className="rounded-surface border border-dashed p-8 text-center text-muted-foreground">
             {t("empty")}
           </p>
         ) : (
@@ -277,13 +291,13 @@ export function ReviewTable({
                 const field = (name: string) => t("rowField", { field: name, row });
                 const attention = needsAttention(item);
                 // On desktop the first visible cell is the second <td>: the first
-                // is the phone-only summary and is hidden at lg.
-                // On desktop the first visible cell is the second <td>: the first
-                // is the phone-only summary and is hidden at lg.
+                // is the phone-only summary and is hidden at lg. A flagged row
+                // gets a thin amber marker, a verified one a green marker; the
+                // reason is said once above the table.
                 const rowTone = attention
-                  ? "bg-warning-surface hover:bg-warning-surface max-lg:border-l-4 max-lg:border-l-warning-border lg:[&>td:nth-child(2)]:shadow-[inset_4px_0_0_var(--warning-border)]"
+                  ? "bg-card max-lg:border-l-4 max-lg:border-l-warning-border lg:[&>td:nth-child(2)]:shadow-[inset_3px_0_0_var(--warning-border)]"
                   : item.userVerified
-                    ? "bg-card max-lg:border-l-4 max-lg:border-l-success-border lg:[&>td:nth-child(2)]:shadow-[inset_4px_0_0_var(--success-border)]"
+                    ? "bg-card max-lg:border-l-4 max-lg:border-l-success-border lg:[&>td:nth-child(2)]:shadow-[inset_3px_0_0_var(--success-border)]"
                     : "bg-card";
                 const statusBadge = item.userVerified ? (
                   <Badge variant="success">
@@ -305,8 +319,7 @@ export function ReviewTable({
                       data-selected={item.id === selectedId}
                       onFocusCapture={() => setSelectedId(item.id)}
                       className={cn(
-                        "align-top max-lg:grid max-lg:grid-cols-2 max-lg:gap-4 max-lg:rounded-lg max-lg:border max-lg:p-4",
-                        attention && "lg:border-b-0",
+                        "align-top lg:[&>td]:py-1.5 max-lg:grid max-lg:grid-cols-2 max-lg:gap-4 max-lg:rounded-surface max-lg:border max-lg:p-4",
                         rowTone,
                       )}
                     >
@@ -338,12 +351,6 @@ export function ReviewTable({
                             charge: formatCents(item.chargeCents),
                           })}
                         </p>
-                        {attention ? (
-                          <p className="flex items-start gap-2 text-warning-foreground">
-                            <TriangleAlert aria-hidden="true" className="mt-1 size-4 shrink-0" />
-                            {t("lowConfidenceReason")}
-                          </p>
-                        ) : null}
                       </TableCell>
 
                       <TableCell className="max-lg:p-0">
@@ -372,15 +379,38 @@ export function ReviewTable({
                         />
                       </TableCell>
                       <TableCell className="max-lg:col-span-2 max-lg:p-0">
-                        <FieldInput
-                          value={item.descriptionRaw}
-                          format={(v) => v}
-                          parse={parseRequiredText}
-                          onCommit={(v) => update(item.id, { descriptionRaw: v })}
-                          label={field(t("columns.description"))}
-                          visibleLabel={t("columns.description")}
-                          error={t("errors.description")}
-                        />
+                        <div className="flex flex-col gap-1 lg:flex-row lg:items-start lg:gap-1">
+                          <div className="min-w-0 lg:flex-1">
+                            <FieldInput
+                              value={item.descriptionRaw}
+                              format={(v) => v}
+                              parse={parseRequiredText}
+                              onCommit={(v) => update(item.id, { descriptionRaw: v })}
+                              label={field(t("columns.description"))}
+                              visibleLabel={t("columns.description")}
+                              error={t("errors.description")}
+                            />
+                          </div>
+                          {isExplainableCode(item.code) ? (
+                            <IconTip label={tExplain("summary")}>
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                aria-label={tExplain("summaryRow", { row })}
+                                aria-expanded={explain[item.id] === true}
+                                aria-controls={`explain-${item.id}`}
+                                onClick={() => toggleExplain(item.id)}
+                                className="max-lg:self-start max-lg:px-2 lg:size-11 lg:px-0"
+                              >
+                                <CircleHelp aria-hidden="true" />
+                                <span className="lg:sr-only">{tExplain("summary")}</span>
+                              </Button>
+                            </IconTip>
+                          ) : (
+                            // Keeps the description inputs the same width on rows without a code.
+                            <span aria-hidden="true" className="size-11 shrink-0 max-lg:hidden" />
+                          )}
+                        </div>
                       </TableCell>
                       <TableCell className="max-lg:p-0">
                         <FieldInput
@@ -446,46 +476,38 @@ export function ReviewTable({
                           </label>
                           <span className="max-lg:hidden">{statusBadge}</span>
                           {manual ? null : (
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="sm"
-                              aria-label={t("source.showOnBillRow", { row })}
-                              aria-pressed={item.id === selectedId}
-                              onClick={() => showOnBill(item.id)}
-                            >
-                              <ScanSearch aria-hidden="true" />
-                              {t("source.showOnBill")}
-                            </Button>
+                            <span className="ml-auto">
+                              <IconTip label={t("source.showOnBill")} align="end">
+                                <Button
+                                  type="button"
+                                  variant="ghost"
+                                  aria-label={t("source.showOnBillRow", { row })}
+                                  aria-pressed={item.id === selectedId}
+                                  onClick={() => showOnBill(item.id)}
+                                  className="max-lg:px-2 lg:size-11 lg:px-0"
+                                >
+                                  <ScanSearch aria-hidden="true" />
+                                  <span className="lg:sr-only">{t("source.showOnBill")}</span>
+                                </Button>
+                              </IconTip>
+                            </span>
                           )}
                         </div>
                       </TableCell>
                     </TableRow>
-                    {isExplainableCode(item.code) ? (
-                      <TableRow className="bg-card hover:bg-card max-lg:block max-lg:border-0">
-                        <TableCell colSpan={COLUMN_COUNT} className="pt-0 pb-3 max-lg:p-0 max-lg:pb-2">
-                          <ExplainDisclosure
-                            key={item.code!}
-                            code={item.code!.trim().toUpperCase()}
-                            demo={demo}
-                            row={row}
-                          />
-                        </TableCell>
-                      </TableRow>
-                    ) : null}
-                    {attention ? (
-                      <TableRow className={cn(
-                          "max-lg:hidden bg-warning-surface hover:bg-warning-surface lg:[&>td:first-child]:shadow-[inset_4px_0_0_var(--warning-border)]",
+                    {isExplainableCode(item.code) && item.id in explain ? (
+                      <TableRow
+                        className={cn(
+                          "bg-card hover:bg-card",
+                          explain[item.id] ? "max-lg:block max-lg:border-0" : "hidden",
                         )}
                       >
-                        <TableCell
-                          colSpan={COLUMN_COUNT}
-                          className="pt-0 pb-3 pl-6 text-warning-foreground"
-                        >
-                          <span className="inline-flex items-center gap-2">
-                            <TriangleAlert className="size-4" />
-                            {t("lowConfidenceReason")}
-                          </span>
+                        <TableCell colSpan={COLUMN_COUNT} className="pt-0 pb-3 max-lg:p-0 max-lg:pb-2">
+                          <ExplainPanel
+                            id={`explain-${item.id}`}
+                            code={item.code!.trim().toUpperCase()}
+                            demo={demo}
+                          />
                         </TableCell>
                       </TableRow>
                     ) : null}

@@ -189,7 +189,7 @@
       "lowConfidence": "Revisar esto",
       "verified": "Verificada"
     },
-    "lowConfidenceReason": "La IA marcó su propia lectura de esta fila como incierta. Es su propia estimación, no una exactitud medida. Compárela con su factura.",
+    "lowConfidenceSummary": "La IA marcó su propia lectura de las filas con la etiqueta “Revisar esto” como incierta. Es su propia estimación, no una exactitud medida. Compare cada una con su factura.",
     "missing": {
       "date": "Sin fecha",
       "code": "Sin código en la factura",
