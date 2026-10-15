@@ -966,6 +966,12 @@
       "title": "Privacidad",
       "link": "Lea la política de privacidad completa"
     },
+    "install": {
+      "title": "Agrégalo a tu teléfono",
+      "intro": "Unbundle puede estar en tu pantalla de inicio como una app. Es el mismo sitio web, así que no se guarda nada extra en tu teléfono.",
+      "iphone": "iPhone: abre Unbundle en Safari, toca Compartir y luego Añadir a pantalla de inicio.",
+      "android": "Android: en Chrome, toca el aviso de instalación si aparece, o abre el menú (tres puntos) y toca Instalar app o Añadir a la pantalla de inicio."
+    },
     "built": {
       "title": "Quién lo creó",
       "body": "Unbundle fue creado por un estudiante para el Congressional App Challenge, CA-43."

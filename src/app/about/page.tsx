@@ -243,6 +243,15 @@ async function About() {
         </p>
       </section>
 
+      <section aria-labelledby="install-title" className="flex flex-col gap-4">
+        <SectionTitle id="install-title">{t("install.title")}</SectionTitle>
+        <p className="text-lg leading-8">{t("install.intro")}</p>
+        <ul className="list-disc space-y-2 pl-6 text-lg leading-8">
+          <li>{t("install.iphone")}</li>
+          <li>{t("install.android")}</li>
+        </ul>
+      </section>
+
       <section aria-labelledby="built-title" className="flex flex-col gap-4">
         <SectionTitle id="built-title">{t("built.title")}</SectionTitle>
         <p className="text-lg leading-8">{t("built.body")}</p>

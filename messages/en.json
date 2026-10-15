@@ -966,6 +966,12 @@
       "title": "Privacy",
       "link": "Read the full privacy policy"
     },
+    "install": {
+      "title": "Add to your phone",
+      "intro": "Unbundle can sit on your home screen like an app. It is the same website, so nothing extra is stored on your phone.",
+      "iphone": "iPhone: open Unbundle in Safari, tap Share, then tap Add to Home Screen.",
+      "android": "Android: in Chrome, tap the install prompt if you see one, or open the menu (three dots) and tap Install app or Add to Home screen."
+    },
     "built": {
       "title": "Who built it",
       "body": "Unbundle was built by a student for the Congressional App Challenge, CA-43."

@@ -39,7 +39,7 @@ export async function SiteFooter() {
 
   return (
     <footer lang={locale} className="mt-auto border-t bg-card text-[0.9375rem] print:hidden">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-8 sm:px-6">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 pt-8 pb-[calc(2rem+env(safe-area-inset-bottom))] sm:px-6">
         <nav aria-label={t("footerNav")}>
           <div className="grid gap-6 sm:grid-cols-3">
             {GROUPS.map(({ heading, links }) => (
