@@ -1,5 +1,5 @@
 import "server-only";
-import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/supabase/current-user";
 
 /**
  * Whether the request has a signed-in user, for UI state only (which button to
@@ -7,13 +7,5 @@ import { createClient } from "@/lib/supabase/server";
  * Callers must `await connection()` first so the session read is request-time.
  */
 export async function isSignedIn(): Promise<boolean> {
-  try {
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    return user !== null;
-  } catch {
-    return false;
-  }
+  return (await getCurrentUser()) !== null;
 }

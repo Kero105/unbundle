@@ -6,7 +6,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { LanguageToggle } from "@/components/language-toggle";
 import { Skeleton } from "@/components/ui/skeleton";
 import { routeMetadata } from "@/lib/metadata";
-import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/supabase/current-user";
 import type { Locale } from "@/i18n/locale";
 import { DangerZone } from "./danger-zone";
 
@@ -14,10 +14,7 @@ export const generateMetadata = () => routeMetadata("settings");
 
 async function Settings() {
   await connection();
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getCurrentUser();
   if (!user) redirect("/");
 
   const [locale, t, shell] = await Promise.all([

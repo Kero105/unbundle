@@ -14,6 +14,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { displayStatus } from "@/lib/bills/extraction-status";
 import { suggestsItemizedRequest, summarizeConfidence } from "@/lib/bills/extraction-confidence";
 import { formatCents } from "@/lib/money";
+import { getCurrentUser } from "@/lib/supabase/current-user";
 import { createClient } from "@/lib/supabase/server";
 import { routeMetadata } from "@/lib/metadata";
 
@@ -23,9 +24,7 @@ const currentTimeMs = () => Date.now();
 async function Dashboard() {
   await connection();
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getCurrentUser();
 
   if (!user) redirect("/");
 

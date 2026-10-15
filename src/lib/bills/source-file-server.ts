@@ -1,5 +1,6 @@
 import "server-only";
 import { BILLS_BUCKET } from "@/lib/extraction/supabase-store";
+import { getCurrentUser } from "@/lib/supabase/current-user";
 import { createClient } from "@/lib/supabase/server";
 import { loadSourceFile, type SourceFile } from "./source-file";
 
@@ -10,9 +11,7 @@ import { loadSourceFile, type SourceFile } from "./source-file";
  */
 export async function getSourceFileForBill(billId: string): Promise<SourceFile> {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getCurrentUser();
   if (!user) return { kind: "unavailable" };
 
   return loadSourceFile(

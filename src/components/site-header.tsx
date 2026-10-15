@@ -8,6 +8,7 @@ import { HtmlLangSync } from "@/components/html-lang-sync";
 import { LanguageToggle } from "@/components/language-toggle";
 import { SignInButton } from "@/components/sign-in-button";
 import { createClient } from "@/lib/supabase/server";
+import { isSignedIn } from "@/lib/supabase/signed-in";
 import type { Locale } from "@/i18n/locale";
 
 async function signOut() {
@@ -15,18 +16,6 @@ async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
   redirect("/");
-}
-
-async function isSignedIn() {
-  try {
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    return user !== null;
-  } catch {
-    return false;
-  }
 }
 
 const NAV = [
