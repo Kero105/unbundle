@@ -61,12 +61,28 @@ describe("ManualEntryForm", () => {
   });
 
   it("stops adding at 100 lines", () => {
-    view();
+    // Each add re-renders every row, so clicking 99 times from a blank form is
+    // quadratic and flaked under suite load. Prefill 97 and click to the limit.
+    const lines = Array.from({ length: 97 }, (_, i) => ({
+      dateOfService: null,
+      code: null,
+      descriptionRaw: `SYNTHETIC LINE ${i + 1}`,
+      modifiers: [],
+      units: 1,
+      unitPriceCents: null,
+      chargeCents: 100,
+    }));
+    view({ draft: { header: { providerName: "Synthetic Clinic", serviceStart: null, serviceEnd: null }, lines } });
     const add = screen.getByRole("button", { name: "Add a line" });
-    for (let i = 0; i < 99; i++) fireEvent.click(add);
+    expect(screen.getAllByRole("group", { name: /^Line \d+$/ })).toHaveLength(97);
+    expect(add).toHaveProperty("disabled", false);
+    for (let i = 0; i < 3; i++) fireEvent.click(add);
     expect(screen.getAllByRole("group", { name: /^Line \d+$/ })).toHaveLength(100);
     expect(add).toHaveProperty("disabled", true);
     expect(screen.getByText("You can add up to 100 lines.")).toBeTruthy();
+    // At the limit a further click is a no-op.
+    fireEvent.click(add);
+    expect(screen.getAllByRole("group", { name: /^Line \d+$/ })).toHaveLength(100);
   });
 
   it("does not submit a blank form and says what is missing", async () => {
