@@ -25,11 +25,11 @@ const NAV = [
 ] as const;
 
 const navLinkClass =
-  "inline-flex min-h-11 items-center text-[0.9375rem] font-medium underline-offset-4 hover:underline";
+  "inline-flex min-h-11 items-center text-[0.8125rem] leading-tight font-medium underline-offset-4 hover:underline sm:text-[0.9375rem]";
 
 export function Wordmark() {
   return (
-    <span className="font-heading text-2xl font-semibold tracking-tight text-primary">
+    <span className="font-heading text-xl font-semibold tracking-tight text-primary max-[360px]:text-lg sm:text-2xl">
       Unbundle
     </span>
   );
@@ -39,11 +39,11 @@ export function Wordmark() {
 export function SiteHeaderFallback() {
   return (
     <header className="border-b bg-background">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center px-4 sm:px-6">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center px-4 sm:h-16 sm:px-6">
         <Wordmark />
       </div>
       {/* Reserves the nav row (below lg) so the page doesn't jump when the header streams in. */}
-      <div aria-hidden="true" className="h-12 lg:hidden" />
+      <div aria-hidden="true" className="h-11 lg:hidden" />
     </header>
   );
 }
@@ -60,23 +60,23 @@ export async function SiteHeader() {
     <header lang={locale} className="border-b bg-background print:hidden">
       <HtmlLangSync locale={locale} />
       {/* One row from lg up (wordmark, links, sign in, language). Below lg the
-          links drop to a second row that wraps instead of scrolling, so every
-          link stays visible down to 320px. */}
-      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-6 px-4 sm:px-6 lg:flex-nowrap">
+          wordmark, sign in and language sit in the top row and the links drop
+          to a single second row, so every link stays visible down to 320px. */}
+      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-2 px-4 sm:gap-x-6 sm:px-6 lg:flex-nowrap">
         <Link
           href="/"
           aria-label={t("homeLabel")}
-          className="order-1 flex min-h-16 items-center rounded-md focus-visible:outline-offset-4"
+          className="order-1 flex min-h-14 items-center rounded-md focus-visible:outline-offset-4 sm:min-h-16"
         >
           <Wordmark />
         </Link>
         <nav
           aria-label={t("navLabel")}
-          className="order-3 w-full pb-1 lg:order-2 lg:w-auto lg:flex-1 lg:pb-0"
+          className="order-3 w-full lg:order-2 lg:w-auto lg:flex-1"
         >
-          <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:flex-nowrap">
+          <ul className="flex items-center justify-between gap-x-2 sm:justify-start sm:gap-x-5">
             {NAV.map(({ href, key }) => (
-              <li key={href}>
+              <li key={href} className="min-w-0">
                 <Link href={href} className={navLinkClass}>
                   {t(key)}
                 </Link>
@@ -88,16 +88,15 @@ export async function SiteHeader() {
                   {t("navDashboard")}
                 </Link>
               </li>
-            ) : (
-              <li className="lg:ml-auto">
-                <SignInButton size="sm" variant="secondary">
-                  {t("navSignIn")}
-                </SignInButton>
-              </li>
-            )}
+            ) : null}
           </ul>
         </nav>
-        <div className="order-2 ml-auto flex items-center gap-2 lg:order-3 lg:ml-0">
+        <div className="order-2 ml-auto flex items-center gap-1.5 sm:gap-2 lg:order-3 lg:ml-0">
+          {signedIn ? null : (
+            <SignInButton size="sm" variant="secondary" className="max-sm:px-2 max-sm:text-[0.8125rem]">
+              {t("navSignIn")}
+            </SignInButton>
+          )}
           <LanguageToggle
             locale={locale}
             groupLabel={t("languageLabel")}

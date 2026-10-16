@@ -99,7 +99,20 @@ test("nav and footer are consistent and fit a phone", async ({ page }) => {
     for (const name of ["How it works", "Know your rights", "Try a sample"]) {
       await expect(nav.getByRole("link", { name })).toBeVisible();
     }
-    await expect(nav.getByRole("button", { name: "Sign in" })).toBeVisible();
+    // Sign in sits in the top row with the wordmark and the language toggle;
+    // the three links share one row below it.
+    const header = page.getByRole("banner");
+    const signIn = header.getByRole("button", { name: "Sign in" });
+    await expect(signIn).toBeVisible();
+    const top = async (l: typeof signIn) => Math.round((await l.boundingBox())!.y);
+    const wordmark = header.getByRole("link", { name: /Unbundle/ });
+    expect(await top(signIn)).toBeLessThan(await top(nav.getByRole("link", { name: "How it works" })));
+    expect(Math.abs((await top(signIn)) - (await top(wordmark)))).toBeLessThan(12);
+    const rows = new Set<number>();
+    for (const name of ["How it works", "Know your rights", "Try a sample"]) {
+      rows.add(await top(nav.getByRole("link", { name })));
+    }
+    expect(rows.size, path).toBe(1);
 
     const footer = page.getByRole("navigation", { name: "Footer" });
     for (const name of ["Glossary", "Check an estimate", "Checklist", "FAQ", "Share", "About", "Privacy", "Terms", "Help"]) {
