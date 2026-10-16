@@ -62,6 +62,37 @@ test("choosing a row in All rows jumps to it", async ({ page }) => {
   await expect(page.getByLabel("Description, row 3")).toBeVisible();
 });
 
+test("Show on bill scrolls the source panel into view and Back to row returns to the card", async ({
+  page,
+}) => {
+  await openReview(page);
+  const show = page.getByRole("button", { name: /^Show row \d+ on the original bill$/ });
+  const name = (await show.getAttribute("aria-label")) ?? "";
+  const row = name.match(/\d+/)![0];
+  await show.scrollIntoViewIfNeeded();
+  await show.click();
+  const panel = page.locator("details[data-walkthrough='source']");
+  await expect(panel).toHaveAttribute("open", "");
+  await expect(panel.getByTestId("source-highlight")).toBeVisible();
+  await expect(panel.getByRole("status")).toContainText(`row ${row}`);
+  await expect(panel).toBeInViewport();
+
+  await panel.getByRole("button", { name: `Back to row ${row}` }).click();
+  await expect(show).toBeFocused();
+  await expect(show).toBeInViewport();
+});
+
+test("a skeleton fills the page before the cards hydrate (no blank flash)", async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  // Hold back the app bundles so the page stays in its server-rendered state.
+  await context.route("**/_next/static/**/*.js", (route) => route.abort());
+  const page = await context.newPage();
+  await page.goto("/demo/review");
+  await expect(page.getByTestId("review-skeleton")).toBeVisible();
+  await expect(page.getByRole("table")).toBeHidden();
+  await context.close();
+});
+
 test("no horizontal scroll at 320px", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
   await openReview(page);

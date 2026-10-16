@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useId, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Check, ChevronDown, CircleHelp, FileText, Loader2, RotateCcw, ScanSearch, TriangleAlert, CircleCheck } from "lucide-react";
+import { ArrowUp, Check, ChevronDown, CircleHelp, FileText, Loader2, RotateCcw, ScanSearch, TriangleAlert, CircleCheck } from "lucide-react";
 import { updateLineItemAction } from "@/app/bills/actions";
 import { Badge } from "@/components/ui/badge";
 import { PendingLink } from "@/components/pending-link";
@@ -44,6 +44,7 @@ import { SourcePanel, type PanelSource } from "./source-panel";
 import { FieldInput } from "@/components/field-input";
 import { useIsPhone } from "@/lib/use-is-phone";
 import { ReviewCards } from "./review-cards";
+import { Skeleton } from "@/components/ui/skeleton";
 
 function needsAttention(item: LineItem) {
   return item.confidence === "low" && !item.userVerified;
@@ -134,8 +135,18 @@ export function ReviewTable({
     // offsetParent is null while the panel is display:none (2xl and wider,
     // where the side panel is shown instead).
     if (showRequest === 0 || !el || el.offsetParent === null) return;
-    el.scrollIntoView({ block: "nearest" });
+    el.scrollIntoView({ block: isPhone ? "start" : "nearest" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs per request only
   }, [showRequest]);
+
+  // Phones: return from the source panel to the row's card, with focus on the
+  // button that opened it.
+  function backToRow() {
+    const target = selectedId ? document.getElementById(`show-on-bill-${selectedId}`) : null;
+    if (!target) return;
+    target.scrollIntoView({ block: "center" });
+    target.focus({ preventScroll: true });
+  }
 
   function reset() {
     setItems(bill.lineItems);
@@ -268,6 +279,12 @@ export function ReviewTable({
               {t("source.title")}
             </summary>
             <div className="px-4 pb-4">
+              {isPhone && !manual && selectedRow ? (
+                <Button type="button" variant="secondary" onClick={backToRow} className="mb-3">
+                  <ArrowUp aria-hidden="true" />
+                  {t("phone.backToRow", { row: selectedRow.row })}
+                </Button>
+              ) : null}
               <p className="mb-4 text-muted-foreground">{sourceDescription}</p>
               <div className="mx-auto max-w-md">
                 <SourcePanel
@@ -300,7 +317,18 @@ export function ReviewTable({
             demo={demo}
           />
         ) : (
-          // max-sm:hidden covers the moment before a phone swaps to the cards.
+          <>
+            {/* Before hydration a phone can't know it is a phone: the table is
+                hidden under 640px and this placeholder fills the gap, so the
+                page never goes blank before the cards appear. */}
+            <div aria-hidden="true" data-testid="review-skeleton" className="flex flex-col gap-3 sm:hidden">
+              <Skeleton className="h-6 w-28 motion-reduce:animate-none" />
+              <Skeleton className="h-[34rem] w-full rounded-surface motion-reduce:animate-none" />
+              <div className="grid grid-cols-2 gap-3">
+                <Skeleton className="h-11 motion-reduce:animate-none" />
+                <Skeleton className="h-11 motion-reduce:animate-none" />
+              </div>
+            </div>
           <Table key={resetCount} className="max-lg:block max-sm:hidden lg:min-w-[60rem]">
             <TableCaption className="sr-only">{t("tableLabel")}</TableCaption>
             <TableHeader className="max-lg:hidden">
@@ -594,6 +622,7 @@ export function ReviewTable({
               })}
             </TableBody>
           </Table>
+          </>
         )}
       </div>
 

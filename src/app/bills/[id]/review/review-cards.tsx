@@ -290,6 +290,7 @@ export function ReviewCards({
             <div className="flex flex-wrap gap-2">
               {manual ? null : (
                 <Button
+                  id={`show-on-bill-${item.id}`}
                   type="button"
                   variant="secondary"
                   aria-label={t("source.showOnBillRow", { row })}

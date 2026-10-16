@@ -277,7 +277,8 @@
       "allRowsTitle": "All rows",
       "close": "Close",
       "previous": "Previous",
-      "next": "Next"
+      "next": "Next",
+      "backToRow": "Back to row {row}"
     }
   },
   "Report": {
