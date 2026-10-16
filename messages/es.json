@@ -747,7 +747,8 @@
       "compressing": "Comprimiendo…",
       "sizes": "{from} a {to}",
       "replace": "Reemplazar",
-      "remove": "Quitar"
+      "remove": "Quitar",
+      "chooseFile": "Elegir un archivo"
     },
     "tips": {
       "title": "Consejos para una buena foto",

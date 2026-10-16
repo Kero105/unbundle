@@ -359,6 +359,7 @@ export function UploadForm() {
       />
       <FileDropZone
         id="eob-file"
+        prominent={false}
         label={t("eobLabel")}
         hint={t("eobHint")}
         accept={ACCEPT}

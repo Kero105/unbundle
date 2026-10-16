@@ -6,6 +6,7 @@ import { Camera, FileText, Loader2, TriangleAlert, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { formatBytes } from "@/lib/bills/image-compression";
+import { useIsPhone } from "@/lib/use-is-phone";
 import { cn } from "cn";
 
 export type DropZoneFile =
@@ -29,13 +30,29 @@ type Props = {
   error: string | null;
   onSelect: (file: File) => void;
   onRemove: () => void;
+  /**
+   * Phones: "Take a photo" is the one primary control here. Set false on a
+   * second picker on the same screen so there is only one.
+   */
+  prominent?: boolean;
 };
 
 /**
  * Styled file picker. The real <input type="file"> stays in the DOM (visually
  * hidden) and is what the label, keyboard and screen readers talk to.
  */
-export function FileDropZone({ id, label, hint, accept, file, error, onSelect, onRemove }: Props) {
+export function FileDropZone({
+  id,
+  label,
+  hint,
+  accept,
+  file,
+  error,
+  onSelect,
+  onRemove,
+  prominent = true,
+}: Props) {
+  const isPhone = useIsPhone();
   const t = useTranslations("Upload.zone");
   const locale = useLocale();
   const input = useRef<HTMLInputElement>(null);
@@ -84,8 +101,9 @@ export function FileDropZone({ id, label, hint, accept, file, error, onSelect, o
           id={id}
           type="file"
           accept={accept}
-          // Out of the tab order once a file is shown; Replace takes over.
-          tabIndex={file ? -1 : 0}
+          // Out of the tab order once a file is shown (Replace takes over) and on
+          // phones (the two buttons below take over).
+          tabIndex={file || isPhone ? -1 : 0}
           aria-describedby={describedBy}
           aria-invalid={error ? true : undefined}
           className="peer sr-only"
@@ -149,7 +167,7 @@ export function FileDropZone({ id, label, hint, accept, file, error, onSelect, o
             <label
               htmlFor={id}
               className={cn(
-                "flex min-h-32 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed bg-card px-4 py-6 text-center transition-colors hover:bg-muted peer-focus-visible:ring-3 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-background",
+                "flex max-sm:hidden min-h-32 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed bg-card px-4 py-6 text-center transition-colors hover:bg-muted peer-focus-visible:ring-3 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-background",
                 dragging && "border-primary bg-primary/5",
                 error ? "border-destructive/50" : "border-input",
               )}
@@ -172,10 +190,33 @@ export function FileDropZone({ id, label, hint, accept, file, error, onSelect, o
                 e.target.value = "";
               }}
             />
+            {/* Phones: the camera first, the file picker second. No drop target. */}
+            <div className="flex flex-col gap-3 sm:hidden">
+              <Button
+                type="button"
+                size="lg"
+                variant={prominent ? "default" : "secondary"}
+                className="h-14 w-full text-lg"
+                onClick={() => camera.current?.click()}
+              >
+                <Camera aria-hidden="true" />
+                {t("takePhoto")}
+              </Button>
+              <Button
+                type="button"
+                variant={prominent ? "secondary" : "ghost"}
+                className="w-full"
+                onClick={() => input.current?.click()}
+              >
+                <Upload aria-hidden="true" />
+                {t("chooseFile")}
+              </Button>
+              <p className="text-center text-sm text-muted-foreground">{t("accepted")}</p>
+            </div>
             <Button
               type="button"
               variant="outline"
-              className="hidden pointer-coarse:inline-flex"
+              className="hidden pointer-coarse:sm:inline-flex"
               onClick={() => camera.current?.click()}
             >
               <Camera aria-hidden="true" />
