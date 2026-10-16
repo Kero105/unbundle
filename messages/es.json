@@ -269,6 +269,15 @@
       "rowsEntered": "{count, plural, one {Usted escribió # fila.} other {Usted escribió # filas.}}",
       "editLines": "Editar las líneas que escribió",
       "sourceDescription": "Este es el archivo que subió. Las filas que escribió no están vinculadas a un lugar del archivo, así que compárelas por la descripción y el monto."
+    },
+    "phone": {
+      "cardsLabel": "Revise una fila a la vez",
+      "position": "Fila {current} de {total}",
+      "allRows": "Todas las filas",
+      "allRowsTitle": "Todas las filas",
+      "close": "Cerrar",
+      "previous": "Anterior",
+      "next": "Siguiente"
     }
   },
   "Report": {

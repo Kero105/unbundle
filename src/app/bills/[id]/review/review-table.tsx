@@ -42,6 +42,8 @@ import { ExplainPanel } from "./explain-disclosure";
 import { IconTip } from "@/components/icon-tip";
 import { SourcePanel, type PanelSource } from "./source-panel";
 import { FieldInput } from "@/components/field-input";
+import { useIsPhone } from "@/lib/use-is-phone";
+import { ReviewCards } from "./review-cards";
 
 function needsAttention(item: LineItem) {
   return item.confidence === "low" && !item.userVerified;
@@ -80,6 +82,8 @@ export function ReviewTable({
   manual?: boolean;
 }) {
   const t = useTranslations("Review");
+  // Under 640px the rows are shown one at a time instead of as a table.
+  const isPhone = useIsPhone();
   const tExplain = useTranslations("Explain");
   const locale = useLocale();
   const [items, setItems] = useState<LineItem[]>(bill.lineItems);
@@ -282,8 +286,22 @@ export function ReviewTable({
           <p className="rounded-surface border border-dashed p-8 text-center text-muted-foreground">
             {t("empty")}
           </p>
+        ) : isPhone ? (
+          <ReviewCards
+            key={resetCount}
+            items={items}
+            update={update}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+            onShowOnBill={showOnBill}
+            explain={explain}
+            onToggleExplain={toggleExplain}
+            manual={manual}
+            demo={demo}
+          />
         ) : (
-          <Table key={resetCount} className="max-lg:block lg:min-w-[60rem]">
+          // max-sm:hidden covers the moment before a phone swaps to the cards.
+          <Table key={resetCount} className="max-lg:block max-sm:hidden lg:min-w-[60rem]">
             <TableCaption className="sr-only">{t("tableLabel")}</TableCaption>
             <TableHeader className="max-lg:hidden">
               <TableRow className="bg-muted/60">

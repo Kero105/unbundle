@@ -269,6 +269,15 @@
       "rowsEntered": "{count, plural, one {You entered # row.} other {You entered # rows.}}",
       "editLines": "Edit the lines you typed",
       "sourceDescription": "This is the file you uploaded. The rows you typed aren't linked to a spot on it, so compare by description and amount."
+    },
+    "phone": {
+      "cardsLabel": "Review one row at a time",
+      "position": "Row {current} of {total}",
+      "allRows": "All rows",
+      "allRowsTitle": "All rows",
+      "close": "Close",
+      "previous": "Previous",
+      "next": "Next"
     }
   },
   "Report": {

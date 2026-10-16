@@ -26,17 +26,13 @@ test("Show on bill highlights the row in the side panel in a wide window", async
   await expect(side.getByTestId("source-highlight")).toBeVisible();
 });
 
-test("Show on bill works from a collapsed row on a phone", async ({ page }) => {
+test("Show on bill works from the row card on a phone", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/demo/review");
-  const toggle = page.getByRole("button", { name: "Details for row 1" });
-  await expect(toggle).toHaveAttribute("aria-expanded", "false");
-  await expect(page.getByLabel("Description, row 1")).toBeHidden();
-  await page.getByRole("button", button).click();
   const panel = page.locator("details[data-walkthrough='source']");
+  await expect(page.getByRole("region", { name: "Review one row at a time" })).toBeVisible();
+  await expect(panel).not.toHaveAttribute("open", "");
+  await page.getByRole("button", { name: /^Show row \d+ on the original bill$/ }).click();
   await expect(panel).toHaveAttribute("open", "");
   await expect(panel.getByTestId("source-highlight")).toBeVisible();
-  await expect(toggle).toHaveAttribute("aria-expanded", "false");
-  await toggle.click();
-  await expect(page.getByLabel("Description, row 1")).toBeVisible();
 });
