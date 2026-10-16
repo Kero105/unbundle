@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { connection } from "next/server";
 import { getLocale, getTranslations } from "next-intl/server";
-import { SampleFinding } from "@/components/sample-finding";
 import { SignInButton } from "@/components/sign-in-button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PendingLink } from "@/components/pending-link";
@@ -74,7 +73,7 @@ async function Landing() {
   return (
     <main lang={locale} className="flex flex-col">
       <section className="border-b bg-secondary/40">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-14 lg:py-20">
+        <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
           <div>
             <h1 className="max-w-3xl text-title leading-[1.15] font-semibold text-balance sm:text-display">
               {t("title")}
@@ -83,9 +82,6 @@ async function Landing() {
             <Suspense fallback={<HeroActionsSkeleton />}>
               <HeroActions />
             </Suspense>
-          </div>
-          <div className="mx-auto w-full max-w-md lg:max-w-none">
-            <SampleFinding />
           </div>
         </div>
       </section>

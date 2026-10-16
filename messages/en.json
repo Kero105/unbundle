@@ -32,11 +32,6 @@
     "themeDark": "Dark"
   },
   "Home": {
-    "sample": {
-      "label": "Sample bill, not real data",
-      "billed": "Billed",
-      "medicare": "Medicare benchmark price"
-    },
     "title": "Think your hospital bill is wrong? Check it in minutes.",
     "subtitle": "Unbundle finds duplicate charges, unbundled procedures, and prices far above Medicare, and tells you in plain language what is worth asking the billing office.",
     "signIn": "Sign in with Google",
