@@ -107,7 +107,7 @@ export function SourcePanel({
   }
 
   const css =
-    selected && boxAppliesToPage(selected.sourcePage, page) ? boxToCss(selected.sourceBox) : null;
+    selected && boxAppliesToPage(selected.sourcePage, page, pageCount) ? boxToCss(selected.sourceBox) : null;
   // Whether the original can be drawn here at all. A PDF opens in its own tab
   // and a missing or broken image has nothing to draw on, so nothing is
   // highlighted for any row, even one that has a box.

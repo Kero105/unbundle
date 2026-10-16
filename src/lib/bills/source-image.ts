@@ -35,7 +35,14 @@ export function boxToCss(box: SourceBox | null | undefined): CssBox | null {
   return { left: pct(x), top: pct(y), width: pct(width), height: pct(height) };
 }
 
-/** Whether a highlight for a row on `sourcePage` belongs on the page being shown. */
-export function boxAppliesToPage(sourcePage: number, shownPage: number): boolean {
-  return sourcePage === shownPage;
+/**
+ * Whether a highlight for a row on `sourcePage` belongs on the page being
+ * shown. A model page number outside 1..pageCount (or not an integer) is
+ * unknown, not wrong data to hide: when the file has one page the box can only
+ * be on that page, and when it has several there is no safe page to pick.
+ */
+export function boxAppliesToPage(sourcePage: number, shownPage: number, pageCount: number): boolean {
+  const known = Number.isInteger(sourcePage) && sourcePage >= 1 && sourcePage <= pageCount;
+  if (known) return sourcePage === shownPage;
+  return pageCount === 1 && shownPage === 1;
 }

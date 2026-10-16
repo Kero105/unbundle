@@ -66,8 +66,24 @@ describe("clampZoom", () => {
 });
 
 describe("boxAppliesToPage", () => {
-  it("matches only the same page", () => {
-    expect(boxAppliesToPage(1, 1)).toBe(true);
-    expect(boxAppliesToPage(2, 1)).toBe(false);
+  it("matches only the same page when the page is known", () => {
+    expect(boxAppliesToPage(1, 1, 3)).toBe(true);
+    expect(boxAppliesToPage(2, 1, 3)).toBe(false);
+    expect(boxAppliesToPage(3, 3, 3)).toBe(true);
+  });
+
+  it("puts a box with an out-of-range page on page 1 of a one-page file", () => {
+    expect(boxAppliesToPage(2, 1, 1)).toBe(true);
+    expect(boxAppliesToPage(0, 1, 1)).toBe(true);
+    expect(boxAppliesToPage(-1, 1, 1)).toBe(true);
+    expect(boxAppliesToPage(1.5, 1, 1)).toBe(true);
+    expect(boxAppliesToPage(Number.NaN, 1, 1)).toBe(true);
+  });
+
+  it("shows no highlight for an unknown page when the file has several pages", () => {
+    expect(boxAppliesToPage(0, 1, 3)).toBe(false);
+    expect(boxAppliesToPage(4, 1, 3)).toBe(false);
+    expect(boxAppliesToPage(4, 3, 3)).toBe(false);
+    expect(boxAppliesToPage(Number.NaN, 1, 3)).toBe(false);
   });
 });
