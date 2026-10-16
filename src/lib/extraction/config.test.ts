@@ -25,6 +25,13 @@ describe("readExtractionConfig", () => {
     });
   });
 
+  it("defaults to Haiku, and a blank EXTRACTION_MODEL counts as unset", () => {
+    expect(DEFAULT_EXTRACTION_MODEL).toBe("claude-haiku-5-5");
+    const env = { EXTRACTION_MODE: "anthropic", ANTHROPIC_API_KEY: "k" };
+    expect(readExtractionConfig(env)).toMatchObject({ model: "claude-haiku-5-5" });
+    expect(readExtractionConfig({ ...env, EXTRACTION_MODEL: "  " })).toMatchObject({ model: "claude-haiku-5-5" });
+  });
+
   it("allows a model override", () => {
     const config = readExtractionConfig({
       EXTRACTION_MODE: "anthropic",

@@ -1,6 +1,10 @@
 import { ExtractionError } from "./errors";
 
-export const DEFAULT_EXTRACTION_MODEL = "claude-sonnet-5-5";
+/**
+ * Fallback when EXTRACTION_MODEL is unset or blank. Deliberately the cheaper
+ * model, so a missing variable can never silently select the pricier one.
+ */
+export const DEFAULT_EXTRACTION_MODEL = "claude-haiku-5-5";
 
 export type ExtractionConfig =
   | { mode: "mock" }

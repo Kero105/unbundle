@@ -10,7 +10,7 @@
 | `ANTHROPIC_API_KEY` | Host env, server only | **Secret** | Required when `EXTRACTION_MODE=anthropic`. Never prefix with `NEXT_PUBLIC_`. |
 | `EXTRACTION_MODE` | Host env | Config | `mock` (default) or `anthropic`. **Must be `anthropic` in production**; the server refuses to start otherwise. |
 | `EXTRACTION_ENABLED` | Host env | Config | Kill switch. Unset = on. Anything other than `true`/`1`/`yes`/`on` disables extraction (503). |
-| `EXTRACTION_MODEL` | Host env | Config | Optional. Defaults to `claude-sonnet-5-5`. |
+| `EXTRACTION_MODEL` | Host env | Config | Optional. Model for bill extraction. **Defaults to `claude-haiku-5-5`**, so a missing value never selects a pricier model. Set it explicitly in production so the choice is visible. |
 | `EXPLAIN_MODE` | Host env | Config | `mock` (default) or `anthropic`. Controls the "What is this?" code explanations. With `mock`, no model is called. Also turned off by `EXTRACTION_ENABLED`. Needs `ANTHROPIC_API_KEY` when `anthropic`. |
 | `EXPLAIN_MODEL` | Host env | Config | Optional. Model for explanations when `EXPLAIN_MODE=anthropic`. **Defaults to `claude-haiku-5-5`**, independent of `EXTRACTION_MODEL`, so changing the extraction model never changes explanation spend. Set it only to override. |
 | `ALLOW_MOCK_EXTRACTION_IN_PRODUCTION` | Host env | Config | Optional escape hatch for demos or `next start` on a laptop. Leave unset in real production. |
@@ -52,6 +52,7 @@ Then load reference data locally with the service role key: `node scripts/import
 - [ ] Manual entry: `docs/manual-entry-test.md` passed on staging, then `0006` applied (and its `DRAFT` header removed) before deploying. Until then the "type it in by hand" screens cannot save.
 - [ ] Reference data imported; row counts match the import script's report.
 - [ ] `EXTRACTION_MODE=anthropic` set on the host, with `ANTHROPIC_API_KEY`. (Flip from `mock`; the server will not start in production with mock.)
+- [ ] `EXTRACTION_MODEL` set explicitly (currently `claude-haiku-5-5`) for every environment that serves extraction, including Preview. Check the host env does not carry an old value.
 - [ ] If explanations are live: `EXPLAIN_MODE=anthropic`, and `EXPLAIN_MODEL` unset (Haiku) or set on purpose. Check the host env does not still carry an old `EXPLAIN_MODEL`.
 - [ ] `EXTRACTION_ENABLED` unset or `true`; know how to set it `false` as a kill switch.
 - [ ] `SUPABASE_SERVICE_ROLE_KEY` is set only in the production environment, marked Sensitive, and nowhere else (not preview, not `NEXT_PUBLIC_`). Without it, "Delete my account" fails.
