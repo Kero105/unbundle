@@ -6,7 +6,7 @@
 - Privacy rules: no keys in chat or code, no bill contents in logs, no real bills in the repo or the demo video, no phone numbers or text messages.
 - Sourcing rule: every legal or financial claim needs a source link and a not-legal-advice note; claims I couldn't confirm were cut or left out.
 - Scope decisions: what pages and features to build, the four-link nav, manual bill entry, which features to defer.
-- Model choice for bill reading: Claude Haiku 5.5. I chose it after running a 38-image synthetic test (37 images had no line-item mismatches, 1 had a mismatch) and considering cost. I did not run a full Sonnet comparison.
+- Model choice for bill reading: Claude Haiku 5.5 (`claude-haiku-5-5`), which is also the code default when `EXTRACTION_MODEL` is unset. I chose it after running the extractor on 38 synthetic images on 2026-10-14 (recorded in `docs/extraction-eval.md`: 184 of 184 rows matched, 183 of 184 dates exactly right, the one miss on a JPEG-artifacts image) and considering cost. I did not run a Sonnet comparison, so I can't say how it would score. `npm run check:models` prints the model each feature resolves to.
 
 ## What AI tools did
 - Claude Code (Anthropic) wrote most of the code, tests, and first drafts of page and letter copy, from prompts I gave it.
