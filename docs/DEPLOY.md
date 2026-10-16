@@ -53,6 +53,7 @@ Then load reference data locally with the service role key: `node scripts/import
 - [ ] Reference data imported; row counts match the import script's report.
 - [ ] `EXTRACTION_MODE=anthropic` set on the host, with `ANTHROPIC_API_KEY`. (Flip from `mock`; the server will not start in production with mock.)
 - [ ] `EXTRACTION_MODEL` set explicitly (currently `claude-haiku-5-5`) for every environment that serves extraction, including Preview. Check the host env does not carry an old value.
+- [ ] `npm run check:models -- --strict` exits 0 with the production env (it prints the resolved model per feature; no API calls, no keys).
 - [ ] If explanations are live: `EXPLAIN_MODE=anthropic`, and `EXPLAIN_MODEL` unset (Haiku) or set on purpose. Check the host env does not still carry an old `EXPLAIN_MODEL`.
 - [ ] `EXTRACTION_ENABLED` unset or `true`; know how to set it `false` as a kill switch.
 - [ ] `SUPABASE_SERVICE_ROLE_KEY` is set only in the production environment, marked Sensitive, and nowhere else (not preview, not `NEXT_PUBLIC_`). Without it, "Delete my account" fails.
