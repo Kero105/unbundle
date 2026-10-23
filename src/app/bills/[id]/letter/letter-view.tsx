@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { getLocale, getTranslations } from "next-intl/server";
+import { ArrowRight } from "lucide-react";
 import { BillSteps } from "@/components/bill-steps";
 import { buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -48,6 +49,24 @@ export async function LetterView({
         initialProviderName={bill.providerName}
         initialKind={initialKind}
       />
+
+      {/* Step 4 is optional, so point to it here instead of leaving it as a
+          label in the step bar. */}
+      <section
+        aria-labelledby="letter-next"
+        className="flex flex-col gap-4 rounded-surface border bg-card p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6 print:hidden"
+      >
+        <div className="flex flex-col gap-1">
+          <h2 id="letter-next" className="text-lead font-semibold">
+            {t("nextTitle")}
+          </h2>
+          <p className="text-muted-foreground">{t("nextBody")}</p>
+        </div>
+        <Link href={stepHref(source, "assistance")} className={buttonVariants({ className: "shrink-0" })}>
+          {t("nextCta")}
+          <ArrowRight aria-hidden="true" />
+        </Link>
+      </section>
 
       <div className="print:hidden">
         <Link
