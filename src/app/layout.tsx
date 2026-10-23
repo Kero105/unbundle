@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
-import { Fraunces, Public_Sans } from "next/font/google";
+import { Outfit, Public_Sans } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SkipLink } from "@/components/skip-link";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
@@ -14,8 +14,8 @@ const publicSans = Public_Sans({
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   display: "swap",
 });
@@ -61,7 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${publicSans.variable} ${fraunces.variable} h-full`}
+      className={`${publicSans.variable} ${outfit.variable} h-full`}
     >
       <head>
         {/* Applies a saved theme before first paint, so there is no flash. */}

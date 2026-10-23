@@ -44,6 +44,7 @@ export const PAIRS: readonly Pair[] = [
   { fg: "primary", bg: "secondary", min: BODY, note: "links and icons on secondary" },
   { fg: "primary", bg: "muted", min: BODY, note: "links on muted" },
   { fg: "destructive", bg: "muted", min: BODY, note: "error text on muted" },
+  { fg: "brand-foreground", bg: "brand", min: BODY, note: "highlighted brand card" },
   { fg: "ring", bg: "background", min: UI, note: "focus ring" },
   { fg: "ring", bg: "secondary", min: UI, note: "focus ring on secondary" },
   { fg: "input", bg: "muted", min: UI, note: "control border on muted" },
