@@ -59,12 +59,12 @@ async function FindingCard({ item, first = false }: { item: ReportFinding; first
               </p>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2">
-            <Badge variant={severity.variant} className="max-sm:text-xs">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            <Badge variant={severity.variant} className="max-sm:gap-1 max-sm:px-2 max-sm:text-xs">
               <severity.Icon aria-hidden="true" />
               {t("finding.severity", { level: finding.severity })}
             </Badge>
-            <Badge variant={confidence.variant} className="max-sm:text-xs">
+            <Badge variant={confidence.variant} className="max-sm:gap-1 max-sm:px-2 max-sm:text-xs">
               <confidence.Icon aria-hidden="true" />
               {t("finding.confidence", { level: finding.confidence })}
             </Badge>
