@@ -122,7 +122,11 @@ async function Landing() {
             <h1 className="max-w-3xl text-title leading-[1.15] font-semibold text-balance sm:text-display">
               {t("title")}
             </h1>
-            <p className="mt-5 max-w-2xl text-lead text-muted-foreground">{t("subtitle")}</p>
+            <p className="mt-4 max-w-2xl text-body text-muted-foreground sm:mt-5 sm:text-lead">{t("subtitle")}</p>
+            <figure className="mt-6 max-w-xl border-l-2 border-brand pl-4">
+              <blockquote className="text-body">{t("story")}</blockquote>
+              <figcaption className="mt-1 text-meta text-muted-foreground">{t("storyBy")}</figcaption>
+            </figure>
             <Suspense fallback={<HeroActionsSkeleton />}>
               <HeroActions />
             </Suspense>
@@ -161,11 +165,12 @@ async function Landing() {
             {t("checks.title")}
           </h2>
           <p className="mt-2 max-w-2xl text-muted-foreground">{t("checks.intro")}</p>
-          <ul className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-3 sm:gap-x-8 sm:gap-y-5 lg:grid-cols-3">
             {CHECKS.map((key) => (
               <li key={key} className="border-t pt-3">
-                <h3 className="font-semibold">{t(`checks.${key}.title`)}</h3>
-                <p className="mt-1 text-meta text-muted-foreground">{t(`checks.${key}.body`)}</p>
+                <h3 className="font-semibold max-sm:text-meta">{t(`checks.${key}.title`)}</h3>
+                {/* Phones list the check names only, to keep the page short. */}
+                <p className="mt-1 text-meta text-muted-foreground max-sm:hidden">{t(`checks.${key}.body`)}</p>
               </li>
             ))}
           </ul>
