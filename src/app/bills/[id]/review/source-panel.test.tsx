@@ -1,11 +1,25 @@
 // @vitest-environment jsdom
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
 import en from "../../../../../messages/en.json";
 import demoBill from "../../../../../fixtures/review/demo-bill.json";
 import { ExtractedBillSchema } from "@/lib/types";
 import { SourcePanel, type PanelSource, type SelectedRow } from "./source-panel";
+
+// pdf.js needs a real canvas; the stub reports two pages and can simulate a failure.
+vi.mock("./pdf-page", () => ({
+  PdfPage: ({ label, onPageCount, onError }: { label: string; onPageCount: (n: number) => void; onError: () => void }) => (
+    <div role="img" aria-label={label}>
+      <button type="button" onClick={() => onPageCount(2)}>
+        loaded
+      </button>
+      <button type="button" onClick={onError}>
+        fail
+      </button>
+    </div>
+  ),
+}));
 
 const bill = ExtractedBillSchema.parse(demoBill);
 
@@ -91,10 +105,25 @@ describe("SourcePanel", () => {
     expect(region.scrollTop).toBe(900 - 200 + 10);
   });
 
-  it("names the row on the PDF branch, even when the row has a box", () => {
+  it("draws a PDF page and highlights the selected row on it", () => {
     view({ kind: "pdf", url: "https://example.test/x.pdf" }, row(1));
+    expect(screen.getByRole("img", { name: "Page 1 of your bill" })).toBeTruthy();
+    expect(screen.getByTestId("source-highlight").style.top).toBe("29.5%");
+    expect(screen.getByRole("status").textContent).toContain("row 2");
+  });
+
+  it("follows a PDF row to its page once the page count is known", () => {
+    view({ kind: "pdf", url: "https://example.test/x.pdf" }, null);
+    fireEvent.click(screen.getByRole("button", { name: "loaded" }));
+    expect(screen.getByText("Page 1 of 2")).toBeTruthy();
+  });
+
+  it("falls back to opening the PDF, and names the row, when it cannot be drawn", () => {
+    view({ kind: "pdf", url: "https://example.test/x.pdf" }, row(1));
+    fireEvent.click(screen.getByRole("button", { name: "fail" }));
     expect(screen.getByRole("note").textContent).toContain("row 2");
     expect(screen.queryByTestId("source-highlight")).toBeNull();
+    expect(screen.getByRole("link", { name: /Open your original PDF/ })).toBeTruthy();
   });
 
   it("names the row when the bill file is unavailable, above the generic message", () => {

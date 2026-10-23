@@ -6,6 +6,7 @@ import { ExternalLink, FileText, Minus, Plus, RotateCcw } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { boxAppliesToPage, boxToCss, clampZoom, ZOOM_MIN, ZOOM_STEP } from "@/lib/bills/source-image";
 import { formatCents } from "@/lib/money";
+import { PdfPage } from "./pdf-page";
 import type { SourceFile } from "@/lib/bills/source-file";
 import type { ExtractedBill, LineItem } from "@/lib/types";
 
@@ -87,6 +88,8 @@ export function SourcePanel({
   const [page, setPage] = useState(1);
   const [lastSelectedId, setLastSelectedId] = useState<string | null>(null);
   const [imageFailed, setImageFailed] = useState(false);
+  const [pdfFailed, setPdfFailed] = useState(false);
+  const [pdfPages, setPdfPages] = useState(1);
   // Counts image loads. The image arrives after the click when the panel was
   // closed, so the scroll to the highlight has to run again once it has a height.
   const [imageLoads, setImageLoads] = useState(0);
@@ -96,23 +99,29 @@ export function SourcePanel({
   const pageCount =
     source.kind === "demo"
       ? Math.max(1, ...bill.lineItems.map((i) => i.sourcePage))
-      : 1;
+      : source.kind === "pdf"
+        ? pdfPages
+        : 1;
+  const paged = source.kind === "demo" || source.kind === "pdf";
 
   // Follow the selected row to its page (adjusting state during render).
   if (selected && selected.id !== lastSelectedId) {
     setLastSelectedId(selected.id);
-    if (source.kind === "demo" && selected.sourcePage >= 1 && selected.sourcePage <= pageCount) {
+    if (paged && selected.sourcePage >= 1 && selected.sourcePage <= pageCount) {
       setPage(selected.sourcePage);
     }
   }
 
   const css =
     selected && boxAppliesToPage(selected.sourcePage, page, pageCount) ? boxToCss(selected.sourceBox) : null;
-  // Whether the original can be drawn here at all. A PDF opens in its own tab
-  // and a missing or broken image has nothing to draw on, so nothing is
-  // highlighted for any row, even one that has a box.
+  // Whether the original can be drawn here at all. A PDF is drawn page by page
+  // in the browser; if that fails it falls back to opening in its own tab. A
+  // missing or broken file has nothing to draw on, so nothing is highlighted
+  // for any row, even one that has a box.
   const canHighlight =
-    source.kind === "demo" || (source.kind === "image" && !imageFailed);
+    source.kind === "demo" ||
+    (source.kind === "image" && !imageFailed) ||
+    (source.kind === "pdf" && !pdfFailed);
   const shown = canHighlight && css !== null;
   const noteKey = manual ? "noBoxManual" : canHighlight ? "noBox" : "noHighlight";
   // The row-specific message goes first, above the image, so it is seen even
@@ -136,7 +145,7 @@ export function SourcePanel({
     box.scrollTop = Math.max(0, mark.offsetTop - box.clientHeight / 2 + mark.offsetHeight / 2);
   }, [selected?.id, page, zoom, css?.top, imageLoads]);
 
-  if (source.kind === "pdf") {
+  if (source.kind === "pdf" && pdfFailed) {
     return (
       <div className="flex flex-col gap-4">
         {rowMessage}
@@ -264,10 +273,22 @@ export function SourcePanel({
             <div role="img" aria-label={t("demoAlt", { page })}>
               <SyntheticBillPage bill={bill} page={page} />
             </div>
+          ) : source.kind === "pdf" ? (
+            <PdfPage
+              url={source.url}
+              page={page}
+              label={t("pdfAlt", { page })}
+              onPageCount={(count) => {
+                setPdfPages(count);
+                setPage((p) => Math.min(Math.max(1, p), count));
+              }}
+              onRendered={() => setImageLoads((n) => n + 1)}
+              onError={() => setPdfFailed(true)}
+            />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element -- short-lived signed URL; the image optimizer must never see it
             <img
-              src={source.url}
+              src={source.kind === "image" ? source.url : undefined}
               alt={t("imageAlt")}
               decoding="async"
               referrerPolicy="no-referrer"
@@ -293,6 +314,17 @@ export function SourcePanel({
       </p>
       {source.kind === "demo" ? (
         <p className="text-sm text-muted-foreground">{t("demoNote")}</p>
+      ) : null}
+      {source.kind === "pdf" ? (
+        <a
+          href={source.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={buttonVariants({ variant: "outline", className: "self-start" })}
+        >
+          <ExternalLink aria-hidden="true" />
+          {t("openPdf")}
+        </a>
       ) : null}
     </div>
   );
