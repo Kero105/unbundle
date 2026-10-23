@@ -52,7 +52,7 @@ async function FindingCard({ item, first = false }: { item: ReportFinding; first
             <CardTitle className="text-lead">
               <h3>{t(`rules.${finding.ruleId}`)}</h3>
             </CardTitle>
-            <div className="text-right">
+            <div className="sm:text-right">
               <p className="text-sm text-muted-foreground">{t("finding.atStake")}</p>
               <p className="font-heading text-3xl font-normal tracking-tight tabular-nums">
                 {formatCents(finding.amountAtStakeCents)}
@@ -60,24 +60,17 @@ async function FindingCard({ item, first = false }: { item: ReportFinding; first
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Badge variant={severity.variant}>
+            <Badge variant={severity.variant} className="max-sm:text-xs">
               <severity.Icon aria-hidden="true" />
               {t("finding.severity", { level: finding.severity })}
             </Badge>
-            <Badge variant={confidence.variant}>
+            <Badge variant={confidence.variant} className="max-sm:text-xs">
               <confidence.Icon aria-hidden="true" />
               {t("finding.confidence", { level: finding.confidence })}
             </Badge>
           </div>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
-          {finding.confidence !== "high" ? (
-            <p className="flex items-center gap-2 font-medium text-warning-foreground">
-              <TriangleAlert aria-hidden="true" className="size-5 shrink-0" />
-              {t("finding.checkWithOffice")}
-            </p>
-          ) : null}
-
           <div>
             <h4 className="mb-2 text-sm font-medium text-muted-foreground">
               {t("finding.affectedItems")}
@@ -191,17 +184,33 @@ export async function ReportView({ source }: { source: BillSource }) {
 
       <EobReconciliation bill={bill} />
 
-      <Timeline
-        hasFindings={report.findings.length > 0}
-        hrefs={{
-          itemized: stepHref(source, "letter", { type: "itemized" }),
-          summary: stepHref(source, "summary"),
-          letter: stepHref(source, "letter"),
-        }}
-      />
+      {/* Next steps, the phone script and the reminder are useful but long, so
+          they sit behind one disclosure and the findings stay the focus. */}
+      <details className="group rounded-surface border bg-card print:hidden">
+        <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
+          <span className="flex flex-col">
+            <span className="text-lead font-semibold">{t("moreTitle")}</span>
+            <span className="text-meta text-muted-foreground">{t("moreHint")}</span>
+          </span>
+          <ChevronDown
+            aria-hidden="true"
+            className="size-5 shrink-0 transition-transform group-open:rotate-180 motion-reduce:transition-none"
+          />
+        </summary>
+        <div className="flex flex-col gap-8 px-5 pb-6">
+          <Timeline
+            hasFindings={report.findings.length > 0}
+            hrefs={{
+              itemized: stepHref(source, "letter", { type: "itemized" }),
+              summary: stepHref(source, "summary"),
+              letter: stepHref(source, "letter"),
+            }}
+          />
 
-      <CallScript items={buildLetterModel(bill, findings).items} collapsible />
-      <Reminders mode="followUp" />
+          <CallScript items={buildLetterModel(bill, findings).items} collapsible />
+          <Reminders mode="followUp" />
+        </div>
+      </details>
 
       <p className="text-sm text-muted-foreground">{t("disclaimer")}</p>
 
