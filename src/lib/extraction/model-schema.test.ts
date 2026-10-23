@@ -77,10 +77,12 @@ describe("parseModelOutput", () => {
     expect(code(raw)).toBe("invalid_output");
   });
 
-  it("rejects zero units", () => {
-    const raw = clone();
-    raw.lineItems[0].units = 0;
-    expect(code(raw)).toBe("invalid_output");
+  it("rejects negative or fractional units", () => {
+    for (const units of [-1, 1.5]) {
+      const raw = clone();
+      raw.lineItems[0].units = units;
+      expect(code(raw)).toBe("invalid_output");
+    }
   });
 
   it("rejects an unreadable (null) bill total rather than guessing", () => {
@@ -186,10 +188,23 @@ describe("sentinel mapping", () => {
     expect(parseModelOutput(good).lineItems[0].insurancePaidCents).toBeNull();
   });
 
-  it("does not coerce zero units to 1 or null (still invalid)", () => {
+  it("reads zero units (no quantity printed) as 1 and marks the row low confidence for review", () => {
     const raw = clone();
     raw.lineItems[0].units = 0;
-    expect(code(raw)).toBe("invalid_output");
+    raw.lineItems[0].confidence = "high";
+    const row = parseModelOutput(raw).lineItems[0];
+    expect(row.units).toBe(1);
+    expect(row.confidence).toBe("low");
+    expect(row.chargeCents).toBe(raw.lineItems[0].chargeCents);
+  });
+
+  it("leaves printed units and confidence untouched", () => {
+    const raw = clone();
+    raw.lineItems[0].units = 3;
+    raw.lineItems[0].confidence = "high";
+    const row = parseModelOutput(raw).lineItems[0];
+    expect(row.units).toBe(3);
+    expect(row.confidence).toBe("high");
   });
 });
 

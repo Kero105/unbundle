@@ -88,6 +88,16 @@ function boxOrNull(box: ModelOutput["lineItems"][number]["sourceBox"]) {
 }
 
 /**
+ * Units 0 is the "not shown" sentinel: many bills print no quantity column.
+ * The row is kept as 1 unit and marked low confidence, so the review screen
+ * asks the user to confirm it instead of the whole bill failing. Negative or
+ * fractional units are left alone and still fail strict validation.
+ */
+function unitsOrOne(item: ModelOutput["lineItems"][number]) {
+  return item.units === 0 ? { units: 1, confidence: "low" as const } : {};
+}
+
+/**
  * Validates raw model JSON and turns it into an ExtractedBill. Any failure is
  * the opaque "invalid_output" code: issues are dropped because they can echo
  * values from the bill, and the raw output is never kept.
@@ -113,6 +123,7 @@ export function parseModelOutput(raw: unknown): ExtractedBill {
       code: textOrNull(item.code),
       codeType: item.codeType === MODEL_SENTINEL.codeType ? null : item.codeType,
       sourceBox: boxOrNull(item.sourceBox),
+      ...unitsOrOne(item),
     })),
     eobLines: out.eobLines.map((line, i) => ({
       ...line,
