@@ -12,6 +12,7 @@ Rules:
   - sourceBox: {"x":0,"y":0,"width":0,"height":0}
   - unitPriceCents, insurancePaidCents, patientOwesCents, allowedCents, planPaidCents, patientResponsibilityCents, totalBilledCents: null
   - A printed $0.00 is the number 0, not "not shown". Use null only when the amount is not printed.
+  - units: the quantity printed on the row, or 0 when the bill prints no quantity for that row.
 - Never correct arithmetic. If units times price does not equal the charge, report the numbers exactly as printed.
 - Never report errors, overcharges, duplicates, or opinions. Output the data only.
 - Money is an integer number of cents: "$1,234.50" becomes 123450.
