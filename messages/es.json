@@ -109,7 +109,9 @@
     "preview": {
       "label": "De la factura de muestra",
       "caption": "Datos inventados. Cada señal viene de una regla fija."
-    }
+    },
+    "story": "Soy estudiante de preparatoria en California. Creé Unbundle para que familias como la mía puedan revisar una factura médica antes de pagarla.",
+    "storyBy": "Rohan, quien creó Unbundle"
   },
   "Dashboard": {
     "title": "Panel",
@@ -425,7 +427,9 @@
         "collections": "Pida que su cuenta no se envíe a cobranza mientras se revisa la factura, y pida que lo anoten en su cuenta.",
         "insurer": "Si tiene seguro, también puede pedirle a su aseguradora que revise el reclamo. El número de teléfono está en su tarjeta del seguro."
       }
-    }
+    },
+    "moreTitle": "Qué hacer después",
+    "moreHint": "Pasos, un guion para llamar y un recordatorio"
   },
   "Letter": {
     "page": {
@@ -632,7 +636,8 @@
       "signIn": "Inicie sesión con Google para usar su propia factura",
       "signInPending": "Abriendo Google…",
       "upload": "Subir su propia factura",
-      "uploadPending": "Abriendo…"
+      "uploadPending": "Abriendo…",
+      "short": "Factura de ejemplo. Nada se guarda."
     },
     "intro": {
       "title": "Pruebe Unbundle con una factura de ejemplo",

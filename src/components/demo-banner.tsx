@@ -19,13 +19,14 @@ export async function DemoBanner() {
     <aside lang={locale} aria-label={t("label")} className="border-b bg-secondary/60 print:hidden">
       <div className="mx-auto flex w-full max-w-[96rem] flex-col gap-1 px-4 py-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6">
         <p className="flex items-start gap-2 text-meta font-medium text-secondary-foreground sm:text-body">
-          <FlaskConical aria-hidden="true" className="mt-0.5 size-5 shrink-0" />
-          {t("message")}
+          <FlaskConical aria-hidden="true" className="mt-0.5 size-5 shrink-0 max-sm:size-4" />
+          <span className="max-sm:hidden">{t("message")}</span>
+          <span className="sm:hidden">{t("short")}</span>
         </p>
         {signedIn ? (
           <PendingLink
             href="/bills/new"
-            className={buttonVariants({ variant: "quiet" })}
+            className={buttonVariants({ variant: "quiet", className: "max-sm:hidden" })}
             pendingLabel={t("uploadPending")}
           >
             {t("upload")}
@@ -35,7 +36,7 @@ export async function DemoBanner() {
             size="default"
             variant="quiet"
             pendingLabel={t("signInPending")}
-            className="h-auto min-h-11 justify-start py-2 text-left whitespace-normal sm:justify-center"
+            className="h-auto min-h-11 justify-start py-2 text-left whitespace-normal max-sm:hidden sm:justify-center"
           >
             {t("signIn")}
           </SignInButton>
