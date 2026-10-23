@@ -70,23 +70,26 @@ async function HeroPreview() {
   const total = PREVIEW_FINDINGS.reduce((sum, f) => sum + f.atStakeCents, 0);
 
   return (
-    <figure className="rotate-1 rounded-surface border bg-card p-5 shadow-lg shadow-primary/10 motion-reduce:rotate-0 sm:p-6">
+    <figure className="rounded-surface bg-card p-5 shadow-xl shadow-black/5 ring-1 ring-border sm:p-6">
       <p className="text-meta font-medium text-muted-foreground">{t("preview.label")}</p>
-      <div className="mt-3 rounded-control bg-primary p-4 text-primary-foreground">
+      <div className="mt-3 rounded-control bg-brand p-4 text-brand-foreground">
         <p className="text-meta opacity-90">{r("totalLabel")}</p>
-        <p className="font-heading text-4xl font-semibold tabular-nums">{formatCents(total)}</p>
+        <p className="font-heading text-5xl font-light tracking-tight tabular-nums">{formatCents(total)}</p>
         <p className="text-meta opacity-90">{r("totalCount", { count: PREVIEW_FINDINGS.length })}</p>
       </div>
       <ul className="mt-3 flex flex-col gap-2">
         {PREVIEW_FINDINGS.map((f) => (
           <li
             key={f.ruleId}
-            className="flex items-center justify-between gap-4 rounded-control border border-l-4 border-l-warning bg-background px-3 py-2"
+            className="flex items-center justify-between gap-4 rounded-control bg-muted px-4 py-3"
           >
-            <span className="min-w-0">
-              <span className="block font-medium">{r(`rules.${f.ruleId}`)}</span>
-              <span className="block font-mono text-meta text-muted-foreground">
-                {f.code ?? r("finding.noCode")}
+            <span className="flex min-w-0 items-center gap-3">
+              <span aria-hidden="true" className="size-2 shrink-0 rounded-full bg-warning" />
+              <span className="min-w-0">
+                <span className="block font-medium">{r(`rules.${f.ruleId}`)}</span>
+                <span className="block font-mono text-meta text-muted-foreground">
+                  {f.code ?? r("finding.noCode")}
+                </span>
               </span>
             </span>
             <span className="font-semibold tabular-nums">{formatCents(f.atStakeCents)}</span>

@@ -54,7 +54,7 @@ async function FindingCard({ item, first = false }: { item: ReportFinding; first
             </CardTitle>
             <div className="text-right">
               <p className="text-sm text-muted-foreground">{t("finding.atStake")}</p>
-              <p className="font-heading text-3xl font-semibold tabular-nums">
+              <p className="font-heading text-3xl font-normal tracking-tight tabular-nums">
                 {formatCents(finding.amountAtStakeCents)}
               </p>
             </div>
@@ -155,10 +155,10 @@ export async function ReportView({ source }: { source: BillSource }) {
         </section>
       ) : (
         <>
-          <section className="flex flex-col gap-5 rounded-surface bg-primary p-6 text-primary-foreground shadow-lg shadow-primary/15 sm:flex-row sm:items-end sm:justify-between sm:p-8 print:border print:bg-card print:text-foreground print:shadow-none">
+          <section className="flex flex-col gap-5 rounded-surface bg-brand p-6 text-brand-foreground shadow-lg shadow-brand/20 sm:flex-row sm:items-end sm:justify-between sm:p-8 print:border print:bg-card print:text-foreground print:shadow-none">
             <div className="flex flex-col gap-1">
               <p className="text-meta font-medium opacity-90">{t("totalLabel")}</p>
-              <p className="font-heading text-5xl font-semibold tabular-nums sm:text-6xl">
+              <p className="font-heading text-6xl font-light tracking-tight tabular-nums sm:text-7xl">
                 {formatCents(report.totalAtStakeCents)}
               </p>
               <p className="opacity-90">{t("totalCount", { count: report.findings.length })}</p>
@@ -168,7 +168,7 @@ export async function ReportView({ source }: { source: BillSource }) {
               href={stepHref(source, "letter")}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "shrink-0 bg-primary-foreground text-primary hover:bg-primary-foreground/90 active:bg-primary-foreground/80 print:hidden",
+                "shrink-0 bg-brand-foreground text-brand hover:bg-brand-foreground/90 active:bg-brand-foreground/80 print:hidden",
               )}
               pendingLabel={t("makeLetterPending")}
             >
