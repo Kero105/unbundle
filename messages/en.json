@@ -105,6 +105,10 @@
         "sell": "We never sell your information."
       },
       "aboutLink": "How we check, and how accurate it is"
+    },
+    "preview": {
+      "label": "From the sample bill",
+      "caption": "Made-up data. Every flag comes from a fixed rule."
     }
   },
   "Dashboard": {

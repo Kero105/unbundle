@@ -105,6 +105,10 @@
         "sell": "Nunca vendemos su información."
       },
       "aboutLink": "Cómo revisamos y qué tan preciso es"
+    },
+    "preview": {
+      "label": "De la factura de muestra",
+      "caption": "Datos inventados. Cada señal viene de una regla fija."
     }
   },
   "Dashboard": {
