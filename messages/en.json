@@ -258,7 +258,8 @@
         "watermark": "SAMPLE – FICTIONAL"
       },
       "noBoxManual": "You typed row {row}, so it isn't linked to a spot on your bill. Compare it by description and amount.",
-      "noHighlight": "We can’t draw row {row} on your bill here, so nothing is highlighted. Compare it with your bill by description and amount."
+      "noHighlight": "We can’t draw row {row} on your bill here, so nothing is highlighted. Compare it with your bill by description and amount.",
+      "pdfAlt": "Page {page} of your bill"
     },
     "empty": "No line items were found on this bill.",
     "saveState": {
@@ -462,7 +463,10 @@
         "dispute": "Dispute letter",
         "itemized": "Request an itemized bill",
         "noDispute": "Our checks did not flag anything on this bill, so there is no dispute letter to write. You can still ask the billing office for an itemized bill below."
-      }
+      },
+      "nextTitle": "Next step (optional): financial help",
+      "nextBody": "See whether you might qualify for the hospital's financial assistance program.",
+      "nextCta": "Check financial help"
     },
     "doc": {
       "placeholders": {

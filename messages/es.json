@@ -258,7 +258,8 @@
         "watermark": "MUESTRA – FICTICIA"
       },
       "noBoxManual": "Usted escribió la fila {row}, así que no está vinculada a un lugar de su factura. Compárela por la descripción y el monto.",
-      "noHighlight": "No podemos marcar la fila {row} en su factura aquí, así que no se resalta nada. Compárela con su factura por la descripción y el monto."
+      "noHighlight": "No podemos marcar la fila {row} en su factura aquí, así que no se resalta nada. Compárela con su factura por la descripción y el monto.",
+      "pdfAlt": "Página {page} de su factura"
     },
     "empty": "No se encontraron partidas en esta factura.",
     "saveState": {
@@ -462,7 +463,10 @@
         "dispute": "Carta de reclamo",
         "itemized": "Solicitar una factura detallada",
         "noDispute": "Nuestras revisiones no señalaron nada en esta factura, así que no hay una carta de reclamo que redactar. Aun así, puede pedir una factura detallada a la oficina de facturación aquí abajo."
-      }
+      },
+      "nextTitle": "Siguiente paso (opcional): ayuda financiera",
+      "nextBody": "Vea si podría calificar para el programa de asistencia financiera del hospital.",
+      "nextCta": "Revisar ayuda financiera"
     },
     "doc": {
       "placeholders": {
