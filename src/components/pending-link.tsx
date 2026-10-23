@@ -14,7 +14,9 @@ function LinkLabel({ pendingLabel, children }: { pendingLabel: string; children:
         aria-hidden="true"
         className={cn("animate-spin motion-reduce:animate-none", !pending && "hidden")}
       />
-      <span role={pending ? "status" : undefined}>{pending ? pendingLabel : children}</span>
+      <span role={pending ? "status" : undefined} className="inline-flex items-center gap-2">
+        {pending ? pendingLabel : children}
+      </span>
     </>
   );
 }
