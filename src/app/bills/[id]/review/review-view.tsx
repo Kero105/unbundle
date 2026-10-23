@@ -51,7 +51,7 @@ export async function ReviewView({ source }: { source: BillSource }) {
           <BillSteps current="review" />
           <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-semibold sm:text-4xl">{t("title")}</h1>
-            <p className="max-w-2xl text-lg text-muted-foreground">
+            <p className="max-w-2xl text-muted-foreground sm:text-lg">
               {t(manual ? "manual.subtitle" : "subtitle")}
             </p>
             <p className="text-base font-medium">

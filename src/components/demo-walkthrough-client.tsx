@@ -84,22 +84,23 @@ export function DemoWalkthroughClient({ labels }: { labels: WalkthroughLabels })
       onKeyDown={(e) => {
         if (e.key === "Escape") dismiss();
       }}
-      className="border-b border-l-4 border-l-primary bg-secondary/40 print:hidden"
+      className="border-b bg-card print:hidden"
     >
-      <div className="mx-auto flex w-full max-w-[96rem] items-start gap-3 px-4 py-3 sm:px-6">
-        <Lightbulb aria-hidden="true" className="mt-1 size-5 shrink-0 text-primary" />
-        <div className="flex min-w-0 flex-1 flex-col gap-x-6 gap-y-2 sm:flex-row sm:items-start">
+      <div className="mx-auto flex w-full max-w-[96rem] items-center gap-3 px-4 py-2 sm:items-start sm:py-3 sm:px-6">
+        <Lightbulb aria-hidden="true" className="size-5 shrink-0 text-brand sm:mt-1 dark:text-primary" />
+        <div className="flex min-w-0 flex-1 flex-row items-center gap-x-3 gap-y-2 sm:items-start sm:gap-x-6">
           <div className="flex min-w-0 flex-1 flex-col gap-1">
-            <p className="text-meta font-medium text-muted-foreground">
+            <p className="text-meta font-medium text-muted-foreground max-sm:sr-only">
               {labels.step.replace("{number}", String(number)).replace("{total}", String(total))}
             </p>
-            <h2 ref={heading} tabIndex={-1} className="text-body font-semibold outline-none">
+            <h2 ref={heading} tabIndex={-1} className="text-meta font-semibold outline-none sm:text-body">
               {copy.title}
             </h2>
-            <p>{copy.body}</p>
+            {/* Phones show the title only; the full tip stays available to screen readers. */}
+            <p className="max-sm:sr-only">{copy.body}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-3 sm:shrink-0">
-            <Button type="button" variant="secondary" onClick={show}>
+          <div className="flex shrink-0 flex-wrap items-center gap-3">
+            <Button type="button" variant="secondary" size="sm" onClick={show}>
               {labels.show}
             </Button>
             <span role="status" className="text-meta text-muted-foreground">

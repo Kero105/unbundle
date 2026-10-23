@@ -105,7 +105,13 @@
         "sell": "We never sell your information."
       },
       "aboutLink": "How we check, and how accurate it is"
-    }
+    },
+    "preview": {
+      "label": "From the sample bill",
+      "caption": "Made-up data. Every flag comes from a fixed rule."
+    },
+    "story": "I'm a high school student in California. I built Unbundle so families like mine can check a medical bill before they pay it.",
+    "storyBy": "Rohan, who built Unbundle"
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -421,7 +427,9 @@
         "collections": "Ask that your account not be sent to collections while the bill is being reviewed, and ask them to note that on your account.",
         "insurer": "If you have insurance, you can also ask your insurer to review the claim. The phone number is on your insurance card."
       }
-    }
+    },
+    "moreTitle": "What to do next",
+    "moreHint": "Steps, a phone script and a reminder"
   },
   "Letter": {
     "page": {
@@ -628,7 +636,8 @@
       "signIn": "Sign in with Google to use your own bill",
       "signInPending": "Opening Google…",
       "upload": "Upload your own bill",
-      "uploadPending": "Opening…"
+      "uploadPending": "Opening…",
+      "short": "Sample bill. Nothing is saved."
     },
     "intro": {
       "title": "Try Unbundle with a sample bill",
